@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hæl — cycle-aware fasting</title>
+    <meta name="description" content="a fasting timer that reads your menstrual cycle. literary prose, not dashboards. one purchase, no subscription.">
+    <meta name="keywords" content="fasting app, intermittent fasting, cycle syncing, menstrual cycle, fasting timer, women's health">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="hæl — cycle-aware fasting">
+    <meta property="og:description" content="a fasting timer that reads your menstrual cycle. literary prose, not dashboards. one purchase, no subscription.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hael.app">
+    <meta property="og:image" content="https://hael.app/og-image.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="hæl — cycle-aware fasting">
+    <meta name="twitter:description" content="a fasting timer that reads your menstrual cycle. literary prose, not dashboards.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #FAF7F4;
+            --warm-white: #FEFCFA;
+            --primary: #2C2824;
+            --secondary: #6B6560;
+            --tertiary: #A09A94;
+            --blush: #E8D5CC;
+            --rose: #C9A99B;
+            --serif: 'Cormorant Garamond', Georgia, serif;
+        }
+
+        body {
+            font-family: var(--serif);
+            background: var(--cream);
+            color: var(--primary);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 24px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            margin-bottom: 16px;
+        }
+
+        .hero .tagline {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: var(--secondary);
+            line-height: 1.7;
+            max-width: 420px;
+            margin-bottom: 48px;
+        }
+
+        .app-store-badge {
+            display: inline-block;
+            transition: opacity 0.2s;
+        }
+
+        .app-store-badge:hover {
+            opacity: 0.8;
+        }
+
+        .app-store-badge img {
+            height: 54px;
+        }
+
+        /* Screenshots */
+        .screenshots {
+            padding: 80px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            align-items: start;
+        }
+
+        .screenshot-item {
+            text-align: center;
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            max-width: 320px;
+            border-radius: 24px;
+            box-shadow: 0 8px 40px rgba(44, 40, 36, 0.08);
+        }
+
+        .screenshot-caption {
+            margin-top: 20px;
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--secondary);
+            font-style: italic;
+        }
+
+        /* Features */
+        .features {
+            padding: 80px 24px 100px;
+            max-width: 640px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 48px;
+            color: var(--primary);
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--secondary);
+            line-height: 1.8;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--blush);
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 80px 24px;
+            text-align: center;
+            background: var(--warm-white);
+        }
+
+        .cta .price {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--tertiary);
+            margin-bottom: 8px;
+            letter-spacing: 0.05em;
+        }
+
+        .cta h2 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 12px;
+        }
+
+        .cta .sub {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--secondary);
+            margin-bottom: 40px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 24px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--tertiary);
+        }
+
+        footer a {
+            color: var(--tertiary);
+            text-decoration: none;
+            border-bottom: 1px solid var(--blush);
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--secondary);
+        }
+
+        footer .links {
+            margin-bottom: 12px;
+        }
+
+        footer .links a {
+            margin: 0 16px;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .screenshot-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+                max-width: 280px;
+                margin: 0 auto;
+            }
+
+            .screenshot-item img {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>hæl</h1>
+        <p class="tagline">a fasting app that watches the cycle, reads the body, and says nothing it hasn't earned.</p>
+        <a class="app-store-badge" href="https://apps.apple.com/us/app/h%C3%A6l/id6778956802">
+            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store">
+        </a>
+    </section>
+
+    <section class="screenshots">
+        <div class="screenshot-grid">
+            <div class="screenshot-item">
+                <img src="screenshots/ring.png" alt="the enso ring, cycle-aware fasting selector">
+                <p class="screenshot-caption">the ring reads the cycle.</p>
+            </div>
+            <div class="screenshot-item">
+                <img src="screenshots/prose.png" alt="active fast with literary body readings">
+                <p class="screenshot-caption">prose that evolves with the hours.</p>
+            </div>
+            <div class="screenshot-item">
+                <img src="screenshots/ledger.png" alt="calendar ledger of fasting history">
+                <p class="screenshot-caption">every fast, held.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2>what the witness sees</h2>
+        <ul class="feature-list">
+            <li>cycle-aware fasting shaped by menstrual phase</li>
+            <li>literary body readings, not dashboards</li>
+            <li>weight tracking interpreted in cycle context</li>
+            <li>weekly letters and monthly readings</li>
+            <li>push notifications that observe the season</li>
+            <li>one purchase, nothing recurring</li>
+        </ul>
+    </section>
+
+    <section class="cta">
+        <p class="price">$19.99 one-time</p>
+        <h2>the full witness</h2>
+        <p class="sub">the free app sees the fast. the full witness sees the cycle.</p>
+        <a class="app-store-badge" href="https://apps.apple.com/us/app/h%C3%A6l/id6778956802">
+            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store">
+        </a>
+    </section>
+
+    <footer>
+        <div class="links">
+            <a href="/privacy">privacy</a>
+            <a href="/terms">terms</a>
+        </div>
+        <p>&copy; 2026 KI-GEN Studios LLC</p>
+    </footer>
+
+</body>
+</html>
