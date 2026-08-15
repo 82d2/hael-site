@@ -133,30 +133,31 @@
         /* Screenshots */
         .screenshots {
             padding: 80px 24px;
-            max-width: 1100px;
+            max-width: 960px;
             margin: 0 auto;
         }
 
         .screenshot-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            align-items: start;
+            gap: 40px;
+            justify-items: center;
         }
 
         .screenshot-item {
             text-align: center;
+            max-width: 260px;
         }
 
         .screenshot-item img {
             width: 100%;
-            max-width: 320px;
-            border-radius: 24px;
+            height: auto;
+            border-radius: 20px;
             box-shadow: 0 8px 40px rgba(44, 40, 36, 0.08);
         }
 
         .screenshot-caption {
-            margin-top: 20px;
+            margin-top: 16px;
             font-size: 1rem;
             font-weight: 400;
             color: var(--secondary);
@@ -283,12 +284,10 @@
             .screenshot-grid {
                 grid-template-columns: 1fr;
                 gap: 48px;
-                max-width: 280px;
-                margin: 0 auto;
             }
 
-            .screenshot-item img {
-                max-width: 100%;
+            .screenshot-item {
+                max-width: 240px;
             }
         }
     </style>
@@ -307,15 +306,15 @@
         <section class="screenshots" aria-label="App screenshots">
             <div class="screenshot-grid">
                 <figure class="screenshot-item">
-                    <img src="screenshots/ring.png" alt="hæl fasting app showing the ensō ring with cycle-aware fasting recommendations during ovulation phase" width="640" height="1386" loading="lazy">
+                    <img src="screenshots/ring.png" alt="hæl fasting app showing the ensō ring with cycle-aware fasting recommendations during ovulation phase" width="1242" height="2688" loading="lazy">
                     <figcaption class="screenshot-caption">the ring reads the cycle.</figcaption>
                 </figure>
                 <figure class="screenshot-item">
-                    <img src="screenshots/prose.png" alt="hæl active fasting view with literary body readings and hydration tracking at 6 hours" width="640" height="1386" loading="lazy">
+                    <img src="screenshots/prose.png" alt="hæl active fasting view with literary body readings and hydration tracking at 6 hours" width="1242" height="2688" loading="lazy">
                     <figcaption class="screenshot-caption">prose that evolves with the hours.</figcaption>
                 </figure>
                 <figure class="screenshot-item">
-                    <img src="screenshots/ledger.png" alt="hæl fasting history calendar with weight constellation sparkline and cycle phase labels" width="640" height="1386" loading="lazy">
+                    <img src="screenshots/ledger.png" alt="hæl fasting history calendar with weight constellation sparkline and cycle phase labels" width="1242" height="2688" loading="lazy">
                     <figcaption class="screenshot-caption">every fast, held.</figcaption>
                 </figure>
             </div>
