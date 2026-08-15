@@ -3,21 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hæl — cycle-aware fasting</title>
-    <meta name="description" content="a fasting timer that reads your menstrual cycle. literary prose, not dashboards. one purchase, no subscription.">
-    <meta name="keywords" content="fasting app, intermittent fasting, cycle syncing, menstrual cycle, fasting timer, women's health">
+    <title>hæl — Cycle-Aware Intermittent Fasting App for Women</title>
+    <meta name="description" content="hæl is a fasting timer that reads your menstrual cycle. Cycle-synced fasting windows, literary body readings, weight tracking in cycle context. One purchase, no subscription. Download for iPhone.">
+    <meta name="keywords" content="fasting app, intermittent fasting, cycle syncing, menstrual cycle, fasting timer, women's health, cycle aware fasting, fasting for women, period fasting, hormone fasting">
+    <link rel="canonical" href="https://hael.app">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="hæl — cycle-aware fasting">
-    <meta property="og:description" content="a fasting timer that reads your menstrual cycle. literary prose, not dashboards. one purchase, no subscription.">
+    <meta property="og:title" content="hæl — Cycle-Aware Intermittent Fasting App for Women">
+    <meta property="og:description" content="A fasting timer that reads your menstrual cycle. Literary prose, not dashboards. One purchase, no subscription.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://hael.app">
     <meta property="og:image" content="https://hael.app/og-image.png">
+    <meta property="og:site_name" content="hæl">
+    <meta property="og:locale" content="en_US">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="hæl — cycle-aware fasting">
-    <meta name="twitter:description" content="a fasting timer that reads your menstrual cycle. literary prose, not dashboards.">
+    <meta name="twitter:title" content="hæl — Cycle-Aware Fasting App">
+    <meta name="twitter:description" content="A fasting timer that reads your menstrual cycle. Literary prose, not dashboards.">
+    <meta name="twitter:image" content="https://hael.app/og-image.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "hæl",
+        "alternateName": "hael",
+        "description": "A cycle-aware intermittent fasting app for women. Fasting windows shaped by menstrual phase, literary body readings, weight tracking in cycle context.",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "iOS",
+        "url": "https://hael.app",
+        "downloadUrl": "https://apps.apple.com/us/app/h%C3%A6l/id6778956802",
+        "offers": [
+            {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD",
+                "description": "Free download with basic fasting timer"
+            },
+            {
+                "@type": "Offer",
+                "price": "19.99",
+                "priceCurrency": "USD",
+                "description": "The Full Witness: cycle-aware features, weekly letters, monthly readings"
+            }
+        ],
+        "author": {
+            "@type": "Organization",
+            "name": "KI-GEN Studios LLC"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "ratingCount": "1"
+        }
+    }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,7 +108,7 @@
             margin-bottom: 16px;
         }
 
-        .hero .tagline {
+        .hero h2 {
             font-size: 1.25rem;
             font-weight: 400;
             color: var(--secondary);
@@ -154,6 +196,29 @@
             border-bottom: none;
         }
 
+        /* About */
+        .about {
+            padding: 60px 24px 80px;
+            max-width: 640px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .about p {
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: var(--secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
         /* CTA */
         .cta {
             padding: 80px 24px;
@@ -230,57 +295,66 @@
 </head>
 <body>
 
-    <section class="hero">
+    <header class="hero">
         <h1>hæl</h1>
-        <p class="tagline">a fasting app that watches the cycle, reads the body, and says nothing it hasn't earned.</p>
-        <a class="app-store-badge" href="https://apps.apple.com/us/app/h%C3%A6l/id6778956802">
-            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store">
+        <h2>a cycle-aware fasting app that watches the cycle, reads the body, and says nothing it hasn't earned.</h2>
+        <a class="app-store-badge" href="https://apps.apple.com/us/app/h%C3%A6l/id6778956802" aria-label="Download hæl on the App Store">
+            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download hæl on the App Store" width="250" height="83" loading="eager">
         </a>
-    </section>
+    </header>
 
-    <section class="screenshots">
-        <div class="screenshot-grid">
-            <div class="screenshot-item">
-                <img src="screenshots/ring.png" alt="the enso ring, cycle-aware fasting selector">
-                <p class="screenshot-caption">the ring reads the cycle.</p>
+    <main>
+        <section class="screenshots" aria-label="App screenshots">
+            <div class="screenshot-grid">
+                <figure class="screenshot-item">
+                    <img src="screenshots/ring.png" alt="hæl fasting app showing the ensō ring with cycle-aware fasting recommendations during ovulation phase" width="640" height="1386" loading="lazy">
+                    <figcaption class="screenshot-caption">the ring reads the cycle.</figcaption>
+                </figure>
+                <figure class="screenshot-item">
+                    <img src="screenshots/prose.png" alt="hæl active fasting view with literary body readings and hydration tracking at 6 hours" width="640" height="1386" loading="lazy">
+                    <figcaption class="screenshot-caption">prose that evolves with the hours.</figcaption>
+                </figure>
+                <figure class="screenshot-item">
+                    <img src="screenshots/ledger.png" alt="hæl fasting history calendar with weight constellation sparkline and cycle phase labels" width="640" height="1386" loading="lazy">
+                    <figcaption class="screenshot-caption">every fast, held.</figcaption>
+                </figure>
             </div>
-            <div class="screenshot-item">
-                <img src="screenshots/prose.png" alt="active fast with literary body readings">
-                <p class="screenshot-caption">prose that evolves with the hours.</p>
-            </div>
-            <div class="screenshot-item">
-                <img src="screenshots/ledger.png" alt="calendar ledger of fasting history">
-                <p class="screenshot-caption">every fast, held.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="features">
-        <h2>what the witness sees</h2>
-        <ul class="feature-list">
-            <li>cycle-aware fasting shaped by menstrual phase</li>
-            <li>literary body readings, not dashboards</li>
-            <li>weight tracking interpreted in cycle context</li>
-            <li>weekly letters and monthly readings</li>
-            <li>push notifications that observe the season</li>
-            <li>one purchase, nothing recurring</li>
-        </ul>
-    </section>
+        <section class="features" aria-label="Features">
+            <h2>what the witness sees</h2>
+            <ul class="feature-list">
+                <li>cycle-aware fasting shaped by menstrual phase</li>
+                <li>literary body readings, not dashboards</li>
+                <li>weight tracking interpreted in cycle context</li>
+                <li>weekly letters and monthly readings</li>
+                <li>push notifications that observe the season</li>
+                <li>one purchase, nothing recurring</li>
+            </ul>
+        </section>
 
-    <section class="cta">
-        <p class="price">$19.99 one-time</p>
-        <h2>the full witness</h2>
-        <p class="sub">the free app sees the fast. the full witness sees the cycle.</p>
-        <a class="app-store-badge" href="https://apps.apple.com/us/app/h%C3%A6l/id6778956802">
-            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store">
-        </a>
-    </section>
+        <section class="about" aria-label="About hæl">
+            <h2>intermittent fasting, shaped by the cycle</h2>
+            <p>most fasting apps count down and congratulate. hæl counts and stays quiet. the interface is a single ring. the language is literary. the body's rhythm shapes what the app says and when.</p>
+            <p>hæl reads the menstrual cycle through Apple Health. fasting suggestions adjust with the phase: shorter windows during menstruation, longer during follicular. weight readings are interpreted in cycle context. a gain during luteal is not the same as a gain during ovulation. the app knows the difference.</p>
+            <p>weekly letters arrive on mondays. a retrospective of the week's fasting, written in a quiet editorial voice. monthly readings take the longer view. these are not reports. they are readings.</p>
+        </section>
+
+        <section class="cta" aria-label="Download">
+            <p class="price">$19.99 one-time</p>
+            <h2>the full witness</h2>
+            <p class="sub">the free app sees the fast. the full witness sees the cycle.</p>
+            <a class="app-store-badge" href="https://apps.apple.com/us/app/h%C3%A6l/id6778956802" aria-label="Download hæl on the App Store">
+                <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download hæl on the App Store" width="250" height="83" loading="lazy">
+            </a>
+        </section>
+    </main>
 
     <footer>
-        <div class="links">
+        <nav class="links" aria-label="Legal">
             <a href="/privacy">privacy</a>
             <a href="/terms">terms</a>
-        </div>
+        </nav>
         <p>&copy; 2026 KI-GEN Studios LLC</p>
     </footer>
 
