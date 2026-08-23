@@ -105,10 +105,14 @@
         }
 
         .hero h1 {
-            font-size: 4rem;
-            font-weight: 400;
-            letter-spacing: 0.02em;
+            font-size: 0;
             margin-bottom: 16px;
+        }
+
+        .hero h1 img {
+            width: 88px;
+            height: 88px;
+            border-radius: 20px;
         }
 
         .hero h2 {
@@ -280,8 +284,10 @@
 
         /* Mobile */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
+            .hero h1 img {
+                width: 72px;
+                height: 72px;
+                border-radius: 16px;
             }
 
             .screenshot-grid {
@@ -298,7 +304,7 @@
 <body>
 
     <header class="hero">
-        <h1>hæl</h1>
+        <h1><img src="/apple-touch-icon.png" alt="hæl" width="180" height="180"></h1>
         <h2>a cycle-aware fasting app that watches the cycle, reads the body, and says nothing it hasn't earned.</h2>
         <a class="app-store-badge" href="https://apps.apple.com/us/app/h%C3%A6l/id6778956802" aria-label="Download hæl on the App Store">
             <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download hæl on the App Store" width="250" height="83" loading="eager">
