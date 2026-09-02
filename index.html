@@ -278,15 +278,6 @@
                        enso-breathe 5s ease-in-out 3s infinite;
         }
 
-        /* Ink pooling at brush-down point */
-        .enso-pool {
-            opacity: 0;
-        }
-
-        .enso-pool.draw {
-            animation: pool-fade 1s ease-out forwards;
-        }
-
         @keyframes ink-draw {
             0% {
                 stroke-dashoffset: var(--enso-length, 1200);
@@ -314,12 +305,6 @@
         @keyframes enso-breathe {
             0%, 100% { opacity: 0.1; }
             50% { opacity: 0.2; }
-        }
-
-        @keyframes pool-fade {
-            0% { opacity: 0; transform: scale(0.5); }
-            50% { opacity: 0.3; }
-            100% { opacity: 0.15; transform: scale(1); }
         }
 
         .hero-icon {
@@ -788,11 +773,6 @@
                 animation: none !important;
             }
 
-            .enso-pool {
-                opacity: 0.15;
-                animation: none !important;
-            }
-
             .enso-glow {
                 stroke-dashoffset: var(--enso-gap, 80);
                 opacity: 0.1;
@@ -837,19 +817,11 @@
                         <feTurbulence type="turbulence" baseFrequency="0.03 0.05" numOctaves="3" seed="0" result="noise" />
                         <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G" />
                     </filter>
-                    <!-- Ink pool fill -->
-                    <radialGradient id="pool-fill">
-                        <stop offset="0%" stop-color="#B58389" stop-opacity="0.3" />
-                        <stop offset="60%" stop-color="#C4959A" stop-opacity="0.15" />
-                        <stop offset="100%" stop-color="#C4959A" stop-opacity="0" />
-                    </radialGradient>
                 </defs>
                 <!-- Glow halo -->
                 <path class="enso-glow" stroke-width="14" />
                 <!-- Primary ink stroke -->
                 <path class="enso-arc" stroke-width="6" />
-                <!-- Ink pool where the brush touches down -->
-                <circle class="enso-pool" r="8" fill="url(#pool-fill)" />
             </svg>
         </div>
 
@@ -1030,8 +1002,9 @@
             // Measure the actual path length
             var totalLen = arc.getTotalLength();
 
-            // Gap: 5-10% of the circle left undrawn (where the brush lifts)
-            var gap = totalLen * rf(0.05, 0.10);
+            // Gap: 2-4% of the circle left undrawn (where the brush lifts)
+            // Small enough that the circle reads as nearly complete
+            var gap = totalLen * rf(0.02, 0.04);
 
             // Set dash animation values
             arc.style.strokeDasharray = totalLen;
@@ -1047,20 +1020,12 @@
             // Stroke width: varies like brush pressure (5-8 for main, 12-18 for glow)
             arc.setAttribute('stroke-width', rf(5, 8).toFixed(1));
             glow.setAttribute('stroke-width', rf(12, 18).toFixed(1));
-
-            // Ink pool at the brush-down point (start of the visible stroke)
-            var poolPt = arc.getPointAtLength(0);
-            var pool = document.querySelector('.enso-pool');
-            pool.setAttribute('cx', poolPt.x);
-            pool.setAttribute('cy', poolPt.y);
-            pool.setAttribute('r', rf(7, 12).toFixed(1));
         })();
 
         // The brush touches paper
         setTimeout(function() {
             document.querySelector('.enso-arc').classList.add('draw');
             document.querySelector('.enso-glow').classList.add('draw');
-            document.querySelector('.enso-pool').classList.add('draw');
             setTimeout(function() {
                 document.querySelector('.hero-icon').classList.add('visible');
             }, 1400);
