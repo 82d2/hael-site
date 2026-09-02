@@ -133,7 +133,7 @@
         .hero-glow {
             position: absolute;
             border-radius: 50%;
-            filter: blur(100px);
+            filter: blur(120px);
             opacity: 0;
             pointer-events: none;
             will-change: transform, opacity;
@@ -144,55 +144,88 @@
         }
 
         .glow-1 {
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(196, 149, 154, 0.18) 0%, transparent 70%);
-            top: -10%;
-            right: -15%;
+            width: 90vw;
+            height: 90vw;
+            max-width: 1200px;
+            max-height: 1200px;
+            background: radial-gradient(circle, rgba(196, 149, 154, 0.14) 0%, rgba(196, 149, 154, 0.06) 40%, transparent 70%);
+            top: -25%;
+            right: -20%;
         }
 
         .glow-1.active {
-            animation: breathe-1 8s ease-in-out infinite, glow-fade-in 2s ease-out forwards;
+            animation: breathe-1 8s ease-in-out infinite, glow-fade-in 2.5s ease-out forwards;
         }
 
         .glow-2 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(181, 131, 137, 0.12) 0%, transparent 70%);
-            bottom: -5%;
-            left: -10%;
+            width: 80vw;
+            height: 80vw;
+            max-width: 1000px;
+            max-height: 1000px;
+            background: radial-gradient(circle, rgba(181, 131, 137, 0.1) 0%, rgba(181, 131, 137, 0.04) 45%, transparent 70%);
+            bottom: -15%;
+            left: -20%;
         }
 
         .glow-2.active {
-            animation: breathe-2 10s ease-in-out infinite, glow-fade-in 2s ease-out 0.5s forwards;
+            animation: breathe-2 10s ease-in-out infinite, glow-fade-in 2.5s ease-out 0.5s forwards;
         }
 
         .glow-3 {
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, rgba(229, 220, 217, 0.25) 0%, transparent 70%);
-            top: 40%;
+            width: 60vw;
+            height: 60vw;
+            max-width: 800px;
+            max-height: 800px;
+            background: radial-gradient(circle, rgba(229, 220, 217, 0.18) 0%, rgba(229, 220, 217, 0.06) 50%, transparent 70%);
+            top: 30%;
             left: 50%;
             transform: translateX(-50%);
         }
 
         .glow-3.active {
-            animation: breathe-3 12s ease-in-out infinite, glow-fade-in 2s ease-out 1s forwards;
+            animation: breathe-3 12s ease-in-out infinite, glow-fade-in 2.5s ease-out 1s forwards;
+        }
+
+        .glow-4 {
+            width: 50vw;
+            height: 50vw;
+            max-width: 700px;
+            max-height: 700px;
+            background: radial-gradient(circle, rgba(196, 149, 154, 0.08) 0%, rgba(196, 149, 154, 0.03) 50%, transparent 70%);
+            top: 10%;
+            left: -10%;
+        }
+
+        .glow-4.active {
+            animation: breathe-4 14s ease-in-out infinite, glow-fade-in 2.5s ease-out 1.5s forwards;
         }
 
         @keyframes breathe-1 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(-30px, 20px) scale(1.08); }
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+            33% { opacity: 0.7; }
+            50% { transform: translate(-40px, 30px) scale(1.06); opacity: 1; }
+            78% { opacity: 0.8; }
         }
 
         @keyframes breathe-2 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(25px, -15px) scale(1.06); }
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+            25% { opacity: 0.6; }
+            50% { transform: translate(35px, -25px) scale(1.08); opacity: 1; }
+            75% { opacity: 0.75; }
         }
 
         @keyframes breathe-3 {
-            0%, 100% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.1); }
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; }
+            30% { opacity: 0.65; }
+            50% { transform: translateX(-50%) scale(1.1); opacity: 1; }
+            80% { opacity: 0.7; }
+        }
+
+        @keyframes breathe-4 {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+            40% { opacity: 0.5; }
+            50% { transform: translate(20px, 40px) scale(1.05); opacity: 0.9; }
+            70% { opacity: 0.6; }
         }
 
         @keyframes glow-fade-in {
@@ -584,9 +617,11 @@
                 border-radius: 13px;
             }
 
-            .glow-1 { width: 350px; height: 350px; }
-            .glow-2 { width: 300px; height: 300px; }
-            .glow-3 { width: 200px; height: 200px; }
+            .hero-glow { filter: blur(80px); }
+            .glow-1 { width: 110vw; height: 110vw; top: -20%; right: -30%; }
+            .glow-2 { width: 100vw; height: 100vw; bottom: -10%; left: -30%; }
+            .glow-3 { width: 80vw; height: 80vw; }
+            .glow-4 { width: 70vw; height: 70vw; }
 
             .hero-tagline {
                 font-size: 2rem;
@@ -700,6 +735,12 @@
 
         /* ---- Responsive: large ---- */
         @media (min-width: 1200px) {
+            .hero-glow { filter: blur(160px); }
+            .glow-1 { width: 70vw; height: 70vw; }
+            .glow-2 { width: 60vw; height: 60vw; }
+            .glow-3 { width: 50vw; height: 50vw; }
+            .glow-4 { width: 40vw; height: 40vw; }
+
             .hero-tagline {
                 font-size: 3.2rem;
                 max-width: 620px;
@@ -770,6 +811,7 @@
         <div class="hero-glow glow-1" aria-hidden="true"></div>
         <div class="hero-glow glow-2" aria-hidden="true"></div>
         <div class="hero-glow glow-3" aria-hidden="true"></div>
+        <div class="hero-glow glow-4" aria-hidden="true"></div>
 
         <!-- Ensō ring with app icon centered inside -->
         <div class="enso reveal" aria-hidden="true">
