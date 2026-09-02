@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hæl — Cycle-Aware Intermittent Fasting App for Women</title>
-    <meta name="description" content="hæl is a fasting timer that observes instead of coaching. cycle-aware fasting shaped by menstrual phase, literary prose, weight tracking in cycle context. one purchase, no subscription.">
+    <title>hæl — Cycle-Aware Intermittent Fasting</title>
+    <meta name="description" content="a fasting timer that observes instead of coaching. cycle-aware fasting shaped by menstrual phase, literary prose, canonical hours. one purchase, no subscription.">
     <meta name="keywords" content="fasting app, intermittent fasting, cycle syncing, menstrual cycle, fasting timer, women's health, cycle aware fasting, fasting for women, period fasting, hormone fasting">
     <link rel="canonical" href="https://hael.app">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -12,8 +12,8 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="hæl — Cycle-Aware Intermittent Fasting App for Women">
-    <meta property="og:description" content="a fasting timer that observes instead of coaching. cycle-aware fasting, literary prose, canonical hours. one purchase, no subscription.">
+    <meta property="og:title" content="hæl — Cycle-Aware Intermittent Fasting">
+    <meta property="og:description" content="a fasting timer that observes instead of coaching. cycle-aware fasting, literary prose, canonical hours.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://hael.app">
     <meta property="og:image" content="https://hael.app/og-image.png">
@@ -22,7 +22,7 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="hæl — Cycle-Aware Fasting App">
+    <meta name="twitter:title" content="hæl — Cycle-Aware Fasting">
     <meta name="twitter:description" content="a fasting timer that observes instead of coaching. cycle-aware fasting, literary prose, canonical hours.">
     <meta name="twitter:image" content="https://hael.app/og-image.png">
 
@@ -33,7 +33,7 @@
         "@type": "SoftwareApplication",
         "name": "hæl",
         "alternateName": "hael",
-        "description": "a fasting timer that observes instead of coaching. cycle-aware fasting shaped by menstrual phase, literary prose, weight tracking in cycle context, canonical hours, colophon ceremony.",
+        "description": "a fasting timer that observes instead of coaching. cycle-aware fasting shaped by menstrual phase, literary prose, canonical hours, colophon ceremony.",
         "applicationCategory": "HealthApplication",
         "operatingSystem": "iOS",
         "url": "https://hael.app",
@@ -43,7 +43,7 @@
                 "@type": "Offer",
                 "price": "0",
                 "priceCurrency": "USD",
-                "description": "Free download with basic fasting timer"
+                "description": "Free fasting timer"
             },
             {
                 "@type": "Offer",
@@ -55,11 +55,6 @@
         "author": {
             "@type": "Organization",
             "name": "KI-GEN Studios LLC"
-        },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5",
-            "ratingCount": "1"
         }
     }
     </script>
@@ -76,15 +71,18 @@
         }
 
         :root {
-            --cream: #FAF7F4;
-            --warm-white: #FEFCFA;
-            --primary: #2C2824;
-            --secondary: #6B6560;
-            --tertiary: #A09A94;
-            --blush: #E8D5CC;
-            --rose: #C9A99B;
-            --rose-deep: #B8907F;
-            --serif: 'EB Garamond', Georgia, serif;
+            --cream: #FDFBF9;
+            --soft-pink: #F9F4F2;
+            --powder: #EDE6E3;
+            --ballet: #E5DCD9;
+            --blush: #C4959A;
+            --rose: #B58389;
+            --deep-rose: #A37278;
+            --primary: #2C2825;
+            --secondary: #7A736E;
+            --tertiary: #A89A94;
+            --sage: #8BAF9C;
+            --serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
         }
 
         html {
@@ -104,9 +102,9 @@
         /* ---- Scroll reveal ---- */
         .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateY(24px);
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 1s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .reveal.visible {
@@ -114,9 +112,9 @@
             transform: translateY(0);
         }
 
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-1 { transition-delay: 0.15s; }
+        .reveal-delay-2 { transition-delay: 0.3s; }
+        .reveal-delay-3 { transition-delay: 0.45s; }
 
         /* ---- Hero ---- */
         .hero {
@@ -126,33 +124,40 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 80px 24px 60px;
+            padding: 80px 32px 60px;
+            position: relative;
         }
 
-        .hero h1 {
-            font-size: 0;
-            margin-bottom: 28px;
-        }
-
-        .hero h1 img {
-            width: 100px;
-            height: 100px;
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(44, 40, 36, 0.08);
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .hero h1 img:hover {
-            transform: scale(1.04);
+        .hero-icon {
+            width: 88px;
+            height: 88px;
+            border-radius: 22px;
+            box-shadow: 0 4px 24px rgba(196, 149, 154, 0.15);
+            margin-bottom: 40px;
         }
 
         .hero-tagline {
-            font-size: 1.35rem;
+            font-size: 2.8rem;
+            font-weight: 400;
+            color: var(--primary);
+            line-height: 1.3;
+            max-width: 560px;
+            margin-bottom: 20px;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-tagline em {
+            font-style: italic;
+            color: var(--blush);
+        }
+
+        .hero-sub {
+            font-size: 1.2rem;
             font-weight: 400;
             color: var(--secondary);
-            line-height: 1.8;
-            max-width: 460px;
-            margin-bottom: 44px;
+            line-height: 1.7;
+            max-width: 380px;
+            margin-bottom: 48px;
         }
 
         .hero-cta {
@@ -165,22 +170,24 @@
         .btn-pill {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 14px 32px;
+            gap: 10px;
+            padding: 16px 36px;
             background: var(--primary);
             color: var(--cream);
             font-family: var(--serif);
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-weight: 500;
             text-decoration: none;
             border-radius: 980px;
-            transition: background 0.3s ease, transform 0.2s ease;
+            transition: background 0.3s ease, transform 0.2s ease,
+                        box-shadow 0.3s ease;
             letter-spacing: 0.01em;
         }
 
         .btn-pill:hover {
             background: #3D3833;
             transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(44, 40, 36, 0.12);
         }
 
         .btn-pill:active {
@@ -188,44 +195,19 @@
         }
 
         .btn-pill svg {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             fill: currentColor;
-        }
-
-        .btn-ghost {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 10px 24px;
-            background: transparent;
-            color: var(--secondary);
-            font-family: var(--serif);
-            font-size: 0.95rem;
-            font-weight: 400;
-            text-decoration: none;
-            border-radius: 980px;
-            border: 1px solid var(--blush);
-            transition: border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-        }
-
-        .btn-ghost:hover {
-            border-color: var(--rose);
-            color: var(--primary);
-        }
-
-        .btn-ghost:active {
-            transform: scale(0.98);
         }
 
         .hero-platforms {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-top: 20px;
-            font-size: 0.85rem;
+            gap: 14px;
+            margin-top: 24px;
+            font-size: 0.9rem;
             color: var(--tertiary);
-            letter-spacing: 0.04em;
+            letter-spacing: 0.06em;
         }
 
         .dot {
@@ -236,164 +218,164 @@
             display: inline-block;
         }
 
-        /* ---- Screenshots ---- */
-        .screenshots {
-            padding: 20px 24px 100px;
-            max-width: 1060px;
+        /* ---- Phone showcase ---- */
+        .showcase {
+            padding: 0 32px 120px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
-        .screenshot-grid {
+        .phone-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 36px;
+            gap: 48px;
             justify-items: center;
             align-items: start;
         }
 
-        .screenshot-item {
-            text-align: center;
-            max-width: 280px;
+        .phone-frame {
             width: 100%;
+            max-width: 300px;
+            text-align: center;
         }
 
-        .screenshot-item img {
+        .phone-frame img {
             width: 100%;
             height: auto;
-            border-radius: 28px;
-            box-shadow: 0 16px 56px rgba(44, 40, 36, 0.07);
-            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-radius: 32px;
+            box-shadow: 0 20px 60px rgba(44, 40, 36, 0.08),
+                        0 2px 8px rgba(44, 40, 36, 0.04);
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                        box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        .screenshot-item img:hover {
-            transform: translateY(-6px) scale(1.01);
-            box-shadow: 0 24px 64px rgba(44, 40, 36, 0.12);
+        .phone-frame img:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 32px 80px rgba(196, 149, 154, 0.14),
+                        0 4px 12px rgba(44, 40, 36, 0.06);
         }
 
-        .screenshot-caption {
-            margin-top: 20px;
+        .phone-label {
+            margin-top: 28px;
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--primary);
+            line-height: 1.5;
+        }
+
+        /* ---- Section divider ---- */
+        .divider {
+            width: 40px;
+            height: 1px;
+            background: var(--blush);
+            margin: 0 auto;
+            opacity: 0.6;
+        }
+
+        /* ---- Prose block ---- */
+        .prose-block {
+            padding: 120px 32px;
+            max-width: 580px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .prose-block h2 {
+            font-size: 2.4rem;
+            font-weight: 400;
+            color: var(--primary);
+            line-height: 1.3;
+            margin-bottom: 28px;
+            letter-spacing: -0.01em;
+        }
+
+        .prose-block p {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--secondary);
+            line-height: 1.85;
+        }
+
+        /* ---- Feature strip ---- */
+        .features {
+            padding: 100px 32px;
+            background: var(--soft-pink);
+        }
+
+        .features-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 56px 48px;
+            text-align: center;
+        }
+
+        .feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .feature-name {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .feature-desc {
             font-size: 1rem;
             font-weight: 400;
-            color: var(--tertiary);
-            font-style: italic;
-        }
-
-        /* ---- Features ---- */
-        .features {
-            padding: 100px 24px;
-            max-width: 680px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .features h2 {
-            font-size: 2.2rem;
-            font-weight: 400;
-            margin-bottom: 56px;
-            color: var(--primary);
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-            list-style: none;
-            padding: 0;
-        }
-
-        .feature-grid li {
-            font-size: 1.05rem;
-            font-weight: 400;
             color: var(--secondary);
-            line-height: 1.7;
-            padding: 20px 16px;
-            border-bottom: 1px solid var(--blush);
-            text-align: left;
-        }
-
-        .feature-grid li:nth-child(odd) {
-            border-right: 1px solid var(--blush);
-        }
-
-        .feature-grid li:nth-last-child(-n+2) {
-            border-bottom: none;
-        }
-
-        /* ---- About ---- */
-        .about {
-            padding: 100px 24px;
-            max-width: 620px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about h2 {
-            font-size: 1.8rem;
-            font-weight: 400;
-            margin-bottom: 36px;
-            color: var(--primary);
-        }
-
-        .about p {
-            font-size: 1.1rem;
-            font-weight: 400;
-            color: var(--secondary);
-            line-height: 1.9;
-            margin-bottom: 24px;
-        }
-
-        .about p:last-child {
-            margin-bottom: 0;
+            line-height: 1.6;
         }
 
         /* ---- CTA ---- */
         .cta {
-            padding: 100px 24px;
+            padding: 140px 32px;
             text-align: center;
-            background: rgba(232, 213, 204, 0.2);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
+            position: relative;
         }
 
-        .cta .label {
-            font-size: 0.85rem;
+        .cta-label {
+            font-size: 0.9rem;
             font-weight: 500;
-            color: var(--rose-deep);
-            margin-bottom: 12px;
-            letter-spacing: 0.08em;
-            text-transform: lowercase;
+            color: var(--blush);
+            margin-bottom: 16px;
+            letter-spacing: 0.1em;
         }
 
         .cta h2 {
-            font-size: 2.6rem;
+            font-size: 3rem;
             font-weight: 400;
-            margin-bottom: 12px;
             color: var(--primary);
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
         }
 
-        .cta .sub {
-            font-size: 1.15rem;
+        .cta-sub {
+            font-size: 1.2rem;
             font-weight: 400;
             color: var(--secondary);
-            margin-bottom: 44px;
+            margin-bottom: 48px;
             line-height: 1.7;
-            max-width: 400px;
+            max-width: 380px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .cta .price-note {
-            margin-top: 16px;
-            font-size: 0.9rem;
+            margin-top: 20px;
+            font-size: 0.95rem;
             color: var(--tertiary);
         }
 
         /* ---- Footer ---- */
         footer {
-            padding: 56px 24px;
+            padding: 60px 32px;
             text-align: center;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--tertiary);
         }
 
@@ -408,164 +390,137 @@
         }
 
         footer .links {
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             display: flex;
             justify-content: center;
-            gap: 32px;
+            gap: 36px;
         }
 
         /* ---- Responsive: phone ---- */
-        @media (max-width: 480px) {
+        @media (max-width: 640px) {
             .hero {
-                padding: 60px 20px 48px;
+                padding: 60px 24px 48px;
             }
 
-            .hero h1 img {
-                width: 80px;
-                height: 80px;
-                border-radius: 20px;
+            .hero-icon {
+                width: 72px;
+                height: 72px;
+                border-radius: 18px;
+                margin-bottom: 32px;
             }
 
             .hero-tagline {
-                font-size: 1.15rem;
-                max-width: 320px;
-                line-height: 1.7;
+                font-size: 2rem;
+                max-width: 340px;
             }
 
-            .hero-platforms {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 8px;
+            .hero-sub {
+                font-size: 1.05rem;
+                max-width: 300px;
+                margin-bottom: 36px;
             }
 
-            .screenshots {
-                padding: 12px 20px 60px;
+            .showcase {
+                padding: 0 24px 80px;
             }
 
-            .screenshot-grid {
+            .phone-row {
                 grid-template-columns: 1fr;
-                gap: 36px;
-                max-width: 260px;
+                gap: 48px;
+                max-width: 280px;
                 margin: 0 auto;
             }
 
-            .screenshot-item img {
-                border-radius: 20px;
+            .phone-frame img {
+                border-radius: 24px;
             }
 
-            .features {
-                padding: 72px 20px;
+            .phone-label {
+                font-size: 1.1rem;
             }
 
-            .features h2 {
-                font-size: 1.7rem;
-                margin-bottom: 40px;
+            .prose-block {
+                padding: 80px 24px;
             }
 
-            .feature-grid {
-                grid-template-columns: 1fr;
+            .prose-block h2 {
+                font-size: 1.8rem;
             }
 
-            .feature-grid li {
-                border-right: none !important;
-                text-align: center;
-                padding: 16px 8px;
-            }
-
-            .feature-grid li:last-child {
-                border-bottom: none;
-            }
-
-            .feature-grid li:nth-last-child(2) {
-                border-bottom: 1px solid var(--blush);
-            }
-
-            .about {
-                padding: 72px 20px;
+            .prose-block p {
+                font-size: 1.05rem;
                 text-align: left;
             }
 
-            .about h2 {
-                font-size: 1.5rem;
-                text-align: center;
+            .features {
+                padding: 72px 24px;
             }
 
-            .about p {
-                font-size: 1rem;
-                line-height: 1.8;
+            .features-inner {
+                grid-template-columns: 1fr;
+                gap: 36px;
+                text-align: left;
+            }
+
+            .feature {
+                align-items: flex-start;
             }
 
             .cta {
-                padding: 72px 20px;
+                padding: 80px 24px;
             }
 
             .cta h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
-            .cta .sub {
+            .cta-sub {
                 font-size: 1.05rem;
             }
         }
 
         /* ---- Responsive: tablet ---- */
-        @media (min-width: 481px) and (max-width: 768px) {
-            .hero h1 img {
-                width: 88px;
-                height: 88px;
-                border-radius: 22px;
-            }
-
+        @media (min-width: 641px) and (max-width: 960px) {
             .hero-tagline {
-                font-size: 1.2rem;
-                max-width: 400px;
+                font-size: 2.3rem;
+                max-width: 480px;
             }
 
-            .screenshot-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
-                max-width: 620px;
-                margin: 0 auto;
+            .phone-row {
+                gap: 28px;
             }
 
-            .screenshot-item {
-                max-width: 190px;
+            .phone-frame {
+                max-width: 220px;
             }
 
-            .screenshot-item img {
-                border-radius: 18px;
+            .phone-frame img {
+                border-radius: 24px;
             }
 
-            .screenshot-caption {
-                font-size: 0.9rem;
+            .phone-label {
+                font-size: 1.05rem;
+            }
+
+            .features-inner {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px 36px;
             }
         }
 
         /* ---- Responsive: large ---- */
         @media (min-width: 1200px) {
             .hero-tagline {
-                font-size: 1.45rem;
-                max-width: 500px;
+                font-size: 3.2rem;
+                max-width: 620px;
             }
 
-            .screenshot-grid {
-                gap: 52px;
-            }
-
-            .screenshot-item {
-                max-width: 300px;
-            }
-
-            .features h2 {
-                font-size: 2.4rem;
-            }
-
-            .about h2 {
-                font-size: 2rem;
+            .phone-frame {
+                max-width: 320px;
             }
 
             .cta h2 {
-                font-size: 2.8rem;
+                font-size: 3.4rem;
             }
         }
 
@@ -577,10 +532,8 @@
                 transition: none;
             }
 
-            .hero h1 img,
-            .screenshot-item img,
-            .btn-pill,
-            .btn-ghost {
+            .phone-frame img,
+            .btn-pill {
                 transition: none;
             }
         }
@@ -588,16 +541,18 @@
 </head>
 <body>
 
+    <!-- Hero: icon, one line, download -->
     <header class="hero">
-        <h1><img src="/apple-touch-icon.png" alt="hæl" width="180" height="180"></h1>
-        <p class="hero-tagline">a fasting timer that observes instead of coaching. the ring watches the hours. the prose reads the cycle. the body's rhythm shapes what the app says and when.</p>
-        <div class="hero-cta">
+        <img class="hero-icon reveal" src="/apple-touch-icon.png" alt="hæl" width="180" height="180">
+        <h1 class="hero-tagline reveal reveal-delay-1">a fasting timer that <em>observes</em> instead of coaching.</h1>
+        <p class="hero-sub reveal reveal-delay-2">the ring reads the cycle. the prose reads the hours. the body's rhythm shapes everything.</p>
+        <div class="hero-cta reveal reveal-delay-3">
             <a class="btn-pill" href="https://apps.apple.com/us/app/h%C3%A6l/id6778956802" aria-label="Download hæl on the App Store">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
                 download on the app store
             </a>
         </div>
-        <div class="hero-platforms">
+        <div class="hero-platforms reveal reveal-delay-3">
             <span>iPhone</span>
             <span class="dot"></span>
             <span>iPad</span>
@@ -607,58 +562,91 @@
     </header>
 
     <main>
-        <section class="screenshots" aria-label="App screenshots">
-            <div class="screenshot-grid">
-                <figure class="screenshot-item reveal">
-                    <img src="screenshots/ring.png" alt="hæl fasting app showing the ensō ring with cycle-aware fasting recommendations during ovulation phase" width="1242" height="2688" loading="lazy">
-                    <figcaption class="screenshot-caption">the ring reads the cycle.</figcaption>
+
+        <!-- Screenshots: large, labeled clearly -->
+        <section class="showcase" aria-label="App screenshots">
+            <div class="phone-row">
+                <figure class="phone-frame reveal">
+                    <img src="screenshots/ring.png" alt="the ensō ring during ovulation phase" width="1242" height="2688" loading="lazy">
+                    <p class="phone-label">the ring reads the cycle.</p>
                 </figure>
-                <figure class="screenshot-item reveal reveal-delay-1">
-                    <img src="screenshots/prose.png" alt="hæl active fasting view with literary body readings and hydration tracking at 6 hours" width="1242" height="2688" loading="lazy">
-                    <figcaption class="screenshot-caption">prose that evolves with the hours.</figcaption>
+                <figure class="phone-frame reveal reveal-delay-1">
+                    <img src="screenshots/prose.png" alt="literary body readings at six hours" width="1242" height="2688" loading="lazy">
+                    <p class="phone-label">prose that evolves with the hours.</p>
                 </figure>
-                <figure class="screenshot-item reveal reveal-delay-2">
-                    <img src="screenshots/ledger.png" alt="hæl fasting history calendar with weight constellation sparkline and cycle phase labels" width="1242" height="2688" loading="lazy">
-                    <figcaption class="screenshot-caption">every fast, held.</figcaption>
+                <figure class="phone-frame reveal reveal-delay-2">
+                    <img src="screenshots/ledger.png" alt="fasting history with cycle phase labels" width="1242" height="2688" loading="lazy">
+                    <p class="phone-label">every fast, held.</p>
                 </figure>
             </div>
         </section>
 
-        <section class="features reveal" aria-label="Features">
-            <h2>what the witness sees</h2>
-            <ul class="feature-grid">
-                <li>cycle-aware fasting shaped by menstrual phase</li>
-                <li>literary body readings, not dashboards</li>
-                <li>canonical hours: lauds, prime, terce, vespers</li>
-                <li>weight tracking interpreted in cycle context</li>
-                <li>weekly letters and monthly readings</li>
-                <li>colophon ceremony when a fast ends</li>
-                <li>live activities on the lock screen</li>
-                <li>apple watch companion</li>
-                <li>notifications that observe the season</li>
-                <li>one purchase, nothing recurring</li>
-            </ul>
+        <div class="divider reveal"></div>
+
+        <!-- One prose paragraph, nothing more -->
+        <section class="prose-block" aria-label="About">
+            <h2 class="reveal">intermittent fasting,<br>shaped by the cycle.</h2>
+            <p class="reveal">most fasting apps count down and celebrate. hæl counts and stays quiet. an ensō ring marks the hours. the timer carries a name that changes as the fast deepens. lauds, prime, terce, vespers. prose arrives about what the body is doing, not what it should do. weight is read in cycle context. a gain during luteal is not the same number during ovulation. the app knows the difference.</p>
         </section>
 
-        <section class="about" aria-label="About hæl">
-            <h2 class="reveal">intermittent fasting, shaped by the cycle</h2>
-            <p class="reveal">most fasting apps count down and celebrate. hæl counts and stays quiet. the interface is a single ring. the language is literary. the body's rhythm shapes what the app says and when.</p>
-            <p class="reveal">an ensō ring marks the hours. the timer carries a name that changes as the fast deepens. lauds, prime, terce, vespers. names borrowed from the canonical hours. prose arrives about what the body is doing, not what it should do.</p>
-            <p class="reveal">hæl reads the menstrual cycle through Apple Health. the ring tint shifts with the phase. fasting windows adjust. shorter during menstruation, longer during follicular. weight is read in cycle context. a gain during luteal is not a gain during ovulation. the app knows the difference.</p>
-            <p class="reveal">weekly letters arrive on mondays. a retrospective of the week. the fasting, the weight, the cycle. monthly readings take the longer view. these are not reports. they are readings.</p>
-            <p class="reveal">when a fast ends, a page stays. the date spelled out, the hours witnessed, a line composed from what happened. a small ceremony for something the body did.</p>
+        <div class="divider reveal"></div>
+
+        <!-- Features: scannable, not a wall -->
+        <section class="features" aria-label="Features">
+            <div class="features-inner">
+                <div class="feature reveal">
+                    <p class="feature-name">cycle-aware fasting</p>
+                    <p class="feature-desc">shaped by menstrual phase</p>
+                </div>
+                <div class="feature reveal reveal-delay-1">
+                    <p class="feature-name">canonical hours</p>
+                    <p class="feature-desc">lauds, prime, terce, vespers</p>
+                </div>
+                <div class="feature reveal reveal-delay-2">
+                    <p class="feature-name">literary prose</p>
+                    <p class="feature-desc">body readings, not dashboards</p>
+                </div>
+                <div class="feature reveal">
+                    <p class="feature-name">weight in context</p>
+                    <p class="feature-desc">interpreted by cycle phase</p>
+                </div>
+                <div class="feature reveal reveal-delay-1">
+                    <p class="feature-name">weekly letters</p>
+                    <p class="feature-desc">monday retrospectives</p>
+                </div>
+                <div class="feature reveal reveal-delay-2">
+                    <p class="feature-name">colophon ceremony</p>
+                    <p class="feature-desc">a page stays when a fast ends</p>
+                </div>
+                <div class="feature reveal">
+                    <p class="feature-name">live activities</p>
+                    <p class="feature-desc">the ring on the lock screen</p>
+                </div>
+                <div class="feature reveal reveal-delay-1">
+                    <p class="feature-name">apple watch</p>
+                    <p class="feature-desc">companion for the wrist</p>
+                </div>
+                <div class="feature reveal reveal-delay-2">
+                    <p class="feature-name">one purchase</p>
+                    <p class="feature-desc">nothing recurring</p>
+                </div>
+            </div>
         </section>
 
-        <section class="cta reveal" aria-label="Download">
-            <p class="label">$19.99 one-time</p>
-            <h2>the full witness</h2>
-            <p class="sub">the free app sees the fast. the full witness sees the cycle.</p>
-            <a class="btn-pill" href="https://apps.apple.com/us/app/h%C3%A6l/id6778956802" aria-label="Download hæl on the App Store">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
-                download on the app store
-            </a>
-            <p class="price-note">one purchase, nothing recurring</p>
+        <!-- CTA: big, quiet, clear -->
+        <section class="cta" aria-label="Download">
+            <p class="cta-label reveal">$19.99 one-time</p>
+            <h2 class="reveal reveal-delay-1">the full witness.</h2>
+            <p class="cta-sub reveal reveal-delay-2">the free app sees the fast.<br>the full witness sees the cycle.</p>
+            <div class="reveal reveal-delay-3">
+                <a class="btn-pill" href="https://apps.apple.com/us/app/h%C3%A6l/id6778956802" aria-label="Download hæl on the App Store">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
+                    download on the app store
+                </a>
+                <p class="price-note">one purchase, nothing recurring</p>
+            </div>
         </section>
+
     </main>
 
     <footer>
@@ -670,7 +658,6 @@
     </footer>
 
     <script>
-        // Scroll reveal with IntersectionObserver
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -679,8 +666,8 @@
                 }
             });
         }, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -40px 0px'
+            threshold: 0.12,
+            rootMargin: '0px 0px -60px 0px'
         });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
