@@ -253,106 +253,60 @@
             max-height: 900px;
         }
 
-        /* Primary ink stroke — the main brushstroke line */
+        /* Ensō brush stroke layers */
         .enso-arc {
             fill: none;
             stroke: url(#ink-gradient);
             stroke-linecap: round;
             filter: url(#brush-texture);
-            /* dasharray/dashoffset set by JS after path generation */
         }
 
         .enso-arc.draw {
-            animation: ink-draw 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        /* Dry-brush ghost strokes — thinner, offset, semi-transparent */
-        .enso-dry {
-            fill: none;
-            stroke: url(#ink-gradient);
-            stroke-linecap: round;
-            filter: url(#brush-texture);
-            /* dasharray/dashoffset set by JS */
-        }
-
-        .enso-dry.draw {
-            animation: ink-draw-dry 3.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        /* Ink pooling blobs at brush-down and brush-lift points */
-        .enso-pool {
-            opacity: 0;
-        }
-
-        .enso-pool.draw {
-            animation: pool-fade 1.2s ease-out forwards;
-        }
-
-        @keyframes ink-draw {
-            0% {
-                stroke-dashoffset: var(--enso-length, 1600);
-                opacity: 0.15;
-            }
-            8% {
-                opacity: 0.5;
-            }
-            100% {
-                stroke-dashoffset: var(--enso-gap, 120);
-                opacity: 1;
-            }
-        }
-
-        @keyframes ink-draw-dry {
-            0% {
-                stroke-dashoffset: var(--enso-length, 1600);
-                opacity: 0;
-            }
-            12% {
-                opacity: 0.25;
-            }
-            60% {
-                opacity: 0.4;
-            }
-            85% {
-                opacity: 0.15;
-            }
-            100% {
-                stroke-dashoffset: var(--enso-gap, 120);
-                opacity: 0.2;
-            }
-        }
-
-        @keyframes pool-fade {
-            0% { opacity: 0; transform: scale(0.3); }
-            40% { opacity: 0.35; }
-            100% { opacity: 0.18; transform: scale(1); }
+            animation: ink-draw 2.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
         }
 
         .enso-glow {
             fill: none;
             stroke: var(--blush);
-            stroke-width: 12;
             stroke-linecap: round;
-            /* dasharray/dashoffset set by JS after path generation */
             filter: blur(18px);
             opacity: 0;
         }
 
         .enso-glow.draw {
-            animation: ink-glow 3s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+            animation: ink-glow 2.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards,
                        enso-breathe 5s ease-in-out 3s infinite;
+        }
+
+        /* Ink pooling at brush-down point */
+        .enso-pool {
+            opacity: 0;
+        }
+
+        .enso-pool.draw {
+            animation: pool-fade 1s ease-out forwards;
+        }
+
+        @keyframes ink-draw {
+            0% {
+                stroke-dashoffset: var(--enso-length, 1200);
+                opacity: 0.1;
+            }
+            5% { opacity: 0.6; }
+            100% {
+                stroke-dashoffset: var(--enso-gap, 80);
+                opacity: 1;
+            }
         }
 
         @keyframes ink-glow {
             0% {
-                stroke-dashoffset: var(--enso-length, 1600);
+                stroke-dashoffset: var(--enso-length, 1200);
                 opacity: 0;
             }
-            10% {
-                opacity: 0.15;
-            }
+            10% { opacity: 0.15; }
             100% {
-                stroke-dashoffset: var(--enso-gap, 120);
+                stroke-dashoffset: var(--enso-gap, 80);
                 opacity: 0.1;
             }
         }
@@ -360,6 +314,12 @@
         @keyframes enso-breathe {
             0%, 100% { opacity: 0.1; }
             50% { opacity: 0.2; }
+        }
+
+        @keyframes pool-fade {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 0.3; }
+            100% { opacity: 0.15; transform: scale(1); }
         }
 
         .hero-icon {
@@ -823,24 +783,18 @@
             }
 
             .enso-arc {
-                stroke-dashoffset: var(--enso-gap, 120);
+                stroke-dashoffset: var(--enso-gap, 80);
                 opacity: 1;
                 animation: none !important;
             }
 
-            .enso-dry {
-                stroke-dashoffset: var(--enso-gap, 120);
-                opacity: 0.2;
-                animation: none !important;
-            }
-
             .enso-pool {
-                opacity: 0.18;
+                opacity: 0.15;
                 animation: none !important;
             }
 
             .enso-glow {
-                stroke-dashoffset: var(--enso-gap, 120);
+                stroke-dashoffset: var(--enso-gap, 80);
                 opacity: 0.1;
                 animation: none !important;
             }
@@ -865,42 +819,37 @@
         <div class="hero-glow glow-3" aria-hidden="true"></div>
         <div class="hero-glow glow-4" aria-hidden="true"></div>
 
-        <!-- Ensō ink arc — draws behind everything like a brushstroke drying on paper -->
+        <!-- Ensō ink arc — a calligrapher's brushstroke, one fluid circle -->
         <div class="enso-wrap" aria-hidden="true">
             <svg viewBox="0 0 500 500">
                 <defs>
-                    <!-- Ink gradient: heavy where brush presses, translucent where it lifts -->
+                    <!-- Ink gradient along the stroke: pressure varies as the brush travels -->
                     <linearGradient id="ink-gradient" gradientUnits="userSpaceOnUse" x1="60" y1="450" x2="440" y2="50">
-                        <stop offset="0%" stop-color="#C4959A" stop-opacity="0.08" />
-                        <stop offset="15%" stop-color="#C4959A" stop-opacity="0.22" />
-                        <stop offset="35%" stop-color="#B58389" stop-opacity="0.3" />
-                        <stop offset="55%" stop-color="#C4959A" stop-opacity="0.18" />
-                        <stop offset="75%" stop-color="#A37278" stop-opacity="0.25" />
-                        <stop offset="90%" stop-color="#C4959A" stop-opacity="0.12" />
-                        <stop offset="100%" stop-color="#C4959A" stop-opacity="0.04" />
+                        <stop offset="0%" stop-color="#B58389" stop-opacity="0.28" />
+                        <stop offset="20%" stop-color="#C4959A" stop-opacity="0.32" />
+                        <stop offset="45%" stop-color="#B58389" stop-opacity="0.26" />
+                        <stop offset="70%" stop-color="#A37278" stop-opacity="0.22" />
+                        <stop offset="90%" stop-color="#C4959A" stop-opacity="0.14" />
+                        <stop offset="100%" stop-color="#C4959A" stop-opacity="0.06" />
                     </linearGradient>
-                    <!-- Brush texture: feTurbulence warps the stroke edges like bristles on paper -->
+                    <!-- Brush texture: subtle bristle warp -->
                     <filter id="brush-texture" x="-5%" y="-5%" width="110%" height="110%">
-                        <feTurbulence type="turbulence" baseFrequency="0.04 0.06" numOctaves="4" seed="0" result="noise" />
-                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+                        <feTurbulence type="turbulence" baseFrequency="0.03 0.05" numOctaves="3" seed="0" result="noise" />
+                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G" />
                     </filter>
-                    <!-- Radial fill for ink pooling blobs -->
+                    <!-- Ink pool fill -->
                     <radialGradient id="pool-fill">
-                        <stop offset="0%" stop-color="#B58389" stop-opacity="0.35" />
-                        <stop offset="50%" stop-color="#C4959A" stop-opacity="0.2" />
+                        <stop offset="0%" stop-color="#B58389" stop-opacity="0.3" />
+                        <stop offset="60%" stop-color="#C4959A" stop-opacity="0.15" />
                         <stop offset="100%" stop-color="#C4959A" stop-opacity="0" />
                     </radialGradient>
                 </defs>
-                <!-- Glow layer (soft halo behind the ink) -->
-                <path class="enso-glow" stroke-width="12" />
-                <!-- Dry-brush ghost strokes — stray bristle marks alongside the main stroke -->
-                <path class="enso-dry enso-dry-1" stroke-width="1.5" />
-                <path class="enso-dry enso-dry-2" stroke-width="1" />
+                <!-- Glow halo -->
+                <path class="enso-glow" stroke-width="14" />
                 <!-- Primary ink stroke -->
-                <path class="enso-arc" stroke-width="5" />
-                <!-- Ink pooling: brush-down blob and brush-lift blob -->
-                <circle class="enso-pool enso-pool-start" r="8" fill="url(#pool-fill)" />
-                <circle class="enso-pool enso-pool-end" r="6" fill="url(#pool-fill)" />
+                <path class="enso-arc" stroke-width="6" />
+                <!-- Ink pool where the brush touches down -->
+                <circle class="enso-pool" r="8" fill="url(#pool-fill)" />
             </svg>
         </div>
 
@@ -1030,151 +979,91 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Ensō — a different brushstroke each time the page loads.
-        // Uses tangent-based bezier control points to guarantee a circular arc,
-        // with small jitter for a hand-drawn feel.
+        // Ensō — a calligrapher's circle, drawn with one breath.
+        //
+        // The path is always a proper circle built from 4 cubic bezier arcs
+        // (the standard vector-graphics circle approximation). What varies
+        // each load: rotation, gap size, stroke weight, and brush texture seed.
+        // The circle itself never breaks.
         (function generateEnso() {
-            var cx = 250, cy = 250, r = 190;
-
-            // Random float in [lo, hi]
+            var cx = 250, cy = 250, r = 185;
             function rf(lo, hi) { return lo + Math.random() * (hi - lo); }
 
-            // Randomise the turbulence seed so brush texture differs each load
-            var turbulence = document.querySelector('#brush-texture feTurbulence');
-            if (turbulence) turbulence.setAttribute('seed', Math.floor(Math.random() * 9999));
+            // Randomise brush texture
+            var turb = document.querySelector('#brush-texture feTurbulence');
+            if (turb) turb.setAttribute('seed', Math.floor(Math.random() * 9999));
 
-            // Place 8 anchor points around the circle, with mild jitter.
-            // More points = smoother circle. Jitter is kept small (radius ±15, angle ±0.08).
-            var anchors = [];
-            var segCount = 8;
-            var startAngle = rf(0, Math.PI * 2);
-            for (var i = 0; i < segCount; i++) {
-                var angle = startAngle + (Math.PI * 2 * i / segCount) + rf(-0.08, 0.08);
-                var rr = r + rf(-15, 15);
-                anchors.push({ x: cx + Math.cos(angle) * rr, y: cy + Math.sin(angle) * rr, a: angle });
-            }
+            // -- Build a circle from 4 bezier arcs --
+            // Magic number for a quarter-circle: k = 0.5522847498
+            var k = 0.5522847498;
 
-            // Build path using tangent-based control points.
-            // For each anchor, the tangent is perpendicular to the radius (center → point).
-            // Control points extend along the tangent, guaranteeing the curve bulges outward.
-            // The handle length is derived from the circular arc formula:
-            //   handle = (4/3) * tan(theta/4) * radius, where theta = angle between anchors.
-            var drawCount = segCount - 1; // skip last segment = ensō gap
+            // Random rotation so the gap lands at a different clock position each load
+            var rot = rf(0, 360);
 
-            function buildPath(pts, jitter) {
-                var j = jitter || 0;
-                var pd = 'M ' + (pts[0].x + rf(-j, j)).toFixed(1) + ' ' + (pts[0].y + rf(-j, j)).toFixed(1);
-                for (var i = 0; i < drawCount; i++) {
-                    var p0 = pts[i];
-                    var p1 = pts[(i + 1) % segCount];
+            // The 4 cardinal points (before rotation)
+            var pts = [
+                { x: cx, y: cy - r },       // top
+                { x: cx + r, y: cy },        // right
+                { x: cx, y: cy + r },        // bottom
+                { x: cx - r, y: cy }         // left
+            ];
 
-                    // Angle subtended by this segment
-                    var theta = p1.a - p0.a;
-                    if (theta < 0) theta += Math.PI * 2;
+            // Build the full circle path (4 arcs, closed)
+            var d = 'M ' + pts[0].x + ' ' + pts[0].y;
+            // top → right
+            d += ' C ' + (cx + r * k) + ' ' + (cy - r) + ', ' + (cx + r) + ' ' + (cy - r * k) + ', ' + pts[1].x + ' ' + pts[1].y;
+            // right → bottom
+            d += ' C ' + (cx + r) + ' ' + (cy + r * k) + ', ' + (cx + r * k) + ' ' + (cy + r) + ', ' + pts[2].x + ' ' + pts[2].y;
+            // bottom → left
+            d += ' C ' + (cx - r * k) + ' ' + (cy + r) + ', ' + (cx - r) + ' ' + (cy + r * k) + ', ' + pts[3].x + ' ' + pts[3].y;
+            // left → top (closes the circle)
+            d += ' C ' + (cx - r) + ' ' + (cy - r * k) + ', ' + (cx - r * k) + ' ' + (cy - r) + ', ' + pts[0].x + ' ' + pts[0].y;
 
-                    // Handle length for a circular arc, with slight randomisation
-                    var handleLen = (4 / 3) * Math.tan(theta / 4) * r * rf(0.9, 1.1);
-
-                    // Tangent at p0: perpendicular to radius, pointing in the arc direction
-                    var tx0 = -Math.sin(p0.a);
-                    var ty0 = Math.cos(p0.a);
-                    // Tangent at p1: same convention
-                    var tx1 = -Math.sin(p1.a);
-                    var ty1 = Math.cos(p1.a);
-
-                    // Control point 1: p0 + tangent * handleLen + jitter
-                    var cp1x = p0.x + tx0 * handleLen + rf(-j, j);
-                    var cp1y = p0.y + ty0 * handleLen + rf(-j, j);
-                    // Control point 2: p1 - tangent * handleLen + jitter
-                    var cp2x = p1.x - tx1 * handleLen + rf(-j, j);
-                    var cp2y = p1.y - ty1 * handleLen + rf(-j, j);
-
-                    var ex = p1.x + rf(-j, j);
-                    var ey = p1.y + rf(-j, j);
-
-                    pd += ' C ' + cp1x.toFixed(1) + ' ' + cp1y.toFixed(1) +
-                          ', ' + cp2x.toFixed(1) + ' ' + cp2y.toFixed(1) +
-                          ', ' + ex.toFixed(1) + ' ' + ey.toFixed(1);
-                }
-                return pd;
-            }
-
-            var d = buildPath(anchors, 3);
-            var dryPath1 = buildPath(anchors, rf(8, 14));
-            var dryPath2 = buildPath(anchors, rf(6, 10));
-
-            // Apply paths to all stroke elements
+            // Apply path and rotation
             var arc = document.querySelector('.enso-arc');
             var glow = document.querySelector('.enso-glow');
-            var dry1 = document.querySelector('.enso-dry-1');
-            var dry2 = document.querySelector('.enso-dry-2');
+            var svg = document.querySelector('.enso-wrap svg');
             arc.setAttribute('d', d);
             glow.setAttribute('d', d);
-            dry1.setAttribute('d', dryPath1);
-            dry2.setAttribute('d', dryPath2);
+            svg.style.transform = 'translate(-50%, -50%) rotate(' + rot + 'deg)';
 
-            // Compute actual path length for accurate dash animation
+            // Measure the actual path length
             var totalLen = arc.getTotalLength();
-            var gap = totalLen * rf(0.06, 0.12);
 
-            // Helper: set dash properties on a path element
-            function setDash(el, len, gapVal) {
-                el.style.strokeDasharray = len;
-                el.style.strokeDashoffset = len;
-                el.style.setProperty('--enso-length', len);
-                el.style.setProperty('--enso-gap', gapVal);
-            }
+            // Gap: 5-10% of the circle left undrawn (where the brush lifts)
+            var gap = totalLen * rf(0.05, 0.10);
 
-            setDash(arc, totalLen, gap);
-            setDash(glow, totalLen, gap);
+            // Set dash animation values
+            arc.style.strokeDasharray = totalLen;
+            arc.style.strokeDashoffset = totalLen;
+            arc.style.setProperty('--enso-length', totalLen);
+            arc.style.setProperty('--enso-gap', gap);
 
-            // Dry-brush strokes: slightly different lengths (some dry out sooner)
-            var dry1Len = dry1.getTotalLength();
-            var dry2Len = dry2.getTotalLength();
-            setDash(dry1, dry1Len, dry1Len * rf(0.15, 0.3)); // more gap — dries out faster
-            setDash(dry2, dry2Len, dry2Len * rf(0.2, 0.4));
+            glow.style.strokeDasharray = totalLen;
+            glow.style.strokeDashoffset = totalLen;
+            glow.style.setProperty('--enso-length', totalLen);
+            glow.style.setProperty('--enso-gap', gap);
 
-            // Also set on the wrapper for fallback
-            var wrap = document.querySelector('.enso-wrap');
-            wrap.style.setProperty('--enso-length', totalLen);
-            wrap.style.setProperty('--enso-gap', gap);
+            // Stroke width: varies like brush pressure (5-8 for main, 12-18 for glow)
+            arc.setAttribute('stroke-width', rf(5, 8).toFixed(1));
+            glow.setAttribute('stroke-width', rf(12, 18).toFixed(1));
 
-            // Randomize stroke widths — main stroke varies in weight
-            arc.setAttribute('stroke-width', rf(4, 8).toFixed(1));
-            glow.setAttribute('stroke-width', rf(10, 16).toFixed(1));
-            dry1.setAttribute('stroke-width', rf(1, 2.5).toFixed(1));
-            dry2.setAttribute('stroke-width', rf(0.5, 1.8).toFixed(1));
-
-            // Position ink pooling blobs at path start and end
-            var startPt = arc.getPointAtLength(0);
-            var endPt = arc.getPointAtLength(totalLen - gap);
-            var poolStart = document.querySelector('.enso-pool-start');
-            var poolEnd = document.querySelector('.enso-pool-end');
-            poolStart.setAttribute('cx', startPt.x);
-            poolStart.setAttribute('cy', startPt.y);
-            poolStart.setAttribute('r', rf(6, 12).toFixed(1));
-            poolEnd.setAttribute('cx', endPt.x);
-            poolEnd.setAttribute('cy', endPt.y);
-            poolEnd.setAttribute('r', rf(4, 9).toFixed(1));
+            // Ink pool at the brush-down point (start of the visible stroke)
+            var poolPt = arc.getPointAtLength(0);
+            var pool = document.querySelector('.enso-pool');
+            pool.setAttribute('cx', poolPt.x);
+            pool.setAttribute('cy', poolPt.y);
+            pool.setAttribute('r', rf(7, 12).toFixed(1));
         })();
 
-        // Ensō ink draw — starts on page load, like ink touching paper
+        // The brush touches paper
         setTimeout(function() {
             document.querySelector('.enso-arc').classList.add('draw');
             document.querySelector('.enso-glow').classList.add('draw');
-            // Dry-brush strokes follow slightly behind the main stroke
-            setTimeout(function() {
-                document.querySelectorAll('.enso-dry').forEach(function(el) { el.classList.add('draw'); });
-            }, 200);
-            // Ink pools appear as the brush touches down and lifts
-            document.querySelector('.enso-pool-start').classList.add('draw');
-            setTimeout(function() {
-                document.querySelector('.enso-pool-end').classList.add('draw');
-            }, 2400);
-            // App icon fades in once the ink settles
+            document.querySelector('.enso-pool').classList.add('draw');
             setTimeout(function() {
                 document.querySelector('.hero-icon').classList.add('visible');
-            }, 1600);
+            }, 1400);
         }, 400);
 
         // Breathing orbs
