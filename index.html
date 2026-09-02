@@ -233,98 +233,97 @@
             to { opacity: 1; }
         }
 
-        /* ---- Ensō ring (ink drawing) ---- */
-        .enso {
-            position: relative;
-            width: 160px;
-            height: 160px;
-            margin-bottom: 44px;
+        /* ---- Ensō ink arc (viewport-spanning brushstroke) ---- */
+        .enso-wrap {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
         }
 
-        .enso svg {
-            width: 100%;
-            height: 100%;
+        .enso-wrap svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 110vmin;
+            height: 110vmin;
+            max-width: 900px;
+            max-height: 900px;
         }
 
         .enso-arc {
             fill: none;
-            stroke: var(--blush);
-            stroke-width: 2;
+            stroke: url(#ink-gradient);
             stroke-linecap: round;
-            stroke-dasharray: 440;
-            stroke-dashoffset: 440;
-            opacity: 0.7;
+            stroke-dasharray: 1600;
+            stroke-dashoffset: 1600;
         }
 
         .enso-arc.draw {
-            animation: ink-draw 2.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation: ink-draw 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
         @keyframes ink-draw {
             0% {
-                stroke-dashoffset: 440;
-                stroke-width: 1.5;
-                opacity: 0.3;
+                stroke-dashoffset: 1600;
+                opacity: 0.2;
             }
-            20% {
-                opacity: 0.7;
-            }
-            60% {
-                stroke-width: 2.5;
+            10% {
+                opacity: 0.6;
             }
             100% {
-                stroke-dashoffset: 30;
-                stroke-width: 1.8;
-                opacity: 0.5;
+                stroke-dashoffset: 120;
+                opacity: 1;
             }
         }
 
         .enso-glow {
             fill: none;
             stroke: var(--blush);
-            stroke-width: 4;
+            stroke-width: 12;
             stroke-linecap: round;
-            stroke-dasharray: 440;
-            stroke-dashoffset: 440;
+            stroke-dasharray: 1600;
+            stroke-dashoffset: 1600;
+            filter: blur(18px);
             opacity: 0;
-            filter: blur(6px);
         }
 
         .enso-glow.draw {
-            animation: ink-draw-glow 2.4s cubic-bezier(0.4, 0, 0.2, 1) forwards,
-                       enso-breathe 4s ease-in-out 2.4s infinite;
+            animation: ink-glow 3s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+                       enso-breathe 5s ease-in-out 3s infinite;
         }
 
-        @keyframes ink-draw-glow {
+        @keyframes ink-glow {
             0% {
-                stroke-dashoffset: 440;
+                stroke-dashoffset: 1600;
                 opacity: 0;
             }
-            20% {
-                opacity: 0.25;
+            10% {
+                opacity: 0.15;
             }
             100% {
-                stroke-dashoffset: 30;
-                opacity: 0.15;
+                stroke-dashoffset: 120;
+                opacity: 0.1;
             }
         }
 
         @keyframes enso-breathe {
-            0%, 100% { opacity: 0.15; filter: blur(6px); }
-            50% { opacity: 0.25; filter: blur(10px); }
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.2; }
         }
 
         .hero-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            margin-bottom: 36px;
             opacity: 0;
             transition: opacity 0.8s ease;
-            box-shadow: 0 2px 16px rgba(196, 149, 154, 0.12);
+            box-shadow: 0 4px 24px rgba(196, 149, 154, 0.15);
+            position: relative;
+            z-index: 1;
         }
 
         .hero-icon.visible {
@@ -605,16 +604,16 @@
                 padding: 60px 24px 48px;
             }
 
-            .enso {
-                width: 120px;
-                height: 120px;
-                margin-bottom: 36px;
+            .enso-wrap svg {
+                width: 130vmin;
+                height: 130vmin;
             }
 
             .hero-icon {
-                width: 52px;
-                height: 52px;
-                border-radius: 13px;
+                width: 64px;
+                height: 64px;
+                border-radius: 16px;
+                margin-bottom: 28px;
             }
 
             .hero-glow { filter: blur(80px); }
@@ -700,15 +699,10 @@
                 max-width: 480px;
             }
 
-            .enso {
-                width: 140px;
-                height: 140px;
-            }
-
             .hero-icon {
-                width: 56px;
-                height: 56px;
-                border-radius: 14px;
+                width: 72px;
+                height: 72px;
+                border-radius: 18px;
             }
 
             .phone-row {
@@ -746,16 +740,16 @@
                 max-width: 620px;
             }
 
-            .enso {
-                width: 180px;
-                height: 180px;
-                margin-bottom: 48px;
+            .enso-wrap svg {
+                max-width: 1000px;
+                max-height: 1000px;
             }
 
             .hero-icon {
-                width: 72px;
-                height: 72px;
-                border-radius: 18px;
+                width: 88px;
+                height: 88px;
+                border-radius: 22px;
+                margin-bottom: 40px;
             }
 
             .phone-frame {
@@ -781,15 +775,14 @@
             }
 
             .enso-arc {
-                stroke-dashoffset: 30;
-                opacity: 0.5;
-                stroke-width: 1.8;
+                stroke-dashoffset: 120;
+                opacity: 1;
                 animation: none !important;
             }
 
             .enso-glow {
-                stroke-dashoffset: 30;
-                opacity: 0.15;
+                stroke-dashoffset: 120;
+                opacity: 0.1;
                 animation: none !important;
             }
 
@@ -813,15 +806,33 @@
         <div class="hero-glow glow-3" aria-hidden="true"></div>
         <div class="hero-glow glow-4" aria-hidden="true"></div>
 
-        <!-- Ensō ring with app icon centered inside -->
-        <div class="enso reveal" aria-hidden="true">
-            <svg viewBox="0 0 160 160">
-                <circle class="enso-glow" cx="80" cy="80" r="70" />
-                <circle class="enso-arc" cx="80" cy="80" r="70" />
+        <!-- Ensō ink arc — draws behind everything like a brushstroke drying on paper -->
+        <div class="enso-wrap" aria-hidden="true">
+            <svg viewBox="0 0 500 500">
+                <defs>
+                    <!-- Ink gradient: heavy where brush presses, translucent where it lifts -->
+                    <linearGradient id="ink-gradient" gradientUnits="userSpaceOnUse" x1="60" y1="450" x2="440" y2="50">
+                        <stop offset="0%" stop-color="#C4959A" stop-opacity="0.08" />
+                        <stop offset="15%" stop-color="#C4959A" stop-opacity="0.22" />
+                        <stop offset="35%" stop-color="#B58389" stop-opacity="0.3" />
+                        <stop offset="55%" stop-color="#C4959A" stop-opacity="0.18" />
+                        <stop offset="75%" stop-color="#A37278" stop-opacity="0.25" />
+                        <stop offset="90%" stop-color="#C4959A" stop-opacity="0.12" />
+                        <stop offset="100%" stop-color="#C4959A" stop-opacity="0.04" />
+                    </linearGradient>
+                </defs>
+                <!-- Glow layer (soft halo behind the ink) -->
+                <path class="enso-glow"
+                    d="M 90 390 C 30 310, 15 200, 60 120 C 110 30, 220 -10, 320 20 C 420 50, 480 150, 460 260 C 440 370, 360 450, 260 460 C 180 468, 120 440, 90 390"
+                    stroke-width="12" />
+                <!-- Ink stroke — an open arc, not a closed circle -->
+                <path class="enso-arc"
+                    d="M 90 390 C 30 310, 15 200, 60 120 C 110 30, 220 -10, 320 20 C 420 50, 480 150, 460 260 C 440 370, 360 450, 260 460 C 180 468, 120 440, 90 390"
+                    stroke-width="5" />
             </svg>
-            <img class="hero-icon" src="/apple-touch-icon.png" alt="hæl" width="180" height="180">
         </div>
 
+        <img class="hero-icon" src="/apple-touch-icon.png" alt="hæl" width="180" height="180">
         <h1 class="hero-tagline reveal reveal-delay-1">a fasting timer that <em>observes</em> instead of coaching.</h1>
         <p class="hero-sub reveal reveal-delay-2">the ring reads the cycle. the prose reads the hours. the body's rhythm shapes everything.</p>
         <div class="hero-cta reveal reveal-delay-3">
@@ -937,19 +948,6 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-
-                    // Trigger ensō ink draw when the ring scrolls into view
-                    if (entry.target.classList.contains('enso')) {
-                        setTimeout(() => {
-                            entry.target.querySelector('.enso-arc').classList.add('draw');
-                            entry.target.querySelector('.enso-glow').classList.add('draw');
-                            // Fade in the app icon after the ink settles
-                            setTimeout(() => {
-                                entry.target.querySelector('.hero-icon').classList.add('visible');
-                            }, 1400);
-                        }, 200);
-                    }
-
                     observer.unobserve(entry.target);
                 }
             });
@@ -960,7 +958,17 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Activate breathing orbs after a short delay
+        // Ensō ink draw — starts on page load, like ink touching paper
+        setTimeout(() => {
+            document.querySelector('.enso-arc').classList.add('draw');
+            document.querySelector('.enso-glow').classList.add('draw');
+            // App icon fades in once the ink settles
+            setTimeout(() => {
+                document.querySelector('.hero-icon').classList.add('visible');
+            }, 1600);
+        }, 400);
+
+        // Breathing orbs
         setTimeout(() => {
             document.querySelectorAll('.hero-glow').forEach(el => el.classList.add('active'));
         }, 300);
