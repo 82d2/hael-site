@@ -253,10 +253,12 @@
             max-height: 900px;
         }
 
+        /* Primary ink stroke — the main brushstroke line */
         .enso-arc {
             fill: none;
             stroke: url(#ink-gradient);
             stroke-linecap: round;
+            filter: url(#brush-texture);
             /* dasharray/dashoffset set by JS after path generation */
         }
 
@@ -264,18 +266,66 @@
             animation: ink-draw 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
+        /* Dry-brush ghost strokes — thinner, offset, semi-transparent */
+        .enso-dry {
+            fill: none;
+            stroke: url(#ink-gradient);
+            stroke-linecap: round;
+            filter: url(#brush-texture);
+            /* dasharray/dashoffset set by JS */
+        }
+
+        .enso-dry.draw {
+            animation: ink-draw-dry 3.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* Ink pooling blobs at brush-down and brush-lift points */
+        .enso-pool {
+            opacity: 0;
+        }
+
+        .enso-pool.draw {
+            animation: pool-fade 1.2s ease-out forwards;
+        }
+
         @keyframes ink-draw {
             0% {
                 stroke-dashoffset: var(--enso-length, 1600);
-                opacity: 0.2;
+                opacity: 0.15;
             }
-            10% {
-                opacity: 0.6;
+            8% {
+                opacity: 0.5;
             }
             100% {
                 stroke-dashoffset: var(--enso-gap, 120);
                 opacity: 1;
             }
+        }
+
+        @keyframes ink-draw-dry {
+            0% {
+                stroke-dashoffset: var(--enso-length, 1600);
+                opacity: 0;
+            }
+            12% {
+                opacity: 0.25;
+            }
+            60% {
+                opacity: 0.4;
+            }
+            85% {
+                opacity: 0.15;
+            }
+            100% {
+                stroke-dashoffset: var(--enso-gap, 120);
+                opacity: 0.2;
+            }
+        }
+
+        @keyframes pool-fade {
+            0% { opacity: 0; transform: scale(0.3); }
+            40% { opacity: 0.35; }
+            100% { opacity: 0.18; transform: scale(1); }
         }
 
         .enso-glow {
@@ -778,6 +828,17 @@
                 animation: none !important;
             }
 
+            .enso-dry {
+                stroke-dashoffset: var(--enso-gap, 120);
+                opacity: 0.2;
+                animation: none !important;
+            }
+
+            .enso-pool {
+                opacity: 0.18;
+                animation: none !important;
+            }
+
             .enso-glow {
                 stroke-dashoffset: var(--enso-gap, 120);
                 opacity: 0.1;
@@ -818,11 +879,28 @@
                         <stop offset="90%" stop-color="#C4959A" stop-opacity="0.12" />
                         <stop offset="100%" stop-color="#C4959A" stop-opacity="0.04" />
                     </linearGradient>
+                    <!-- Brush texture: feTurbulence warps the stroke edges like bristles on paper -->
+                    <filter id="brush-texture" x="-5%" y="-5%" width="110%" height="110%">
+                        <feTurbulence type="turbulence" baseFrequency="0.04 0.06" numOctaves="4" seed="0" result="noise" />
+                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+                    </filter>
+                    <!-- Radial fill for ink pooling blobs -->
+                    <radialGradient id="pool-fill">
+                        <stop offset="0%" stop-color="#B58389" stop-opacity="0.35" />
+                        <stop offset="50%" stop-color="#C4959A" stop-opacity="0.2" />
+                        <stop offset="100%" stop-color="#C4959A" stop-opacity="0" />
+                    </radialGradient>
                 </defs>
                 <!-- Glow layer (soft halo behind the ink) -->
                 <path class="enso-glow" stroke-width="12" />
-                <!-- Ink stroke — an open arc, not a closed circle -->
+                <!-- Dry-brush ghost strokes — stray bristle marks alongside the main stroke -->
+                <path class="enso-dry enso-dry-1" stroke-width="1.5" />
+                <path class="enso-dry enso-dry-2" stroke-width="1" />
+                <!-- Primary ink stroke -->
                 <path class="enso-arc" stroke-width="5" />
+                <!-- Ink pooling: brush-down blob and brush-lift blob -->
+                <circle class="enso-pool enso-pool-start" r="8" fill="url(#pool-fill)" />
+                <circle class="enso-pool enso-pool-end" r="6" fill="url(#pool-fill)" />
             </svg>
         </div>
 
@@ -954,17 +1032,21 @@
 
         // Ensō — a different brushstroke each time the page loads.
         // Generates a near-circle from randomised bezier control points,
-        // leaving a gap (the ensō opening) where the brush lifts.
+        // with dry-brush texture, ink pooling, and bristle displacement.
         (function generateEnso() {
             var cx = 250, cy = 250, r = 190;
 
             // Random float in [lo, hi]
             function rf(lo, hi) { return lo + Math.random() * (hi - lo); }
 
+            // Randomise the turbulence seed so brush texture differs each load
+            var turbulence = document.querySelector('#brush-texture feTurbulence');
+            if (turbulence) turbulence.setAttribute('seed', Math.floor(Math.random() * 9999));
+
             // Place 6 anchor points around the circle, with jitter
             var anchors = [];
             var segCount = 6;
-            var startAngle = rf(0, Math.PI * 2); // gap appears at a random position
+            var startAngle = rf(0, Math.PI * 2);
             for (var i = 0; i < segCount; i++) {
                 var angle = startAngle + (Math.PI * 2 * i / segCount) + rf(-0.18, 0.18);
                 var rr = r + rf(-30, 30);
@@ -974,21 +1056,18 @@
                 });
             }
 
-            // Build the SVG path: M start, then C curves through each segment
-            // We skip the last segment to leave the ensō gap open
-            var drawCount = segCount - 1; // skip last segment — the ensō gap
+            // Build the SVG path — skip last segment for the ensō gap
+            var drawCount = segCount - 1;
 
             var d = 'M ' + anchors[0].x.toFixed(1) + ' ' + anchors[0].y.toFixed(1);
             for (var i = 0; i < drawCount; i++) {
                 var curr = anchors[i];
                 var next = anchors[(i + 1) % segCount];
-                // Control points: perpendicular offsets from the segment
                 var dx = next.x - curr.x;
                 var dy = next.y - curr.y;
-                // Perpendicular direction, scaled by curvature jitter
                 var curvature = rf(0.2, 0.5);
                 var sign = (i % 2 === 0) ? 1 : -1;
-                sign *= (Math.random() < 0.3 ? -1 : 1); // occasional inversion
+                sign *= (Math.random() < 0.3 ? -1 : 1);
                 var cpx1 = curr.x + dx * 0.33 + (-dy) * curvature * sign * rf(0.5, 1.2);
                 var cpy1 = curr.y + dy * 0.33 + dx * curvature * sign * rf(0.5, 1.2);
                 var cpx2 = curr.x + dx * 0.66 + (-dy) * curvature * sign * rf(0.5, 1.2);
@@ -998,39 +1077,106 @@
                      ', ' + next.x.toFixed(1) + ' ' + next.y.toFixed(1);
             }
 
-            // Set path on both elements
+            // -- Build offset dry-brush paths (stray bristle marks) --
+            // These follow the same general shape but are displaced slightly,
+            // like individual bristle hairs that split from the main brush.
+            function offsetPath(anchorsArr, offsetAmt) {
+                var od = 'M ' + (anchorsArr[0].x + rf(-offsetAmt, offsetAmt)).toFixed(1) +
+                         ' ' + (anchorsArr[0].y + rf(-offsetAmt, offsetAmt)).toFixed(1);
+                for (var i = 0; i < drawCount; i++) {
+                    var curr = anchorsArr[i];
+                    var next = anchorsArr[(i + 1) % segCount];
+                    var ddx = next.x - curr.x;
+                    var ddy = next.y - curr.y;
+                    var curv = rf(0.15, 0.55);
+                    var s = (i % 2 === 0) ? 1 : -1;
+                    s *= (Math.random() < 0.4 ? -1 : 1);
+                    var ox = rf(-offsetAmt, offsetAmt);
+                    var oy = rf(-offsetAmt, offsetAmt);
+                    var c1x = curr.x + ddx * 0.33 + (-ddy) * curv * s * rf(0.4, 1.3) + ox;
+                    var c1y = curr.y + ddy * 0.33 + ddx * curv * s * rf(0.4, 1.3) + oy;
+                    var c2x = curr.x + ddx * 0.66 + (-ddy) * curv * s * rf(0.4, 1.3) + ox;
+                    var c2y = curr.y + ddy * 0.66 + ddx * curv * s * rf(0.4, 1.3) + oy;
+                    var ex = next.x + rf(-offsetAmt * 0.5, offsetAmt * 0.5);
+                    var ey = next.y + rf(-offsetAmt * 0.5, offsetAmt * 0.5);
+                    od += ' C ' + c1x.toFixed(1) + ' ' + c1y.toFixed(1) +
+                          ', ' + c2x.toFixed(1) + ' ' + c2y.toFixed(1) +
+                          ', ' + ex.toFixed(1) + ' ' + ey.toFixed(1);
+                }
+                return od;
+            }
+
+            var dryPath1 = offsetPath(anchors, rf(6, 14));
+            var dryPath2 = offsetPath(anchors, rf(4, 10));
+
+            // Apply paths to all stroke elements
             var arc = document.querySelector('.enso-arc');
             var glow = document.querySelector('.enso-glow');
+            var dry1 = document.querySelector('.enso-dry-1');
+            var dry2 = document.querySelector('.enso-dry-2');
             arc.setAttribute('d', d);
             glow.setAttribute('d', d);
+            dry1.setAttribute('d', dryPath1);
+            dry2.setAttribute('d', dryPath2);
 
             // Compute actual path length for accurate dash animation
             var totalLen = arc.getTotalLength();
-            var gap = totalLen * rf(0.06, 0.12); // 6-12% of path left as the opening
-            arc.style.strokeDasharray = totalLen;
-            arc.style.strokeDashoffset = totalLen;
-            glow.style.strokeDasharray = totalLen;
-            glow.style.strokeDashoffset = totalLen;
+            var gap = totalLen * rf(0.06, 0.12);
 
-            // Pass computed values to CSS animations via custom properties
+            // Helper: set dash properties on a path element
+            function setDash(el, len, gapVal) {
+                el.style.strokeDasharray = len;
+                el.style.strokeDashoffset = len;
+                el.style.setProperty('--enso-length', len);
+                el.style.setProperty('--enso-gap', gapVal);
+            }
+
+            setDash(arc, totalLen, gap);
+            setDash(glow, totalLen, gap);
+
+            // Dry-brush strokes: slightly different lengths (some dry out sooner)
+            var dry1Len = dry1.getTotalLength();
+            var dry2Len = dry2.getTotalLength();
+            setDash(dry1, dry1Len, dry1Len * rf(0.15, 0.3)); // more gap — dries out faster
+            setDash(dry2, dry2Len, dry2Len * rf(0.2, 0.4));
+
+            // Also set on the wrapper for fallback
             var wrap = document.querySelector('.enso-wrap');
             wrap.style.setProperty('--enso-length', totalLen);
             wrap.style.setProperty('--enso-gap', gap);
-            // Also set on the paths directly for the animation keyframes
-            arc.style.setProperty('--enso-length', totalLen);
-            arc.style.setProperty('--enso-gap', gap);
-            glow.style.setProperty('--enso-length', totalLen);
-            glow.style.setProperty('--enso-gap', gap);
 
-            // Randomize stroke width slightly for a hand-drawn feel
-            arc.setAttribute('stroke-width', rf(4, 7).toFixed(1));
+            // Randomize stroke widths — main stroke varies in weight
+            arc.setAttribute('stroke-width', rf(4, 8).toFixed(1));
             glow.setAttribute('stroke-width', rf(10, 16).toFixed(1));
+            dry1.setAttribute('stroke-width', rf(1, 2.5).toFixed(1));
+            dry2.setAttribute('stroke-width', rf(0.5, 1.8).toFixed(1));
+
+            // Position ink pooling blobs at path start and end
+            var startPt = arc.getPointAtLength(0);
+            var endPt = arc.getPointAtLength(totalLen - gap);
+            var poolStart = document.querySelector('.enso-pool-start');
+            var poolEnd = document.querySelector('.enso-pool-end');
+            poolStart.setAttribute('cx', startPt.x);
+            poolStart.setAttribute('cy', startPt.y);
+            poolStart.setAttribute('r', rf(6, 12).toFixed(1));
+            poolEnd.setAttribute('cx', endPt.x);
+            poolEnd.setAttribute('cy', endPt.y);
+            poolEnd.setAttribute('r', rf(4, 9).toFixed(1));
         })();
 
         // Ensō ink draw — starts on page load, like ink touching paper
         setTimeout(function() {
             document.querySelector('.enso-arc').classList.add('draw');
             document.querySelector('.enso-glow').classList.add('draw');
+            // Dry-brush strokes follow slightly behind the main stroke
+            setTimeout(function() {
+                document.querySelectorAll('.enso-dry').forEach(function(el) { el.classList.add('draw'); });
+            }, 200);
+            // Ink pools appear as the brush touches down and lifts
+            document.querySelector('.enso-pool-start').classList.add('draw');
+            setTimeout(function() {
+                document.querySelector('.enso-pool-end').classList.add('draw');
+            }, 2400);
             // App icon fades in once the ink settles
             setTimeout(function() {
                 document.querySelector('.hero-icon').classList.add('visible');
