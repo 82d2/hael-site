@@ -257,8 +257,7 @@
             fill: none;
             stroke: url(#ink-gradient);
             stroke-linecap: round;
-            stroke-dasharray: 1600;
-            stroke-dashoffset: 1600;
+            /* dasharray/dashoffset set by JS after path generation */
         }
 
         .enso-arc.draw {
@@ -267,14 +266,14 @@
 
         @keyframes ink-draw {
             0% {
-                stroke-dashoffset: 1600;
+                stroke-dashoffset: var(--enso-length, 1600);
                 opacity: 0.2;
             }
             10% {
                 opacity: 0.6;
             }
             100% {
-                stroke-dashoffset: 120;
+                stroke-dashoffset: var(--enso-gap, 120);
                 opacity: 1;
             }
         }
@@ -284,8 +283,7 @@
             stroke: var(--blush);
             stroke-width: 12;
             stroke-linecap: round;
-            stroke-dasharray: 1600;
-            stroke-dashoffset: 1600;
+            /* dasharray/dashoffset set by JS after path generation */
             filter: blur(18px);
             opacity: 0;
         }
@@ -297,14 +295,14 @@
 
         @keyframes ink-glow {
             0% {
-                stroke-dashoffset: 1600;
+                stroke-dashoffset: var(--enso-length, 1600);
                 opacity: 0;
             }
             10% {
                 opacity: 0.15;
             }
             100% {
-                stroke-dashoffset: 120;
+                stroke-dashoffset: var(--enso-gap, 120);
                 opacity: 0.1;
             }
         }
@@ -775,13 +773,13 @@
             }
 
             .enso-arc {
-                stroke-dashoffset: 120;
+                stroke-dashoffset: var(--enso-gap, 120);
                 opacity: 1;
                 animation: none !important;
             }
 
             .enso-glow {
-                stroke-dashoffset: 120;
+                stroke-dashoffset: var(--enso-gap, 120);
                 opacity: 0.1;
                 animation: none !important;
             }
@@ -822,13 +820,9 @@
                     </linearGradient>
                 </defs>
                 <!-- Glow layer (soft halo behind the ink) -->
-                <path class="enso-glow"
-                    d="M 90 390 C 30 310, 15 200, 60 120 C 110 30, 220 -10, 320 20 C 420 50, 480 150, 460 260 C 440 370, 360 450, 260 460 C 180 468, 120 440, 90 390"
-                    stroke-width="12" />
+                <path class="enso-glow" stroke-width="12" />
                 <!-- Ink stroke — an open arc, not a closed circle -->
-                <path class="enso-arc"
-                    d="M 90 390 C 30 310, 15 200, 60 120 C 110 30, 220 -10, 320 20 C 420 50, 480 150, 460 260 C 440 370, 360 450, 260 460 C 180 468, 120 440, 90 390"
-                    stroke-width="5" />
+                <path class="enso-arc" stroke-width="5" />
             </svg>
         </div>
 
@@ -958,12 +952,87 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+        // Ensō — a different brushstroke each time the page loads.
+        // Generates a near-circle from randomised bezier control points,
+        // leaving a gap (the ensō opening) where the brush lifts.
+        (function generateEnso() {
+            var cx = 250, cy = 250, r = 190;
+
+            // Random float in [lo, hi]
+            function rf(lo, hi) { return lo + Math.random() * (hi - lo); }
+
+            // Place 6 anchor points around the circle, with jitter
+            var anchors = [];
+            var segCount = 6;
+            var startAngle = rf(0, Math.PI * 2); // gap appears at a random position
+            for (var i = 0; i < segCount; i++) {
+                var angle = startAngle + (Math.PI * 2 * i / segCount) + rf(-0.18, 0.18);
+                var rr = r + rf(-30, 30);
+                anchors.push({
+                    x: cx + Math.cos(angle) * rr,
+                    y: cy + Math.sin(angle) * rr
+                });
+            }
+
+            // Build the SVG path: M start, then C curves through each segment
+            // We skip the last segment to leave the ensō gap open
+            var drawCount = segCount - 1; // skip last segment — the ensō gap
+
+            var d = 'M ' + anchors[0].x.toFixed(1) + ' ' + anchors[0].y.toFixed(1);
+            for (var i = 0; i < drawCount; i++) {
+                var curr = anchors[i];
+                var next = anchors[(i + 1) % segCount];
+                // Control points: perpendicular offsets from the segment
+                var dx = next.x - curr.x;
+                var dy = next.y - curr.y;
+                // Perpendicular direction, scaled by curvature jitter
+                var curvature = rf(0.2, 0.5);
+                var sign = (i % 2 === 0) ? 1 : -1;
+                sign *= (Math.random() < 0.3 ? -1 : 1); // occasional inversion
+                var cpx1 = curr.x + dx * 0.33 + (-dy) * curvature * sign * rf(0.5, 1.2);
+                var cpy1 = curr.y + dy * 0.33 + dx * curvature * sign * rf(0.5, 1.2);
+                var cpx2 = curr.x + dx * 0.66 + (-dy) * curvature * sign * rf(0.5, 1.2);
+                var cpy2 = curr.y + dy * 0.66 + dx * curvature * sign * rf(0.5, 1.2);
+                d += ' C ' + cpx1.toFixed(1) + ' ' + cpy1.toFixed(1) +
+                     ', ' + cpx2.toFixed(1) + ' ' + cpy2.toFixed(1) +
+                     ', ' + next.x.toFixed(1) + ' ' + next.y.toFixed(1);
+            }
+
+            // Set path on both elements
+            var arc = document.querySelector('.enso-arc');
+            var glow = document.querySelector('.enso-glow');
+            arc.setAttribute('d', d);
+            glow.setAttribute('d', d);
+
+            // Compute actual path length for accurate dash animation
+            var totalLen = arc.getTotalLength();
+            var gap = totalLen * rf(0.06, 0.12); // 6-12% of path left as the opening
+            arc.style.strokeDasharray = totalLen;
+            arc.style.strokeDashoffset = totalLen;
+            glow.style.strokeDasharray = totalLen;
+            glow.style.strokeDashoffset = totalLen;
+
+            // Pass computed values to CSS animations via custom properties
+            var wrap = document.querySelector('.enso-wrap');
+            wrap.style.setProperty('--enso-length', totalLen);
+            wrap.style.setProperty('--enso-gap', gap);
+            // Also set on the paths directly for the animation keyframes
+            arc.style.setProperty('--enso-length', totalLen);
+            arc.style.setProperty('--enso-gap', gap);
+            glow.style.setProperty('--enso-length', totalLen);
+            glow.style.setProperty('--enso-gap', gap);
+
+            // Randomize stroke width slightly for a hand-drawn feel
+            arc.setAttribute('stroke-width', rf(4, 7).toFixed(1));
+            glow.setAttribute('stroke-width', rf(10, 16).toFixed(1));
+        })();
+
         // Ensō ink draw — starts on page load, like ink touching paper
-        setTimeout(() => {
+        setTimeout(function() {
             document.querySelector('.enso-arc').classList.add('draw');
             document.querySelector('.enso-glow').classList.add('draw');
             // App icon fades in once the ink settles
-            setTimeout(() => {
+            setTimeout(function() {
                 document.querySelector('.hero-icon').classList.add('visible');
             }, 1600);
         }, 400);
