@@ -86,42 +86,73 @@
             --serif: 'EB Garamond', Georgia, serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: var(--serif);
             background: var(--cream);
             color: var(--primary);
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
-        /* Hero */
+        /* ---- Hero ---- */
         .hero {
-            min-height: 100vh;
+            min-height: 100svh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 60px 24px;
+            padding: 80px 24px 60px;
         }
 
         .hero h1 {
             font-size: 0;
-            margin-bottom: 16px;
+            margin-bottom: 24px;
         }
 
         .hero h1 img {
-            width: 88px;
-            height: 88px;
-            border-radius: 20px;
+            width: 96px;
+            height: 96px;
+            border-radius: 22px;
+            box-shadow: 0 4px 24px rgba(44, 40, 36, 0.06);
         }
 
-        .hero h2 {
-            font-size: 1.25rem;
+        .hero-tagline {
+            font-size: 1.3rem;
             font-weight: 400;
             color: var(--secondary);
-            line-height: 1.7;
-            max-width: 420px;
-            margin-bottom: 48px;
+            line-height: 1.75;
+            max-width: 440px;
+            margin-bottom: 40px;
+        }
+
+        .hero-platforms {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: var(--tertiary);
+            letter-spacing: 0.04em;
+        }
+
+        .hero-platforms span {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .dot {
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: var(--blush);
+            display: inline-block;
         }
 
         .app-store-badge {
@@ -137,43 +168,59 @@
             height: 54px;
         }
 
-        /* Screenshots */
+        /* ---- Screenshots ---- */
         .screenshots {
-            padding: 80px 24px;
-            max-width: 960px;
+            padding: 40px 24px 80px;
+            max-width: 1040px;
             margin: 0 auto;
         }
 
         .screenshot-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+            gap: 32px;
             justify-items: center;
+            align-items: start;
         }
 
         .screenshot-item {
             text-align: center;
-            max-width: 260px;
+            max-width: 280px;
+            width: 100%;
         }
 
         .screenshot-item img {
             width: 100%;
             height: auto;
-            border-radius: 20px;
-            box-shadow: 0 8px 40px rgba(44, 40, 36, 0.08);
+            border-radius: 24px;
+            box-shadow: 0 12px 48px rgba(44, 40, 36, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .screenshot-item img:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 56px rgba(44, 40, 36, 0.12);
         }
 
         .screenshot-caption {
-            margin-top: 16px;
+            margin-top: 20px;
             font-size: 1rem;
             font-weight: 400;
             color: var(--secondary);
             font-style: italic;
         }
 
-        /* Features */
+        /* ---- Section divider ---- */
+        .divider {
+            width: 48px;
+            height: 1px;
+            background: var(--blush);
+            margin: 0 auto;
+        }
+
+        /* ---- Features ---- */
         .features {
-            padding: 80px 24px 100px;
+            padding: 80px 24px 88px;
             max-width: 640px;
             margin: 0 auto;
             text-align: center;
@@ -196,7 +243,7 @@
             font-weight: 400;
             color: var(--secondary);
             line-height: 1.8;
-            padding: 12px 0;
+            padding: 14px 0;
             border-bottom: 1px solid var(--blush);
         }
 
@@ -204,10 +251,10 @@
             border-bottom: none;
         }
 
-        /* About */
+        /* ---- About ---- */
         .about {
-            padding: 60px 24px 80px;
-            max-width: 640px;
+            padding: 64px 24px 80px;
+            max-width: 600px;
             margin: 0 auto;
             text-align: center;
         }
@@ -215,7 +262,7 @@
         .about h2 {
             font-size: 1.6rem;
             font-weight: 400;
-            margin-bottom: 20px;
+            margin-bottom: 28px;
             color: var(--primary);
         }
 
@@ -223,27 +270,32 @@
             font-size: 1.05rem;
             font-weight: 400;
             color: var(--secondary);
-            line-height: 1.8;
-            margin-bottom: 16px;
+            line-height: 1.85;
+            margin-bottom: 20px;
         }
 
-        /* CTA */
+        .about p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ---- CTA ---- */
         .cta {
-            padding: 80px 24px;
+            padding: 88px 24px;
             text-align: center;
             background: var(--warm-white);
         }
 
         .cta .price {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 400;
             color: var(--tertiary);
             margin-bottom: 8px;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
+            text-transform: lowercase;
         }
 
         .cta h2 {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             font-weight: 400;
             margin-bottom: 12px;
         }
@@ -253,11 +305,12 @@
             font-weight: 400;
             color: var(--secondary);
             margin-bottom: 40px;
+            line-height: 1.7;
         }
 
-        /* Footer */
+        /* ---- Footer ---- */
         footer {
-            padding: 40px 24px;
+            padding: 48px 24px;
             text-align: center;
             font-size: 0.85rem;
             color: var(--tertiary);
@@ -282,21 +335,143 @@
             margin: 0 16px;
         }
 
-        /* Mobile */
-        @media (max-width: 768px) {
+        /* ---- Responsive: small phones ---- */
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 20px 48px;
+                min-height: 100svh;
+            }
+
             .hero h1 img {
                 width: 72px;
                 height: 72px;
                 border-radius: 16px;
             }
 
+            .hero-tagline {
+                font-size: 1.15rem;
+                max-width: 320px;
+                line-height: 1.7;
+            }
+
+            .hero-platforms {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .screenshots {
+                padding: 24px 20px 60px;
+            }
+
             .screenshot-grid {
                 grid-template-columns: 1fr;
+                gap: 40px;
+                max-width: 240px;
+                margin: 0 auto;
+            }
+
+            .screenshot-item {
+                max-width: 100%;
+            }
+
+            .features {
+                padding: 60px 20px 72px;
+            }
+
+            .features h2 {
+                font-size: 1.7rem;
+                margin-bottom: 36px;
+            }
+
+            .feature-list li {
+                font-size: 1rem;
+                padding: 12px 0;
+            }
+
+            .about {
+                padding: 48px 20px 64px;
+                text-align: left;
+            }
+
+            .about h2 {
+                font-size: 1.4rem;
+                text-align: center;
+            }
+
+            .about p {
+                font-size: 1rem;
+                line-height: 1.8;
+            }
+
+            .cta {
+                padding: 64px 20px;
+            }
+
+            .cta h2 {
+                font-size: 1.9rem;
+            }
+        }
+
+        /* ---- Responsive: tablets (portrait) ---- */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .hero h1 img {
+                width: 80px;
+                height: 80px;
+                border-radius: 18px;
+            }
+
+            .hero-tagline {
+                font-size: 1.2rem;
+                max-width: 380px;
+            }
+
+            .screenshot-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .screenshot-item {
+                max-width: 180px;
+            }
+
+            .screenshot-item img {
+                border-radius: 16px;
+            }
+
+            .screenshot-caption {
+                font-size: 0.9rem;
+                margin-top: 12px;
+            }
+        }
+
+        /* ---- Responsive: large screens ---- */
+        @media (min-width: 1200px) {
+            .hero-tagline {
+                font-size: 1.4rem;
+                max-width: 480px;
+            }
+
+            .screenshot-grid {
                 gap: 48px;
             }
 
             .screenshot-item {
-                max-width: 240px;
+                max-width: 300px;
+            }
+
+            .features h2 {
+                font-size: 2.2rem;
+            }
+
+            .about h2 {
+                font-size: 1.8rem;
+            }
+
+            .cta h2 {
+                font-size: 2.6rem;
             }
         }
     </style>
@@ -305,10 +480,17 @@
 
     <header class="hero">
         <h1><img src="/apple-touch-icon.png" alt="hæl" width="180" height="180"></h1>
-        <h2>a fasting timer that observes instead of coaching. the ring watches the hours. the prose reads the cycle. the body's rhythm shapes what the app says and when.</h2>
+        <p class="hero-tagline">a fasting timer that observes instead of coaching. the ring watches the hours. the prose reads the cycle. the body's rhythm shapes what the app says and when.</p>
         <a class="app-store-badge" href="https://apps.apple.com/us/app/h%C3%A6l/id6778956802" aria-label="Download hæl on the App Store">
             <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download hæl on the App Store" width="250" height="83" loading="eager">
         </a>
+        <div class="hero-platforms">
+            <span>iPhone</span>
+            <span class="dot"></span>
+            <span>iPad</span>
+            <span class="dot"></span>
+            <span>Apple Watch</span>
+        </div>
     </header>
 
     <main>
@@ -329,6 +511,8 @@
             </div>
         </section>
 
+        <div class="divider"></div>
+
         <section class="features" aria-label="Features">
             <h2>what the witness sees</h2>
             <ul class="feature-list">
@@ -344,6 +528,8 @@
                 <li>one purchase, nothing recurring</li>
             </ul>
         </section>
+
+        <div class="divider"></div>
 
         <section class="about" aria-label="About hæl">
             <h2>intermittent fasting, shaped by the cycle</h2>
