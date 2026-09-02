@@ -83,6 +83,7 @@
             --tertiary: #A09A94;
             --blush: #E8D5CC;
             --rose: #C9A99B;
+            --rose-deep: #B8907F;
             --serif: 'EB Garamond', Georgia, serif;
         }
 
@@ -97,7 +98,25 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
+            overflow-x: hidden;
         }
+
+        /* ---- Scroll reveal ---- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
 
         /* ---- Hero ---- */
         .hero {
@@ -112,39 +131,101 @@
 
         .hero h1 {
             font-size: 0;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
 
         .hero h1 img {
-            width: 96px;
-            height: 96px;
-            border-radius: 22px;
-            box-shadow: 0 4px 24px rgba(44, 40, 36, 0.06);
+            width: 100px;
+            height: 100px;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(44, 40, 36, 0.08);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .hero h1 img:hover {
+            transform: scale(1.04);
         }
 
         .hero-tagline {
-            font-size: 1.3rem;
+            font-size: 1.35rem;
             font-weight: 400;
             color: var(--secondary);
-            line-height: 1.75;
-            max-width: 440px;
-            margin-bottom: 40px;
+            line-height: 1.8;
+            max-width: 460px;
+            margin-bottom: 44px;
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: var(--primary);
+            color: var(--cream);
+            font-family: var(--serif);
+            font-size: 1.05rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 980px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            letter-spacing: 0.01em;
+        }
+
+        .btn-pill:hover {
+            background: #3D3833;
+            transform: scale(1.02);
+        }
+
+        .btn-pill:active {
+            transform: scale(0.98);
+        }
+
+        .btn-pill svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 24px;
+            background: transparent;
+            color: var(--secondary);
+            font-family: var(--serif);
+            font-size: 0.95rem;
+            font-weight: 400;
+            text-decoration: none;
+            border-radius: 980px;
+            border: 1px solid var(--blush);
+            transition: border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--rose);
+            color: var(--primary);
+        }
+
+        .btn-ghost:active {
+            transform: scale(0.98);
         }
 
         .hero-platforms {
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-top: 12px;
+            margin-top: 20px;
             font-size: 0.85rem;
             color: var(--tertiary);
             letter-spacing: 0.04em;
-        }
-
-        .hero-platforms span {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
         }
 
         .dot {
@@ -155,30 +236,17 @@
             display: inline-block;
         }
 
-        .app-store-badge {
-            display: inline-block;
-            transition: opacity 0.2s;
-        }
-
-        .app-store-badge:hover {
-            opacity: 0.8;
-        }
-
-        .app-store-badge img {
-            height: 54px;
-        }
-
         /* ---- Screenshots ---- */
         .screenshots {
-            padding: 40px 24px 80px;
-            max-width: 1040px;
+            padding: 20px 24px 100px;
+            max-width: 1060px;
             margin: 0 auto;
         }
 
         .screenshot-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
+            gap: 36px;
             justify-items: center;
             align-items: start;
         }
@@ -192,86 +260,87 @@
         .screenshot-item img {
             width: 100%;
             height: auto;
-            border-radius: 24px;
-            box-shadow: 0 12px 48px rgba(44, 40, 36, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 28px;
+            box-shadow: 0 16px 56px rgba(44, 40, 36, 0.07);
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .screenshot-item img:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 56px rgba(44, 40, 36, 0.12);
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 24px 64px rgba(44, 40, 36, 0.12);
         }
 
         .screenshot-caption {
             margin-top: 20px;
             font-size: 1rem;
             font-weight: 400;
-            color: var(--secondary);
+            color: var(--tertiary);
             font-style: italic;
-        }
-
-        /* ---- Section divider ---- */
-        .divider {
-            width: 48px;
-            height: 1px;
-            background: var(--blush);
-            margin: 0 auto;
         }
 
         /* ---- Features ---- */
         .features {
-            padding: 80px 24px 88px;
-            max-width: 640px;
+            padding: 100px 24px;
+            max-width: 680px;
             margin: 0 auto;
             text-align: center;
         }
 
         .features h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 400;
-            margin-bottom: 48px;
+            margin-bottom: 56px;
             color: var(--primary);
         }
 
-        .feature-list {
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
             list-style: none;
             padding: 0;
         }
 
-        .feature-list li {
-            font-size: 1.1rem;
+        .feature-grid li {
+            font-size: 1.05rem;
             font-weight: 400;
             color: var(--secondary);
-            line-height: 1.8;
-            padding: 14px 0;
+            line-height: 1.7;
+            padding: 20px 16px;
             border-bottom: 1px solid var(--blush);
+            text-align: left;
         }
 
-        .feature-list li:last-child {
+        .feature-grid li:nth-child(odd) {
+            border-right: 1px solid var(--blush);
+        }
+
+        .feature-grid li:nth-last-child(-n+2) {
             border-bottom: none;
         }
 
         /* ---- About ---- */
         .about {
-            padding: 64px 24px 80px;
-            max-width: 600px;
+            padding: 100px 24px;
+            max-width: 620px;
             margin: 0 auto;
             text-align: center;
         }
 
         .about h2 {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 400;
-            margin-bottom: 28px;
+            margin-bottom: 36px;
             color: var(--primary);
         }
 
         .about p {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-weight: 400;
             color: var(--secondary);
-            line-height: 1.85;
-            margin-bottom: 20px;
+            line-height: 1.9;
+            margin-bottom: 24px;
         }
 
         .about p:last-child {
@@ -280,37 +349,49 @@
 
         /* ---- CTA ---- */
         .cta {
-            padding: 88px 24px;
+            padding: 100px 24px;
             text-align: center;
-            background: var(--warm-white);
+            background: rgba(232, 213, 204, 0.2);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
         }
 
-        .cta .price {
-            font-size: 0.9rem;
-            font-weight: 400;
-            color: var(--tertiary);
-            margin-bottom: 8px;
+        .cta .label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--rose-deep);
+            margin-bottom: 12px;
             letter-spacing: 0.08em;
             text-transform: lowercase;
         }
 
         .cta h2 {
-            font-size: 2.4rem;
+            font-size: 2.6rem;
             font-weight: 400;
             margin-bottom: 12px;
+            color: var(--primary);
         }
 
         .cta .sub {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 400;
             color: var(--secondary);
-            margin-bottom: 40px;
+            margin-bottom: 44px;
             line-height: 1.7;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta .price-note {
+            margin-top: 16px;
+            font-size: 0.9rem;
+            color: var(--tertiary);
         }
 
         /* ---- Footer ---- */
         footer {
-            padding: 48px 24px;
+            padding: 56px 24px;
             text-align: center;
             font-size: 0.85rem;
             color: var(--tertiary);
@@ -319,7 +400,6 @@
         footer a {
             color: var(--tertiary);
             text-decoration: none;
-            border-bottom: 1px solid var(--blush);
             transition: color 0.2s;
         }
 
@@ -329,23 +409,21 @@
 
         footer .links {
             margin-bottom: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 32px;
         }
 
-        footer .links a {
-            margin: 0 16px;
-        }
-
-        /* ---- Responsive: small phones ---- */
+        /* ---- Responsive: phone ---- */
         @media (max-width: 480px) {
             .hero {
                 padding: 60px 20px 48px;
-                min-height: 100svh;
             }
 
             .hero h1 img {
-                width: 72px;
-                height: 72px;
-                border-radius: 16px;
+                width: 80px;
+                height: 80px;
+                border-radius: 20px;
             }
 
             .hero-tagline {
@@ -361,41 +439,54 @@
             }
 
             .screenshots {
-                padding: 24px 20px 60px;
+                padding: 12px 20px 60px;
             }
 
             .screenshot-grid {
                 grid-template-columns: 1fr;
-                gap: 40px;
-                max-width: 240px;
+                gap: 36px;
+                max-width: 260px;
                 margin: 0 auto;
             }
 
-            .screenshot-item {
-                max-width: 100%;
+            .screenshot-item img {
+                border-radius: 20px;
             }
 
             .features {
-                padding: 60px 20px 72px;
+                padding: 72px 20px;
             }
 
             .features h2 {
                 font-size: 1.7rem;
-                margin-bottom: 36px;
+                margin-bottom: 40px;
             }
 
-            .feature-list li {
-                font-size: 1rem;
-                padding: 12px 0;
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-grid li {
+                border-right: none !important;
+                text-align: center;
+                padding: 16px 8px;
+            }
+
+            .feature-grid li:last-child {
+                border-bottom: none;
+            }
+
+            .feature-grid li:nth-last-child(2) {
+                border-bottom: 1px solid var(--blush);
             }
 
             .about {
-                padding: 48px 20px 64px;
+                padding: 72px 20px;
                 text-align: left;
             }
 
             .about h2 {
-                font-size: 1.4rem;
+                font-size: 1.5rem;
                 text-align: center;
             }
 
@@ -405,57 +496,60 @@
             }
 
             .cta {
-                padding: 64px 20px;
+                padding: 72px 20px;
             }
 
             .cta h2 {
-                font-size: 1.9rem;
+                font-size: 2rem;
+            }
+
+            .cta .sub {
+                font-size: 1.05rem;
             }
         }
 
-        /* ---- Responsive: tablets (portrait) ---- */
+        /* ---- Responsive: tablet ---- */
         @media (min-width: 481px) and (max-width: 768px) {
             .hero h1 img {
-                width: 80px;
-                height: 80px;
-                border-radius: 18px;
+                width: 88px;
+                height: 88px;
+                border-radius: 22px;
             }
 
             .hero-tagline {
                 font-size: 1.2rem;
-                max-width: 380px;
+                max-width: 400px;
             }
 
             .screenshot-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 20px;
-                max-width: 600px;
+                max-width: 620px;
                 margin: 0 auto;
             }
 
             .screenshot-item {
-                max-width: 180px;
+                max-width: 190px;
             }
 
             .screenshot-item img {
-                border-radius: 16px;
+                border-radius: 18px;
             }
 
             .screenshot-caption {
                 font-size: 0.9rem;
-                margin-top: 12px;
             }
         }
 
-        /* ---- Responsive: large screens ---- */
+        /* ---- Responsive: large ---- */
         @media (min-width: 1200px) {
             .hero-tagline {
-                font-size: 1.4rem;
-                max-width: 480px;
+                font-size: 1.45rem;
+                max-width: 500px;
             }
 
             .screenshot-grid {
-                gap: 48px;
+                gap: 52px;
             }
 
             .screenshot-item {
@@ -463,15 +557,31 @@
             }
 
             .features h2 {
-                font-size: 2.2rem;
+                font-size: 2.4rem;
             }
 
             .about h2 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
 
             .cta h2 {
-                font-size: 2.6rem;
+                font-size: 2.8rem;
+            }
+        }
+
+        /* ---- Reduced motion ---- */
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            .hero h1 img,
+            .screenshot-item img,
+            .btn-pill,
+            .btn-ghost {
+                transition: none;
             }
         }
     </style>
@@ -481,9 +591,12 @@
     <header class="hero">
         <h1><img src="/apple-touch-icon.png" alt="hæl" width="180" height="180"></h1>
         <p class="hero-tagline">a fasting timer that observes instead of coaching. the ring watches the hours. the prose reads the cycle. the body's rhythm shapes what the app says and when.</p>
-        <a class="app-store-badge" href="https://apps.apple.com/us/app/h%C3%A6l/id6778956802" aria-label="Download hæl on the App Store">
-            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download hæl on the App Store" width="250" height="83" loading="eager">
-        </a>
+        <div class="hero-cta">
+            <a class="btn-pill" href="https://apps.apple.com/us/app/h%C3%A6l/id6778956802" aria-label="Download hæl on the App Store">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
+                download on the app store
+            </a>
+        </div>
         <div class="hero-platforms">
             <span>iPhone</span>
             <span class="dot"></span>
@@ -496,26 +609,24 @@
     <main>
         <section class="screenshots" aria-label="App screenshots">
             <div class="screenshot-grid">
-                <figure class="screenshot-item">
+                <figure class="screenshot-item reveal">
                     <img src="screenshots/ring.png" alt="hæl fasting app showing the ensō ring with cycle-aware fasting recommendations during ovulation phase" width="1242" height="2688" loading="lazy">
                     <figcaption class="screenshot-caption">the ring reads the cycle.</figcaption>
                 </figure>
-                <figure class="screenshot-item">
+                <figure class="screenshot-item reveal reveal-delay-1">
                     <img src="screenshots/prose.png" alt="hæl active fasting view with literary body readings and hydration tracking at 6 hours" width="1242" height="2688" loading="lazy">
                     <figcaption class="screenshot-caption">prose that evolves with the hours.</figcaption>
                 </figure>
-                <figure class="screenshot-item">
+                <figure class="screenshot-item reveal reveal-delay-2">
                     <img src="screenshots/ledger.png" alt="hæl fasting history calendar with weight constellation sparkline and cycle phase labels" width="1242" height="2688" loading="lazy">
                     <figcaption class="screenshot-caption">every fast, held.</figcaption>
                 </figure>
             </div>
         </section>
 
-        <div class="divider"></div>
-
-        <section class="features" aria-label="Features">
+        <section class="features reveal" aria-label="Features">
             <h2>what the witness sees</h2>
-            <ul class="feature-list">
+            <ul class="feature-grid">
                 <li>cycle-aware fasting shaped by menstrual phase</li>
                 <li>literary body readings, not dashboards</li>
                 <li>canonical hours: lauds, prime, terce, vespers</li>
@@ -529,24 +640,24 @@
             </ul>
         </section>
 
-        <div class="divider"></div>
-
         <section class="about" aria-label="About hæl">
-            <h2>intermittent fasting, shaped by the cycle</h2>
-            <p>most fasting apps count down and celebrate. hæl counts and stays quiet. the interface is a single ring. the language is literary. the body's rhythm shapes what the app says and when.</p>
-            <p>an ensō ring marks the hours. the timer carries a name that changes as the fast deepens. lauds, prime, terce, vespers. names borrowed from the canonical hours. prose arrives about what the body is doing, not what it should do.</p>
-            <p>hæl reads the menstrual cycle through Apple Health. the ring tint shifts with the phase. fasting windows adjust. shorter during menstruation, longer during follicular. weight is read in cycle context. a gain during luteal is not a gain during ovulation. the app knows the difference.</p>
-            <p>weekly letters arrive on mondays. a retrospective of the week. the fasting, the weight, the cycle. monthly readings take the longer view. these are not reports. they are readings.</p>
-            <p>when a fast ends, a page stays. the date spelled out, the hours witnessed, a line composed from what happened. a small ceremony for something the body did.</p>
+            <h2 class="reveal">intermittent fasting, shaped by the cycle</h2>
+            <p class="reveal">most fasting apps count down and celebrate. hæl counts and stays quiet. the interface is a single ring. the language is literary. the body's rhythm shapes what the app says and when.</p>
+            <p class="reveal">an ensō ring marks the hours. the timer carries a name that changes as the fast deepens. lauds, prime, terce, vespers. names borrowed from the canonical hours. prose arrives about what the body is doing, not what it should do.</p>
+            <p class="reveal">hæl reads the menstrual cycle through Apple Health. the ring tint shifts with the phase. fasting windows adjust. shorter during menstruation, longer during follicular. weight is read in cycle context. a gain during luteal is not a gain during ovulation. the app knows the difference.</p>
+            <p class="reveal">weekly letters arrive on mondays. a retrospective of the week. the fasting, the weight, the cycle. monthly readings take the longer view. these are not reports. they are readings.</p>
+            <p class="reveal">when a fast ends, a page stays. the date spelled out, the hours witnessed, a line composed from what happened. a small ceremony for something the body did.</p>
         </section>
 
-        <section class="cta" aria-label="Download">
-            <p class="price">$19.99 one-time</p>
+        <section class="cta reveal" aria-label="Download">
+            <p class="label">$19.99 one-time</p>
             <h2>the full witness</h2>
             <p class="sub">the free app sees the fast. the full witness sees the cycle.</p>
-            <a class="app-store-badge" href="https://apps.apple.com/us/app/h%C3%A6l/id6778956802" aria-label="Download hæl on the App Store">
-                <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download hæl on the App Store" width="250" height="83" loading="lazy">
+            <a class="btn-pill" href="https://apps.apple.com/us/app/h%C3%A6l/id6778956802" aria-label="Download hæl on the App Store">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
+                download on the app store
             </a>
+            <p class="price-note">one purchase, nothing recurring</p>
         </section>
     </main>
 
@@ -557,6 +668,23 @@
         </nav>
         <p>&copy; 2026 KI-GEN Studios LLC</p>
     </footer>
+
+    <script>
+        // Scroll reveal with IntersectionObserver
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 
 </body>
 </html>
