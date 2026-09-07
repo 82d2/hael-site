@@ -61,7 +61,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -72,21 +72,12 @@
 
         :root {
             --cream: #FDFBF9;
-            --soft-pink: #F9F4F2;
-            --powder: #EDE6E3;
-            --ballet: #E5DCD9;
             --blush: #C4959A;
             --rose: #B58389;
-            --deep-rose: #A37278;
             --primary: #2C2825;
             --secondary: #7A736E;
             --tertiary: #A89A94;
-            --sage: #8BAF9C;
             --serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
         }
 
         body {
@@ -96,271 +87,40 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
-            overflow-x: hidden;
         }
 
-        /* ---- Scroll reveal ---- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
-                        transform 1s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-delay-1 { transition-delay: 0.15s; }
-        .reveal-delay-2 { transition-delay: 0.3s; }
-        .reveal-delay-3 { transition-delay: 0.45s; }
-
-        /* ---- Hero ---- */
-        .hero {
+        .page {
             min-height: 100svh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 80px 32px 60px;
-            position: relative;
-            overflow: hidden;
+            padding: 48px 32px;
         }
 
-        /* ---- Breathing gradient orbs ---- */
-        .hero-glow {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0;
-            pointer-events: none;
-            will-change: transform, opacity;
+        .icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 18px;
+            margin-bottom: 48px;
         }
 
-        .hero-glow.active {
-            animation-fill-mode: forwards;
-        }
-
-        .glow-1 {
-            width: 90vw;
-            height: 90vw;
-            max-width: 1200px;
-            max-height: 1200px;
-            background: radial-gradient(circle, rgba(196, 149, 154, 0.14) 0%, rgba(196, 149, 154, 0.06) 40%, transparent 70%);
-            top: -25%;
-            right: -20%;
-        }
-
-        .glow-1.active {
-            animation: breathe-1 8s ease-in-out infinite, glow-fade-in 2.5s ease-out forwards;
-        }
-
-        .glow-2 {
-            width: 80vw;
-            height: 80vw;
-            max-width: 1000px;
-            max-height: 1000px;
-            background: radial-gradient(circle, rgba(181, 131, 137, 0.1) 0%, rgba(181, 131, 137, 0.04) 45%, transparent 70%);
-            bottom: -15%;
-            left: -20%;
-        }
-
-        .glow-2.active {
-            animation: breathe-2 10s ease-in-out infinite, glow-fade-in 2.5s ease-out 0.5s forwards;
-        }
-
-        .glow-3 {
-            width: 60vw;
-            height: 60vw;
-            max-width: 800px;
-            max-height: 800px;
-            background: radial-gradient(circle, rgba(229, 220, 217, 0.18) 0%, rgba(229, 220, 217, 0.06) 50%, transparent 70%);
-            top: 30%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .glow-3.active {
-            animation: breathe-3 12s ease-in-out infinite, glow-fade-in 2.5s ease-out 1s forwards;
-        }
-
-        .glow-4 {
-            width: 50vw;
-            height: 50vw;
-            max-width: 700px;
-            max-height: 700px;
-            background: radial-gradient(circle, rgba(196, 149, 154, 0.08) 0%, rgba(196, 149, 154, 0.03) 50%, transparent 70%);
-            top: 10%;
-            left: -10%;
-        }
-
-        .glow-4.active {
-            animation: breathe-4 14s ease-in-out infinite, glow-fade-in 2.5s ease-out 1.5s forwards;
-        }
-
-        @keyframes breathe-1 {
-            0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
-            33% { opacity: 0.7; }
-            50% { transform: translate(-40px, 30px) scale(1.06); opacity: 1; }
-            78% { opacity: 0.8; }
-        }
-
-        @keyframes breathe-2 {
-            0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
-            25% { opacity: 0.6; }
-            50% { transform: translate(35px, -25px) scale(1.08); opacity: 1; }
-            75% { opacity: 0.75; }
-        }
-
-        @keyframes breathe-3 {
-            0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; }
-            30% { opacity: 0.65; }
-            50% { transform: translateX(-50%) scale(1.1); opacity: 1; }
-            80% { opacity: 0.7; }
-        }
-
-        @keyframes breathe-4 {
-            0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
-            40% { opacity: 0.5; }
-            50% { transform: translate(20px, 40px) scale(1.05); opacity: 0.9; }
-            70% { opacity: 0.6; }
-        }
-
-        @keyframes glow-fade-in {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* ---- Ensō ink arc (viewport-spanning brushstroke) ---- */
-        .enso-wrap {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .enso-wrap svg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 110vmin;
-            height: 110vmin;
-            max-width: 900px;
-            max-height: 900px;
-        }
-
-        /* Ensō brush stroke layers */
-        .enso-arc {
-            fill: none;
-            stroke: url(#ink-gradient);
-            stroke-linecap: round;
-            filter: url(#brush-texture);
-        }
-
-        .enso-arc.draw {
-            animation: ink-draw 2.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
-        }
-
-        .enso-glow {
-            fill: none;
-            stroke: var(--blush);
-            stroke-linecap: round;
-            filter: blur(18px);
-            opacity: 0;
-        }
-
-        .enso-glow.draw {
-            animation: ink-glow 2.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards,
-                       enso-breathe 5s ease-in-out 3s infinite;
-        }
-
-        @keyframes ink-draw {
-            0% {
-                stroke-dashoffset: var(--enso-length, 1200);
-                opacity: 0.1;
-            }
-            5% { opacity: 0.6; }
-            100% {
-                stroke-dashoffset: var(--enso-gap, 80);
-                opacity: 1;
-            }
-        }
-
-        @keyframes ink-glow {
-            0% {
-                stroke-dashoffset: var(--enso-length, 1200);
-                opacity: 0;
-            }
-            10% { opacity: 0.15; }
-            100% {
-                stroke-dashoffset: var(--enso-gap, 80);
-                opacity: 0.1;
-            }
-        }
-
-        @keyframes enso-breathe {
-            0%, 100% { opacity: 0.1; }
-            50% { opacity: 0.2; }
-        }
-
-        .hero-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 20px;
-            margin-bottom: 36px;
-            opacity: 0;
-            transition: opacity 0.8s ease;
-            box-shadow: 0 4px 24px rgba(196, 149, 154, 0.15);
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-icon.visible {
-            opacity: 1;
-        }
-
-        .hero-tagline {
+        .tagline {
             font-size: 2.8rem;
             font-weight: 400;
-            color: var(--primary);
             line-height: 1.3;
-            max-width: 560px;
-            margin-bottom: 20px;
+            max-width: 540px;
+            margin-bottom: 48px;
             letter-spacing: -0.01em;
-            position: relative;
-            z-index: 1;
         }
 
-        .hero-tagline em {
+        .tagline em {
             font-style: italic;
             color: var(--blush);
         }
 
-        .hero-sub {
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: var(--secondary);
-            line-height: 1.7;
-            max-width: 380px;
-            margin-bottom: 48px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-cta {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .btn-pill {
+        .download {
             display: inline-flex;
             align-items: center;
             gap: 10px;
@@ -372,203 +132,28 @@
             font-weight: 500;
             text-decoration: none;
             border-radius: 980px;
-            transition: background 0.3s ease, transform 0.2s ease,
-                        box-shadow 0.3s ease;
+            transition: background 0.3s ease;
             letter-spacing: 0.01em;
         }
 
-        .btn-pill:hover {
+        .download:hover {
             background: #3D3833;
-            transform: scale(1.02);
-            box-shadow: 0 4px 20px rgba(44, 40, 36, 0.12);
         }
 
-        .btn-pill:active {
-            transform: scale(0.98);
-        }
-
-        .btn-pill svg {
+        .download svg {
             width: 20px;
             height: 20px;
             fill: currentColor;
         }
 
-        .hero-platforms {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-top: 24px;
-            font-size: 0.9rem;
-            color: var(--tertiary);
-            letter-spacing: 0.06em;
-            position: relative;
-            z-index: 1;
-        }
-
-        .dot {
-            width: 3px;
-            height: 3px;
-            border-radius: 50%;
-            background: var(--blush);
-            display: inline-block;
-        }
-
-        /* ---- Phone showcase ---- */
-        .showcase {
-            padding: 0 32px 120px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .phone-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 48px;
-            justify-items: center;
-            align-items: start;
-        }
-
-        .phone-frame {
-            width: 100%;
-            max-width: 300px;
-            text-align: center;
-        }
-
-        .phone-frame img {
-            width: 100%;
-            height: auto;
-            border-radius: 32px;
-            box-shadow: 0 20px 60px rgba(44, 40, 36, 0.08),
-                        0 2px 8px rgba(44, 40, 36, 0.04);
-            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                        box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .phone-frame img:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 32px 80px rgba(196, 149, 154, 0.14),
-                        0 4px 12px rgba(44, 40, 36, 0.06);
-        }
-
-        .phone-label {
-            margin-top: 28px;
-            font-size: 1.25rem;
-            font-weight: 400;
-            color: var(--primary);
-            line-height: 1.5;
-        }
-
-        /* ---- Section divider ---- */
-        .divider {
-            width: 40px;
-            height: 1px;
-            background: var(--blush);
-            margin: 0 auto;
-            opacity: 0.6;
-        }
-
-        /* ---- Prose block ---- */
-        .prose-block {
-            padding: 120px 32px;
-            max-width: 580px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .prose-block h2 {
-            font-size: 2.4rem;
-            font-weight: 400;
-            color: var(--primary);
-            line-height: 1.3;
-            margin-bottom: 28px;
-            letter-spacing: -0.01em;
-        }
-
-        .prose-block p {
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: var(--secondary);
-            line-height: 1.85;
-        }
-
-        /* ---- Feature strip ---- */
-        .features {
-            padding: 100px 32px;
-            background: var(--soft-pink);
-        }
-
-        .features-inner {
-            max-width: 900px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 56px 48px;
-            text-align: center;
-        }
-
-        .feature {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .feature-name {
-            font-size: 1.15rem;
-            font-weight: 500;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-
-        .feature-desc {
+        .secondary {
+            margin-top: 32px;
             font-size: 1rem;
-            font-weight: 400;
-            color: var(--secondary);
-            line-height: 1.6;
-        }
-
-        /* ---- CTA ---- */
-        .cta {
-            padding: 140px 32px;
-            text-align: center;
-            position: relative;
-        }
-
-        .cta-label {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--blush);
-            margin-bottom: 16px;
-            letter-spacing: 0.1em;
-        }
-
-        .cta h2 {
-            font-size: 3rem;
-            font-weight: 400;
-            color: var(--primary);
-            margin-bottom: 16px;
-            letter-spacing: -0.01em;
-        }
-
-        .cta-sub {
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: var(--secondary);
-            margin-bottom: 48px;
-            line-height: 1.7;
-            max-width: 380px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .price-note {
-            margin-top: 20px;
-            font-size: 0.95rem;
             color: var(--tertiary);
         }
 
-        /* ---- Footer ---- */
         footer {
-            padding: 60px 32px;
+            padding: 48px 32px;
             text-align: center;
             font-size: 0.9rem;
             color: var(--tertiary);
@@ -577,7 +162,6 @@
         footer a {
             color: var(--tertiary);
             text-decoration: none;
-            transition: color 0.2s;
         }
 
         footer a:hover {
@@ -585,346 +169,56 @@
         }
 
         footer .links {
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: center;
             gap: 36px;
         }
 
-        /* ---- Responsive: phone ---- */
         @media (max-width: 640px) {
-            .hero {
-                padding: 60px 24px 48px;
+            .page {
+                padding: 48px 24px;
             }
 
-            .enso-wrap svg {
-                width: 130vmin;
-                height: 130vmin;
-            }
-
-            .hero-icon {
-                width: 64px;
-                height: 64px;
-                border-radius: 16px;
-                margin-bottom: 28px;
-            }
-
-            .hero-glow { filter: blur(80px); }
-            .glow-1 { width: 110vw; height: 110vw; top: -20%; right: -30%; }
-            .glow-2 { width: 100vw; height: 100vw; bottom: -10%; left: -30%; }
-            .glow-3 { width: 80vw; height: 80vw; }
-            .glow-4 { width: 70vw; height: 70vw; }
-
-            .hero-tagline {
-                font-size: 2rem;
-                max-width: 340px;
-            }
-
-            .hero-sub {
-                font-size: 1.05rem;
-                max-width: 300px;
+            .icon {
+                width: 60px;
+                height: 60px;
+                border-radius: 15px;
                 margin-bottom: 36px;
             }
 
-            .showcase {
-                padding: 0 24px 80px;
-            }
-
-            .phone-row {
-                grid-template-columns: 1fr;
-                gap: 48px;
-                max-width: 280px;
-                margin: 0 auto;
-            }
-
-            .phone-frame img {
-                border-radius: 24px;
-            }
-
-            .phone-label {
-                font-size: 1.1rem;
-            }
-
-            .prose-block {
-                padding: 80px 24px;
-            }
-
-            .prose-block h2 {
-                font-size: 1.8rem;
-            }
-
-            .prose-block p {
-                font-size: 1.05rem;
-                text-align: left;
-            }
-
-            .features {
-                padding: 72px 24px;
-            }
-
-            .features-inner {
-                grid-template-columns: 1fr;
-                gap: 36px;
-                text-align: left;
-            }
-
-            .feature {
-                align-items: flex-start;
-            }
-
-            .cta {
-                padding: 80px 24px;
-            }
-
-            .cta h2 {
-                font-size: 2.2rem;
-            }
-
-            .cta-sub {
-                font-size: 1.05rem;
-            }
-        }
-
-        /* ---- Responsive: tablet ---- */
-        @media (min-width: 641px) and (max-width: 960px) {
-            .hero-tagline {
-                font-size: 2.3rem;
-                max-width: 480px;
-            }
-
-            .hero-icon {
-                width: 72px;
-                height: 72px;
-                border-radius: 18px;
-            }
-
-            .phone-row {
-                gap: 28px;
-            }
-
-            .phone-frame {
-                max-width: 220px;
-            }
-
-            .phone-frame img {
-                border-radius: 24px;
-            }
-
-            .phone-label {
-                font-size: 1.05rem;
-            }
-
-            .features-inner {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 40px 36px;
-            }
-        }
-
-        /* ---- Responsive: large ---- */
-        @media (min-width: 1200px) {
-            .hero-glow { filter: blur(160px); }
-            .glow-1 { width: 70vw; height: 70vw; }
-            .glow-2 { width: 60vw; height: 60vw; }
-            .glow-3 { width: 50vw; height: 50vw; }
-            .glow-4 { width: 40vw; height: 40vw; }
-
-            .hero-tagline {
-                font-size: 3.2rem;
-                max-width: 620px;
-            }
-
-            .enso-wrap svg {
-                max-width: 1000px;
-                max-height: 1000px;
-            }
-
-            .hero-icon {
-                width: 88px;
-                height: 88px;
-                border-radius: 22px;
-                margin-bottom: 40px;
-            }
-
-            .phone-frame {
+            .tagline {
+                font-size: 2rem;
                 max-width: 320px;
-            }
-
-            .cta h2 {
-                font-size: 3.4rem;
+                margin-bottom: 36px;
             }
         }
 
-        /* ---- Reduced motion ---- */
-        @media (prefers-reduced-motion: reduce) {
-            .reveal {
-                opacity: 1;
-                transform: none;
-                transition: none;
+        @media (min-width: 1200px) {
+            .tagline {
+                font-size: 3.2rem;
+                max-width: 600px;
             }
 
-            .phone-frame img,
-            .btn-pill {
-                transition: none;
-            }
-
-            .enso-arc {
-                stroke-dashoffset: var(--enso-gap, 80);
-                opacity: 1;
-                animation: none !important;
-            }
-
-            .enso-glow {
-                stroke-dashoffset: var(--enso-gap, 80);
-                opacity: 0.1;
-                animation: none !important;
-            }
-
-            .hero-icon {
-                opacity: 1;
-                transition: none;
-            }
-
-            .hero-glow {
-                display: none;
+            .icon {
+                width: 80px;
+                height: 80px;
+                border-radius: 20px;
+                margin-bottom: 56px;
             }
         }
     </style>
 </head>
 <body>
 
-    <header class="hero">
-        <!-- Breathing gradient orbs -->
-        <div class="hero-glow glow-1" aria-hidden="true"></div>
-        <div class="hero-glow glow-2" aria-hidden="true"></div>
-        <div class="hero-glow glow-3" aria-hidden="true"></div>
-        <div class="hero-glow glow-4" aria-hidden="true"></div>
-
-        <!-- Ensō ink arc — a calligrapher's brushstroke, one fluid circle -->
-        <div class="enso-wrap" aria-hidden="true">
-            <svg viewBox="0 0 500 500">
-                <defs>
-                    <!-- Ink gradient along the stroke: pressure varies as the brush travels -->
-                    <linearGradient id="ink-gradient" gradientUnits="userSpaceOnUse" x1="60" y1="450" x2="440" y2="50">
-                        <stop offset="0%" stop-color="#B58389" stop-opacity="0.28" />
-                        <stop offset="20%" stop-color="#C4959A" stop-opacity="0.32" />
-                        <stop offset="45%" stop-color="#B58389" stop-opacity="0.26" />
-                        <stop offset="70%" stop-color="#A37278" stop-opacity="0.22" />
-                        <stop offset="90%" stop-color="#C4959A" stop-opacity="0.14" />
-                        <stop offset="100%" stop-color="#C4959A" stop-opacity="0.06" />
-                    </linearGradient>
-                    <!-- Brush texture: subtle bristle warp -->
-                    <filter id="brush-texture" x="-5%" y="-5%" width="110%" height="110%">
-                        <feTurbulence type="turbulence" baseFrequency="0.03 0.05" numOctaves="3" seed="0" result="noise" />
-                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G" />
-                    </filter>
-                </defs>
-                <!-- Glow halo -->
-                <path class="enso-glow" stroke-width="14" />
-                <!-- Primary ink stroke -->
-                <path class="enso-arc" stroke-width="6" />
-            </svg>
-        </div>
-
-        <img class="hero-icon" src="/apple-touch-icon.png" alt="hæl" width="180" height="180">
-        <h1 class="hero-tagline reveal reveal-delay-1">a fasting timer that <em>observes</em> instead of coaching.</h1>
-        <p class="hero-sub reveal reveal-delay-2">the ring reads the cycle. the prose reads the hours. the body's rhythm shapes everything.</p>
-        <div class="hero-cta reveal reveal-delay-3">
-            <a class="btn-pill" href="https://apps.apple.com/us/app/h%C3%A6l/id6778956802" aria-label="Download hæl on the App Store">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
-                download on the app store
-            </a>
-        </div>
-        <div class="hero-platforms reveal reveal-delay-3">
-            <span>iPhone</span>
-            <span class="dot"></span>
-            <span>iPad</span>
-            <span class="dot"></span>
-            <span>Apple Watch</span>
-        </div>
-    </header>
-
-    <main>
-
-        <section class="showcase" aria-label="App screenshots">
-            <div class="phone-row">
-                <figure class="phone-frame reveal">
-                    <img src="screenshots/ring.png" alt="the ensō ring during ovulation phase" width="1242" height="2688" loading="lazy">
-                    <p class="phone-label">the ring reads the cycle.</p>
-                </figure>
-                <figure class="phone-frame reveal reveal-delay-1">
-                    <img src="screenshots/prose.png" alt="literary body readings at six hours" width="1242" height="2688" loading="lazy">
-                    <p class="phone-label">prose that evolves with the hours.</p>
-                </figure>
-                <figure class="phone-frame reveal reveal-delay-2">
-                    <img src="screenshots/ledger.png" alt="fasting history with cycle phase labels" width="1242" height="2688" loading="lazy">
-                    <p class="phone-label">every fast, held.</p>
-                </figure>
-            </div>
-        </section>
-
-        <div class="divider reveal"></div>
-
-        <section class="prose-block" aria-label="About">
-            <h2 class="reveal">intermittent fasting,<br>shaped by the cycle.</h2>
-            <p class="reveal">most fasting apps count down and celebrate. hæl counts and stays quiet. an ensō ring marks the hours. the timer carries a name that changes as the fast deepens. lauds, prime, terce, vespers. prose arrives about what the body is doing, not what it should do. weight is read in cycle context. a gain during luteal is not the same number during ovulation. the app knows the difference.</p>
-        </section>
-
-        <div class="divider reveal"></div>
-
-        <section class="features" aria-label="Features">
-            <div class="features-inner">
-                <div class="feature reveal">
-                    <p class="feature-name">cycle-aware fasting</p>
-                    <p class="feature-desc">shaped by menstrual phase</p>
-                </div>
-                <div class="feature reveal reveal-delay-1">
-                    <p class="feature-name">canonical hours</p>
-                    <p class="feature-desc">lauds, prime, terce, vespers</p>
-                </div>
-                <div class="feature reveal reveal-delay-2">
-                    <p class="feature-name">literary prose</p>
-                    <p class="feature-desc">body readings, not dashboards</p>
-                </div>
-                <div class="feature reveal">
-                    <p class="feature-name">weight in context</p>
-                    <p class="feature-desc">interpreted by cycle phase</p>
-                </div>
-                <div class="feature reveal reveal-delay-1">
-                    <p class="feature-name">weekly letters</p>
-                    <p class="feature-desc">monday retrospectives</p>
-                </div>
-                <div class="feature reveal reveal-delay-2">
-                    <p class="feature-name">colophon ceremony</p>
-                    <p class="feature-desc">a page stays when a fast ends</p>
-                </div>
-                <div class="feature reveal">
-                    <p class="feature-name">live activities</p>
-                    <p class="feature-desc">the ring on the lock screen</p>
-                </div>
-                <div class="feature reveal reveal-delay-1">
-                    <p class="feature-name">apple watch</p>
-                    <p class="feature-desc">companion for the wrist</p>
-                </div>
-                <div class="feature reveal reveal-delay-2">
-                    <p class="feature-name">one purchase</p>
-                    <p class="feature-desc">nothing recurring</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta" aria-label="Download">
-            <p class="cta-label reveal">$19.99 one-time</p>
-            <h2 class="reveal reveal-delay-1">the full witness.</h2>
-            <p class="cta-sub reveal reveal-delay-2">the free app sees the fast.<br>the full witness sees the cycle.</p>
-            <div class="reveal reveal-delay-3">
-                <a class="btn-pill" href="https://apps.apple.com/us/app/h%C3%A6l/id6778956802" aria-label="Download hæl on the App Store">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
-                    download on the app store
-                </a>
-                <p class="price-note">one purchase, nothing recurring</p>
-            </div>
-        </section>
-
+    <main class="page">
+        <img class="icon" src="/apple-touch-icon.png" alt="hæl" width="180" height="180">
+        <h1 class="tagline">a fasting timer that <em>observes</em> instead of coaching.</h1>
+        <a class="download" href="https://apps.apple.com/us/app/h%C3%A6l/id6778956802" aria-label="Download hæl on the App Store">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
+            download
+        </a>
+        <p class="secondary">$19.99 · one purchase</p>
     </main>
 
     <footer>
@@ -934,108 +228,6 @@
         </nav>
         <p>&copy; 2026 KI-GEN Studios LLC</p>
     </footer>
-
-    <script>
-        // Scroll reveal
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.12,
-            rootMargin: '0px 0px -60px 0px'
-        });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Ensō — a calligrapher's circle, drawn with one breath.
-        //
-        // The path is always a proper circle built from 4 cubic bezier arcs
-        // (the standard vector-graphics circle approximation). What varies
-        // each load: rotation, gap size, stroke weight, and brush texture seed.
-        // The circle itself never breaks.
-        (function generateEnso() {
-            var cx = 250, cy = 250, r = 185;
-            function rf(lo, hi) { return lo + Math.random() * (hi - lo); }
-
-            // Randomise brush texture
-            var turb = document.querySelector('#brush-texture feTurbulence');
-            if (turb) turb.setAttribute('seed', Math.floor(Math.random() * 9999));
-
-            // -- Build a circle from 4 bezier arcs --
-            // Magic number for a quarter-circle: k = 0.5522847498
-            var k = 0.5522847498;
-
-            // Random rotation so the gap lands at a different clock position each load
-            var rot = rf(0, 360);
-
-            // The 4 cardinal points (before rotation)
-            var pts = [
-                { x: cx, y: cy - r },       // top
-                { x: cx + r, y: cy },        // right
-                { x: cx, y: cy + r },        // bottom
-                { x: cx - r, y: cy }         // left
-            ];
-
-            // Build the full circle path (4 arcs, closed)
-            var d = 'M ' + pts[0].x + ' ' + pts[0].y;
-            // top → right
-            d += ' C ' + (cx + r * k) + ' ' + (cy - r) + ', ' + (cx + r) + ' ' + (cy - r * k) + ', ' + pts[1].x + ' ' + pts[1].y;
-            // right → bottom
-            d += ' C ' + (cx + r) + ' ' + (cy + r * k) + ', ' + (cx + r * k) + ' ' + (cy + r) + ', ' + pts[2].x + ' ' + pts[2].y;
-            // bottom → left
-            d += ' C ' + (cx - r * k) + ' ' + (cy + r) + ', ' + (cx - r) + ' ' + (cy + r * k) + ', ' + pts[3].x + ' ' + pts[3].y;
-            // left → top (closes the circle)
-            d += ' C ' + (cx - r) + ' ' + (cy - r * k) + ', ' + (cx - r * k) + ' ' + (cy - r) + ', ' + pts[0].x + ' ' + pts[0].y;
-
-            // Apply path and rotation
-            var arc = document.querySelector('.enso-arc');
-            var glow = document.querySelector('.enso-glow');
-            var svg = document.querySelector('.enso-wrap svg');
-            arc.setAttribute('d', d);
-            glow.setAttribute('d', d);
-            svg.style.transform = 'translate(-50%, -50%) rotate(' + rot + 'deg)';
-
-            // Measure the actual path length
-            var totalLen = arc.getTotalLength();
-
-            // Gap: 2-4% of the circle left undrawn (where the brush lifts)
-            // Small enough that the circle reads as nearly complete
-            var gap = totalLen * rf(0.02, 0.04);
-
-            // Set dash animation values
-            arc.style.strokeDasharray = totalLen;
-            arc.style.strokeDashoffset = totalLen;
-            arc.style.setProperty('--enso-length', totalLen);
-            arc.style.setProperty('--enso-gap', gap);
-
-            glow.style.strokeDasharray = totalLen;
-            glow.style.strokeDashoffset = totalLen;
-            glow.style.setProperty('--enso-length', totalLen);
-            glow.style.setProperty('--enso-gap', gap);
-
-            // Stroke width: varies like brush pressure (5-8 for main, 12-18 for glow)
-            arc.setAttribute('stroke-width', rf(5, 8).toFixed(1));
-            glow.setAttribute('stroke-width', rf(12, 18).toFixed(1));
-        })();
-
-        // The brush touches paper
-        setTimeout(function() {
-            document.querySelector('.enso-arc').classList.add('draw');
-            document.querySelector('.enso-glow').classList.add('draw');
-            setTimeout(function() {
-                document.querySelector('.hero-icon').classList.add('visible');
-            }, 1400);
-        }, 400);
-
-        // Breathing orbs
-        setTimeout(() => {
-            document.querySelectorAll('.hero-glow').forEach(el => el.classList.add('active'));
-        }, 300);
-    </script>
 
 </body>
 </html>
