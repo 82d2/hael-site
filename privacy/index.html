@@ -84,7 +84,7 @@
     <div class="container">
         <a href="/" class="back">hæl</a>
         <h1>privacy policy</h1>
-        <p class="updated">last updated july 26, 2026</p>
+        <p class="updated">last updated September 15, 2026</p>
 
         <h2>what hæl collects</h2>
         <p>hæl stores fasting history, body weight entries, cycle phase dates, streaks, and preferences. all data is stored locally on the device using UserDefaults and App Groups. none of it is transmitted to any server operated by hæl or KI-GEN Studios LLC.</p>
@@ -111,7 +111,13 @@
         <p>hæl has no user accounts, no login, no server-side storage, no advertising, and no third-party trackers beyond TelemetryDeck's anonymous analytics.</p>
 
         <h2>data storage</h2>
-        <p>all app data is stored locally via UserDefaults and syncs through the user's private iCloud container. hæl does not operate any server or database.</p>
+        <p>All data resides on the device in:
+
+UserDefaults (App Group group.com.hael.fasting) — fasting sessions, preferences, cycle dates, weight history, purchase status.
+HealthKit — menstrual flow, body mass, and workout samples (managed by iOS, subject to the user's HealthKit privacy settings).
+hæl does not use CloudKit, remote databases, or server-side sync. Small preferences (such as unlock status) may sync between your devices through iCloud Key-Value Storage if iCloud is enabled. All fasting data, health data, and personal information remains on the device and is only included in standard iCloud backups if you have device backups enabled.
+
+</p>
 
         <h2>data deletion</h2>
         <p>to remove all hæl data, delete the app from the device. HealthKit data can be managed separately through the Health app in iOS Settings.</p>
