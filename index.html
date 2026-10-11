@@ -90,186 +90,230 @@
     }
     </script>
 
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "does hæl work without a period, or on birth control?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "yes. cycle tracking can be turned off in settings, and then the ring keeps the hours alone and the body ledger compares each morning with this time last month instead of with the cycle."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "is it a subscription?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "no. the fasting timer is free and complete. the full witness, which reads the cycle and the body over time, is one purchase of $19.99 in the US, with nothing recurring."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "does it work with Apple Health?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "yes, with your permission. hæl reads and writes period starts and weight, and can record each fast as a mind and body session if you turn that on. it reads resting heart rate for the weekly letter."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "where does my data go?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "to your phone, your own iCloud, and Apple Health. there is no account and no server of ours. anonymous usage counts go to TelemetryDeck and purchases are checked through RevenueCat; neither sees your records."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "does it run on Apple Watch and iPad?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "yes. the watch shows the fast in progress, widgets keep it on the home and lock screens, and the app runs on iPad."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "is hæl medical advice?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "no. it observes; it does not diagnose, treat, or prescribe. fasts beyond forty-eight hours should be medically supervised, and hæl says so each time. settings links to eating disorder support."
+            }
+        }
+    ]
+}
+    </script>
+
+    <!-- New York (the app's serif) on Apple devices; Newsreader elsewhere -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --cream: #FDFBF9;
-            --blush: #C4959A;
-            --rose: #B58389;
-            --primary: #2C2825;
-            --secondary: #7A736E;
-            --tertiary: #A89A94;
-            --serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
+            --paper: #FDFBF9;
+            --ink: #2E2B2A;
+            --soft: #6E6864;
+            --muted: #8A8480;
+            --rule: #DCD8D2;
+            --rose: #A8737A;
+            --button: #2E2B2A;
+            --button-ink: #FDFBF9;
+            --serif: ui-serif, 'New York', 'Newsreader', Georgia, serif;
         }
-
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --paper: #1C1A19; --ink: #EDE7E3; --soft: #B5ADA8; --muted: #8F8783;
+                --rule: #3A3634; --rose: #D29EA5; --button: #EDE7E3; --button-ink: #1C1A19;
+            }
+        }
+        html { background: var(--paper); }
         body {
-            font-family: var(--serif);
-            background: var(--cream);
-            color: var(--primary);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
+            font-family: var(--serif); background: var(--paper); color: var(--ink);
+            -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+            font-size: 19px; line-height: 1.55;
         }
+        .page { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+        .head { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0 12px;
+                 border-bottom: 1px solid var(--rule); font-style: italic; color: var(--muted); font-size: 17px; }
+        .head a { color: var(--muted); text-decoration: none; }
+        .head a:hover { color: var(--ink); }
 
-        .page {
-            min-height: 100svh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 48px 32px;
-        }
+        .hero { padding: 72px 0 40px; }
+        h1 { font-size: clamp(40px, 7.4vw, 60px); font-weight: 300; line-height: 1.08; letter-spacing: -0.015em; }
+        .lede { margin-top: 22px; font-size: 21px; font-style: italic; font-weight: 300; color: var(--soft); max-width: 34em; }
+        .actions { margin-top: 36px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+        .download { display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 999px;
+                     background: var(--button); color: var(--button-ink); text-decoration: none; font-size: 18px; }
+        .download svg { width: 18px; height: 18px; fill: currentColor; }
+        .price { font-style: italic; color: var(--muted); font-size: 17px; }
 
-        .icon {
-            width: 72px;
-            height: 72px;
-            border-radius: 18px;
-            margin-bottom: 48px;
-        }
+        .plate { display: block; margin: 48px auto 0; width: min(320px, 78%); border-radius: 40px;
+                  border: 1px solid var(--rule); background: #FDFBF9; padding: 7px; }
+        .plate img { display: block; width: 100%; height: auto; border-radius: 33px; }
+        .figure { display: block; margin: 40px auto 0; width: min(440px, 100%); height: auto; }
 
-        .tagline {
-            font-size: 2.8rem;
-            font-weight: 400;
-            line-height: 1.3;
-            max-width: 540px;
-            margin-bottom: 48px;
-            letter-spacing: -0.01em;
-        }
+        section { padding: 72px 0 8px; }
+        .folio { display: flex; justify-content: space-between; font-style: italic; font-size: 16px; color: var(--muted);
+                  border-bottom: 1px solid var(--rule); padding-bottom: 10px; margin-bottom: 34px; }
+        h2 { font-size: clamp(32px, 5.6vw, 44px); font-weight: 300; line-height: 1.1; letter-spacing: -0.01em; }
+        section p { margin-top: 18px; color: var(--soft); max-width: 34em; }
+        .hours { list-style: none; margin-top: 34px; display: grid; gap: 26px; }
+        .hours span { display: block; font-style: italic; font-size: 16px; color: var(--rose); }
+        .hours q { quotes: none; font-size: 24px; font-weight: 300; line-height: 1.32; color: var(--ink); }
+        .key { list-style: none; margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--rule); display: grid; gap: 12px;
+                font-size: 17px; color: var(--muted); }
+        .key li { display: flex; align-items: center; gap: 16px; }
+        .key svg { flex: none; width: 64px; height: 24px; }
+        .colophon { text-align: center; }
+        .colophon p { margin-left: auto; margin-right: auto; }
+        .colophon .lines { margin-top: 28px; font-size: 22px; line-height: 1.8; color: var(--soft); font-weight: 300; }
 
-        .tagline em {
-            font-style: italic;
-            color: var(--blush);
-        }
+        .faq details { border-bottom: 1px solid var(--rule); padding: 20px 0; }
+        .faq summary { cursor: pointer; list-style: none; font-size: 21px; display: flex; justify-content: space-between; gap: 20px; }
+        .faq summary::-webkit-details-marker { display: none; }
+        .faq summary::after { content: "+"; color: var(--muted); font-weight: 300; }
+        .faq details[open] summary::after { content: "–"; }
+        .faq details p { margin-top: 10px; }
 
-        .download {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 16px 36px;
-            background: var(--primary);
-            color: var(--cream);
-            font-family: var(--serif);
-            font-size: 1.1rem;
-            font-weight: 500;
-            text-decoration: none;
-            border-radius: 980px;
-            transition: background 0.3s ease;
-            letter-spacing: 0.01em;
-        }
-
-        .download:hover {
-            background: #3D3833;
-        }
-
-        .download svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        .secondary {
-            margin-top: 32px;
-            font-size: 1rem;
-            color: var(--tertiary);
-        }
-
-        footer {
-            padding: 48px 32px;
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--tertiary);
-        }
-
-        footer a {
-            color: var(--tertiary);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            color: var(--secondary);
-        }
-
-        footer .links {
-            margin-bottom: 12px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px 36px;
-        }
-
-        footer .links a {
-            white-space: nowrap;
-        }
-
-        @media (max-width: 640px) {
-            footer .links {
-                gap: 12px 24px;
-            }
-
-            .page {
-                padding: 48px 24px;
-            }
-
-            .icon {
-                width: 60px;
-                height: 60px;
-                border-radius: 15px;
-                margin-bottom: 36px;
-            }
-
-            .tagline {
-                font-size: 2rem;
-                max-width: 320px;
-                margin-bottom: 36px;
-            }
-        }
-
-        @media (min-width: 1200px) {
-            .tagline {
-                font-size: 3.2rem;
-                max-width: 600px;
-            }
-
-            .icon {
-                width: 80px;
-                height: 80px;
-                border-radius: 20px;
-                margin-bottom: 56px;
-            }
-        }
+        .close { text-align: center; padding: 96px 0 72px; }
+        .close h2 { margin-bottom: 30px; }
+        footer { border-top: 1px solid var(--rule); padding: 28px 0 48px; display: flex; flex-wrap: wrap; justify-content: space-between;
+                  gap: 12px 28px; font-size: 16px; color: var(--muted); }
+        footer nav { display: flex; flex-wrap: wrap; gap: 10px 26px; }
+        footer a { color: var(--muted); text-decoration: none; }
+        footer a:hover { color: var(--ink); }
+        @media (max-width: 520px) { body { font-size: 18px; } .hero { padding-top: 52px; } section { padding-top: 60px; } }
     </style>
 </head>
 <body>
+<div class="page">
 
-    <main class="page">
-        <img class="icon" src="/apple-touch-icon.png" alt="hæl" width="180" height="180">
-        <h1 class="tagline">a fasting timer that <em>observes</em> instead of coaching.</h1>
-        <a class="download" href="https://apps.apple.com/app/id6778956802" aria-label="Download hæl on the App Store">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
-            download
-        </a>
-        <p class="secondary">$19.99 · one purchase</p>
+    <header class="head"><span>hæl</span><a href="https://apps.apple.com/app/id6778956802">download</a></header>
+
+    <main>
+        <div class="hero">
+            <h1>a fasting timer that observes instead of coaching.</h1>
+            <p class="lede">for iPhone. fasting shaped by your menstrual cycle, weight read against it, and prose that changes with the hours.</p>
+            <div class="actions"><a class="download" href="https://apps.apple.com/app/id6778956802"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg><span>download on the App Store</span></a><span class="price">free · the full witness, $19.99 once</span></div>
+            <figure class="plate"><img src="/images/active.webp" width="640" height="1385" alt="the active fast in hæl: a ring at six hours, five minutes, the threshold, and the prose for that hour"></figure>
+        </div>
+
+        <section aria-labelledby="hours">
+            <div class="folio"><span>the hours</span><span>i.</span></div>
+            <h2 id="hours">the hours, watched.</h2>
+            <p>begin a fast and the ring keeps time. each stretch of it has a name, from the threshold to vespers, and the page beneath the ring is written for the hour you are in. no streak flames, no badges, no voice telling you to push.</p>
+        </section>
+
+        <section aria-labelledby="page">
+            <div class="folio"><span>the page</span><span>ii.</span></div>
+            <h2 id="page">a new page for every hour.</h2>
+            <ul class="hours">
+                <li><span>hour one</span><q>the stomach registers it first, a faint draft where the meal was.</q></li>
+                <li><span>hour five</span><q>hunger arrives like a bell. it rings, and then the silence after it is deeper.</q></li>
+                <li><span>hour nine</span><q>something shifted and no one left the room.</q></li>
+                <li><span>hour thirteen</span><q>the body remembers this. a hand on a familiar doorknob.</q></li>
+                <li><span>hour seventeen</span><q>the body stopped negotiating and what remains is calm.</q></li>
+            </ul>
+        </section>
+
+        <section aria-labelledby="water">
+            <div class="folio"><span>the water</span><span>iii.</span></div>
+            <h2 id="water">the water, given room.</h2>
+            <p>weight rises before a period, and most apps read it as failure. hæl learns where your body carries water across the cycle and reads each morning against that, never against yesterday. last cycle stays beside it, faintly, for comparison.</p>
+            <img class="figure" src="/images/body-ring.webp" width="720" height="597" alt="the body ring in hæl: day twenty-two, luteal, the thread of mornings inside a swell of water, last cycle as a faint dotted thread">
+            <ul class="key">
+                <li><svg viewBox="0 0 80 30" aria-hidden="true"><path d="M4 22 Q 22 6 40 16 T 76 10" fill="none" stroke="#B98590" stroke-width="2"/><circle cx="40" cy="16" r="3.4" fill="#B98590"/></svg>the thread: each morning, against this body's usual.</li>
+                <li><svg viewBox="0 0 80 30" aria-hidden="true"><defs><linearGradient id="sw" x1="0" x2="1"><stop offset="0" stop-color="#B9AED6"/><stop offset="1" stop-color="#DDB0AC"/></linearGradient></defs><path d="M4 24 Q 40 2 76 24" fill="none" stroke="url(#sw)" stroke-opacity=".6" stroke-width="12" stroke-linecap="round"/></svg>the swell: where this body carries water, every cycle.</li>
+                <li><svg viewBox="0 0 80 30" aria-hidden="true"><path d="M4 22 Q 40 4 76 22" fill="none" stroke="#B5ADAA" stroke-width="2" stroke-dasharray="1.5 5" stroke-linecap="round"/></svg>the faint thread: the same days, last cycle.</li>
+            </ul>
+        </section>
+
+        <section aria-labelledby="cycle">
+            <div class="folio"><span>the cycle</span><span>iv.</span></div>
+            <h2 id="cycle">the cycle, read.</h2>
+            <p>connect Apple Health or enter your last period, and the ring takes the color of the phase: menstrual, follicular, ovulation, luteal. the phase suggests the hours, and the words follow it. if a cycle doesn't apply to you, turn it off and the ring keeps the hours alone.</p>
+            <figure class="plate"><img src="/images/home.webp" width="640" height="1385" alt="home in hæl: a sixteen-hour ring, deep luteal, fifteen hours suggested, the fast breaking tomorrow at six twenty-six"></figure>
+        </section>
+
+        <section class="colophon" aria-labelledby="colophon">
+            <div class="folio"><span>colophon</span><span>v.</span></div>
+            <h2 id="colophon">nothing asked of you.</h2>
+            <p class="lines">no account. no subscription. no ads.<br>no coaching. no celebration.</p>
+            <p>what you write lives on your phone, in your own iCloud, and in Apple Health. no server of ours ever sees it.</p>
+        </section>
+
+        <section class="faq" aria-labelledby="questions">
+            <div class="folio"><span>questions</span><span>vi.</span></div>
+            <h2 id="questions">questions.</h2>
+            <details><summary>does hæl work without a period, or on birth control?</summary><p>yes. cycle tracking can be turned off in settings, and then the ring keeps the hours alone and the body ledger compares each morning with this time last month instead of with the cycle.</p></details>
+            <details><summary>is it a subscription?</summary><p>no. the fasting timer is free and complete. the full witness, which reads the cycle and the body over time, is one purchase of $19.99 in the US, with nothing recurring.</p></details>
+            <details><summary>does it work with Apple Health?</summary><p>yes, with your permission. hæl reads and writes period starts and weight, and can record each fast as a mind and body session if you turn that on. it reads resting heart rate for the weekly letter.</p></details>
+            <details><summary>where does my data go?</summary><p>to your phone, your own iCloud, and Apple Health. there is no account and no server of ours. anonymous usage counts go to TelemetryDeck and purchases are checked through RevenueCat; neither sees your records.</p></details>
+            <details><summary>does it run on Apple Watch and iPad?</summary><p>yes. the watch shows the fast in progress, widgets keep it on the home and lock screens, and the app runs on iPad.</p></details>
+            <details><summary>is hæl medical advice?</summary><p>no. it observes; it does not diagnose, treat, or prescribe. fasts beyond forty-eight hours should be medically supervised, and hæl says so each time. settings links to eating disorder support.</p></details>
+        </section>
+
+        <div class="close">
+            <h2>begin.</h2>
+            <a class="download" href="https://apps.apple.com/app/id6778956802"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg><span>download on the App Store</span></a>
+        </div>
     </main>
 
     <footer>
-        <nav class="links" aria-label="Footer">
-            <a href="/privacy">privacy</a>
-            <a href="/terms">terms</a>
-            <a href="/consumer-health-data">health data</a>
+        <span>&copy; 2026 KI-GEN Studios LLC</span>
+        <nav aria-label="Footer">
+            <a href="/privacy/">privacy</a>
+            <a href="/terms/">terms</a>
+            <a href="/consumer-health-data/">health data</a>
             <a href="mailto:hello@hael.app">contact</a>
         </nav>
-        <p>&copy; 2026 KI-GEN Studios LLC</p>
     </footer>
 
+</div>
 </body>
 </html>
