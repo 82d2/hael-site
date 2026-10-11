@@ -195,8 +195,15 @@
         .plate { display: block; margin: 48px auto 0; width: min(320px, 78%); border-radius: 40px;
                   border: 1px solid var(--rule); background: #FDFBF9; padding: 7px; }
         .plate img { display: block; width: 100%; height: auto; border-radius: 33px; }
-        .figure { display: block; margin: 40px auto 0; width: min(440px, 100%); height: auto; }
 
+        .ring { margin: 44px auto 0; width: min(400px, 100%); text-align: center; }
+        .ring-face { position: relative; }
+        .ring-face img { display: block; width: 100%; height: auto; }
+        .ring-centre { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+        .ring-day { font-size: clamp(28px, 6vw, 34px); font-weight: 300; color: var(--soft); }
+        .ring-phase { display: inline-flex; align-items: center; gap: 7px; font-size: 16px; font-style: italic; color: var(--muted); }
+        .ring-phase i { width: 7px; height: 7px; border-radius: 50%; background: #8F88BC; }
+        .ring figcaption { margin-top: 18px; font-size: 21px; font-weight: 300; color: var(--soft); text-wrap: balance; }
         section { padding: 72px 0 8px; }
         .folio { display: flex; justify-content: space-between; font-style: italic; font-size: 16px; color: var(--muted);
                   border-bottom: 1px solid var(--rule); padding-bottom: 10px; margin-bottom: 34px; }
@@ -205,10 +212,6 @@
         .hours { list-style: none; margin-top: 34px; display: grid; gap: 26px; }
         .hours span { display: block; font-style: italic; font-size: 16px; color: var(--rose); }
         .hours q { quotes: none; font-size: 24px; font-weight: 300; line-height: 1.32; color: var(--ink); }
-        .key { list-style: none; margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--rule); display: grid; gap: 12px;
-                font-size: 17px; color: var(--muted); }
-        .key li { display: flex; align-items: center; gap: 16px; }
-        .key svg { flex: none; width: 64px; height: 24px; }
         .colophon { text-align: center; }
         .colophon p { margin-left: auto; margin-right: auto; }
         .colophon .lines { margin-top: 28px; font-size: 22px; line-height: 1.8; color: var(--soft); font-weight: 300; }
@@ -265,12 +268,13 @@
             <div class="folio"><span>the water</span><span>iii.</span></div>
             <h2 id="water">the water, given room.</h2>
             <p>weight rises before a period, and most apps read it as failure. hæl learns where your body carries water across the cycle and reads each morning against that, never against yesterday. last cycle stays beside it, faintly, for comparison.</p>
-            <img class="figure" src="/images/body-ring.webp" width="720" height="597" alt="the body ring in hæl: day twenty-two, luteal, the thread of mornings inside a swell of water, last cycle as a faint dotted thread">
-            <ul class="key">
-                <li><svg viewBox="0 0 80 30" aria-hidden="true"><path d="M4 22 Q 22 6 40 16 T 76 10" fill="none" stroke="#B98590" stroke-width="2"/><circle cx="40" cy="16" r="3.4" fill="#B98590"/></svg>the thread: each morning, against this body's usual.</li>
-                <li><svg viewBox="0 0 80 30" aria-hidden="true"><defs><linearGradient id="sw" x1="0" x2="1"><stop offset="0" stop-color="#B9AED6"/><stop offset="1" stop-color="#DDB0AC"/></linearGradient></defs><path d="M4 24 Q 40 2 76 24" fill="none" stroke="url(#sw)" stroke-opacity=".6" stroke-width="12" stroke-linecap="round"/></svg>the swell: where this body carries water, every cycle.</li>
-                <li><svg viewBox="0 0 80 30" aria-hidden="true"><path d="M4 22 Q 40 4 76 22" fill="none" stroke="#B5ADAA" stroke-width="2" stroke-dasharray="1.5 5" stroke-linecap="round"/></svg>the faint thread: the same days, last cycle.</li>
-            </ul>
+            <figure class="ring">
+                <div class="ring-face">
+                    <img src="/images/body-ring.svg" width="340" height="340" alt="the body ring in hæl on day twenty-four: the thread of mornings rising into the luteal swell, last cycle as a faint dotted thread beside it">
+                    <div class="ring-centre" aria-hidden="true"><span class="ring-day">day 24</span><span class="ring-phase"><i></i>luteal</span></div>
+                </div>
+                <figcaption>up with the water, as on these days every cycle.</figcaption>
+            </figure>
         </section>
 
         <section aria-labelledby="cycle">
