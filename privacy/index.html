@@ -84,7 +84,7 @@
     <div class="container">
         <a href="/" class="back">hæl</a>
         <h1>privacy policy</h1>
-        <p class="updated">last updated October 2, 2026</p>
+        <p class="updated">last updated October 11, 2026</p>
 
         <p>hæl is made by KI-GEN Studios LLC. This policy describes what the app stores, where it goes, and who else handles any of it.</p>
         <p>In short: your fasting, cycle, and weight data stays with you, on your devices, in your own iCloud account, and in Apple Health. Two outside services are involved. TelemetryDeck receives anonymous usage signals, and RevenueCat verifies purchases. Neither receives your fasting, cycle, or weight records, or anything from Apple Health.</p>
@@ -92,16 +92,17 @@
         <h2>what hæl stores</h2>
         <ul>
             <li>Fasting history (start and end times, target and actual duration, completion)</li>
-            <li>Body weight entries</li>
-            <li>Menstrual cycle information (last period start date, cycle length)</li>
+            <li>Body weight entries (one a day), and every weight reading behind them: each number you type, and each sample read from Apple Health</li>
+            <li>Menstrual cycle information (last period start date, cycle length, and a history of up to 24 period start dates)</li>
+            <li>Profile details you choose to give: birthday, height, and gender, all optional</li>
             <li>Rest days you mark</li>
-            <li>Streaks, preferences, and settings</li>
+            <li>Streaks, preferences, and settings, including whether to keep weight numbers out of sight</li>
             <li>Whether the full experience has been purchased</li>
         </ul>
 
         <h2>where it is stored</h2>
         <p><strong>On your device.</strong> All of the above is stored in UserDefaults and in App Group shared storage (<code>group.app.hael.fasting</code>), which lets the widget read the same data.</p>
-        <p><strong>In your iCloud account.</strong> If iCloud is enabled, hæl syncs your fasting history between your own devices using iCloud Key-Value Storage. Weight entries, last period start date, and cycle length sync the same way unless you connect Apple Health for them. Once you do, hæl stops copying them to iCloud, removes what it stored there, and Apple Health keeps them in sync instead. This data lives in your iCloud account under Apple's terms. KI-GEN Studios LLC cannot access it. hæl does not use CloudKit or any server of its own.</p>
+        <p><strong>In your iCloud account.</strong> If iCloud is enabled, hæl syncs your fasting history between your own devices using iCloud Key-Value Storage. Weight entries, last period start date, and cycle length sync the same way unless you connect Apple Health for them. Once you do, hæl stops copying them to iCloud, removes what it stored there, and Apple Health keeps them in sync instead. Every weight reading and the history of period start dates stay on your device only and are never copied to iCloud. This data lives in your iCloud account under Apple's terms. KI-GEN Studios LLC cannot access it. hæl does not use CloudKit or any server of its own.</p>
         <p><strong>Between your iPhone and Apple Watch.</strong> The current fast, streak, total fasts, suggested duration, cycle day and phase, and whether the full experience has been purchased are sent directly from your iPhone to your paired Apple Watch using Apple's WatchConnectivity framework.</p>
 
         <h2>apple health (healthkit)</h2>
@@ -116,11 +117,15 @@
         <ul>
             <li><strong>Menstrual flow</strong>, when you record a period start in hæl</li>
             <li><strong>Body mass</strong>, when you log a weight in hæl</li>
+        </ul>
+        <p>When you connect Apple Health, hæl also writes the period starts and weights you already recorded in hæl, but only where Apple Health does not already hold one, so nothing is duplicated.</p>
+        <p>hæl also writes these, when "record fasts" is on:</p>
+        <ul>
             <li><strong>Workouts</strong>, recording a completed fast as a mind and body session</li>
             <li><strong>Dietary energy</strong>, a zero-calorie entry marking a completed fasting window</li>
         </ul>
         <p>From hæl 4.2, fasts are recorded in Apple Health only if you turn on "record fasts" in Settings &gt; Apple Health. It is off by default. Earlier versions record every completed fast once Apple Health access is granted.</p>
-        <p>When you edit or delete a weight in hæl, or correct a period date by a few days, hæl replaces or removes the entry it wrote to Apple Health instead of leaving the old one. Entries written by other apps are never changed.</p>
+        <p>When you edit or delete a weight or a past fast in hæl, or correct a period date, hæl replaces or removes the entry it wrote to Apple Health instead of leaving the old one. Entries written by other apps are never changed.</p>
         <p>HealthKit data is never sent to KI-GEN Studios LLC, TelemetryDeck, RevenueCat, or anyone else, and it is never used for advertising or marketing.</p>
 
         <h2>analytics (telemetrydeck)</h2>
@@ -142,7 +147,11 @@
             <li>Apple's identifier for vendor, a device ID that is specific to apps from KI-GEN Studios LLC and cannot be used to track you across other companies' apps</li>
             <li>technical details: device model, operating system version, app version, App Store country, and preferred language</li>
         </ul>
+        <p>hæl also checks your purchase on the device itself, by asking Apple's StoreKit whether this Apple ID owns the full experience. That check makes no network request. Once after updating to hæl 4.3, and again if the device holds a purchase RevenueCat has no record of (for example one made before hæl used RevenueCat), hæl asks Apple to send the device's App Store transactions for hæl to RevenueCat, so a purchase can be verified and restored. Settings shows RevenueCat's random app user ID as a support ID, so you can include it if you write to us about a purchase. It is not sent anywhere by showing it.</p>
         <p>hæl never gives RevenueCat your name, email, or any other personal detail. RevenueCat uses this data only to verify purchases for hæl. It does not receive your fasting, cycle, or weight records, or any Apple Health data. See <a href="https://revenuecat.com/privacy">revenuecat.com/privacy</a>.</p>
+
+        <h2>support links</h2>
+        <p>Settings links to eating disorder support. To choose the right one, hæl reads the region set on your device, on the device: in the United States and its territories, the link calls the National Alliance for Eating Disorders helpline; elsewhere, it opens findahelpline.com in Safari to find a helpline in your country. hæl sends nothing to either. What happens after you call or open the site is governed by that organization's own privacy policy.</p>
 
         <h2>notifications</h2>
         <p>If you turn on notifications, hæl schedules them on the device. No notification tokens are sent to any server.</p>
@@ -162,7 +171,7 @@
         <p>You can export your fasting history as a CSV file, or a backup of your records as a JSON file, from Settings. The file is created on your device and goes only where you choose to send it.</p>
 
         <h2>deleting your data</h2>
-        <p><strong>In the app:</strong> Settings &gt; delete all data. This erases your fasting history, cycle data, weight entries, and preferences from the device and from iCloud Key-Value Storage. It also deletes the weight, workout, and dietary energy entries hæl wrote to Apple Health. Period starts recorded in Apple Health are kept, because they may be part of your wider cycle history. You can remove them in the Health app. Health data written by other apps is never affected.</p>
+        <p><strong>In the app:</strong> Settings &gt; delete all data. This erases your fasting history, cycle data and period history, weight entries and readings, profile details, and preferences from the device and from iCloud Key-Value Storage. It also deletes the weight, workout, and dietary energy entries hæl wrote to Apple Health. Period starts recorded in Apple Health are kept, because they may be part of your wider cycle history. You can remove them in the Health app. Health data written by other apps is never affected.</p>
         <p><strong>By deleting the app:</strong> this removes on-device data. Data synced to iCloud Key-Value Storage may remain in your iCloud account, so use "delete all data" first if you want it removed everywhere.</p>
         <p><strong>Purchase records:</strong> Apple and RevenueCat keep purchase records so you can restore your purchase. To request deletion of your RevenueCat record, email <a href="mailto:hello@hael.app">hello@hael.app</a> with the Apple order ID from your purchase receipt.</p>
 
