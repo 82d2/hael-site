@@ -6,7 +6,7 @@ import json, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 STORE = "https://apps.apple.com/app/id6778956802"
-BYLINE = "Joy, who makes hæl"   # TODO: confirm the public name for the byline
+BYLINE = "Joy, who makes hæl"
 PUBLISHED = "2026-10-12"
 PUBLISHED_TEXT = "october 12, 2026"
 
