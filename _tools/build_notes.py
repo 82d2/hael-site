@@ -6,7 +6,7 @@ import json, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 STORE = "https://apps.apple.com/app/id6778956802"
-BYLINE = "Joy, who makes hæl"
+BYLINE = "the maker of hæl"
 PUBLISHED = "2026-10-12"
 PUBLISHED_TEXT = "october 12, 2026"
 
@@ -77,7 +77,7 @@ def page(slug, title, description, kicker, h1, short, body, sources, headline):
         "datePublished": PUBLISHED,
         "dateModified": PUBLISHED,
         "inLanguage": "en",
-        "author": {"@type": "Person", "name": BYLINE.split(",")[0], "worksFor": {"@id": "https://hael.app/#org"}},
+        "author": {"@type": "Organization", "@id": "https://hael.app/#org", "name": "KI-GEN Studios LLC"},
         "publisher": {"@type": "Organization", "@id": "https://hael.app/#org", "name": "KI-GEN Studios LLC",
                       "logo": "https://hael.app/icon-192x192.png"},
         "image": "https://hael.app/og-image.png",

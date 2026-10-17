@@ -1,6 +1,6 @@
 # hæl web traffic plan
 
-*Written October 11, 2026, with 4.3 in review. Owner: Joy. Privacy-first throughout: no web analytics, no tracking pixels, no ad networks.*
+*Written October 11, 2026, with 4.3 in review. Privacy-first throughout: no web analytics, no tracking pixels, no ad networks.*
 
 ## Where things stand
 
@@ -14,11 +14,11 @@ Be found by the people already looking for something like hæl, in three places:
 
 | # | Task | Who | Why |
 |---|------|-----|-----|
-| 1 | Google Search Console: add hael.app, verify by DNS, submit `https://hael.app/sitemap.xml` | Joy | Shows the searches that find you, with no tracking on the site |
-| 2 | Bing Webmaster Tools: import from Search Console | Joy | Bing also feeds ChatGPT search and DuckDuckGo |
-| 3 | App Store campaign link: App Analytics → Campaigns, send Claude the `pt=` value | Joy, then Claude | Downloads from the website show in App Store Connect, counted by Apple in aggregate |
-| 4 | Featuring nomination for 4.3 in App Store Connect (Featuring → Nominations) | Joy | The single best chance of real traffic; free |
-| 5 | Approve the home page redesign (mock on branch `claude/gifted-turing-8rg1hy` of hael-site) | Joy | Gives Google words to rank |
+| 1 | Google Search Console: add hael.app, verify by DNS, submit `https://hael.app/sitemap.xml` | you | Shows the searches that find you, with no tracking on the site |
+| 2 | Bing Webmaster Tools: import from Search Console | you | Bing also feeds ChatGPT search and DuckDuckGo |
+| 3 | App Store campaign link: App Analytics → Campaigns, send Claude the `pt=` value | you, then Claude | Downloads from the website show in App Store Connect, counted by Apple in aggregate |
+| 4 | Featuring nomination for 4.3 in App Store Connect (Featuring → Nominations) | you | The single best chance of real traffic; free |
+| 5 | Approve the home page redesign (mock on branch `claude/gifted-turing-8rg1hy` of hael-site) | you | Gives Google words to rank |
 
 ## Phase 2: the next month
 
