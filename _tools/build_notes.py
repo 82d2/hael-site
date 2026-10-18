@@ -236,15 +236,15 @@ FAST_BODY = f"""
 
 NOTES = [
     dict(slug="weight-gain-before-period",
-         title="Why Does Weight Go Up Before Your Period? What the Research Shows | hæl",
-         description="weight often rises a pound or so around a period, and it is water, not fat. what studies show about how much, why, when it peaks, and how to read the scale across a cycle.",
+         title="Why Does Weight Go Up Before Your Period? | hæl",
+         description="weight often rises a pound or so before a period, and it is water, not fat. what studies show: how much, why, when it peaks, and how to read the scale.",
          kicker="the water",
          h1="why does weight go up before a period?",
          headline="Why does weight go up before a period?",
          short="it is mostly water. hormones late in the cycle make the body hold extra fluid, adding about a pound on average, sometimes more. it peaks around the first day of the period and is gone about a week later. it isn't fat, and it isn't a setback.",
          body=WEIGHT_BODY, sources=WEIGHT_SOURCES),
     dict(slug="intermittent-fasting-menstrual-cycle",
-         title="Intermittent Fasting and the Menstrual Cycle: What the Evidence Shows | hæl",
+         title="Intermittent Fasting and the Menstrual Cycle | hæl",
          description="does intermittent fasting affect your period? can you fast on your period or in the luteal phase? honest answers, with what the research does and doesn't show.",
          kicker="the cycle",
          h1="intermittent fasting and the menstrual cycle",
