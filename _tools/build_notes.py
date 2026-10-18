@@ -2,67 +2,16 @@
 Shared page: the home page's book styling, a running head back home, the
 question as the title, the short answer first, sources and a not-medical-
 advice line at the foot. Run: python3 _tools/build_notes.py"""
-import json, pathlib
+import json, pathlib, sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import shell
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 STORE = "https://apps.apple.com/app/id6778956802"
 BYLINE = "the maker of hæl"
 PUBLISHED = "2026-10-12"
 PUBLISHED_TEXT = "october 12, 2026"
-
-STYLE = """
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-:root { --paper:#FDFBF9; --ink:#2E2B2A; --soft:#6E6864; --muted:#8A8480; --rule:#DCD8D2; --rose:#A8737A;
-        --button:#2E2B2A; --button-ink:#FDFBF9; --serif: ui-serif, 'New York', 'Newsreader', Georgia, serif; }
-@media (prefers-color-scheme: dark) { :root { --paper:#1C1A19; --ink:#EDE7E3; --soft:#B5ADA8; --muted:#8F8783;
-        --rule:#3A3634; --rose:#D29EA5; --button:#EDE7E3; --button-ink:#1C1A19; } }
-html { background: var(--paper); }
-body { font-family: var(--serif); background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased;
-       text-rendering: optimizeLegibility; font-size: 19px; line-height: 1.6; }
-.page { max-width: 680px; margin: 0 auto; padding: 0 24px; }
-.head { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0 12px;
-        border-bottom: 1px solid var(--rule); font-style: italic; color: var(--muted); font-size: 17px; }
-.head a { color: var(--muted); text-decoration: none; } .head a:hover { color: var(--ink); }
-article { padding: 64px 0 24px; }
-.kicker { font-style: italic; color: var(--rose); font-size: 17px; }
-h1 { margin-top: 10px; font-size: clamp(36px, 6.6vw, 52px); font-weight: 300; line-height: 1.1; letter-spacing: -0.015em; }
-.byline { margin-top: 18px; font-style: italic; color: var(--muted); font-size: 16px; }
-.short { margin-top: 34px; padding: 22px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-.short span { display: block; font-style: italic; color: var(--muted); font-size: 16px; margin-bottom: 6px; }
-.short p { font-size: 21px; font-weight: 300; line-height: 1.5; }
-h2 { margin-top: 52px; font-size: clamp(25px, 4.4vw, 31px); font-weight: 300; line-height: 1.2; letter-spacing: -0.01em; }
-article p, article li { color: var(--soft); }
-article p { margin-top: 16px; }
-article ul { margin: 16px 0 0 1.1em; display: grid; gap: 8px; }
-article a { color: var(--ink); text-decoration-color: var(--rule); text-underline-offset: 3px; }
-article a:hover { text-decoration-color: var(--rose); }
-sup a { text-decoration: none; color: var(--rose); font-style: italic; font-size: 14px; padding-left: 1px; }
-.aside { margin-top: 52px; padding-top: 22px; border-top: 1px solid var(--rule); }
-.aside p:first-child { margin-top: 0; }
-.download { display: inline-flex; margin-top: 22px; padding: 13px 26px; border-radius: 999px; background: var(--button);
-            color: var(--button-ink) !important; text-decoration: none; font-size: 17px; }
-.sources { margin-top: 52px; font-size: 15px; line-height: 1.5; color: var(--muted); }
-.sources h2 { font-size: 21px; margin-top: 0; margin-bottom: 12px; }
-.sources ol { margin-left: 1.3em; display: grid; gap: 8px; }
-.sources li { color: var(--muted); }
-.note { margin-top: 32px; font-size: 15px; font-style: italic; color: var(--muted); }
-footer { margin-top: 56px; border-top: 1px solid var(--rule); padding: 28px 0 48px; display: flex; flex-wrap: wrap;
-         justify-content: space-between; gap: 12px 28px; font-size: 16px; color: var(--muted); }
-footer nav { display: flex; flex-wrap: wrap; gap: 10px 26px; }
-footer a { color: var(--muted); text-decoration: none; } footer a:hover { color: var(--ink); }
-@media (max-width: 520px) { body { font-size: 18px; } article { padding-top: 48px; } }
-"""
-
-FOOTER = """<footer>
-        <span>&copy; 2026 KI-GEN Studios LLC</span>
-        <nav aria-label="Footer">
-            <a href="/weight-gain-before-period/">weight before a period</a>
-            <a href="/intermittent-fasting-menstrual-cycle/">fasting and the cycle</a>
-            <a href="/privacy/">privacy</a>
-            <a href="/terms/">terms</a>
-            <a href="mailto:hello@hael.app">contact</a>
-        </nav>
-    </footer>"""
 
 def page(slug, title, description, kicker, h1, short, body, sources, headline):
     url = f"https://hael.app/{slug}/"
@@ -83,57 +32,33 @@ def page(slug, title, description, kicker, h1, short, body, sources, headline):
         "image": "https://hael.app/og-image.png",
         "citation": [s["cite"] for s in sources],
     }
-    src = "\n".join(f'                <li id="s{i}">{s["html"]}</li>' for i, s in enumerate(sources, 1))
-    return f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title}</title>
-    <meta name="description" content="{description}">
-    <link rel="canonical" href="{url}">
-    <meta name="apple-itunes-app" content="app-id=6778956802">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <meta property="og:title" content="{headline}">
-    <meta property="og:description" content="{description}">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="{url}">
-    <meta property="og:image" content="https://hael.app/og-image.png">
-    <meta property="og:site_name" content="hæl">
-    <meta property="article:published_time" content="{PUBLISHED}">
-    <meta name="twitter:card" content="summary_large_image">
-    <script type="application/ld+json">
+    src = "\n".join(f'    <li id="s{i}">{s["html"]}</li>' for i, s in enumerate(sources, 1))
+    # The App Store box inside the text becomes the closing line, with Apple's badge.
+    body = body.replace('<div class="aside">', '<div class="closing">').replace(
+        f'<a class="download" href="{STORE}">hæl on the App Store</a>', shell.BADGE)
+    others = [(f"/{o['slug']}/", o["h1"] + " →") for o in NOTES if o["slug"] != slug]
+    extra = f"""
+<meta property="article:published_time" content="{PUBLISHED}">
+<script type="application/ld+json">
 {json.dumps(ld, ensure_ascii=False, indent=4)}
-    </script>
-    <link rel="stylesheet" href="/fonts/newsreader.css">
-    <style>{STYLE}</style>
-</head>
-<body>
-<div class="page">
-    <header class="head"><a href="/">hæl</a><a href="{STORE}">download</a></header>
-    <main>
-        <article>
-            <p class="kicker">{kicker}</p>
-            <h1>{h1}</h1>
-            <p class="byline">by {BYLINE} · {PUBLISHED_TEXT}</p>
-            <div class="short"><span>the short answer</span><p>{short}</p></div>
+</script>"""
+    article = f"""{shell.title_block(kicker, h1, f"by {BYLINE} · {PUBLISHED_TEXT}")}
+<article class="text">
+<div class="short"><span>the short answer</span><p>{short}</p></div>
 {body}
-            <section class="sources" aria-labelledby="sources">
-            <h2 id="sources">sources</h2>
-            <ol>
+<section class="sources" aria-labelledby="sources">
+  <h2 id="sources">sources</h2>
+  <ol>
 {src}
-            </ol>
-            </section>
-            <p class="note">this page explains what research says; it is not medical advice, and hæl does not diagnose or treat anything. if something about your body worries you, see a doctor.</p>
-        </article>
-    </main>
-    {FOOTER}
-</div>
-</body>
-</html>
-"""
+  </ol>
+</section>
+<p class="note">this page explains what research says; it is not medical advice, and hæl does not diagnose or treat anything. if something about your body worries you, see a doctor.</p>
+</article>
+{shell.more(others + [("/", "← hæl, the fasting timer")])}"""
+    return shell.page(
+        head_html=shell.head(title=title, description=description, path=f"/{slug}/",
+                             og_type="article", og_title=headline, extra=extra),
+        body=article, current=f"/{slug}/")
 
 def n(i):
     return f'<sup><a href="#s{i}">{i}</a></sup>'
