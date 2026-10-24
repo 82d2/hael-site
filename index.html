@@ -288,9 +288,11 @@ footer nav{display:flex;flex-wrap:wrap;gap:6px 18px}footer a{text-decoration:non
 @media (prefers-reduced-motion:reduce){.sline,.line{transition:none}html{scroll-behavior:auto}}
 
 /* v2 */
+#psum{margin-left:auto;margin-right:auto;text-align:center}
+#ptip{text-align:center}
 .dateline{display:block;margin-bottom:20px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
 .quiet{margin-top:26px;font-size:15px;font-style:italic;color:var(--muted)}
-.season{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin:38px auto 0}
+.season{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin:30px auto 0}
 .season .one{width:min(260px,80vw);text-align:center}
 .season svg{width:100%;height:auto;display:block;overflow:visible}
 .season .cap{margin-top:8px;font-size:14px;font-style:italic;color:var(--soft)}
@@ -462,22 +464,13 @@ footer nav{display:flex;flex-wrap:wrap;gap:6px 18px}footer a{text-decoration:non
   <p class="body">connect Apple Health or enter your last period, and the ring takes the color of the phase. the phase suggests the hours, and the words follow it. if a cycle doesn't apply to you, turn it off and the ring keeps the hours alone.</p>
   <div class="phases" role="tablist" aria-label="phases"><button role="tab" data-p="menstrual">menstrual</button><button role="tab" data-p="follicular">follicular</button><button role="tab" data-p="ovulation">ovulation</button><button role="tab" data-p="luteal">luteal</button></div>
   <figure class="figure" style="margin-top:30px">
-    <svg viewBox="0 0 240 240" aria-hidden="true">
-      <circle id="ptrack" cx="120" cy="120" r="88" fill="none" stroke-width="10"/>
-      <circle cx="120" cy="120" r="88" fill="none" stroke="var(--rose)" stroke-width="2.6" stroke-dasharray="415 553" transform="rotate(-90 120 120)" stroke-linecap="round"/>
-      <text class="big" id="phours" x="120" y="122" text-anchor="middle">16–18</text><text class="small" x="120" y="144" text-anchor="middle">hours, typical here</text>
-    </svg>
-    <p class="line" id="psum"></p>
-    <p class="hint" id="ptip"></p>
-    <figcaption><span class="fig">fig. 4</span>the ring in each phase, with the hours it suggests.</figcaption>
-  </figure>
-  <figure>
     <div class="season">
       <div class="one"><svg id="flat" viewBox="-130 -130 260 260" aria-hidden="true"></svg><p class="cap">one plan, all month</p></div>
       <div class="one"><svg id="hers" viewBox="-130 -130 260 260" role="img" aria-label="twenty-eight days on hæl's ring, each bead sized by the hours its phase suggests"></svg><p class="cap">the hours each phase suggests</p></div>
     </div>
-    <p class="read" id="sread">touch a bead to read its day.</p>
-    <figcaption><span class="fig">fig. 5</span>twenty-eight days, two ways to keep them. a suggestion, never a rule.</figcaption>
+    <p class="line" id="psum"></p>
+    <p class="hint" id="ptip"></p>
+    <figcaption><span class="fig">fig. 4</span>one plan for the whole month, or the hours each phase suggests. touch a phase or a bead.</figcaption>
   </figure>
   <a class="more" href="/intermittent-fasting-menstrual-cycle/">intermittent fasting and the menstrual cycle: what the evidence shows →</a>
 </div></section>
@@ -496,7 +489,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:6px 18px}footer a{text-decoration:non
       </div>
     </div>
     <button class="tapline" id="lopen">open the letter</button>
-    <figcaption><span class="fig">fig. 6</span>a monday letter, from hæl’s own sample.</figcaption>
+    <figcaption><span class="fig">fig. 5</span>a monday letter, from hæl’s own sample.</figcaption>
   </figure>
   <p class="cadence">each month, a reading. each season, another. and at the year’s end, the year.</p>
 </div></section>
@@ -750,9 +743,13 @@ const P={menstrual:['rgba(221,188,185,.5)','12–14','the hormonal floor, everyt
  follicular:['rgba(226,207,198,.6)','16–18','a rising tide internally, mood and energy often lift with it.','energy and tolerance tend to be higher in this window.'],
  ovulation:['rgba(223,208,181,.5)','16–20','the hormonal peak, the body at full capacity. confidence and clarity often arrive uninvited.','the body at its most resilient. protein matters when breaking.'],
  luteal:['rgba(212,201,222,.5)','14–16','the body turns inward, warmth-seeking. fatigue, appetite shifts, emotional weather are common and expected.','the appetite has its own weather, moderate fasts are typical here.']};
-function phase(p){const v=P[p];$('ptrack').setAttribute('stroke',v[0]);$('phours').textContent=v[1];$('psum').textContent=v[2];$('ptip').textContent=v[3];
-  document.querySelectorAll('.phases button').forEach(b=>b.setAttribute('aria-selected',b.dataset.p===p));}
-document.querySelectorAll('.phases button').forEach(b=>b.addEventListener('click',()=>phase(b.dataset.p))); phase('follicular');
+// a phase chosen by its button moves the bead to the phase's first full day; a bead chosen on the ring lights its phase
+const FIRST={menstrual:3,follicular:10,ovulation:14,luteal:21};
+function phase(p,fromBead){const v=P[p];$('psum').textContent=v[2];$('ptip').textContent=v[3];
+  document.querySelectorAll('.phases button').forEach(b=>b.setAttribute('aria-selected',b.dataset.p===p));
+  if(!fromBead&&window.haelChoose)window.haelChoose(FIRST[p]);}
+window.haelPhase=phase;
+document.querySelectorAll('.phases button').forEach(b=>b.addEventListener('click',()=>phase(b.dataset.p)));
 </script>
 
 <script>
@@ -768,25 +765,56 @@ const R=100,ns='http://www.w3.org/2000/svg';
 function el(t,a){const e=document.createElementNS(ns,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
 const angleOf=d=>((d-0.5)/L)*2*Math.PI-Math.PI/2;
 const hours={P:'12–14',F:'16–18',O:'16–20',L:'14–16'},mid={P:13,F:17,O:18,L:15},name={P:'menstrual',F:'follicular',O:'ovulation',L:'luteal'};
-// one plan: a grey ring, identical beads
+// one plan: a grey ring, identical beads, the same sixteen hours in the middle
 const flat=document.getElementById('flat');
 flat.appendChild(el('circle',{r:R,fill:'none',stroke:'#DCD6D1','stroke-width':3}));
 for(let d=1;d<=L;d++){const a=angleOf(d);flat.appendChild(el('circle',{cx:R*Math.cos(a),cy:R*Math.sin(a),r:4.6,fill:'#CFC8C3'}));}
-// hers: the season gradient ring, beads by hours
+const ft=(y,t,st)=>{const e=el('text',{x:0,y,'text-anchor':'middle',style:st});e.textContent=t;return e;};
+flat.appendChild(ft(10,'16','font:200 44px var(--serif);fill:#A8A19C'));
+flat.appendChild(ft(34,'hours, every day','font:italic 13px var(--serif);fill:#A8A19C'));
+// hers: the season's light, thicker for the days lived, finer ahead, as the body ledger draws it
 const hers=document.getElementById('hers');
-const glow=el('circle',{r:R,fill:'none','stroke-width':16,opacity:.35,filter:'url(#sblur)'});
-const defs=el('defs',{});const f=el('filter',{id:'sblur',x:'-30%',y:'-30%',width:'160%',height:'160%'});f.appendChild(el('feGaussianBlur',{stdDeviation:6}));defs.appendChild(f);hers.appendChild(defs);
-const seg=g=>{for(let i=0;i<180;i++){const x0=i/180,x1=(i+1.2)/180,a0=(x0-off/L)*2*Math.PI-Math.PI/2,a1=(x1-off/L)*2*Math.PI-Math.PI/2;
+const defs=el('defs',{});
+const f1=el('filter',{id:'sblur',x:'-30%',y:'-30%',width:'160%',height:'160%'});f1.appendChild(el('feGaussianBlur',{stdDeviation:6}));defs.appendChild(f1);
+const f2=el('filter',{id:'bglow',x:'-200%',y:'-200%',width:'500%',height:'500%'});f2.appendChild(el('feGaussianBlur',{stdDeviation:3.2}));defs.appendChild(f2);
+const rg=el('radialGradient',{id:'inner'});rg.appendChild(el('stop',{offset:'0.55','stop-color':'#DEC1AF','stop-opacity':'.16'}));rg.appendChild(el('stop',{offset:'1','stop-color':'#DEC1AF','stop-opacity':'0'}));defs.appendChild(rg);
+hers.appendChild(defs);
+hers.appendChild(el('circle',{r:R-4,fill:'url(#inner)'}));
+const TODAY=10;
+const seg=(g,from,to)=>{for(let i=0;i<180;i++){const x0=i/180,x1=(i+1.2)/180,day=x0*L+0.5;if(day<from||day>to)continue;const a0=(x0-off/L)*2*Math.PI-Math.PI/2,a1=(x1-off/L)*2*Math.PI-Math.PI/2;
   const c=at(x0+0.5/180);g.appendChild(el('path',{d:`M${R*Math.cos(a0)} ${R*Math.sin(a0)} A${R} ${R} 0 0 1 ${R*Math.cos(a1)} ${R*Math.sin(a1)}`,fill:'none',stroke:`rgb(${c})`}));}};
-const gl=el('g',{'stroke-width':12,opacity:.35,filter:'url(#sblur)'});seg(gl);hers.appendChild(gl);
-const tr=el('g',{'stroke-width':4});seg(tr);hers.appendChild(tr);
-const read=document.getElementById('sread');
+const gl=el('g',{'stroke-width':12,opacity:.32,filter:'url(#sblur)'});seg(gl,0,99);hers.appendChild(gl);
+const lived=el('g',{'stroke-width':4.2});seg(lived,0,TODAY);hers.appendChild(lived);
+const ahead=el('g',{'stroke-width':2.2,opacity:.55});seg(ahead,TODAY,99);hers.appendChild(ahead);
+// the centre: the chosen day's hours, its day and phase
+const tiny=ft(-30,'','font:10.5px var(--serif);letter-spacing:.16em;fill:#A9646C;text-transform:uppercase'),big=ft(14,'','font:200 44px var(--serif);fill:#7A736E'),small=ft(38,'','font:italic 13px var(--serif);fill:#8A8480');
+hers.appendChild(big);hers.appendChild(small);hers.appendChild(tiny);
+// the glow that marks the chosen bead, as the app's dial marks its own
+const halo=el('g',{});
+const hglow=el('circle',{r:11,filter:'url(#bglow)',opacity:.95});
+const hring=el('circle',{r:13,fill:'none','stroke-width':1.4,opacity:.3});
+const breathe=(attr,vals)=>{const a=el('animate',{attributeName:attr,values:vals,dur:'8s',repeatCount:'indefinite',calcMode:'spline',keyTimes:'0;0.5;1',keySplines:'.42 0 .58 1;.42 0 .58 1'});return a;};
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){hring.appendChild(breathe('r','12;15;12'));hring.appendChild(breathe('opacity','.22;.42;.22'));}
+halo.appendChild(hglow);halo.appendChild(hring);hers.appendChild(halo);
+const beads=[];
+function choose(d){const k=ph(d),a=angleOf(d),x=R*Math.cos(a),y=R*Math.sin(a),c=at(((d-0.5)+off)/L);
+  halo.setAttribute('transform',`translate(${x} ${y})`);hglow.setAttribute('fill',`rgb(${c})`);hring.setAttribute('stroke',`rgb(${c.map(v=>Math.round(v*.8))})`);
+  beads.forEach((b,i)=>{const on=i+1===d;b.setAttribute('fill',on?'#FBF6F1':b.dataset.c);b.setAttribute('stroke',on?'rgba(181,131,137,.75)':b.dataset.s);b.setAttribute('stroke-width',on?1.1:.9);});
+  big.textContent=hours[k];small.textContent='hours, typical here';tiny.textContent=`day ${d} · ${name[k]}`;
+  if(window.haelPhase)window.haelPhase(name[k],true);}
+window.haelChoose=choose;
 for(let d=1;d<=L;d++){const a=angleOf(d),k=ph(d),r=(mid[k]-10)*0.85,c=at(((d-0.5)+off)/L);
-  const b=el('circle',{class:'sbead',cx:R*Math.cos(a),cy:R*Math.sin(a),r,fill:`rgb(${c})`,stroke:`rgba(${c.map(v=>Math.round(v*.78))},.55)`,'stroke-width':.9});
-  const show=()=>{read.textContent=`day ${d} · ${name[k]} · ${hours[k]} hours, typical here`;};
-  b.addEventListener('mouseenter',show);b.addEventListener('click',show);hers.appendChild(b);}
+  const b=el('circle',{class:'sbead',cx:R*Math.cos(a),cy:R*Math.sin(a),r,fill:`rgb(${c})`,stroke:`rgba(${c.map(v=>Math.round(v*.78))},.55)`,'stroke-width':.9,opacity:d>TODAY?.75:1});
+  b.dataset.c=`rgb(${c})`;b.dataset.s=`rgba(${c.map(v=>Math.round(v*.78))},.55)`;
+  const hit=el('circle',{cx:R*Math.cos(a),cy:R*Math.sin(a),r:11,fill:'transparent',style:'cursor:pointer'});
+  hit.addEventListener('mouseenter',()=>choose(d));hit.addEventListener('click',()=>choose(d));
+  hers.appendChild(b);beads.push(b);hers.appendChild(hit);}
+hers.appendChild(halo);
+// the glow sits under the bead it marks
+hers.insertBefore(halo,beads[0]);
+choose(TODAY);
 // the letter: one sheet across three panels, folded in thirds and sealed
-const body=`<p class="lh">the week of october 19</p><p class="ld">monday, october 26</p><p>four fasts this week, the longest 36 hours on thursday. one more than last week.</p><p>one day, rested. the practice includes this too.</p><p>weight up slightly, likely water and likely temporary. luteal fasts tend to hold.</p><p class="sig">the witness</p>`;
+const body=`<p class="lh">monday, october 26</p><p class="ld">the week of october 19 to 25</p><p>four fasts this week, the longest 36 hours on thursday. one more than last week.</p><p>one day, rested. the practice includes this too.</p><p>weight up slightly, likely water and likely temporary. luteal fasts tend to hold.</p><p class="sig">the witness</p>`;
 document.querySelectorAll('#letter .sheet').forEach(sh=>sh.innerHTML=body);
 const stage=document.getElementById('letter'),btn=document.getElementById('lopen');
 const still=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
