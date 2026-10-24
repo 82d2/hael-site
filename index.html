@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hæl (hael) — Cycle-Aware Intermittent Fasting App for iPhone</title>
+    <title>hæl (hael) · intermittent fasting shaped by your cycle</title>
     <meta name="description" content="a cycle-aware intermittent fasting app for iPhone. fasts shaped by your menstrual cycle, weight read against it, no account, no subscription.">
     <link rel="canonical" href="https://hael.app/">
     <meta name="apple-itunes-app" content="app-id=6778956802">
@@ -12,7 +12,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="hæl — Cycle-Aware Intermittent Fasting">
+    <meta property="og:title" content="hæl · intermittent fasting shaped by your cycle">
     <meta property="og:description" content="a fasting timer that observes instead of coaching. cycle-aware fasting, literary prose, canonical hours.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://hael.app/">
@@ -25,7 +25,7 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="hæl — Cycle-Aware Fasting">
+    <meta name="twitter:title" content="hæl · intermittent fasting shaped by your cycle">
     <meta name="twitter:description" content="a fasting timer that observes instead of coaching. cycle-aware fasting, literary prose, canonical hours.">
     <meta name="twitter:image" content="https://hael.app/og-image.png">
     <meta name="twitter:image:alt" content="hæl — a fasting timer that observes instead of coaching.">
@@ -98,6 +98,14 @@
     "mainEntity": [
         {
             "@type": "Question",
+            "name": "is there a free trial?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "yes. the full witness is free for fourteen days, once. nothing is charged and nothing renews; when the days end it closes on its own, and everything you kept stays."
+            }
+        },
+        {
+            "@type": "Question",
             "name": "does hæl work without a period, or on birth control?",
             "acceptedAnswer": {
                 "@type": "Answer",
@@ -109,7 +117,7 @@
             "name": "is it a subscription?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "no. the fasting timer is free and complete. the full witness, which reads the cycle and the body over time, is one purchase of $19.99 in the US, with nothing recurring."
+                "text": "no. the fasting timer is free and complete. the full witness, which reads the cycle and the body over time, is free for fourteen days, then one purchase of $19.99 in the US, with nothing recurring."
             }
         },
         {
@@ -278,20 +286,79 @@ footer .wrap{padding:22px 24px 40px;display:flex;flex-wrap:wrap;gap:6px 18px;fon
 footer nav{display:flex;flex-wrap:wrap;gap:6px 18px}footer a{text-decoration:none}footer a:hover{color:var(--ink)}footer span{margin-right:auto;letter-spacing:0;text-transform:none;font-style:italic;font-size:14px}
 @media (max-width:760px){nav.top a.link{display:none}.close-up{--dw:118vw}.contents a{font-size:25px}}
 @media (prefers-reduced-motion:reduce){.sline,.line{transition:none}html{scroll-behavior:auto}}
+
+/* v2 */
+.dateline{display:block;margin-bottom:20px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.quiet{margin-top:26px;font-size:15px;font-style:italic;color:var(--muted)}
+.season{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin:38px auto 0}
+.season .one{width:min(260px,80vw);text-align:center}
+.season svg{width:100%;height:auto;display:block;overflow:visible}
+.season .cap{margin-top:8px;font-size:14px;font-style:italic;color:var(--soft)}
+.season .sbead{cursor:pointer}
+.season .read{margin-top:18px;min-height:1.6em;font-size:17px;color:var(--soft);text-align:center;transition:opacity .3s}
+.letterstage{position:relative;margin:30px auto 0;width:min(440px,92vw);height:336px;perspective:1800px;cursor:pointer;--H:112px}
+.lift{position:absolute;inset:0;transition:transform 1.4s cubic-bezier(.33,0,.2,1)}
+.flap,.midp{position:absolute;left:0;right:0;height:var(--H)}
+.flap{transform-style:preserve-3d}
+.top{top:0;transform-origin:50% 100%;z-index:3;transform:rotateX(-179.5deg)}
+.midp{top:var(--H);z-index:1}
+.bot{top:calc(var(--H)*2);transform-origin:50% 0;z-index:2;transform:rotateX(179.5deg)}
+.face,.back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+/* laid paper: warm, with faint chain lines */
+.face{overflow:hidden;background:#FBF8F4 repeating-linear-gradient(0deg,rgba(120,100,90,.022) 0 1px,transparent 1px 7px)}
+.back{transform:rotateX(180deg);display:flex;align-items:center;justify-content:center;background:#F3ECE6 repeating-linear-gradient(0deg,rgba(120,100,90,.03) 0 1px,transparent 1px 7px)}
+/* the light passing over a turning flap */
+.face::after,.back::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(60,40,36,.10),rgba(60,40,36,0));opacity:0;pointer-events:none}
+.bot .face::after,.bot .back::after{background:linear-gradient(0deg,rgba(60,40,36,.10),rgba(60,40,36,0))}
+/* the creases, once open */
+.midp .face::before{content:"";position:absolute;left:0;right:0;top:-1px;height:3px;background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(110,90,80,.06) 50%,rgba(255,255,255,0));opacity:0;transition:opacity 1s 1.2s}
+.midp .face::after{top:auto;bottom:-1px;height:3px;inset:auto 0 -1px 0;background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(110,90,80,.06) 50%,rgba(255,255,255,0));opacity:0;transition:opacity 1s 1.4s}
+.letterstage.open .midp .face::before,.letterstage.open .midp .face::after{opacity:1}
+.sheet{position:absolute;left:0;right:0;height:calc(var(--H)*3);padding:28px 34px 0;box-sizing:border-box;text-align:left;font-family:var(--serif);color:#5E5854}
+.top .sheet{top:0}.midp .sheet{top:calc(var(--H)*-1)}.bot .sheet{top:calc(var(--H)*-2)}
+/* the seal: pressed wax, slightly irregular */
+.seal{width:46px;height:46px;border-radius:52% 48% 50% 50%/49% 52% 48% 51%;background:radial-gradient(circle at 38% 32%,#CC9097,#AE6A72 55%,#97565E);color:rgba(251,246,241,.92);display:flex;align-items:center;justify-content:center;font:300 22px/1 var(--serif);box-shadow:0 2px 5px rgba(110,50,58,.35),inset 0 -2px 3px rgba(80,30,36,.25),inset 0 2px 2px rgba(255,230,232,.25);text-shadow:0 -1px 0 rgba(80,30,36,.35);transition:transform .45s cubic-bezier(.3,0,.2,1),opacity .4s}
+.lshadow{position:absolute;left:10%;right:10%;height:26px;filter:blur(14px);background:rgba(46,43,42,.15);border-radius:50%;z-index:0;top:calc(var(--H)*2 - 12px);transition:top 1.4s cubic-bezier(.33,0,.2,1),left 1.4s,right 1.4s,opacity 1.4s}
+.letterstage.open .lshadow{top:calc(var(--H)*3 - 6px);left:3%;right:3%;opacity:.85}
+.letterstage.open .lift{transform:translateY(-6px)}
+.letterstage.opening .seal{transform:translateY(-10px) scale(1.06);opacity:0}
+/* paper's weight: slow start, a swing, a small overshoot, settle */
+@keyframes topOpen{0%{transform:rotateX(-179.5deg)}55%{transform:rotateX(-40deg)}80%{transform:rotateX(7deg)}91%{transform:rotateX(-2.5deg)}100%{transform:rotateX(0)}}
+@keyframes botOpen{0%{transform:rotateX(179.5deg)}55%{transform:rotateX(40deg)}80%{transform:rotateX(-6deg)}91%{transform:rotateX(2deg)}100%{transform:rotateX(0)}}
+@keyframes topClose{0%{transform:rotateX(0)}100%{transform:rotateX(-179.5deg)}}
+@keyframes botClose{0%{transform:rotateX(0)}100%{transform:rotateX(179.5deg)}}
+@keyframes light{0%{opacity:0}45%{opacity:1}100%{opacity:0}}
+.letterstage.open .top{transform:rotateX(0);animation:topOpen 1.25s cubic-bezier(.45,.05,.35,1) .35s both}
+.letterstage.open .bot{transform:rotateX(0);animation:botOpen 1.25s cubic-bezier(.45,.05,.35,1) .85s both}
+.letterstage.open .top .face::after,.letterstage.open .top .back::after{animation:light 1.25s ease .35s both}
+.letterstage.open .bot .face::after,.letterstage.open .bot .back::after{animation:light 1.25s ease .85s both}
+.letterstage.closing .bot{animation:botClose .75s cubic-bezier(.5,0,.4,1) both}
+.letterstage.closing .top{animation:topClose .75s cubic-bezier(.5,0,.4,1) .3s both}
+.letterstage.open .seal{opacity:0}
+.tapline{display:block;margin:16px auto 0;font-size:14px;font-style:italic;color:var(--rose);background:none;border:0;cursor:pointer;font-family:var(--serif)}
+@media (prefers-reduced-motion:reduce){.letterstage *{animation:none!important;transition:none!important}}
+@media (max-width:480px){.letterstage{--H:124px;height:372px}.sheet{padding:24px 24px 0}}
+.sheet .lh{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#A9646C}
+.sheet .ld{margin-top:4px;font-size:13px;font-style:italic;color:#9A918C}
+.sheet p{margin-top:14px;font-size:17px;line-height:1.6}
+.sheet .sig{margin-top:18px;font-style:italic;color:#9A918C;font-size:15px}
+.cadence{margin:30px auto 0;max-width:30em;font-size:16px;font-style:italic;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.fold,.panel,.letterstage .top,.letterstage .bot{transition:none!important}}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute"><symbol id="enso" viewBox="0 0 20 20"><path d="M10 2.2a7.8 7.8 0 1 1-6.9 4.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol></svg>
 
 <nav class="top"><div class="wrap">
   <a class="mark" href="/">hæl</a>
-  <a class="link" href="#hours">the hours</a><a class="link" href="#water">the water</a><a class="link" href="#cycle">the cycle</a><a class="link" href="#questions">questions</a>
+  <a class="link" href="#hours">the hours</a><a class="link" href="#water">the water</a><a class="link" href="#cycle">the cycle</a><a class="link" href="#letters">the letters</a><a class="link" href="#questions">questions</a>
   <a class="bracket" href="https://apps.apple.com/app/id6778956802">download</a>
 </div></nav>
 
 <main>
 <header class="hero"><div class="wrap">
+  <span class="dateline">fourth edition · autumn 2026</span>
   <h1>a fasting timer that<br>observes instead of coaching.</h1>
   <p class="lede">for iPhone. fasting shaped by your menstrual cycle, weight read against it, and prose that changes with the hours.</p>
-  <div class="cta"><a href="https://apps.apple.com/app/id6778956802"><img src="/images/app-store-badge.svg" width="150" height="50" alt="Download on the App Store"></a><span class="price">free · the full witness, $19.99 once</span></div>
+  <div class="cta"><a href="https://apps.apple.com/app/id6778956802"><img src="/images/app-store-badge.svg" width="150" height="50" alt="Download on the App Store"></a></div>
   <figure>
     <div class="stagebg"><div class="device"><div class="scr" id="scr1"><div class="app home" id="home">
       <div class="shead"><span>hæl</span><span>?</span></div>
@@ -330,8 +397,9 @@ footer nav{display:flex;flex-wrap:wrap;gap:6px 18px}footer a{text-decoration:non
     <li><span class="roman">ii.</span><a href="#hours">the page</a><sup>114</sup></li>
     <li><span class="roman">iii.</span><a href="#water">the water</a></li>
     <li><span class="roman">iv.</span><a href="#cycle">the cycle</a><sup>4</sup></li>
-    <li><span class="roman">v.</span><a href="#colophon">colophon</a></li>
-    <li><span class="roman">vi.</span><a href="#questions">questions</a><sup>6</sup></li>
+    <li><span class="roman">v.</span><a href="#letters">the letters</a><sup>52</sup></li>
+    <li><span class="roman">vi.</span><a href="#colophon">colophon</a></li>
+    <li><span class="roman">vii.</span><a href="#questions">questions</a><sup>7</sup></li>
   </ol>
 </div>
 
@@ -403,22 +471,51 @@ footer nav{display:flex;flex-wrap:wrap;gap:6px 18px}footer a{text-decoration:non
     <p class="hint" id="ptip"></p>
     <figcaption><span class="fig">fig. 4</span>the ring in each phase, with the hours it suggests.</figcaption>
   </figure>
+  <figure>
+    <div class="season">
+      <div class="one"><svg id="flat" viewBox="-130 -130 260 260" aria-hidden="true"></svg><p class="cap">one plan, all month</p></div>
+      <div class="one"><svg id="hers" viewBox="-130 -130 260 260" role="img" aria-label="twenty-eight days on hæl's ring, each bead sized by the hours its phase suggests"></svg><p class="cap">the hours each phase suggests</p></div>
+    </div>
+    <p class="read" id="sread">touch a bead to read its day.</p>
+    <figcaption><span class="fig">fig. 5</span>twenty-eight days, two ways to keep them. a suggestion, never a rule.</figcaption>
+  </figure>
   <a class="more" href="/intermittent-fasting-menstrual-cycle/">intermittent fasting and the menstrual cycle: what the evidence shows →</a>
 </div></section>
 
+<section id="letters"><div class="wrap">
+  <span class="label"><svg class="enso"><use href="#enso"/></svg>v. the letters</span>
+  <h2>a letter<br>on monday.</h2>
+  <p class="body">the full witness writes to you each monday about the week you kept: the fasts, the rest, the weight read against the cycle. it notices; it never grades.</p>
+  <figure>
+    <div class="letterstage closed" id="letter" role="button" tabindex="0" aria-label="a sealed monday letter; open it">
+      <div class="lshadow"></div>
+      <div class="lift">
+        <div class="midp"><div class="face"><div class="sheet"></div></div></div>
+        <div class="flap bot"><div class="face"><div class="sheet"></div></div><div class="back"></div></div>
+        <div class="flap top"><div class="face"><div class="sheet"></div></div><div class="back"><div class="seal">æ</div></div></div>
+      </div>
+    </div>
+    <button class="tapline" id="lopen">open the letter</button>
+    <figcaption><span class="fig">fig. 6</span>a monday letter, from hæl’s own sample.</figcaption>
+  </figure>
+  <p class="cadence">each month, a reading. each season, another. and at the year’s end, the year.</p>
+</div></section>
+
 <section id="colophon"><div class="wrap">
-  <span class="label"><svg class="enso"><use href="#enso"/></svg>v. colophon</span>
+  <span class="label"><svg class="enso"><use href="#enso"/></svg>vi. colophon</span>
   <h2>nothing asked of you.</h2>
   <p class="lines">no account. no subscription. no ads.<br>no coaching. no celebration.</p>
   <p class="body">what you write lives on your phone, in your own iCloud, and in Apple Health. no server of ours ever sees it.</p>
+  <p class="quiet">the timer is free and complete. the full witness opens free for fourteen days, then is yours for $19.99, once.</p>
 </div></section>
 
 <section id="questions" class="band"><div class="wrap">
-  <span class="label"><svg class="enso"><use href="#enso"/></svg>vi. questions</span>
+  <span class="label"><svg class="enso"><use href="#enso"/></svg>vii. questions</span>
   <h2>questions.</h2>
   <div class="faq">
+    <details><summary>is there a free trial?</summary><p>yes. the full witness is free for fourteen days, once. nothing is charged and nothing renews; when the days end it closes on its own, and everything you kept stays.</p></details>
     <details><summary>does hæl work without a period, or on birth control?</summary><p>yes. cycle tracking can be turned off in settings, and then the ring keeps the hours alone and the body ledger compares each morning with this time last month instead of with the cycle.</p></details>
-    <details><summary>is it a subscription?</summary><p>no. the fasting timer is free and complete. the full witness, which reads the cycle and the body over time, is one purchase of $19.99 in the US, with nothing recurring.</p></details>
+    <details><summary>is it a subscription?</summary><p>no. the fasting timer is free and complete. the full witness, which reads the cycle and the body over time, is free for fourteen days, then one purchase of $19.99 in the US, with nothing recurring.</p></details>
     <details><summary>does it work with Apple Health?</summary><p>yes, with your permission. hæl reads and writes period starts and weight, and can record each fast as a mind and body session if you turn that on. it reads resting heart rate for the weekly letter.</p></details>
     <details><summary>where does my data go?</summary><p>to your phone, your own iCloud, and Apple Health. there is no account and no server of ours. anonymous usage counts go to TelemetryDeck and purchases are checked through RevenueCat; neither sees your records.</p></details>
     <details><summary>does it run on Apple Watch and iPad?</summary><p>yes. the watch shows the fast in progress, widgets keep it on the home and lock screens, and the app runs on iPad.</p></details>
@@ -656,5 +753,56 @@ const P={menstrual:['rgba(221,188,185,.5)','12–14','the hormonal floor, everyt
 function phase(p){const v=P[p];$('ptrack').setAttribute('stroke',v[0]);$('phours').textContent=v[1];$('psum').textContent=v[2];$('ptip').textContent=v[3];
   document.querySelectorAll('.phases button').forEach(b=>b.setAttribute('aria-selected',b.dataset.p===p));}
 document.querySelectorAll('.phases button').forEach(b=>b.addEventListener('click',()=>phase(b.dataset.p))); phase('follicular');
+</script>
+
+<script>
+(function(){
+// the season's light, as the body ledger draws it (28 days)
+const C={P:[214,169,169],F:[222,193,175],O:[217,196,155],L:[190,176,211]};
+const L=28,ph=d=>d<=5?'P':d<14?'F':d<=15?'O':'L';
+const runs=[];for(let d=1;d<=L;d++){const k=ph(d);if(runs.length&&runs.at(-1).k===k)runs.at(-1).last=d;else runs.push({k,first:d,last:d});}
+const n=runs.length,days=i=>runs[i].last-runs[i].first+1,bl=(a,b)=>Math.min(1.5,days(a)/2,days(b)/2),off=bl(n-1,0);
+const stops=[[0,C[runs[n-1].k]]];for(let i=0;i<n;i++){const loc=d=>Math.min(Math.max((d+off)/L,0),1);stops.push([loc(runs[i].first-1+bl((i+n-1)%n,i)),C[runs[i].k]],[loc(runs[i].last-bl(i,(i+1)%n)),C[runs[i].k]]);}
+function at(x){for(let i=1;i<stops.length;i++){if(x<=stops[i][0]){const[a,ca]=stops[i-1],[b,cb]=stops[i],t=b>a?(x-a)/(b-a):0;return ca.map((v,j)=>Math.round(v+(cb[j]-v)*t));}}return stops.at(-1)[1];}
+const R=100,ns='http://www.w3.org/2000/svg';
+function el(t,a){const e=document.createElementNS(ns,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
+const angleOf=d=>((d-0.5)/L)*2*Math.PI-Math.PI/2;
+const hours={P:'12–14',F:'16–18',O:'16–20',L:'14–16'},mid={P:13,F:17,O:18,L:15},name={P:'menstrual',F:'follicular',O:'ovulation',L:'luteal'};
+// one plan: a grey ring, identical beads
+const flat=document.getElementById('flat');
+flat.appendChild(el('circle',{r:R,fill:'none',stroke:'#DCD6D1','stroke-width':3}));
+for(let d=1;d<=L;d++){const a=angleOf(d);flat.appendChild(el('circle',{cx:R*Math.cos(a),cy:R*Math.sin(a),r:4.6,fill:'#CFC8C3'}));}
+// hers: the season gradient ring, beads by hours
+const hers=document.getElementById('hers');
+const glow=el('circle',{r:R,fill:'none','stroke-width':16,opacity:.35,filter:'url(#sblur)'});
+const defs=el('defs',{});const f=el('filter',{id:'sblur',x:'-30%',y:'-30%',width:'160%',height:'160%'});f.appendChild(el('feGaussianBlur',{stdDeviation:6}));defs.appendChild(f);hers.appendChild(defs);
+const seg=g=>{for(let i=0;i<180;i++){const x0=i/180,x1=(i+1.2)/180,a0=(x0-off/L)*2*Math.PI-Math.PI/2,a1=(x1-off/L)*2*Math.PI-Math.PI/2;
+  const c=at(x0+0.5/180);g.appendChild(el('path',{d:`M${R*Math.cos(a0)} ${R*Math.sin(a0)} A${R} ${R} 0 0 1 ${R*Math.cos(a1)} ${R*Math.sin(a1)}`,fill:'none',stroke:`rgb(${c})`}));}};
+const gl=el('g',{'stroke-width':12,opacity:.35,filter:'url(#sblur)'});seg(gl);hers.appendChild(gl);
+const tr=el('g',{'stroke-width':4});seg(tr);hers.appendChild(tr);
+const read=document.getElementById('sread');
+for(let d=1;d<=L;d++){const a=angleOf(d),k=ph(d),r=(mid[k]-10)*0.85,c=at(((d-0.5)+off)/L);
+  const b=el('circle',{class:'sbead',cx:R*Math.cos(a),cy:R*Math.sin(a),r,fill:`rgb(${c})`,stroke:`rgba(${c.map(v=>Math.round(v*.78))},.55)`,'stroke-width':.9});
+  const show=()=>{read.textContent=`day ${d} · ${name[k]} · ${hours[k]} hours, typical here`;};
+  b.addEventListener('mouseenter',show);b.addEventListener('click',show);hers.appendChild(b);}
+// the letter: one sheet across three panels, folded in thirds and sealed
+const body=`<p class="lh">the week of october 19</p><p class="ld">monday, october 26</p><p>four fasts this week, the longest 36 hours on thursday. one more than last week.</p><p>one day, rested. the practice includes this too.</p><p>weight up slightly, likely water and likely temporary. luteal fasts tend to hold.</p><p class="sig">the witness</p>`;
+document.querySelectorAll('#letter .sheet').forEach(sh=>sh.innerHTML=body);
+const stage=document.getElementById('letter'),btn=document.getElementById('lopen');
+const still=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+let busy=false;
+function openLetter(){if(busy||!stage.classList.contains('closed'))return;busy=true;
+  stage.classList.add('opening');           // the seal gives first
+  setTimeout(()=>{stage.classList.remove('closed','opening');stage.classList.add('open');},still()?0:10);
+  setTimeout(()=>{busy=false;},still()?0:2200);
+  btn.textContent='fold it again';stage.setAttribute('aria-label','a monday letter, open');}
+function foldLetter(){if(busy||!stage.classList.contains('open'))return;busy=true;
+  stage.classList.remove('open');stage.classList.add('closing');
+  setTimeout(()=>{stage.classList.remove('closing');stage.classList.add('closed');busy=false;},still()?0:1100);
+  btn.textContent='open the letter';stage.setAttribute('aria-label','a sealed monday letter; open it');}
+btn.addEventListener('click',()=>stage.classList.contains('closed')?openLetter():foldLetter());
+stage.addEventListener('click',openLetter);
+stage.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();stage.classList.contains('closed')?openLetter():foldLetter();}});
+})();
 </script>
 </body></html>
