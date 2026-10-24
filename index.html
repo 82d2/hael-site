@@ -300,22 +300,22 @@ footer nav{display:flex;flex-wrap:wrap;gap:6px 18px}footer a{text-decoration:non
 .lift{position:absolute;inset:0;transition:transform 1.4s cubic-bezier(.33,0,.2,1)}
 .flap,.midp{position:absolute;left:0;right:0;height:var(--H)}
 .flap{transform-style:preserve-3d}
-.top{top:0;transform-origin:50% 100%;z-index:3;transform:rotateX(-179.5deg)}
+.ltop{top:0;transform-origin:50% 100%;z-index:3;transform:rotateX(-179.5deg)}
 .midp{top:var(--H);z-index:1}
-.bot{top:calc(var(--H)*2);transform-origin:50% 0;z-index:2;transform:rotateX(179.5deg)}
+.lbot{top:calc(var(--H)*2);transform-origin:50% 0;z-index:2;transform:rotateX(179.5deg)}
 .face,.back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 /* laid paper: warm, with faint chain lines */
 .face{overflow:hidden;background:#FBF8F4 repeating-linear-gradient(0deg,rgba(120,100,90,.022) 0 1px,transparent 1px 7px)}
 .back{transform:rotateX(180deg);display:flex;align-items:center;justify-content:center;background:#F3ECE6 repeating-linear-gradient(0deg,rgba(120,100,90,.03) 0 1px,transparent 1px 7px)}
 /* the light passing over a turning flap */
 .face::after,.back::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(60,40,36,.10),rgba(60,40,36,0));opacity:0;pointer-events:none}
-.bot .face::after,.bot .back::after{background:linear-gradient(0deg,rgba(60,40,36,.10),rgba(60,40,36,0))}
+.lbot .face::after,.lbot .back::after{background:linear-gradient(0deg,rgba(60,40,36,.10),rgba(60,40,36,0))}
 /* the creases, once open */
 .midp .face::before{content:"";position:absolute;left:0;right:0;top:-1px;height:3px;background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(110,90,80,.06) 50%,rgba(255,255,255,0));opacity:0;transition:opacity 1s 1.2s}
 .midp .face::after{top:auto;bottom:-1px;height:3px;inset:auto 0 -1px 0;background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(110,90,80,.06) 50%,rgba(255,255,255,0));opacity:0;transition:opacity 1s 1.4s}
 .letterstage.open .midp .face::before,.letterstage.open .midp .face::after{opacity:1}
 .sheet{position:absolute;left:0;right:0;height:calc(var(--H)*3);padding:28px 34px 0;box-sizing:border-box;text-align:left;font-family:var(--serif);color:#5E5854}
-.top .sheet{top:0}.midp .sheet{top:calc(var(--H)*-1)}.bot .sheet{top:calc(var(--H)*-2)}
+.ltop .sheet{top:0}.midp .sheet{top:calc(var(--H)*-1)}.lbot .sheet{top:calc(var(--H)*-2)}
 /* the seal: pressed wax, slightly irregular */
 .seal{width:46px;height:46px;border-radius:52% 48% 50% 50%/49% 52% 48% 51%;background:radial-gradient(circle at 38% 32%,#CC9097,#AE6A72 55%,#97565E);color:rgba(251,246,241,.92);display:flex;align-items:center;justify-content:center;font:300 22px/1 var(--serif);box-shadow:0 2px 5px rgba(110,50,58,.35),inset 0 -2px 3px rgba(80,30,36,.25),inset 0 2px 2px rgba(255,230,232,.25);text-shadow:0 -1px 0 rgba(80,30,36,.35);transition:transform .45s cubic-bezier(.3,0,.2,1),opacity .4s}
 .lshadow{position:absolute;left:10%;right:10%;height:26px;filter:blur(14px);background:rgba(46,43,42,.15);border-radius:50%;z-index:0;top:calc(var(--H)*2 - 12px);transition:top 1.4s cubic-bezier(.33,0,.2,1),left 1.4s,right 1.4s,opacity 1.4s}
@@ -328,12 +328,12 @@ footer nav{display:flex;flex-wrap:wrap;gap:6px 18px}footer a{text-decoration:non
 @keyframes topClose{0%{transform:rotateX(0)}100%{transform:rotateX(-179.5deg)}}
 @keyframes botClose{0%{transform:rotateX(0)}100%{transform:rotateX(179.5deg)}}
 @keyframes light{0%{opacity:0}45%{opacity:1}100%{opacity:0}}
-.letterstage.open .top{transform:rotateX(0);animation:topOpen 1.25s cubic-bezier(.45,.05,.35,1) .35s both}
-.letterstage.open .bot{transform:rotateX(0);animation:botOpen 1.25s cubic-bezier(.45,.05,.35,1) .85s both}
-.letterstage.open .top .face::after,.letterstage.open .top .back::after{animation:light 1.25s ease .35s both}
-.letterstage.open .bot .face::after,.letterstage.open .bot .back::after{animation:light 1.25s ease .85s both}
-.letterstage.closing .bot{animation:botClose .75s cubic-bezier(.5,0,.4,1) both}
-.letterstage.closing .top{animation:topClose .75s cubic-bezier(.5,0,.4,1) .3s both}
+.letterstage.open .ltop{transform:rotateX(0);animation:topOpen 1.25s cubic-bezier(.45,.05,.35,1) .35s both}
+.letterstage.open .lbot{transform:rotateX(0);animation:botOpen 1.25s cubic-bezier(.45,.05,.35,1) .85s both}
+.letterstage.open .ltop .face::after,.letterstage.open .ltop .back::after{animation:light 1.25s ease .35s both}
+.letterstage.open .lbot .face::after,.letterstage.open .lbot .back::after{animation:light 1.25s ease .85s both}
+.letterstage.closing .lbot{animation:botClose .75s cubic-bezier(.5,0,.4,1) both}
+.letterstage.closing .ltop{animation:topClose .75s cubic-bezier(.5,0,.4,1) .3s both}
 .letterstage.open .seal{opacity:0}
 .tapline{display:block;margin:16px auto 0;font-size:14px;font-style:italic;color:var(--rose);background:none;border:0;cursor:pointer;font-family:var(--serif)}
 @media (prefers-reduced-motion:reduce){.letterstage *{animation:none!important;transition:none!important}}
@@ -491,8 +491,8 @@ footer nav{display:flex;flex-wrap:wrap;gap:6px 18px}footer a{text-decoration:non
       <div class="lshadow"></div>
       <div class="lift">
         <div class="midp"><div class="face"><div class="sheet"></div></div></div>
-        <div class="flap bot"><div class="face"><div class="sheet"></div></div><div class="back"></div></div>
-        <div class="flap top"><div class="face"><div class="sheet"></div></div><div class="back"><div class="seal">æ</div></div></div>
+        <div class="flap lbot"><div class="face"><div class="sheet"></div></div><div class="back"></div></div>
+        <div class="flap ltop"><div class="face"><div class="sheet"></div></div><div class="back"><div class="seal">æ</div></div></div>
       </div>
     </div>
     <button class="tapline" id="lopen">open the letter</button>
