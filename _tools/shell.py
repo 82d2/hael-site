@@ -94,7 +94,7 @@ def head(*, title, description, path, og_type="website", og_title=None, extra=""
 <meta property="og:type" content="{og_type}">
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{SITE}/og-image.png">
-<meta property="og:image:alt" content="hæl — a fasting timer that observes instead of coaching.">
+<meta property="og:image:alt" content="hæl · a fasting timer that observes instead of coaching.">
 <meta property="og:site_name" content="hæl">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
