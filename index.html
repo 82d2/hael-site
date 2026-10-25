@@ -157,6 +157,8 @@
     </script>
 
     <!-- New York (the app's serif) on Apple devices; Newsreader elsewhere -->
+<script>if(matchMedia('(prefers-color-scheme: dark)').matches)document.documentElement.dataset.theme='night';</script>
+<meta name="color-scheme" content="light dark">
 <link rel="stylesheet" href="/fonts/newsreader.css">
 <style>
 :root{--paper:#FBF7EE;--mat:#F4EDE0;--ink:#2F2A27;--soft:#5F5853;--muted:#716C68;--rule:#DED5C7;--rose:#955D64;--blush:#C99A9F;
@@ -483,7 +485,13 @@ document.getElementById('harches').innerHTML=H.map(([n,ph,a,b],i)=>`<div class="
  const ms=d-now,days=Math.floor(ms/864e5),hrs=Math.floor(ms%864e5/36e5);
  document.getElementById('next').textContent=`monday, in ${days?days+(days===1?' day ':' days '):''}${hrs} ${hrs===1?'hour':'hours'}`;})();
 // day or night
-document.getElementById('world').addEventListener('click',()=>{const n=document.documentElement.dataset.theme==='night';document.documentElement.dataset.theme=n?'':'night';const st=document.getElementById('wst');st.style.opacity=0;setTimeout(()=>{st.textContent=n?'day':'night';st.style.opacity=1;},500);document.querySelector('.store .icon').src=n?'/images/app/icon-day.png':'/images/app/icon-night.png';});
+// day or night: follows the phone's setting until the moon is touched
+(function(){const root=document.documentElement,st=document.getElementById('wst'),icon=document.querySelector('.store .icon'),dark=matchMedia('(prefers-color-scheme: dark)');let chosen=false;
+ function show(night,fade){const was=root.dataset.theme==='night';root.dataset.theme=night?'night':'';icon.src=night?'/images/app/icon-night.png':'/images/app/icon-day.png';
+  if(!fade||was===night){st.textContent=night?'night':'day';return;}st.style.opacity=0;setTimeout(()=>{st.textContent=night?'night':'day';st.style.opacity=1;},500);}
+ show(dark.matches,false);
+ dark.addEventListener('change',e=>{if(!chosen)show(e.matches,true);});
+ document.getElementById('world').addEventListener('click',()=>{chosen=true;show(root.dataset.theme!=='night',true);});})();
 </script>
 <script>
 const $=id=>document.getElementById(id);
