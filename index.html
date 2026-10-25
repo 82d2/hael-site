@@ -161,7 +161,7 @@
 <meta name="color-scheme" content="light dark">
 <link rel="stylesheet" href="/fonts/newsreader.css">
 <style>
-:root{--paper:#FBF7EE;--mat:#F4EDE0;--ink:#2F2A27;--soft:#5F5853;--muted:#716C68;--rule:#DED5C7;--rose:#955D64;--blush:#C99A9F;
+:root{--paper:#FBF7EE;--mat:#F4EDE0;--ink:#2F2A27;--soft:#5F5853;--muted:#6E6965;--rule:#DED5C7;--rose:#925B62;--blush:#C99A9F;
  --serif:ui-serif,'New York','Newsreader',Georgia,serif;
  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .28 0 0 0 0 .22 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 :root[data-theme=night]{--paper:#1E1B19;--mat:#26221F;--ink:#ECE4DC;--soft:#BDB3AB;--muted:#9C928B;--rule:#3B3531;--rose:#D29EA5;--blush:#B98289}
@@ -334,9 +334,7 @@ footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;m
 .cyc .phases{margin-top:6px}
 .season{gap:22px}.season .one{width:calc(50% - 11px);max-width:240px}
 .cyc .line{font-size:19px;text-align:center;max-width:22em}.cyc .hint{text-align:center;max-width:26em}
-.frame .letterstage{margin-top:10px;width:100%;max-width:440px}
 .pair>*{min-width:0}
-@media (max-width:480px){.frame:has(.letterstage),.frame:has(.cyc){padding:16px 12px}}.frame .tapline{margin-bottom:4px}
 /* questions */
 .faq{max-width:680px;margin:36px auto 0}
 .faq details{border-top:1px solid var(--rule);padding:16px 0}.faq details:last-of-type{border-bottom:1px solid var(--rule)}
@@ -346,6 +344,82 @@ footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;m
 .faq details p{margin-top:10px;font-size:16px;color:var(--soft);max-width:none}
 footer .row a{margin:0 2px}
 @media (max-width:420px){.letterstage{--H:128px;height:384px}.sheet{padding:22px 20px 0}.sheet p{font-size:15.5px;margin-top:11px}.sheet .sig{margin-top:14px}}
+.stagebg{position:relative;margin-top:64px;display:flex;justify-content:center}
+.stagebg::before{content:"";position:absolute;inset:8% 10% 0;background:radial-gradient(closest-side,rgba(239,214,190,.55),transparent);z-index:0}
+/* the device: Apple's iPhone 18 Pro bezel over a screen layer */
+.device{position:relative;aspect-ratio:1350/2760;z-index:1}
+.device .bezel{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.device .scr{position:absolute;left:5.333%;top:2.971%;width:89.333%;height:94.022%;border-radius:14% / 6.6%;overflow:hidden;background:#FBF8F6;z-index:1}
+.device .scr img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.app{position:absolute;left:0;top:0;width:393px;height:846px;transform-origin:0 0;color:#2E2B2A;user-select:none;-webkit-user-select:none}
+.app .shead{display:flex;justify-content:space-between;padding:60px 22px 0;font-size:12px;color:#9a928e}
+.app .glow{position:absolute;left:50%;top:130px;width:360px;height:360px;transform:translateX(-50%);background:radial-gradient(circle,rgba(239,214,190,.6),transparent 65%)}
+.app .ring{display:block;position:relative;touch-action:none;cursor:grab}
+.app .ring.drag{cursor:grabbing}
+.strack{fill:none;stroke:#E8DFDB;stroke-width:2.2}.sarc{fill:none;stroke:#B98088;stroke-width:2.6;stroke-linecap:round}.sknob{fill:#FBF8F6;stroke:#B98088;stroke-width:1.6}
+.snum{font-size:46px;font-weight:300;fill:#3a3634}.ssub{font-size:11px;font-style:italic;fill:#9a928e;letter-spacing:.04em}
+.app .cap{display:table;margin:16px auto 0;font-size:12.5px;color:#7a7370;border-radius:999px;background:#F3ECE9;padding:6px 14px}
+.app .sline{margin:12px 30px 0;text-align:center;font-size:25px;font-weight:300;line-height:1.3;color:#4a4542;min-height:98px;transition:opacity .3s}
+.app .spill{margin:26px auto 0;width:210px;padding:12px;border-radius:999px;text-align:center;font-size:16px;font-style:italic;background:#F3ECE9;color:#6e6864}
+.try{margin-top:8px;font-size:14px;font-style:italic;color:var(--rose)}
+/* the app's screens, at 393 × 846 points */
+.app{--sec:#7A736E;--ter:#A89A94;--blush:#C4959A;--rose:#B58389;--deep:#A37278;--pearl:#FBF6F1;--soft:#F9F4F2;--rubric:#A9646C;font-family:var(--serif)}
+.app svg text{font-family:var(--serif)}
+.home .ring{margin:22px auto 0;width:320px;height:320px}
+.hcap{margin:6px 40px 0;text-align:center;font-size:11px;color:var(--ter);line-height:1.5;min-height:34px}
+.hcap.rub{color:var(--rubric);font-style:italic}
+.hgreet{margin:24px 34px 0;text-align:center;font-size:16px;color:var(--sec);line-height:1.4}
+.hpass{margin:22px 34px 0;text-align:center;font-size:13px;color:var(--sec);line-height:1.6}
+.hbegin{display:table;margin:26px auto 0;width:140px;padding:11px 0;border-radius:999px;text-align:center;color:#fff;font-size:15px;font-style:italic;letter-spacing:1.5px;background:linear-gradient(90deg,#C4959A,#B58389)}
+.hrest{margin-top:10px;text-align:center;font-size:12px;font-style:italic;color:var(--ter)}
+.hnav{position:absolute;left:0;right:0;bottom:34px;display:flex;justify-content:space-between;padding:0 24px;font-size:11px;color:var(--ter)}
+.agreet{margin:16px 32px 0;text-align:center;font-size:24px;font-weight:300;color:var(--sec);line-height:1.3;min-height:62px;transition:opacity .4s}
+.aquote{margin:14px 34px 0;text-align:center;font-size:13px;font-weight:500;color:var(--sec);line-height:1.35;min-height:36px;transition:opacity .4s}
+.acap{display:table;margin:10px auto 0;font-size:13px;color:var(--sec);border-radius:999px;background:var(--soft);padding:7px 18px}
+.acap i{font-style:normal;font-size:9px;color:var(--ter);margin-left:5px}
+@keyframes beadbreathe{from{transform:scale(1);opacity:.22}to{transform:scale(1.25);opacity:.38}}
+.beadglow{transform-box:fill-box;transform-origin:center;animation:beadbreathe 4s ease-in-out infinite alternate}
+.dragging .beadglow{animation:none;transform:scale(2.15);opacity:.5}
+@keyframes twinkle{from{opacity:.25}to{opacity:1}}
+.star{animation:twinkle var(--c) ease-in-out infinite alternate;animation-delay:var(--d)}
+@media (prefers-reduced-motion:reduce){.beadglow,.star{animation:none}}
+.bodyledger{width:min(380px,92vw);background:#FBF8F6;border-radius:30px;padding:26px 22px 24px;text-align:center;font-family:var(--serif);box-shadow:0 20px 50px -34px rgba(46,43,42,.35)}
+.bodyledger .lm{font-size:12px;font-style:italic;color:#A89A94}
+.bodyledger .lw{font-size:20px;color:#7A736E;margin-top:4px}
+.bodyledger .lc{font-size:13px;font-style:italic;color:#A89A94;margin-top:2px}
+#lring{display:block;width:100%;height:auto;margin:14px auto 0;touch-action:none;cursor:pointer;user-select:none;-webkit-user-select:none}
+#lring text{font-family:var(--serif)}
+.bodyledger .lr{margin-top:12px;font-size:16px;line-height:1.5;color:#7A736E;min-height:48px}
+.bodyledger .lf{margin-top:6px;font-size:11px;font-style:italic;color:#A89A94;min-height:16px}
+.scrub{width:min(320px,80vw);margin-top:18px;accent-color:#A8737A}
+/* interactive figures stand on the page, captioned beneath, without a mat */
+.live{display:flex;flex-direction:column;align-items:center}
+.live .stagebg{margin-top:0}
+.live .device{width:min(330px,76vw)}
+.live .cap{justify-content:center;max-width:30em;margin-top:18px}
+.live .letterstage{margin-top:4px;width:100%;max-width:440px}
+.live .tapline{margin-top:14px}
+.bodyledger{margin:0 auto}
+/* the footer menu */
+.fmenu{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;max-width:920px;margin:44px auto 0;text-align:left}
+.fmenu div{display:flex;flex-direction:column;gap:9px}
+.fmenu .sc{color:var(--muted);margin-bottom:4px}
+.fmenu a{font-size:15px;color:var(--soft)}.fmenu a:hover{color:var(--rose)}
+footer .row{border-top:1px solid var(--rule);padding-top:20px;margin-top:44px}
+@media (max-width:700px){.fmenu{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 20px}}
+/* audit fixes (v6) */
+.bodyledger .lm,.bodyledger .lc,.bodyledger .lf{color:#796F6B}.bodyledger .lw,.bodyledger .lr{color:#77706B}
+.app .hcap,.app .hrest,.app .hnav{color:#857A75}
+/* phones: the store card comes straight after the opening, so the badges are on the first screen */
+@media (max-width:560px){.open>div:first-child{display:flex;flex-direction:column}.open .orn{order:0;align-self:flex-start}.open .lead{order:1}.open .store{order:2;margin-top:26px}.open .ledger{order:3;margin-top:30px}}
+/* narrow screens: ragged right instead of justified, so no rivers between words */
+@media (max-width:480px){.lead,.txt p{text-align:left;hyphens:manual}}
+/* tap targets at least 24px tall */
+.right .br{display:inline-block;padding:12px 0}
+.txt .more{padding:8px 0}
+.tapline{padding:10px 14px}
+.fmenu a{padding:3px 0}
+.scrub{height:28px}
 </style></head>
 <body>
 <svg width="0" height="0" style="position:absolute"><symbol id="enso" viewBox="0 0 20 20"><path d="M10 2.2a7.8 7.8 0 1 1-6.9 4.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol></svg>
@@ -360,7 +434,7 @@ footer .row a{margin:0 2px}
 <div class="wrap open">
   <div>
     <span class="orn"><svg><use href="#enso"/></svg><span class="hw">hæl</span><span class="sc">· a fasting companion</span></span>
-    <p class="lead">a fasting timer that <em>observes</em> instead of <em>coaching</em>. shaped by your menstrual cycle, it reads your weight against the season you are in, and writes a new page for every hour of the fast.</p>
+    <h1 class="lead">a fasting timer that <em>observes</em> instead of <em>coaching</em>. shaped by your menstrual cycle, it reads your weight against the season you are in, and writes a new page for every hour of the fast.</h1>
     <dl class="ledger" aria-label="the edition">
       <div><dt>current edition</dt><dd>fourth, autumn 26</dd></div>
       <div><dt>next letter</dt><dd id="next">monday</dd></div>
@@ -372,9 +446,34 @@ footer .row a{margin:0 2px}
       <div class="marks"><a href="https://apps.apple.com/app/apple-store/id6778956802?pt=129001731&amp;ct=site-hero&amp;mt=8"><img src="/images/app-store-badge.svg" width="135" height="45" alt="Download on the App Store"></a><img class="ah" src="/images/works-with-apple-health.svg" width="144" height="40" alt="Works with Apple Health"></div></div>
     </div>
   </div>
-  <figure>
-    <div class="frame screen"><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span><img src="/images/app/home.webp" alt="hæl's home: the ring of the day, sixteen hours set"></div>
-    <figcaption class="cap" style="justify-content:flex-end"><span class="sc">fig. 1</span>home, deep luteal. turn the dial past the top for days.</figcaption>
+  <figure class="live">
+    <div class="stagebg"><div class="device"><div class="scr" id="scr1"><div class="app home" id="home">
+      <div class="shead" aria-hidden="true"><span>hæl</span><span>?</span></div>
+      <svg class="ring" id="hdial" viewBox="0 0 320 320" role="slider" aria-label="the length of the fast" aria-valuenow="16" aria-valuemin="8" aria-valuemax="168" tabindex="0">
+        <defs>
+          <radialGradient id="hglow" gradientUnits="userSpaceOnUse" cx="160" cy="160" r="143"><stop offset="0.45" stop-color="#D4C9DE" stop-opacity=".09"/><stop offset="1" stop-color="#D4C9DE" stop-opacity="0"/></radialGradient>
+          <linearGradient id="harc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C4959A"/><stop offset="1" stop-color="#B58389"/></linearGradient>
+          <filter id="b3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+          <radialGradient id="starw"><stop offset="0" stop-color="#F5EDE8" stop-opacity=".9"/><stop offset="1" stop-color="#F5EDE8" stop-opacity="0"/></radialGradient>
+          <radialGradient id="starr"><stop offset="0" stop-color="#B58389" stop-opacity=".55"/><stop offset="1" stop-color="#B58389" stop-opacity="0"/></radialGradient>
+        </defs>
+        <circle cx="160" cy="160" r="143" fill="url(#hglow)"/>
+        <g id="hrings"></g>
+        <path id="hbark" d="M0 0" fill="none" stroke="url(#harc)" stroke-width="2.5" stroke-linecap="round"/>
+        <g id="hstars"></g>
+        <g id="hbead"><circle class="beadglow" r="12" fill="none" stroke="#C4959A" stroke-width="4" filter="url(#b3)"/><circle r="8" fill="#C4959A" fill-opacity=".4" filter="url(#b3)"/><circle r="4.5" fill="#FBF6F1" stroke="#B58389" stroke-opacity=".7" stroke-width=".8"/></g>
+        <text id="hnum" x="160" y="168" text-anchor="middle" style="font-size:48px;font-weight:200;fill:#7A736E">16</text>
+        <line id="hline" x1="146" x2="174" y1="176" y2="176" stroke="#A9646C" stroke-opacity=".55" stroke-width="1"/>
+        <text id="hunit" x="160" y="196" text-anchor="middle" style="font-size:13px;fill:#7A736E">hours</text>
+      </svg>
+      <p class="hcap" id="hcap"></p>
+      <p class="hgreet">the mind circles. the body stays on course.</p>
+      <p class="hpass">the day unspools. the hands keep their tension without being asked. the body asking for more. rest and warmth and food, without apology. she sleeps in the shape she earned.</p>
+      <div class="hbegin" aria-hidden="true">begin</div>
+      <div class="hrest" aria-hidden="true">rest</div>
+      <div class="hnav" aria-hidden="true"><span>ledger</span><span>form</span><span>settings</span></div>
+    </div></div><img class="bezel" src="/images/iphone-silver.webp" width="1350" height="2760" fetchpriority="high" alt=""></div></div>
+    <figcaption class="cap"><span class="sc">fig. 1</span>home, deep luteal. turn the dial past the top for days.</figcaption>
   </figure>
 </div>
 
@@ -387,21 +486,57 @@ footer .row a{margin:0 2px}
 
 <div class="band" id="page"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>ii. the page</span></div></div>
 <section><div class="wrap pair">
-  <figure><div class="frame screen" style="margin:0 auto"><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span><img src="/images/app/active.webp" alt="the active fast at hour six: the threshold"></div>
-  <figcaption class="cap" style="justify-content:center"><span class="sc">fig. 2</span>the active fast, close.</figcaption></figure>
+  <figure class="live">
+    <div class="stagebg"><div class="device" id="dev2">
+      <div class="scr" id="scr2"><div class="app" id="app">
+        <div class="shead" aria-hidden="true"><span>hæl</span><span>?</span></div>
+        <svg class="ring" id="dial" viewBox="0 0 320 320" role="slider" aria-label="hours into the fast" aria-valuenow="6" aria-valuemin="0" aria-valuemax="24" tabindex="0" style="width:320px;height:320px;margin:14px auto 0">
+          <defs>
+            <radialGradient id="aglow" gradientUnits="userSpaceOnUse" cx="160" cy="160" r="156"><stop offset="0.42" stop-color="#E5DCD9" stop-opacity=".18"/><stop offset="1" stop-color="#E5DCD9" stop-opacity="0"/></radialGradient>
+            <linearGradient id="aarc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C4959A"/><stop offset="1" stop-color="#B58389"/></linearGradient>
+            <filter id="b5" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5"/></filter>
+            <filter id="b25" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.5"/></filter>
+          </defs>
+          <circle cx="160" cy="160" r="156" fill="url(#aglow)"/>
+          <circle cx="160" cy="160" r="130" fill="none" stroke="#E5DCD9" stroke-opacity=".6" stroke-width="3"/>
+          <path id="ahalo" d="M0 0" fill="none" stroke-width="7" stroke-linecap="round" opacity=".7" filter="url(#b5)"/>
+          <path id="aarcp" d="M0 0" fill="none" stroke="url(#aarc)" stroke-width="2.5" stroke-linecap="round"/>
+          <path id="afine" d="M0 0" fill="none" stroke="#B58389" stroke-opacity=".9" stroke-width="1.2" stroke-linecap="round"/>
+          <g id="abead"><circle r="6.5" fill="#C4959A" fill-opacity=".4" filter="url(#b25)"/><circle r="2.5" fill="#FBF6F1" stroke="#B58389" stroke-opacity=".7" stroke-width=".6"/></g>
+          <text id="num" x="160" y="166" text-anchor="middle" style="font-size:48px;font-weight:200;fill:#7A736E">6h 0m</text>
+          <text id="unit" x="160" y="190" text-anchor="middle" style="font-size:11.7px;fill:#A89A94;letter-spacing:.5px">the threshold · hour six</text>
+        </svg>
+        <div class="acap">goal 16h · ends 12:00 am<i>✎</i></div>
+        <p class="agreet" id="agreet"></p>
+        <p class="aquote" id="line"></p>
+      </div></div>
+      <img class="bezel" src="/images/iphone-silver.webp" width="1350" height="2760" loading="lazy" decoding="async" alt="">
+    </div></div>
+    <figcaption class="cap"><span class="sc">fig. 2</span>the active fast, close. draw the hours along the ring.</figcaption>
+  </figure>
   <div class="txt"><h2>a new page for every hour.</h2><p>begin a fast and the ring keeps time. the words beneath it change as the body does: the threshold, the crossing, the quiet hours. no streak flames, no badges, no voice telling you to push.</p></div>
 </div></section>
 
 <div class="band" id="water"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>iii. the water</span></div></div>
 <section><div class="wrap pair flip">
-  <figure><div class="frame screen" style="margin:0 auto"><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span><img src="/images/app/body.webp" alt="the body ledger: each morning a bead on a ring"></div>
-  <figcaption class="cap" style="justify-content:center"><span class="sc">fig. 3</span>the body ledger, with hæl’s own sample.</figcaption></figure>
+  <figure class="live">
+    <div class="bodyledger">
+      <p class="lm">this morning</p>
+      <p class="lw" id="lw">56.8 kg</p>
+      <p class="lc">change</p>
+      <svg id="lring" viewBox="0 0 300 300" role="img" aria-label="the body ledger ring"></svg>
+      <p class="lr" id="lread"></p>
+      <p class="lf" id="lfoot"></p>
+    </div>
+    <input class="scrub" id="day" type="range" min="1" max="28" value="19" aria-label="day of the sample cycle">
+    <figcaption class="cap"><span class="sc">fig. 3</span>the body ledger, with hæl’s own sample: a 36 hour fast and a 72 hour fast. hold the ring to read a morning; slide to move through the cycle.</figcaption>
+  </figure>
   <div class="txt"><h2>the water, given room.</h2><p>weight rises before a period, and most apps read it as failure. hæl learns where your body carries water across the cycle and reads each morning against that, never against yesterday.</p><a class="sc br more" href="/weight-gain-before-period/">read <i>the study</i></a></div>
 </div></section>
 
 <div class="band" id="cycle"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>iv. the cycle</span></div></div>
 <section><div class="wrap pair">
-  <figure><div class="frame"><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span><div class="cyc">
+  <figure class="live"><div class="cyc">
     <div class="phases" role="tablist" aria-label="phases"><button role="tab" data-p="menstrual">menstrual</button><button role="tab" data-p="follicular">follicular</button><button role="tab" data-p="ovulation">ovulation</button><button role="tab" data-p="luteal">luteal</button></div>
     <div class="season">
       <div class="one"><svg id="flat" viewBox="-130 -130 260 260" aria-hidden="true"></svg><p class="rc">one plan, all month</p></div>
@@ -409,14 +544,14 @@ footer .row a{margin:0 2px}
     </div>
     <p class="line" id="psum" aria-live="polite"></p>
     <p class="hint" id="ptip"></p>
-  </div></div>
+  </div>
   <figcaption class="cap" style="justify-content:center"><span class="sc">fig. 4</span>one plan for the month, or the hours each phase suggests. touch a phase or a bead.</figcaption></figure>
   <div class="txt"><h2>the cycle, read.</h2><p>connect Apple Health or enter your last period, and the ring takes the colour of the phase. the phase suggests the hours, and the words follow it. if a cycle doesn’t apply to you, the ring keeps the hours alone.</p><a class="sc br more" href="/intermittent-fasting-menstrual-cycle/">read <i>the evidence</i></a></div>
 </div></section>
 
 <div class="band" id="letters"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>v. the letters</span></div></div>
 <section><div class="wrap pair flip">
-  <figure><div class="frame"><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span>
+  <figure class="live">
     <div class="letterstage closed" id="letter" role="button" tabindex="0" aria-label="a sealed monday letter; open it">
       <div class="lshadow"></div>
       <div class="lift">
@@ -425,7 +560,7 @@ footer .row a{margin:0 2px}
         <div class="flap ltop"><div class="face"><div class="sheet" aria-hidden="true"></div></div><div class="back"><div class="wax">æ</div></div></div>
       </div>
     </div>
-    <button class="tapline" id="lopen">open the letter</button></div>
+    <button class="tapline" id="lopen">open the letter</button>
   <figcaption class="cap" style="justify-content:center"><span class="sc">fig. 5</span>a monday letter, from hæl’s own sample. it opens from its seal.</figcaption></figure>
   <div class="txt"><h2>a letter on monday.</h2><p>the full witness writes to you each monday about the week you kept. each month, a reading. each season, another. and at the year’s end, the year.</p></div>
 </div></section>
@@ -471,19 +606,29 @@ footer .row a{margin:0 2px}
 <footer><div class="wrap">
   <svg class="seal" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="27" fill="none" stroke="var(--rule)" stroke-width="1"/><circle cx="30" cy="30" r="23" fill="none" stroke="var(--blush)" stroke-width="1.4"/><text x="30" y="37" text-anchor="middle" style="font:300 20px var(--serif);fill:var(--rose)">æ</text></svg>
   <span class="sc" style="color:var(--soft)">for iPhone, iPad and Apple Watch · kept on your phone, never on a server of ours</span>
-  <div class="row sc"><span>© 2026 KI-GEN Studios LLC</span><span><a href="/privacy/">privacy</a> · <a href="/terms/">terms</a> · <a href="/consumer-health-data/">health data</a> · <a href="mailto:hello@hael.app">write to us</a></span></div>
+  <nav class="fmenu" aria-label="Footer">
+    <div><span class="sc">the practice</span><a href="#hours">the hours</a><a href="#page">the page</a><a href="#water">the water</a><a href="#cycle">the cycle</a><a href="#letters">the letters</a></div>
+    <div><span class="sc">the full witness</span><a href="#opens">the fourteen days</a><a href="#questions">questions</a><a href="https://apps.apple.com/app/apple-store/id6778956802?pt=129001731&amp;ct=site-footer&amp;mt=8">on the App Store</a></div>
+    <div><span class="sc">reading</span><a href="/weight-gain-before-period/">weight before a period</a><a href="/intermittent-fasting-menstrual-cycle/">fasting and the cycle</a></div>
+    <div><span class="sc">the house</span><a href="/privacy/">privacy</a><a href="/terms/">terms</a><a href="/consumer-health-data/">health data</a><a href="mailto:hello@hael.app">write to us</a></div>
+  </nav>
+  <div class="row sc"><span>© 2026 KI-GEN Studios LLC</span><span>fourth edition · autumn 2026</span></div>
 </div></footer>
 
 <script>
 // the hours as specimens, each with its arc of the day
 const H=[['lauds','the threshold',0,3],['prime','the threshold',3,6],['terce','the threshold',6,9],['noon','the threshold',9,12],['none','the crossing',12,16],['vespers','the quiet hours',16,20],['compline','the quiet hours',20,24],['vigil','the turnings',24,null]];
 const ro=['i','ii','iii','iv','v','vi','vii','viii'];
-const arc=(a,b)=>{const R=26,c=32,p=t=>[c+R*Math.sin(t/24*2*Math.PI),c-R*Math.cos(t/24*2*Math.PI)];const[x0,y0]=p(a),[x1,y1]=p(b);return `M${x0} ${y0} A${R} ${R} 0 ${b-a>12?1:0} 1 ${x1} ${y1}`;};
-document.getElementById('harches').innerHTML=H.map(([n,ph,a,b],i)=>`<div class="arch"><div class="n">${ro[i]}.</div><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26" fill="none" stroke="var(--rule)" stroke-width="1.2"/>${b===null?'<circle cx="32" cy="32" r="26" fill="none" stroke="var(--blush)" stroke-width="2.2"/><circle cx="32" cy="32" r="19" fill="none" stroke="var(--blush)" stroke-width="1" opacity=".6"/>':`<path d="${arc(a,b)}" fill="none" stroke="var(--blush)" stroke-width="2.6" stroke-linecap="round"/>`}</svg><div class="nm">${n}</div><div class="ph">${ph}</div><div class="hr">${b===null?'hour 24 and on':`hours ${a} to ${b}`}</div></div>`).join('');
+const archArc=(a,b)=>{const R=26,c=32,p=t=>[c+R*Math.sin(t/24*2*Math.PI),c-R*Math.cos(t/24*2*Math.PI)];const[x0,y0]=p(a),[x1,y1]=p(b);return `M${x0} ${y0} A${R} ${R} 0 ${b-a>12?1:0} 1 ${x1} ${y1}`;};
+document.getElementById('harches').innerHTML=H.map(([n,ph,a,b],i)=>`<div class="arch"><div class="n">${ro[i]}.</div><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26" fill="none" stroke="var(--rule)" stroke-width="1.2"/>${b===null?'<circle cx="32" cy="32" r="26" fill="none" stroke="var(--blush)" stroke-width="2.2"/><circle cx="32" cy="32" r="19" fill="none" stroke="var(--blush)" stroke-width="1" opacity=".6"/>':`<path d="${archArc(a,b)}" fill="none" stroke="var(--blush)" stroke-width="2.6" stroke-linecap="round"/>`}</svg><div class="nm">${n}</div><div class="ph">${ph}</div><div class="hr">${b===null?'hour 24 and onwards':`hours ${a} to ${b}`}</div></div>`).join('');
 // the next letter, counted on this device
-(function(){const now=new Date(),d=new Date(now);const add=(8-now.getDay())%7||7;d.setDate(now.getDate()+add);d.setHours(0,0,0,0);
- const ms=d-now,days=Math.floor(ms/864e5),hrs=Math.floor(ms%864e5/36e5);
- document.getElementById('next').textContent=`monday, in ${days?days+(days===1?' day ':' days '):''}${hrs} ${hrs===1?'hour':'hours'}`;})();
+(function(){const out=document.getElementById('next');
+ function tell(){const now=new Date();if(now.getDay()===1){out.textContent='today, monday';return;}
+  const d=new Date(now);d.setDate(now.getDate()+((8-now.getDay())%7));d.setHours(0,0,0,0);
+  const ms=d-now,days=Math.floor(ms/864e5),hrs=Math.floor(ms%864e5/36e5),min=Math.ceil(ms%36e5/6e4);
+  const p=(n,w)=>n+' '+w+(n===1?'':'s');
+  out.textContent='monday, in '+(days?p(days,'day')+' '+p(hrs,'hour'):hrs?p(hrs,'hour'):p(min,'minute'));}
+ tell();setInterval(tell,30000);})();
 // day or night
 // day or night: follows the phone's setting until the moon is touched
 (function(){const root=document.documentElement,st=document.getElementById('wst'),icon=document.querySelector('.store .icon'),dark=matchMedia('(prefers-color-scheme: dark)');let chosen=false;
@@ -494,7 +639,226 @@ document.getElementById('harches').innerHTML=H.map(([n,ph,a,b],i)=>`<div class="
  document.getElementById('world').addEventListener('click',()=>{chosen=true;show(root.dataset.theme!=='night',true);});})();
 </script>
 <script>
-const $=id=>document.getElementById(id);
+window.whenNear=(ids,fn)=>{let done=false;const io=new IntersectionObserver(es=>{if(!done&&es.some(e=>e.isIntersecting)){done=true;io.disconnect();fn();}},{rootMargin:'800px 0px'});ids.forEach(i=>{const e=document.getElementById(i);e&&io.observe(e);});};
+const $=id=>document.getElementById(id), reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const NS='http://www.w3.org/2000/svg', el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e;};
+const W=['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty'];
+function fade(e,t){if(e.textContent===t)return;if(reduce){e.textContent=t;return;}e.style.opacity=0;setTimeout(()=>{e.textContent=t;e.style.opacity=1;},180);}
+function arc(cx,r,from,to){ // fractions of a turn, clockwise from the top
+  if(to-from<=0.0005) return '';
+  if(to-from>=0.9999) to=from+0.9999;
+  const p=f=>{const a=(-90+360*f)*Math.PI/180;return [cx+r*Math.cos(a),cx+r*Math.sin(a)];};
+  const [x0,y0]=p(from),[x1,y1]=p(to); return `M${x0.toFixed(2)} ${y0.toFixed(2)} A${r} ${r} 0 ${to-from>.5?1:0} 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`;}
+function onCircle(cx,r,f){const a=(-90+360*f)*Math.PI/180;return [cx+r*Math.cos(a),cx+r*Math.sin(a)];}
+function fit(id,app){const s=$(id),a=$(app);const k=s.clientWidth/393;a.style.transform='scale('+k+')';}
+['scr1','scr2'].forEach((id,i)=>{const app=i?'app':'home';new ResizeObserver(()=>fit(id,app)).observe($(id));fit(id,app);});
+function touchDeg(svg,e){const r=svg.getBoundingClientRect();let d=Math.atan2(e.clientY-r.top-r.height/2,e.clientX-r.left-r.width/2)*180/Math.PI+90;return d<0?d+360:d;}
+
+// ===== Turnings and TurningDial, as in the app (Turnings.swift) =====
+const T={perTurn:24,min:8,max:168,maxTurn:7,above:[24,36,48,72,96,120,144,168],ratio:.83,depth:.078};
+const D={dph:15,maxA:720,dps:360/7,det:8,hdet:3};
+const allowed=[...Array(16)].map((_,i)=>8+i).concat(T.above);
+const countFor=g=>Math.min(Math.max(Math.ceil(Math.max(g,0)/24),1),7);
+function radii(outer,n,depth){n=Math.min(Math.max(n,1),7);if(n<=1)return[outer];const first=depth*(1-T.ratio)/(1-Math.pow(T.ratio,6));const fb=[outer];let g=first;for(let i=1;i<n;i++){fb.push(fb[fb.length-1]-g);g*=T.ratio;}return fb.reverse();}
+function hoursFor(a){a=Math.min(Math.max(a,0),D.maxA);if(a<=360)return a/D.dph;const pos=(a-360)/D.dps,lo=Math.min(Math.floor(pos),T.above.length-2);return T.above[lo]+(pos-lo)*(T.above[lo+1]-T.above[lo]);}
+function angleFor(h){h=Math.min(Math.max(h,0),T.max);if(h<=24)return h*D.dph;let lo=0;for(let i=0;i<T.above.length-1;i++)if(T.above[i]<=h)lo=i;return 360+(lo+(h-T.above[lo])/(T.above[lo+1]-T.above[lo]))*D.dps;}
+function snap(h){if(h<24)return Math.min(Math.max(Math.round(h),T.min),24);const c=Math.min(h,T.max);return T.above.reduce((a,b)=>Math.abs(b-c)<Math.abs(a-c)?b:a);}
+function step(h,dir){let n=0;allowed.forEach((g,i)=>{if(Math.abs(g-h)<Math.abs(allowed[n]-h))n=i;});return allowed[Math.min(Math.max(n+(dir>0?1:-1),0),allowed.length-1)];}
+function settle(goal,finger,cur){if(goal===cur||!allowed.includes(cur))return goal;const rest=angleFor(cur),up=finger>rest,nb=step(cur,up?1:-1);if(nb!==goal)return goal;const edge=(rest+angleFor(nb))/2,hold=cur>=24?D.det:D.hdet;return (up?finger<edge+hold:finger>edge-hold)?cur:goal;}
+function drag(touch,prev,cur){const ref=prev??angleFor(cur);let c;if(prev==null){const nearTop=touch<D.dps/2;if(cur<24)c=[nearTop?touch+360:touch];else if(cur===24)c=[touch,touch+360];else c=nearTop?[touch+360,touch+720]:[touch+360];}else{const base=touch+360*Math.round((ref-touch)/360);c=[base-360,base,base+360];}const f=c.reduce((a,b)=>Math.abs(b-ref)<Math.abs(a-ref)?b:a);return {finger:f,goal:settle(snap(hoursFor(f)),f,cur)};}
+const beadDeg=g=>g>=T.max?360:angleFor(g)%360;
+const barkShare=g=>Math.min(Math.max(g<=24?g/24:(angleFor(g)-360)/360,0),1);
+
+// ===== fig. 1: home =====
+let goal=16, finger=null, hdrag=false;
+const SUG=[{h:15,label:'deep luteal',primary:true,i:0},{h:20,label:'common routine',primary:false,i:1}];
+function breakLine(hours){const now=new Date(),end=new Date(now.getTime()+hours*3600e3),eh=end.getHours();
+  const dd=Math.round((new Date(end.getFullYear(),end.getMonth(),end.getDate())-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/864e5);
+  const t=end.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}).toLowerCase();let ctx;
+  if(dd===0)ctx=eh<12?'this morning':eh<17?'this afternoon':eh<21?'this evening':'tonight';
+  else if(dd===1)ctx=eh<5?'early tomorrow':eh<12?'tomorrow morning':eh<17?'tomorrow afternoon':eh<21?'tomorrow evening':'tomorrow night';
+  else{const n=end.toLocaleDateString('en-US',{weekday:'long'}).toLowerCase();ctx=eh<5?'early '+n:eh<12?n+' morning':eh<17?n+' afternoon':eh<21?n+' evening':n+' night';}
+  return 'the fast breaks '+ctx+' at '+t+'.';}
+function drawHome(){
+  const g=$('hrings');g.innerHTML='';const n=countFor(goal),rs=radii(130,n,320*T.depth*0.8125);
+  rs.forEach((r,i)=>{const bark=i===rs.length-1;el('circle',{cx:160,cy:160,r,fill:'none',stroke:'#D4C9DE','stroke-opacity':bark?.5:.35,'stroke-width':bark?3:1},g);
+    if(!bark) el('circle',{cx:160,cy:160,r,fill:'none',stroke:'#B58389','stroke-opacity':.38,'stroke-width':1},g);});
+  $('hbark').setAttribute('d',arc(160,130,0,barkShare(goal)));$('hbark').setAttribute('stroke-width',hdrag?6:2.5);
+  const [bx,by]=onCircle(160,130,beadDeg(goal)/360);$('hbead').setAttribute('transform',`translate(${bx} ${by})`);
+  const st=$('hstars');st.innerHTML='';
+  if(goal<24) SUG.forEach(s=>{const landed=Math.abs(s.h-goal)<1;const [x,y]=onCircle(160,130,s.h/24);const gg=el('g',{transform:`translate(${x} ${y})`,class:'star',style:`--c:${[2.5,3.3][s.i]}s;--d:${s.i*.35}s`},st);
+    el('circle',{r:landed?24:(s.primary?22:18),fill:'url(#starw)'},gg);if(landed||s.primary)el('circle',{r:landed?12:10,fill:'url(#starr)'},gg);el('circle',{r:landed?4:(s.primary?3.5:2.25),fill:landed||s.primary?'#B58389':'#C4959A'},gg);});
+  const days=goal>=24&&goal%24===0; $('hnum').textContent=days?goal/24:goal; $('hunit').textContent=days?(goal===24?'day':'days'):'hours';
+  const w=$('hnum').getComputedTextLength?$('hnum').getComputedTextLength():28; $('hline').setAttribute('x1',160-w/2+2);$('hline').setAttribute('x2',160+w/2-2);
+  const cap=$('hcap'); cap.classList.toggle('rub',hdrag);
+  if(hdrag){cap.textContent='or tap the number to write it.';}
+  else{const act=SUG.find(s=>Math.abs(s.h-goal)<1);const rec=act?`${act.label}. ${act.h} hours.`:`${SUG[0].label}. ${SUG[0].h} hours.`;cap.innerHTML='';cap.append(rec,document.createElement('br'),breakLine(goal));}
+  $('hdial').setAttribute('aria-valuenow',goal);$('hdial').classList.toggle('dragging',hdrag);
+}
+const hd=$('hdial');
+hd.addEventListener('pointerdown',e=>{e.preventDefault();hd.setPointerCapture(e.pointerId);hdrag=true;finger=null;const r=drag(touchDeg(hd,e),finger,goal);finger=r.finger;goal=r.goal;drawHome();});
+hd.addEventListener('pointermove',e=>{if(!hdrag)return;const r=drag(touchDeg(hd,e),finger,goal);finger=r.finger;if(r.goal!==goal){goal=r.goal;}drawHome();});
+['pointerup','pointercancel'].forEach(t=>hd.addEventListener(t,()=>{hdrag=false;finger=null;drawHome();}));
+hd.addEventListener('keydown',e=>{if(['ArrowRight','ArrowUp'].includes(e.key)){goal=step(goal,1);drawHome();e.preventDefault();}if(['ArrowLeft','ArrowDown'].includes(e.key)){goal=step(goal,-1);drawHome();e.preventDefault();}});
+drawHome();
+
+// ===== fig. 2: the active fast (ActiveFastView, TurningRing) =====
+const GOAL=16; let el2=6, adrag=false;
+const LINES=[[2,"the stomach registers it first, a faint draft where the meal was."],[4,"the mind adjusts slower than the body, it always has."],[6,"hunger arrives like a bell. it rings, and then the silence after it is deeper."],[8,"hunger speaks but does not insist. a suggestion, not a siren."],[10,"something shifted and no one left the room."],[12,"lighter now, like the hour after a storm passes through."],[14,"the body remembers this. a hand on a familiar doorknob."],[16,"doubt arrives around now but it belongs to the clock, not the marrow."]];
+const OVER=[["the ring is full. the practice continues.","past the mark. the body did not notice the line.","the goal behind. the hours adding themselves, unhurried."],["past the mark. the hours continuing on their own authority.","overtime. the body carrying what the plan did not ask for.","the plan ended. the body had more to say."],["well past the plan. the hours adding themselves, unhurried.","the clock counts past the goal. the body is indifferent to the line.","hours past the mark. the fast, on the body's clock now."]];
+const halo=h=>h<3?'#E2CFC6':h<6?'#DDBCB9':h<12?'#DFD0B5':h<16?'#C4959A':h<20?'#B58389':'#A37278';
+function phaseLabel(sec){const h=Math.floor(sec/3600),m=Math.floor(sec/60);const name=h<12?'the threshold':h<16?'the crossing':'the quiet hours';return name+' · '+(m<60?m+'m in':'hour '+W[h]);}
+function drawFast(){
+  const sec=el2*3600, h=Math.floor(el2), m=Math.floor((sec%3600)/60), frac=Math.min(el2/24,.9999), goalShare=GOAL/24;
+  const solid=el2>GOAL?Math.min(goalShare,frac):frac;
+  $('ahalo').setAttribute('d',arc(160,130,0,frac));$('ahalo').setAttribute('stroke',halo(h));
+  $('aarcp').setAttribute('d',arc(160,130,0,solid));$('afine').setAttribute('d',frac>solid?arc(160,130,solid,frac):'');
+  const [x,y]=onCircle(160,130,frac);$('abead').setAttribute('transform',`translate(${x} ${y})`);$('abead').style.display=frac>0?'':'none';
+  $('num').textContent=h<1?m+'m':h+'h '+m+'m'; $('unit').textContent=phaseLabel(sec); $('dial').setAttribute('aria-valuenow',h);
+  const over=el2>=GOAL;
+  fade($('agreet'),over?'past the mark. the fast continuing.':h>=6?'deeper now. the drawer it was reaching for, found.':'the fast, still new. the body adjusting.');
+  let q; if(over){const ho=Math.floor(el2-GOAL);const pool=OVER[ho<2?0:ho<4?1:2];q=pool[h%3];} else q=(LINES.find(b=>h<b[0])||LINES[LINES.length-1])[1];
+  fade($('line'),q);
+}
+const ad=$('dial');
+function fromA(e){let d=touchDeg(ad,e);let n=d/360*24;if(el2>20&&n<4)n=23.99;if(el2<4&&n>20)n=0;el2=n;drawFast();}
+ad.addEventListener('pointerdown',e=>{e.preventDefault();adrag=true;ad.setPointerCapture(e.pointerId);fromA(e);});
+ad.addEventListener('pointermove',e=>{if(adrag)fromA(e);});
+['pointerup','pointercancel'].forEach(t=>ad.addEventListener(t,()=>{adrag=false;}));
+ad.addEventListener('keydown',e=>{if(['ArrowRight','ArrowUp'].includes(e.key)){el2=Math.min(23.99,Math.floor(el2)+1);drawFast();e.preventDefault();}if(['ArrowLeft','ArrowDown'].includes(e.key)){el2=Math.max(0,Math.floor(el2)-1);drawFast();e.preventDefault();}});
+whenNear(['dial'],drawFast);
+// ===== fig. 3: the body ledger (LedgerSamples .daily → BodyRing.make → BodyRingView) =====
+const CAP=0.5, SHAPE=0.35, RING=0.7, WELL=1.0;
+const median=v=>{if(!v.length)return null;const a=[...v].sort((x,y)=>x-y),m=a.length>>1;return a.length%2?a[m]:(a[m-1]+a[m])/2;};
+const scaledKg=kg=>CAP*Math.tanh(kg/RING);
+const dayIndex=d=>Math.round(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5);
+function rng(seed){const M=(1n<<64n)-1n;let st=(BigInt(seed)*0x9E3779B97F4A7C15n)&M;return (lo,hi)=>{st=(st*6364136223846793005n+1442695040888963407n)&M;const unit=Number(st>>11n)/2**53;return lo+unit*(hi-lo);};}
+function sample(todayInCycle,now){ // LedgerSample.daily.history(now:)
+  const R=rng(7), today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const at=(off,h=7,m=10)=>new Date(today.getFullYear(),today.getMonth(),today.getDate()+off,h,m);
+  const lengths=[28,27,29], usual=28; const so=[-(todayInCycle-1)]; [...lengths].reverse().forEach(L=>so.unshift(so[0]-L)); const first=so[0];
+  const fasts=[{start:at(-13,19,0),end:at(-11,7,0)},{start:at(-7,19,0),end:at(-4,19,0)}];
+  const fx=o=>(o>=-12&&o<=-11)?-0.4:(o>=-6&&o<=-4)?-0.5-(o+6)*0.2:(o>=-3&&o<=-1)?-0.8+(o+3)*0.3:0;
+  const cd=o=>{let idx=-1;so.forEach((st,i)=>{if(st<=o)idx=i;});const L=idx<lengths.length?lengths[idx]:usual;return [o-so[idx]+1,L];};
+  const kgAt=o=>{const [d,L]=cd(o);let kg=57.4-(o-first)*0.006;if(d>L-6)kg+=0.12*(d-(L-6));if(d<=3)kg+=0.35-d*0.08;kg+=fx(o);return kg+R(-0.25,0.25);};
+  const entries=[];for(let o=first;o<=0;o++){if(o!==0&&R(0,1)<0.17)continue;entries.push({kg:kgAt(o),date:at(o)});}
+  return {entries,starts:so.map(o=>at(o,8,0)),cycleLength:usual,fasts};
+}
+function makeRing(h,now){ // BodyRing.make
+  const today=dayIndex(now), W=new Map(); h.entries.forEach(e=>W.set(dayIndex(e.date),e));
+  const spans=h.fasts.map(f=>{const hrs=(f.end-f.start)/36e5;return hrs>=24?{from:dayIndex(f.start),to:dayIndex(f.end),long:hrs>=48}:null}).filter(Boolean);
+  const afterLong=d=>spans.some(s=>s.long&&s.to<d&&d<=s.to+4), during=d=>spans.some(s=>s.from<=d&&d<=s.to);
+  const starts=h.starts.map(dayIndex).sort((a,b)=>a-b); const current=starts.filter(x=>x<=today).pop();
+  const gaps=starts.slice(1).map((x,i)=>x-starts[i]).filter(g=>g>=18&&g<=45); const length=gaps.length?Math.round(median(gaps)):Math.max(21,Math.min(45,h.cycleLength));
+  // her usual for each cycle day
+  const done=new Set(starts.filter(x=>x<current)), cycles=new Map();
+  W.forEach((e,d)=>{if(d>=current)return;const st=starts.filter(x=>x<=d).pop();if(st==null||!done.has(st))return;if(!cycles.has(st))cycles.set(st,new Map());cycles.get(st).set(d-st+1,e.kg);});
+  const usable=[...cycles.values()].filter(c=>c.size>=3); let usual=null;
+  if(usable.length>=2){const longest=Math.max(...usable.map(c=>Math.max(...c.keys())));usual=new Map();let last=null;
+    for(let p=1;p<=longest+7;p++){const near=[];usable.forEach(c=>c.forEach((kg,k)=>{if(Math.abs(k-p)<=2)near.push(kg);}));const v=median(near);if(v!=null)last=v;if(last!=null)usual.set(p,last);}}
+  const days=[...W.keys()].filter(d=>d>=current&&d<=today).sort((a,b)=>a-b);
+  const here=new Map(days.map(d=>[d,W.get(d)])); const own=median(days.map(d=>here.get(d).kg))??0;
+  const top=usual?Math.max(...usual.keys()):0, u=p=>usual.get(Math.min(p,top));
+  const deltas=days.map(d=>here.get(d).kg-(usual?(u(d-current+1)??own):own));
+  let drawn, swell=[], ghost=[], sinceLast=null;
+  { const lvl=median(deltas), anc=Math.tanh(-lvl/SHAPE), reach=1+Math.abs(anc); drawn=deltas.map(x=>CAP*(Math.tanh((x-lvl)/SHAPE)-anc)/reach); }
+  if(usual){const lean=Math.min(...Array.from({length},(_,i)=>u(i+1)));drawn=days.map(d=>scaledKg(here.get(d).kg-lean));
+    const water=Array.from({length},(_,i)=>Math.max(0,(u(i+1)??lean)-lean));
+    const wts=[-3,-2,-1,0,1,2,3].map(k=>Math.exp(-(k*k)/4.5)),tot=wts.reduce((a,b)=>a+b,0);
+    swell=water.map((_,i)=>[-3,-2,-1,0,1,2,3].reduce((sum,k,j)=>sum+water[((i+k)%length+length)%length]*wts[j],0)/tot).map(scaledKg);
+    const prev=starts.filter(x=>x<current).pop();
+    if(prev!=null){const last=new Map([...W].filter(([d])=>d>=prev&&d<current&&d-prev<length));
+      ghost=[...last.keys()].sort((a,b)=>a-b).map(d=>({position:d-prev+1,offset:scaledKg(last.get(d).kg-lean)}));
+      const then=new Map([...last].map(([d,e])=>[d-prev,e.kg]));const diffs=[];
+      here.forEach((e,d)=>{const p=d-current;const kg=then.get(p)??then.get(p-1)??then.get(p+1);if(kg!=null)diffs.push(e.kg-kg);});
+      sinceLast=diffs.length>=3?median(diffs):null;}}
+  const beads=days.map((d,i)=>({date:here.get(d).date,position:d-current+1,weight:here.get(d).kg,offset:drawn[i],delta:deltas[i],isToday:d===today,duringFast:during(d),afterFast:afterLong(d)}));
+  const bg=beads.slice(1).map((b,i)=>b.position-beads[i].position), sp=median(bg)??1, lim=Math.max(4,2*sp);
+  const joins=bg.map((g,i)=>g<=lim?[i,i+1]:null).filter(Boolean);
+  return {mode:usual?'usual':'firstCycle',length,todayPosition:today-current+1,beads,joins,swell,ghost,sinceLast,history:h,now};
+}
+function readingOf(ring){ // BodyRing.reading
+  if(ring.mode==='firstCycle')return 'the usual takes two cycles to learn. until then, the thread alone.';
+  const now=ring.now, ws=new Date(now.getFullYear(),now.getMonth(),now.getDate()-now.getDay());
+  const lastWeek=ring.beads.filter(b=>b.date<ws&&b.date>=new Date(ws.getTime()-7*864e5));
+  const win=lastWeek.length>=2?lastWeek:ring.beads.filter(b=>b.date>new Date(now.getTime()-7*864e5));
+  const mean=median(win.map(b=>b.delta)); if(mean==null)return 'the thread begins with the first morning.';
+  const afterFast=win.some(b=>b.afterFast), usualW="this body's usual for these days", size=Math.abs(mean);
+  const degree=size>=WELL?'well ':size>=CAP?'':'a little ';
+  const latest=win.reduce((a,b)=>b.position>a.position?b:a), swellHere=ring.swell[latest.position-1]??0;
+  const inWater=swellHere>=scaledKg(0.2)&&latest.offset>=scaledKg(0.15);
+  let first; if(size<0.15) first=inWater?'up with the water, as on these days every cycle.':'where this body usually is on these days.';
+  else if(mean<0) first=afterFast?"lighter than this body's usual for these days, after the fast.":degree+'below '+usualW+'.';
+  else first=swellHere>=scaledKg(0.2)?degree+'past the water this body carries on these days.':degree+'above '+usualW+'.';
+  if(ring.sinceLast==null)return first; const s=ring.sinceLast;
+  return first+' '+(s<=-0.3?'lighter than this point last cycle.':s>=0.3?'heavier than this point last cycle.':'close to this point last cycle.');
+}
+// BodyRingView
+const RC={period:'#D6A9A9',follicular:'#DEC1AF',ovulation:'#D9C49B',luteal:'#BEB0D3'};
+function phaseOf(day,L){L=Math.max(8,L);const os=Math.max(6,L-14),oe=os+1;if(day>=1&&day<=5)return 'period';if(day>=6&&day<os)return 'follicular';if(day>=os&&day<=oe)return 'ovulation';if(day>oe&&day<=L)return 'luteal';return null;}
+const hex=c=>[1,3,5].map(i=>parseInt(c.slice(i,i+2),16)), mix=(a,b,t)=>{const A=hex(a),B=hex(b);return 'rgb('+A.map((v,i)=>Math.round(v+(B[i]-v)*t)).join(',')+')';};
+function lightFor(L){ // phaseLight: stops (colour, location) and the offset in days
+  const runs=[];for(let d=1;d<=L;d++){const p=phaseOf(d,L);if(runs.length&&runs[runs.length-1].p===p)runs[runs.length-1].last=d;else runs.push({p,first:d,last:d});}
+  const n=runs.length, days=i=>runs[i].last-runs[i].first+1, blend=(a,b)=>Math.min(1.5,days(a)/2,days(b)/2), off=blend(n-1,0), loc=d=>Math.min(Math.max((d+off)/L,0),1);
+  const stops=[[RC[runs[n-1].p],0]];for(let i=0;i<n;i++){const be=blend((i+n-1)%n,i),af=blend(i,(i+1)%n);stops.push([RC[runs[i].p],loc(runs[i].first-1+be)],[RC[runs[i].p],loc(runs[i].last-af)]);}
+  return {stops,off};}
+function colourAt(dayPos,L,light){let l=((dayPos+light.off)/L)%1;if(l<0)l+=1;const st=light.stops;for(let i=0;i<st.length-1;i++){if(l>=st[i][1]&&l<=st[i+1][1]){const t=st[i+1][1]>st[i][1]?(l-st[i][1])/(st[i+1][1]-st[i][1]):0;return mix(st[i][0],st[i+1][0],t);}}return mix(st[st.length-1][0],st[st.length-1][0],0);}
+const eased=(a,b,t)=>{const e=t*t*(3-2*t);return a*(1-e)+b*e;};
+let lring=null, touched=null;
+function drawLedger(){
+  const svg=$('lring'), L=lring.length, size=300, radius=size/2-14, pull=radius*0.11, light=lightFor(L);
+  const ang=p=>((p-0.5)/L*360-90)*Math.PI/180;
+  const pt=(p,off)=>{const late=p>L+0.5?6:0, r=radius+late+(off/CAP)*pull, a=ang(p);return [size/2+r*Math.cos(a),size/2+r*Math.sin(a)];};
+  const ptR=(p,r)=>{const a=ang(p);return [size/2+r*Math.cos(a),size/2+r*Math.sin(a)];};
+  svg.innerHTML='<defs><filter id="lb3" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="3"/></filter><filter id="lb35" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="3.5"/></filter></defs>';
+  // the swell: where this body usually carries water, filled in the phases' light at .3
+  if(lring.swell.length===L&&lring.swell.some(v=>v>0.01)){const g=el('g',{opacity:.3},svg);const steps=L*6;
+    for(let i=0;i<steps;i++){const p0=0.5+i/6,p1=0.5+(i+1)/6;const reach=p=>{const lo=Math.floor(p);const a=lring.swell[((lo-1)%L+L)%L],b=lring.swell[lo%L];return eased(a,b,p-lo)/CAP*pull;};
+      const [ax,ay]=ptR(p0,radius),[bx,by]=ptR(p1,radius),[cx,cy]=ptR(p1,radius+1+reach(p1)),[dx,dy]=ptR(p0,radius+1+reach(p0));
+      el('path',{d:`M${ax} ${ay}L${bx} ${by}L${cx} ${cy}L${dx} ${dy}Z`,fill:colourAt(p0-0.5+1/12,L,light),stroke:colourAt(p0-0.5+1/12,L,light),'stroke-width':.4},g);}}
+  // the track: lived days 4pt, days ahead 2.2pt at .42, in the phases' light
+  const lived=Math.min(Math.max(lring.todayPosition,0),L)/L, segs=360, ahead=el('g',{opacity:.42},svg), past=el('g',{},svg);
+  for(let i=0;i<segs;i++){const f0=i/segs,f1=(i+1)/segs, isLived=f1<=lived+1e-9, lap=isLived&&f1+1e-9>=lived?0:0.004;
+    const a0=(f0*360-90)*Math.PI/180,a1=((f1+lap)*360-90)*Math.PI/180;
+    el('path',{d:`M${150+radius*Math.cos(a0)} ${150+radius*Math.sin(a0)}A${radius} ${radius} 0 0 1 ${150+radius*Math.cos(a1)} ${150+radius*Math.sin(a1)}`,fill:'none',stroke:colourAt(f0*L+0.5/segs*L,L,light),'stroke-width':isLived?4:2.2},isLived?past:ahead);}
+  // last cycle, faint and dotted
+  const thread=(list,attrs)=>{let d='';for(let i=0;i<list.length-1;i++){const a=list[i],b=list[i+1];if(attrs.limit&&b.position-a.position>4)continue;const steps=Math.max(8,(b.position-a.position)*6);
+      for(let s=0;s<=steps;s++){const t=s/steps,p=a.position+(b.position-a.position)*t;const [x,y]=pt(p,eased(a.offset,b.offset,t));d+=(s?'L':'M')+x.toFixed(2)+' '+y.toFixed(2);}}return d;};
+  if(lring.ghost.length>=2)el('path',{d:thread(lring.ghost,{limit:true}),fill:'none',stroke:'#7A736E','stroke-opacity':.38,'stroke-width':1,'stroke-dasharray':'1 3','stroke-linecap':'round'},svg);
+  // this cycle's thread, along the joins
+  let td='';lring.joins.forEach(([i,j])=>{const a=lring.beads[i],b=lring.beads[j];const steps=Math.max(8,(b.position-a.position)*6);for(let s=0;s<=steps;s++){const t=s/steps,p=a.position+(b.position-a.position)*t;const [x,y]=pt(p,eased(a.offset,b.offset,t));td+=(s?'L':'M')+x.toFixed(2)+' '+y.toFixed(2);}});
+  el('path',{d:td,fill:'none',stroke:'#B58389','stroke-opacity':.65,'stroke-width':1,'stroke-linecap':'round','stroke-linejoin':'round'},svg);
+  // the beads
+  lring.beads.forEach((b,i)=>{const [x,y]=pt(b.position,b.offset);
+    if(b.duringFast)el('circle',{cx:x,cy:y,r:7.5,fill:'#A37278','fill-opacity':.4,filter:'url(#lb35)'},svg);
+    if(b.isToday){el('circle',{cx:x,cy:y,r:7,fill:'#C4959A','fill-opacity':.4,filter:'url(#lb3)'},svg);el('circle',{cx:x,cy:y,r:4,fill:'#FBF6F1',stroke:'#B58389','stroke-opacity':.7,'stroke-width':.8},svg);}
+    else el('circle',{cx:x,cy:y,r:b.duringFast?3:2.5,fill:b.duringFast?'#A37278':'#B58389','fill-opacity':b.duringFast?1:.85},svg);
+    if(touched===i)el('circle',{cx:x,cy:y,r:7.5,fill:'none',stroke:'#B58389','stroke-width':1},svg);});
+  // the middle
+  const t=(y,txt,st)=>{const e=el('text',{x:150,y,'text-anchor':'middle',style:st},svg);e.textContent=txt;return e;};
+  if(touched!=null){const b=lring.beads[touched];t(146,relDay(b.date,lring.now),'font-size:20px;fill:#77706B');t(166,b.weight.toFixed(1)+' kg · day '+b.position,'font-size:11px;font-style:italic;fill:#796F6B');
+    if(b.duringFast)t(182,'during a fast','font-size:11px;font-style:italic;fill:#796F6B');else if(b.afterFast)t(182,'after the fast','font-size:11px;font-style:italic;fill:#796F6B');}
+  else{t(150,'day '+lring.todayPosition,'font-size:22px;fill:#77706B');const ph=phaseOf(lring.todayPosition,L);
+    if(lring.todayPosition>L)t(170,"past this body's usual length",'font-size:11px;font-style:italic;fill:#796F6B');
+    else if(ph){const label=t(170,ph,'font-size:11px;font-style:italic;fill:#796F6B');const w=label.getComputedTextLength();el('circle',{cx:150-w/2-7,cy:166.5,r:3,fill:RC[ph]},svg);label.setAttribute('x',150+4);}}
+}
+function relDay(date,now){const a=dayIndex(date),b=dayIndex(now);if(a===b)return 'today';if(b-a===1)return 'yesterday';if(b-a<7)return date.toLocaleDateString('en-US',{weekday:'long'}).toLowerCase();return date.toLocaleDateString('en-US',{month:'short',day:'numeric'}).toLowerCase();}
+function footnote(h,now){const two=new Date(now.getTime()-14*864e5);const recent=h.entries.filter(e=>e.date>=two).map(e=>e.kg);const parts=[];
+  if(recent.length>=3)parts.push('two weeks: '+Math.min(...recent).toFixed(1)+' – '+Math.max(...recent).toFixed(1)+' kg');
+  const on=d=>h.entries.find(e=>dayIndex(e.date)===dayIndex(d)); const m=new Date(now.getFullYear(),now.getMonth()-1,now.getDate());
+  let echo=null;for(let o=0;o<=2&&!echo;o++){const a=on(new Date(m.getFullYear(),m.getMonth(),m.getDate()-o));if(a){echo='a month ago, the scale read '+a.kg.toFixed(1)+'.';break;}if(o>0){const b=on(new Date(m.getFullYear(),m.getMonth(),m.getDate()+o));if(b){echo='a month ago, the scale read '+b.kg.toFixed(1)+'.';break;}}}
+  if(echo)parts.push(echo); return parts.join('. ');}
+function ledger(){const d=+$('day').value, now=new Date(); now.setHours(9,0,0,0);
+  const h=sample(d,now); lring=makeRing(h,now); touched=null;
+  const todayEntry=lring.beads.find(b=>b.isToday); $('lw').textContent=todayEntry?todayEntry.weight.toFixed(1)+' kg':'–';
+  fade($('lread'),readingOf(lring)); $('lfoot').textContent=footnote(h,now); drawLedger();}
+const lr=$('lring');
+function nearest(e){const r=lr.getBoundingClientRect();let deg=Math.atan2(e.clientY-r.top-r.height/2,e.clientX-r.left-r.width/2)*180/Math.PI+90;if(deg<0)deg+=360;const pos=deg/360*lring.length+0.5,L=lring.length;
+  const gap=(a,b)=>{const raw=Math.abs((a%L)-(b%L));return Math.min(raw,L-raw);};let best=0;lring.beads.forEach((b,i)=>{if(gap(b.position,pos)<gap(lring.beads[best].position,pos))best=i;});return best;}
+lr.addEventListener('pointerdown',e=>{e.preventDefault();lr.setPointerCapture(e.pointerId);touched=nearest(e);drawLedger();});
+lr.addEventListener('pointermove',e=>{if(touched==null)return;const n=nearest(e);if(n!==touched){touched=n;drawLedger();}});
+['pointerup','pointercancel'].forEach(t=>lr.addEventListener(t,()=>{touched=null;drawLedger();}));
+$('day').addEventListener('input',ledger); whenNear(['lring','day'],ledger);
 const P={menstrual:['rgba(221,188,185,.5)','12–14','the hormonal floor, everything drawn low. the body conserves, rebuilds from the ground.','shorter fasts are typical here. iron-rich foods matter when eating.'],
  follicular:['rgba(226,207,198,.6)','16–18','a rising tide internally, mood and energy often lift with it.','energy and tolerance tend to be higher in this window.'],
  ovulation:['rgba(223,208,181,.5)','16–20','the hormonal peak, the body at full capacity. confidence and clarity often arrive uninvited.','the body at its most resilient. protein matters when breaking.'],
@@ -508,7 +872,7 @@ window.haelPhase=phase;
 document.querySelectorAll('.phases button').forEach(b=>b.addEventListener('click',()=>phase(b.dataset.p)));
 </script>
 <script>
-(function(){
+whenNear(['hers','flat','letter'],function(){
 // the season's light, as the body ledger draws it (28 days)
 const C={P:[214,169,169],F:[222,193,175],O:[217,196,155],L:[190,176,211]};
 const L=28,ph=d=>d<=5?'P':d<14?'F':d<=15?'O':'L';
@@ -586,6 +950,6 @@ function foldLetter(){if(busy||!stage.classList.contains('open'))return;busy=tru
 btn.addEventListener('click',()=>stage.classList.contains('closed')?openLetter():foldLetter());
 stage.addEventListener('click',openLetter);
 stage.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();stage.classList.contains('closed')?openLetter():foldLetter();}});
-})();
+});
 </script>
 </body></html>

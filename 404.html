@@ -26,8 +26,8 @@
 <link rel="stylesheet" href="/fonts/newsreader.css">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--paper:#FDFBF9;--band:#F6F1EE;--ink:#2E2B2A;--soft:#6E6864;--muted:#8A8480;--rule:#DCD8D2;--rose:#A8737A;--serif:ui-serif,'New York','Newsreader',Georgia,serif}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#1C1A19;--band:#242120;--ink:#EDE7E3;--soft:#B5ADA8;--muted:#8F8783;--rule:#3A3634;--rose:#D29EA5}}
+:root{--paper:#FBF7EE;--band:#F4EDE0;--ink:#2F2A27;--soft:#5F5853;--muted:#6E6965;--rule:#DED5C7;--rose:#925B62;--serif:ui-serif,'New York','Newsreader',Georgia,serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#1E1B19;--band:#26221F;--ink:#ECE4DC;--soft:#BDB3AB;--muted:#9C928B;--rule:#3B3531;--rose:#D29EA5}}
 html{background:var(--paper)}
 body{font-family:var(--serif);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-size:19px;line-height:1.6}
 a{color:inherit}
@@ -49,7 +49,7 @@ nav.top a.link:hover{color:var(--ink)}
 .text p,.text li{margin-top:16px;color:var(--soft)}
 .text ul,.text ol{padding-left:22px}.text li{margin-top:10px}
 .text strong{color:var(--ink);font-weight:500}
-.text a{color:var(--rose);text-decoration:none}.text a:hover{text-decoration:underline}
+.text a{color:var(--rose);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}.text a:hover{text-decoration-thickness:2px}.appnote{display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:start;margin:28px 0 8px;padding:18px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}.appnote .ai{border-radius:13px;display:block}.appnote p{margin:0;font-size:16px;font-style:italic;color:var(--soft);line-height:1.5}.appnote .ab{display:inline-block;margin-top:12px;text-decoration:none}.appnote .ab img{display:block;height:40px;width:auto}@media (prefers-color-scheme:dark){.appnote .ai{content:url(/images/app/icon-night.png)}}
 .text code{font-size:.9em}
 .text sup a{font-style:italic;font-size:14px;padding-left:1px}
 .short{margin-top:8px;padding:26px 28px;background:var(--band);border-radius:22px}

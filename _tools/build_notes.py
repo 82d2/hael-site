@@ -13,6 +13,15 @@ BYLINE = "the maker of hæl"
 PUBLISHED = "2026-10-12"
 PUBLISHED_TEXT = "october 12, 2026"
 
+# the quiet App Store note after each short answer: one true sentence about hæl, and the badge
+APPNOTES = {'weight-gain-before-period': ('article-water', 'hæl, a fasting timer for iPhone, reads each morning against the water your body usually carries on those days, never against yesterday.'), 'intermittent-fasting-menstrual-cycle': ('article-cycle', 'hæl, a fasting timer for iPhone, suggests hours for each phase of the cycle, and keeps them a suggestion, never a rule.')}
+def APPNOTE(slug):
+    ct, text = APPNOTES[slug]
+    store = f"https://apps.apple.com/app/apple-store/id6778956802?pt=129001731&amp;ct={ct}&amp;mt=8"
+    return (f'<aside class="appnote" aria-label="hæl"><img class="ai" src="/images/app/icon-day.png" width="56" height="56" alt="">\n'
+            f'<div><p>{text}</p>\n<a class="ab" href="{store}"><img src="/images/app-store-badge.svg" width="120" height="40" alt="Download hæl on the App Store"></a></div></aside>')
+
+
 def page(slug, title, description, kicker, h1, short, body, sources, headline):
     url = f"https://hael.app/{slug}/"
     ld = {
@@ -45,6 +54,7 @@ def page(slug, title, description, kicker, h1, short, body, sources, headline):
     article = f"""{shell.title_block(kicker, h1, f"by {BYLINE} · {PUBLISHED_TEXT}")}
 <article class="text">
 <div class="short"><span>the short answer</span><p>{short}</p></div>
+{APPNOTE(slug)}
 {body}
 <section class="sources" aria-labelledby="sources">
   <h2 id="sources">sources</h2>
