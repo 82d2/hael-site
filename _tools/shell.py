@@ -7,6 +7,11 @@ published.)"""
 
 STORE = "https://apps.apple.com/app/id6778956802"
 SITE = "https://hael.app"
+# App Store campaign links: pt is KI-GEN's provider token, ct names where the tap came from
+CAMPAIGN = {"/weight-gain-before-period/": "article-water", "/intermittent-fasting-menstrual-cycle/": "article-cycle", None: "site-404"}
+def store_link(current):
+    ct = CAMPAIGN.get(current, "site-legal")
+    return f"https://apps.apple.com/app/apple-store/id6778956802?pt=129001731&amp;ct={ct}&amp;mt=8"
 
 CSS = """*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{--paper:#FDFBF9;--band:#F6F1EE;--ink:#2E2B2A;--soft:#6E6864;--muted:#8A8480;--rule:#DCD8D2;--rose:#A8737A;--serif:ui-serif,'New York','Newsreader',Georgia,serif}
@@ -138,6 +143,10 @@ def footer(current):
 
 
 def page(*, head_html, body, current):
+    return _page(head_html=head_html, body=body, current=current).replace(f'href="{STORE}"', f'href="{store_link(current)}"')
+
+
+def _page(*, head_html, body, current):
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
