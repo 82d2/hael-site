@@ -157,145 +157,127 @@
     </script>
 
     <!-- New York (the app's serif) on Apple devices; Newsreader elsewhere -->
-    <link rel="stylesheet" href="/fonts/newsreader.css">
+<link rel="stylesheet" href="/fonts/newsreader.css">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--paper:#FDFBF9;--band:#F6F1EE;--ink:#2E2B2A;--soft:#6E6864;--muted:#8A8480;--rule:#DCD8D2;--rose:#A8737A;--serif:ui-serif,'New York','Newsreader',Georgia,serif}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#1C1A19;--band:#242120;--ink:#EDE7E3;--soft:#B5ADA8;--muted:#8F8783;--rule:#3A3634;--rose:#D29EA5}}
-html{background:var(--paper);scroll-behavior:smooth}
-body{font-family:var(--serif);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;font-size:19px;line-height:1.55}
-a{color:inherit}
-.wrap{max-width:980px;margin:0 auto;padding:0 24px}
-.narrow{max-width:640px;margin:0 auto}
-.label{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
-.enso{width:13px;height:13px;flex:none;color:var(--rose)}
-/* nav, as on a product page */
-nav.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--paper) 82%,transparent);backdrop-filter:saturate(1.4) blur(18px);-webkit-backdrop-filter:saturate(1.4) blur(18px);border-bottom:1px solid var(--rule)}
-nav.top .wrap{display:flex;align-items:center;gap:26px;height:52px}
-nav.top .mark{font-style:normal;font-size:19px;color:var(--ink);text-decoration:none;margin-right:auto}
-nav.top a.link{font-size:14px;font-style:italic;color:var(--soft);text-decoration:none}
-nav.top a.link:hover{color:var(--ink)}
-.bracket{font-size:12px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
-.bracket::before{content:"[\2009\2009"}.bracket::after{content:"\2009\2009]"}
-/* hero */
-.hero{text-align:center;padding:88px 0 0}
-.hero h1{font-size:clamp(46px,8vw,88px);font-weight:300;line-height:1.02;letter-spacing:-.02em}
-.hero .lede{margin:24px auto 0;font-size:clamp(19px,2.2vw,23px);font-style:italic;font-weight:300;color:var(--soft);max-width:30em}
-.cta{margin-top:34px;display:flex;flex-direction:column;align-items:center;gap:12px}
-.cta img{height:50px;width:auto;display:block}
-.price{font-style:italic;color:var(--muted);font-size:16px}
-.stagebg{position:relative;margin-top:64px;display:flex;justify-content:center}
-.stagebg::before{content:"";position:absolute;inset:8% 10% 0;background:radial-gradient(closest-side,rgba(239,214,190,.55),transparent);z-index:0}
-/* the device: Apple's iPhone 18 Pro bezel over a screen layer */
-.device{position:relative;aspect-ratio:1350/2760;z-index:1}
-.device .bezel{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
-.device .scr{position:absolute;left:5.333%;top:2.971%;width:89.333%;height:94.022%;border-radius:14% / 6.6%;overflow:hidden;background:#FBF8F6;z-index:1}
-.device .scr img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
-.hero .device{width:min(360px,74vw)}
-.hero .scr{background:#FDFBF9}
-/* figures and captions, after Huey */
-figure{margin:0}
-figcaption{margin-top:20px;display:flex;justify-content:center;align-items:baseline;gap:12px;padding:0 8px;text-wrap:balance;font-size:15px;font-style:italic;color:var(--muted)}
-figcaption .fig{white-space:nowrap;flex:none;font-style:normal;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft)}
-/* contents */
-.contents{padding:96px 0 20px;text-align:center}
-.contents ol{list-style:none;margin:26px auto 0;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 38px;max-width:820px}
-.contents a{font-size:30px;font-weight:300;text-decoration:none}
-.contents a:hover{color:var(--rose)}
-.contents sup{font-size:12px;color:var(--muted);margin-left:3px;vertical-align:super;line-height:0}
-.contents .roman{font-style:italic;color:var(--muted);font-size:15px;margin-right:8px}
-/* sections */
-section{padding:110px 0 30px;text-align:center}
-section.band{background:var(--band);padding-bottom:110px;margin-top:80px}
-section h2{font-size:clamp(36px,5.4vw,60px);font-weight:300;line-height:1.06;letter-spacing:-.015em;margin-top:18px}
-section .body{margin:22px auto 0;font-size:19px;color:var(--soft);max-width:31em}
-.more{display:inline-block;margin-top:16px;font-style:italic;color:var(--rose);font-size:16px;text-decoration:none}
-/* fig. 2: the screen, close */
-.close-up{--dw:620px;position:relative;margin:60px auto 0;height:calc(var(--dw)*1.5);max-width:980px;overflow:hidden;
-  -webkit-mask-image:linear-gradient(to bottom,#000 86%,transparent);mask-image:linear-gradient(to bottom,#000 86%,transparent)}
-.close-up .device{position:absolute;left:50%;top:0;width:var(--dw);transform:translateX(-50%)}
-.app{position:absolute;left:0;top:0;width:393px;height:846px;transform-origin:0 0;color:#2E2B2A;user-select:none;-webkit-user-select:none}
-.app .shead{display:flex;justify-content:space-between;padding:60px 22px 0;font-size:12px;color:#9a928e}
-.app .glow{position:absolute;left:50%;top:130px;width:360px;height:360px;transform:translateX(-50%);background:radial-gradient(circle,rgba(239,214,190,.6),transparent 65%)}
-.app .ring{display:block;position:relative;touch-action:none;cursor:grab}
-.app .ring.drag{cursor:grabbing}
-.strack{fill:none;stroke:#E8DFDB;stroke-width:2.2}.sarc{fill:none;stroke:#B98088;stroke-width:2.6;stroke-linecap:round}.sknob{fill:#FBF8F6;stroke:#B98088;stroke-width:1.6}
-.snum{font-size:46px;font-weight:300;fill:#3a3634}.ssub{font-size:11px;font-style:italic;fill:#9a928e;letter-spacing:.04em}
-.app .cap{display:table;margin:16px auto 0;font-size:12.5px;color:#7a7370;border-radius:999px;background:#F3ECE9;padding:6px 14px}
-.app .sline{margin:12px 30px 0;text-align:center;font-size:25px;font-weight:300;line-height:1.3;color:#4a4542;min-height:98px;transition:opacity .3s}
-.app .spill{margin:26px auto 0;width:210px;padding:12px;border-radius:999px;text-align:center;font-size:16px;font-style:italic;background:#F3ECE9;color:#6e6864}
-.try{margin-top:8px;font-size:14px;font-style:italic;color:var(--rose)}
-/* the app's screens, at 393 × 846 points */
-.app{--sec:#7A736E;--ter:#A89A94;--blush:#C4959A;--rose:#B58389;--deep:#A37278;--pearl:#FBF6F1;--soft:#F9F4F2;--rubric:#A9646C;font-family:var(--serif)}
-.app svg text{font-family:var(--serif)}
-.home .ring{margin:22px auto 0;width:320px;height:320px}
-.hcap{margin:6px 40px 0;text-align:center;font-size:11px;color:var(--ter);line-height:1.5;min-height:34px}
-.hcap.rub{color:var(--rubric);font-style:italic}
-.hgreet{margin:24px 34px 0;text-align:center;font-size:16px;color:var(--sec);line-height:1.4}
-.hpass{margin:22px 34px 0;text-align:center;font-size:13px;color:var(--sec);line-height:1.6}
-.hbegin{display:table;margin:26px auto 0;width:140px;padding:11px 0;border-radius:999px;text-align:center;color:#fff;font-size:15px;font-style:italic;letter-spacing:1.5px;background:linear-gradient(90deg,#C4959A,#B58389)}
-.hrest{margin-top:10px;text-align:center;font-size:12px;font-style:italic;color:var(--ter)}
-.hnav{position:absolute;left:0;right:0;bottom:34px;display:flex;justify-content:space-between;padding:0 24px;font-size:11px;color:var(--ter)}
-.agreet{margin:16px 32px 0;text-align:center;font-size:24px;font-weight:300;color:var(--sec);line-height:1.3;min-height:62px;transition:opacity .4s}
-.aquote{margin:14px 34px 0;text-align:center;font-size:13px;font-weight:500;color:var(--sec);line-height:1.35;min-height:36px;transition:opacity .4s}
-.acap{display:table;margin:10px auto 0;font-size:13px;color:var(--sec);border-radius:999px;background:var(--soft);padding:7px 18px}
-.acap i{font-style:normal;font-size:9px;color:var(--ter);margin-left:5px}
-@keyframes breathe{from{transform:scale(1);opacity:.22}to{transform:scale(1.25);opacity:.38}}
-.beadglow{transform-box:fill-box;transform-origin:center;animation:breathe 4s ease-in-out infinite alternate}
-.dragging .beadglow{animation:none;transform:scale(2.15);opacity:.5}
-@keyframes twinkle{from{opacity:.25}to{opacity:1}}
-.star{animation:twinkle var(--c) ease-in-out infinite alternate;animation-delay:var(--d)}
-@media (prefers-reduced-motion:reduce){.beadglow,.star{animation:none}}
-/* fig. 3: the ledger, drawn as BodyRingView draws it */
-.ledger{width:min(380px,92vw);background:#FBF8F6;border-radius:30px;padding:26px 22px 24px;text-align:center;font-family:var(--serif);box-shadow:0 20px 50px -34px rgba(46,43,42,.35)}
-.ledger .lm{font-size:12px;font-style:italic;color:#A89A94}
-.ledger .lw{font-size:20px;color:#7A736E;margin-top:4px}
-.ledger .lc{font-size:13px;font-style:italic;color:#A89A94;margin-top:2px}
-#lring{display:block;width:100%;height:auto;margin:14px auto 0;touch-action:none;cursor:pointer;user-select:none;-webkit-user-select:none}
-#lring text{font-family:var(--serif)}
-.ledger .lr{margin-top:12px;font-size:16px;line-height:1.5;color:#7A736E;min-height:48px}
-.ledger .lf{margin-top:6px;font-size:11px;font-style:italic;color:#A89A94;min-height:16px}
-/* fig. 3 and 4: figures without a phone */
-.figure{margin:56px auto 0;display:flex;flex-direction:column;align-items:center}
-.figure svg{width:min(340px,80vw);height:auto}
-.track{fill:none;stroke:var(--rule);stroke-width:3}
-.big{font-size:34px;font-weight:300;fill:var(--ink)}.small{font-size:13px;font-style:italic;fill:var(--muted)}
-.swellpath{fill:none;stroke:#EFD6BE;stroke-width:16;stroke-linecap:round;opacity:.9}
-.ghost{fill:none;stroke:var(--muted);stroke-width:1.2;stroke-dasharray:2 4;opacity:.7}
-.thread{fill:none;stroke:var(--rose);stroke-width:2.4;stroke-linecap:round}.bead{fill:var(--rose)}
-.scrub{width:min(320px,80vw);margin-top:18px;accent-color:#A8737A}
+:root{--paper:#FBF7EE;--mat:#F4EDE0;--ink:#2F2A27;--soft:#5F5853;--muted:#716C68;--rule:#DED5C7;--rose:#955D64;--blush:#C99A9F;
+ --serif:ui-serif,'New York','Newsreader',Georgia,serif;
+ --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .28 0 0 0 0 .22 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+:root[data-theme=night]{--paper:#1E1B19;--mat:#26221F;--ink:#ECE4DC;--soft:#BDB3AB;--muted:#9C928B;--rule:#3B3531;--rose:#D29EA5;--blush:#B98289}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper) var(--grain);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+.sc{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase}
+.orn{display:inline-flex;align-items:center;gap:9px;color:var(--soft)}
+.orn svg{width:13px;height:13px;color:var(--rose)}
+.hw{font-size:16px;color:var(--ink);text-transform:none;letter-spacing:0}
+.br{white-space:nowrap}.br::before{content:"[ "}.br::after{content:" ]"}
+.br i{font-style:italic;text-transform:none;letter-spacing:0;font-size:1.15em}
+
+/* the masthead: links left with their counts, the wordmark in the middle, the world and the store right */
+header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.mast{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:58px;gap:20px}
+.mast nav{display:flex;gap:22px;font-size:14px}
+.mast nav sup{font-size:9px;color:var(--muted);margin-left:2px}
+.mark{font-size:20px;font-style:normal}
+.right{display:flex;justify-content:flex-end;align-items:center;gap:22px;font-size:13px}
+.world{display:flex;align-items:center;gap:8px;font-style:italic;color:var(--soft);background:none;border:0;font:inherit;cursor:pointer}
+.moon{width:26px;height:26px;display:block;overflow:visible}
+.moon .halo{fill:var(--blush);opacity:.22;transform-origin:13px 13px;animation:breathe 8s ease-in-out infinite}
+.moon .disc{fill:var(--blush)}
+.moon .shade{transform:translateX(18px);transition:transform 1.6s cubic-bezier(.42,0,.58,1)}
+:root[data-theme=night] .moon .shade{transform:translateX(4.5px)}
+:root[data-theme=night] .moon .halo{opacity:.1}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+@media (prefers-reduced-motion:reduce){.moon .halo{animation:none}.moon .shade{transition:none}}
+.world .st{display:inline-block;min-width:2.6em;transition:opacity .6s}
+.world .st{font-style:italic}
+@media (max-width:820px){.mast nav{display:none}.world>span:first-child,.world .st{display:none}.mark{grid-column:2}.right{grid-column:3;gap:14px}}
+
+/* the opening: a paragraph, not a slogan; the app's own page, framed */
+.open{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;padding-top:64px;padding-bottom:90px;align-items:start}
+.lead{margin-top:26px;font-size:clamp(23px,2.4vw,30px);line-height:1.32;font-weight:300;text-align:justify;hyphens:auto;max-width:21em}
+.lead::first-letter{float:left;font-size:4.9em;line-height:.74;padding:10px 14px 0 0;margin-left:-4px;color:var(--rose);font-weight:300}
+.lead em{font-style:italic}
+.ledger{margin-top:40px;border-top:1px solid var(--rule);max-width:24em}
+.ledger div{display:grid;grid-template-columns:9em 1fr;gap:16px;padding:11px 0;border-bottom:1px solid var(--rule);font-size:14.5px}
+.ledger dt{color:var(--muted);font-style:italic}
+.ledger dd .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#8BA889;margin-right:8px;vertical-align:middle}
+.cta{display:inline-block;margin-top:30px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
+.store{display:flex;gap:18px;align-items:center;margin-top:34px;padding:16px 18px;border:1px solid var(--rule);background:color-mix(in srgb,var(--mat) 70%,transparent);max-width:30em}
+.store .icon{width:72px;height:72px;flex:none;filter:drop-shadow(0 6px 12px rgba(60,40,30,.12))}
+.store .who{display:flex;flex-direction:column;gap:2px;min-width:0}
+.store .nm{font-size:16px}.store .by{font-size:13px;font-style:italic;color:var(--muted)}
+@media (max-width:560px){.store{display:grid;grid-template-columns:56px 1fr;column-gap:14px;row-gap:2px;align-items:center}.store .who{display:contents}.store .icon{grid-row:1/3;width:56px;height:56px}.store .nm{grid-column:2;align-self:end}.store .by{grid-column:2;align-self:start}.store .marks{grid-column:1/-1;margin-top:14px;gap:12px}}
+.marks{display:flex;gap:14px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.marks img{display:block;height:40px;width:auto}
+.cta:hover{color:var(--rose)}
+/* a frame like a print's: a mat, a fine double rule, notched corners */
+.frame{position:relative;background:var(--mat);padding:22px;border:1px solid var(--rule)}
+.frame::before{content:"";position:absolute;inset:8px;border:1px solid var(--rule);pointer-events:none}
+.frame img{display:block;width:100%;height:auto;border:1px solid var(--rule)}
+.frame .c{position:absolute;width:14px;height:14px;border:1px solid var(--rule);border-radius:50%;background:var(--paper)}
+.frame .c1{top:1px;left:1px}.frame .c2{top:1px;right:1px}.frame .c3{bottom:1px;left:1px}.frame .c4{bottom:1px;right:1px}
+.frame.screen{max-width:360px;margin-left:auto}
+.cap{margin-top:14px;display:flex;gap:12px;font-size:13.5px;font-style:italic;color:var(--muted)}
+.cap .sc{font-style:normal;color:var(--soft);white-space:nowrap}
+@media (max-width:820px){.open{grid-template-columns:1fr;gap:44px;padding-top:40px}.wrap{padding:0 22px}.frame.screen{margin:0 auto}}
+
+/* a section begins on a quiet band with its label */
+.band{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:color-mix(in srgb,var(--mat) 60%,transparent);padding:12px 0}
+section{padding:70px 0 96px}
+.pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
+.pair.flip .txt{order:2}
+.txt h2{font-weight:300;font-size:clamp(28px,3vw,38px);line-height:1.12}
+.txt p{margin-top:18px;color:var(--soft);max-width:28em;text-align:justify;hyphens:auto}
+.txt .more{display:inline-block;margin-top:22px}
+@media (max-width:820px){.pair{grid-template-columns:1fr;gap:36px}.pair.flip .txt{order:0}}
+
+/* the hours, as specimens: an arch for each, its arc of the ring inside */
+.hours{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:14px;margin-top:40px}
+.arch{border:1px solid var(--rule);border-radius:999px 999px 4px 4px;padding:30px 12px 18px;text-align:center;position:relative;background:color-mix(in srgb,var(--mat) 55%,transparent)}
+.arch::before{content:"";position:absolute;inset:5px;border:1px solid var(--rule);border-radius:999px 999px 2px 2px;pointer-events:none}
+.arch .n{font-size:10.5px;color:var(--muted);letter-spacing:.1em}
+.arch svg{width:64px;height:64px;display:block;margin:10px auto 12px}
+.arch .nm{color:var(--rose);font-size:17px}
+.arch .ph{font-style:italic;color:var(--soft);font-size:13px;margin-top:2px}
+.arch .hr{color:var(--muted);font-size:12px;margin-top:6px}
+@media (max-width:1000px){.hours{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:520px){.hours{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* how the full witness opens: three steps, the price inside them */
+.steps{max-width:640px;margin:44px auto 0;border:1px solid var(--rule);background:var(--mat);padding:30px 34px}
+.steps li{display:grid;grid-template-columns:3em 1fr;gap:10px;padding:12px 0;border-bottom:1px solid var(--rule);list-style:none;color:var(--soft)}
+.steps li:last-child{border-bottom:0}
+.steps .k{color:var(--rose);font-size:13px;letter-spacing:.08em;padding-top:3px}
+.steps .end{margin-top:22px;text-align:center}
+
+/* the index, as a shop's: the chapters in a column, their counts raised */
+.index{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
+.index ol{list-style:none;margin-top:20px}
+.index li{font-size:clamp(26px,2.6vw,34px);font-weight:300;line-height:1.3;color:var(--muted)}
+.index li a:hover,.index li.on{color:var(--ink)}
+.index sup{font-size:12px;margin-left:4px;color:var(--muted)}
+.index .ro{font-size:13px;color:var(--rose);margin-right:14px;letter-spacing:.08em}
+@media (max-width:820px){.index{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--rule);padding:56px 0 40px;text-align:center}
+footer .seal{width:58px;height:58px;margin:0 auto 18px;display:block}
+footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:26px;color:var(--muted)}
+.lines{font-size:15px;color:var(--soft);line-height:1.9}
+.note{display:block;margin:6px auto 0;font-style:italic;color:var(--muted);font-size:14px}
 .line{margin-top:14px;font-size:23px;font-weight:300;line-height:1.35;max-width:24em;min-height:2.8em;transition:opacity .3s}
 .hint{margin-top:6px;font-size:14px;font-style:italic;color:var(--muted)}
 .phases{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:34px}
 .phases button{font:inherit;font-size:15px;font-style:italic;padding:8px 16px;border-radius:999px;border:1px solid var(--rule);background:transparent;color:var(--soft);cursor:pointer}
 .phases button[aria-selected=true]{border-color:var(--rose);color:var(--ink)}
-.health{display:inline-block;margin-top:40px;line-height:0}.health img{height:44px;width:auto;display:block}
-/* questions */
-.faq{max-width:680px;margin:40px auto 0;text-align:left}
-details{border-top:1px solid var(--rule);padding:16px 0}details:last-of-type{border-bottom:1px solid var(--rule)}
-summary{cursor:pointer;font-size:19px;list-style:none;display:flex;justify-content:space-between;gap:16px}
-summary::after{content:"+";color:var(--rose);font-size:20px;transition:transform .25s}details[open] summary::after{transform:rotate(45deg)}
-summary::-webkit-details-marker{display:none}
-details p{margin-top:10px;font-size:17px;color:var(--soft)}
-.lines{margin-top:28px;font-size:23px;line-height:1.8;color:var(--soft);font-weight:300}
-.begin{padding:120px 0 70px;text-align:center}
-.begin h2{font-size:clamp(40px,6vw,64px);font-weight:300;margin-bottom:28px}
-.begin img{height:54px;width:auto;margin:0 auto;display:block}
-footer{border-top:1px solid var(--rule)}
-footer .wrap{padding:22px 24px 40px;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-footer nav{display:flex;flex-wrap:wrap;gap:6px 18px}footer a{text-decoration:none}footer a:hover{color:var(--ink)}footer span{margin-right:auto;letter-spacing:0;text-transform:none;font-style:italic;font-size:14px}
-@media (max-width:760px){nav.top a.link{display:none}.close-up{--dw:118vw}.contents a{font-size:25px}}
-@media (prefers-reduced-motion:reduce){.sline,.line{transition:none}html{scroll-behavior:auto}}
-
-/* v2 */
 #psum{margin-left:auto;margin-right:auto;text-align:center}
 #ptip{text-align:center}
-.dateline{display:block;margin-bottom:20px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.quiet{margin-top:26px;font-size:15px;font-style:italic;color:var(--muted)}
 .season{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin:30px auto 0}
 .season .one{width:min(260px,80vw);text-align:center}
 .season svg{width:100%;height:auto;display:block;overflow:visible}
-.season .cap{margin-top:8px;font-size:14px;font-style:italic;color:var(--soft)}
+.season .rc{margin-top:8px;font-size:14px;font-style:italic;color:var(--soft)}
 .season .sbead{cursor:pointer}
 .season .read{margin-top:18px;min-height:1.6em;font-size:17px;color:var(--soft);text-align:center;transition:opacity .3s}
 .letterstage{position:relative;margin:30px auto 0;width:min(440px,92vw);height:336px;perspective:1800px;cursor:pointer;--H:112px}
@@ -319,11 +301,11 @@ footer nav{display:flex;flex-wrap:wrap;gap:6px 18px}footer a{text-decoration:non
 .sheet{position:absolute;left:0;right:0;height:calc(var(--H)*3);padding:28px 34px 0;box-sizing:border-box;text-align:left;font-family:var(--serif);color:#5E5854}
 .ltop .sheet{top:0}.midp .sheet{top:calc(var(--H)*-1)}.lbot .sheet{top:calc(var(--H)*-2)}
 /* the seal: pressed wax, slightly irregular */
-.seal{width:46px;height:46px;border-radius:52% 48% 50% 50%/49% 52% 48% 51%;background:radial-gradient(circle at 38% 32%,#CC9097,#AE6A72 55%,#97565E);color:rgba(251,246,241,.92);display:flex;align-items:center;justify-content:center;font:300 22px/1 var(--serif);box-shadow:0 2px 5px rgba(110,50,58,.35),inset 0 -2px 3px rgba(80,30,36,.25),inset 0 2px 2px rgba(255,230,232,.25);text-shadow:0 -1px 0 rgba(80,30,36,.35);transition:transform .45s cubic-bezier(.3,0,.2,1),opacity .4s}
+.wax{width:46px;height:46px;border-radius:52% 48% 50% 50%/49% 52% 48% 51%;background:radial-gradient(circle at 38% 32%,#CC9097,#AE6A72 55%,#97565E);color:rgba(251,246,241,.92);display:flex;align-items:center;justify-content:center;font:300 22px/1 var(--serif);box-shadow:0 2px 5px rgba(110,50,58,.35),inset 0 -2px 3px rgba(80,30,36,.25),inset 0 2px 2px rgba(255,230,232,.25);text-shadow:0 -1px 0 rgba(80,30,36,.35);transition:transform .45s cubic-bezier(.3,0,.2,1),opacity .4s}
 .lshadow{position:absolute;left:10%;right:10%;height:26px;filter:blur(14px);background:rgba(46,43,42,.15);border-radius:50%;z-index:0;top:calc(var(--H)*2 - 12px);transition:top 1.4s cubic-bezier(.33,0,.2,1),left 1.4s,right 1.4s,opacity 1.4s}
 .letterstage.open .lshadow{top:calc(var(--H)*3 - 6px);left:3%;right:3%;opacity:.85}
 .letterstage.open .lift{transform:translateY(-6px)}
-.letterstage.opening .seal{transform:translateY(-10px) scale(1.06);opacity:0}
+.letterstage.opening .wax{transform:translateY(-10px) scale(1.06);opacity:0}
 /* paper's weight: slow start, a swing, a small overshoot, settle */
 @keyframes topOpen{0%{transform:rotateX(-179.5deg)}55%{transform:rotateX(-40deg)}80%{transform:rotateX(7deg)}91%{transform:rotateX(-2.5deg)}100%{transform:rotateX(0)}}
 @keyframes botOpen{0%{transform:rotateX(179.5deg)}55%{transform:rotateX(40deg)}80%{transform:rotateX(-6deg)}91%{transform:rotateX(2deg)}100%{transform:rotateX(0)}}
@@ -336,7 +318,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:6px 18px}footer a{text-decoration:non
 .letterstage.open .lbot .face::after,.letterstage.open .lbot .back::after{animation:light 1.25s ease .85s both}
 .letterstage.closing .lbot{animation:botClose .75s cubic-bezier(.5,0,.4,1) both}
 .letterstage.closing .ltop{animation:topClose .75s cubic-bezier(.5,0,.4,1) .3s both}
-.letterstage.open .seal{opacity:0}
+.letterstage.open .wax{opacity:0}
 .tapline{display:block;margin:16px auto 0;font-size:14px;font-style:italic;color:var(--rose);background:none;border:0;cursor:pointer;font-family:var(--serif)}
 @media (prefers-reduced-motion:reduce){.letterstage *{animation:none!important;transition:none!important}}
 @media (max-width:480px){.letterstage{--H:124px;height:372px}.sheet{padding:24px 24px 0}}
@@ -345,166 +327,133 @@ footer nav{display:flex;flex-wrap:wrap;gap:6px 18px}footer a{text-decoration:non
 .sheet p{margin-top:14px;font-size:17px;line-height:1.6}
 .sheet .sig{margin-top:18px;font-style:italic;color:#9A918C;font-size:15px}
 .cadence{margin:30px auto 0;max-width:30em;font-size:16px;font-style:italic;color:var(--muted)}
-@media (prefers-reduced-motion:reduce){.fold,.panel,.letterstage .top,.letterstage .bot{transition:none!important}}
-</style></head><body>
+/* fig. 4 and 5, live in their frames */
+.cyc{display:flex;flex-direction:column;align-items:center;padding:8px 0 6px}
+.cyc .phases{margin-top:6px}
+.season{gap:22px}.season .one{width:calc(50% - 11px);max-width:240px}
+.cyc .line{font-size:19px;text-align:center;max-width:22em}.cyc .hint{text-align:center;max-width:26em}
+.frame .letterstage{margin-top:10px;width:100%;max-width:440px}
+.pair>*{min-width:0}
+@media (max-width:480px){.frame:has(.letterstage),.frame:has(.cyc){padding:16px 12px}}.frame .tapline{margin-bottom:4px}
+/* questions */
+.faq{max-width:680px;margin:36px auto 0}
+.faq details{border-top:1px solid var(--rule);padding:16px 0}.faq details:last-of-type{border-bottom:1px solid var(--rule)}
+.faq summary{cursor:pointer;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::after{content:"+";color:var(--rose);font-size:20px;transition:transform .25s}.faq details[open] summary::after{transform:rotate(45deg)}
+.faq summary::-webkit-details-marker{display:none}
+.faq details p{margin-top:10px;font-size:16px;color:var(--soft);max-width:none}
+footer .row a{margin:0 2px}
+@media (max-width:420px){.letterstage{--H:128px;height:384px}.sheet{padding:22px 20px 0}.sheet p{font-size:15.5px;margin-top:11px}.sheet .sig{margin-top:14px}}
+</style></head>
+<body>
 <svg width="0" height="0" style="position:absolute"><symbol id="enso" viewBox="0 0 20 20"><path d="M10 2.2a7.8 7.8 0 1 1-6.9 4.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol></svg>
 
-<nav class="top"><div class="wrap">
-  <a class="mark" href="/">hæl</a>
-  <a class="link" href="#hours">the hours</a><a class="link" href="#water">the water</a><a class="link" href="#cycle">the cycle</a><a class="link" href="#letters">the letters</a><a class="link" href="#questions">questions</a>
-  <a class="bracket" href="https://apps.apple.com/app/id6778956802">download</a>
-</div></nav>
-
-<main>
-<header class="hero"><div class="wrap">
-  <span class="dateline">fourth edition · autumn 2026</span>
-  <h1>a fasting timer that<br>observes instead of coaching.</h1>
-  <p class="lede">for iPhone. fasting shaped by your menstrual cycle, weight read against it, and prose that changes with the hours.</p>
-  <div class="cta"><a href="https://apps.apple.com/app/id6778956802"><img src="/images/app-store-badge.svg" width="150" height="50" alt="Download on the App Store"></a></div>
-  <figure>
-    <div class="stagebg"><div class="device"><div class="scr" id="scr1"><div class="app home" id="home">
-      <div class="shead"><span>hæl</span><span>?</span></div>
-      <svg class="ring" id="hdial" viewBox="0 0 320 320" role="slider" aria-label="the length of the fast" aria-valuemin="8" aria-valuemax="168" tabindex="0">
-        <defs>
-          <radialGradient id="hglow" gradientUnits="userSpaceOnUse" cx="160" cy="160" r="143"><stop offset="0.45" stop-color="#D4C9DE" stop-opacity=".09"/><stop offset="1" stop-color="#D4C9DE" stop-opacity="0"/></radialGradient>
-          <linearGradient id="harc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C4959A"/><stop offset="1" stop-color="#B58389"/></linearGradient>
-          <filter id="b3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
-          <radialGradient id="starw"><stop offset="0" stop-color="#F5EDE8" stop-opacity=".9"/><stop offset="1" stop-color="#F5EDE8" stop-opacity="0"/></radialGradient>
-          <radialGradient id="starr"><stop offset="0" stop-color="#B58389" stop-opacity=".55"/><stop offset="1" stop-color="#B58389" stop-opacity="0"/></radialGradient>
-        </defs>
-        <circle cx="160" cy="160" r="143" fill="url(#hglow)"/>
-        <g id="hrings"></g>
-        <path id="hbark" fill="none" stroke="url(#harc)" stroke-width="2.5" stroke-linecap="round"/>
-        <g id="hstars"></g>
-        <g id="hbead"><circle class="beadglow" r="12" fill="none" stroke="#C4959A" stroke-width="4" filter="url(#b3)"/><circle r="8" fill="#C4959A" fill-opacity=".4" filter="url(#b3)"/><circle r="4.5" fill="#FBF6F1" stroke="#B58389" stroke-opacity=".7" stroke-width=".8"/></g>
-        <text id="hnum" x="160" y="168" text-anchor="middle" style="font-size:48px;font-weight:200;fill:#7A736E">16</text>
-        <line id="hline" x1="146" x2="174" y1="176" y2="176" stroke="#A9646C" stroke-opacity=".55" stroke-width="1"/>
-        <text id="hunit" x="160" y="196" text-anchor="middle" style="font-size:13px;fill:#7A736E">hours</text>
-      </svg>
-      <p class="hcap" id="hcap"></p>
-      <p class="hgreet">the mind circles. the body stays on course.</p>
-      <p class="hpass">the day unspools. the hands keep their tension without being asked. the body asking for more. rest and warmth and food, without apology. she sleeps in the shape she earned.</p>
-      <div class="hbegin">begin</div>
-      <div class="hrest">rest</div>
-      <div class="hnav"><span>ledger</span><span>form</span><span>settings</span></div>
-    </div></div><img class="bezel" src="/images/iphone-silver.webp" width="1350" height="2760" fetchpriority="high" alt=""></div></div>
-    <figcaption><span class="fig">fig. 1</span>home, deep luteal. turn the dial past the top for days.</figcaption>
-  </figure>
+<header><div class="wrap mast">
+  <nav aria-label="Sections"><a href="#hours">the hours<sup>8</sup></a><a href="#water">the water</a><a href="#cycle">the cycle<sup>4</sup></a><a href="#letters">the letters<sup>52</sup></a></nav>
+  <a class="mark" href="#">hæl</a>
+  <div class="right"><button class="world" id="world" aria-label="day or night"><span>world:</span><svg class="moon" viewBox="0 0 26 26" aria-hidden="true"><defs><mask id="phase"><rect width="26" height="26" fill="#fff"/><circle class="shade" cx="13" cy="13" r="7.2" fill="#000"/></mask></defs><circle class="halo" cx="13" cy="13" r="11"/><circle class="disc" cx="13" cy="13" r="7" mask="url(#phase)"/><circle cx="13" cy="13" r="7" fill="none" stroke="var(--blush)" stroke-width=".7" opacity=".55"/></svg><span class="st" id="wst">day</span></button><a class="sc br" href="https://apps.apple.com/app/id6778956802">download</a></div>
 </div></header>
 
-<div class="contents wrap">
-  <span class="label"><svg class="enso"><use href="#enso"/></svg>the contents</span>
-  <ol>
-    <li><span class="roman">i.</span><a href="#hours">the hours</a><sup>8</sup></li>
-    <li><span class="roman">ii.</span><a href="#hours">the page</a><sup>114</sup></li>
-    <li><span class="roman">iii.</span><a href="#water">the water</a></li>
-    <li><span class="roman">iv.</span><a href="#cycle">the cycle</a><sup>4</sup></li>
-    <li><span class="roman">v.</span><a href="#letters">the letters</a><sup>52</sup></li>
-    <li><span class="roman">vi.</span><a href="#colophon">colophon</a></li>
-    <li><span class="roman">vii.</span><a href="#questions">questions</a><sup>7</sup></li>
-  </ol>
+<main>
+<div class="wrap open">
+  <div>
+    <span class="orn"><svg><use href="#enso"/></svg><span class="hw">hæl</span><span class="sc">· a fasting companion</span></span>
+    <p class="lead">a fasting timer that <em>observes</em> instead of <em>coaching</em>. shaped by your menstrual cycle, it reads your weight against the season you are in, and writes a new page for every hour of the fast.</p>
+    <dl class="ledger" aria-label="the edition">
+      <div><dt>current edition</dt><dd>fourth, autumn 26</dd></div>
+      <div><dt>next letter</dt><dd id="next">monday</dd></div>
+      <div><dt>the fourteen days</dt><dd><span class="dot"></span>open</dd></div>
+    </dl>
+    <div class="store">
+      <img class="icon" src="/images/app/icon-day.png" width="120" height="120" alt="the hæl app icon">
+      <div class="who"><span class="nm">hæl: fasting, observed</span><span class="by">KI-GEN Studios · free, with the full witness to keep</span>
+      <div class="marks"><a href="https://apps.apple.com/app/id6778956802"><img src="/images/app-store-badge.svg" width="135" height="45" alt="Download on the App Store"></a><img class="ah" src="/images/works-with-apple-health.svg" width="144" height="40" alt="Works with Apple Health"></div></div>
+    </div>
+  </div>
+  <figure>
+    <div class="frame screen"><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span><img src="/images/app/home.webp" alt="hæl's home: the ring of the day, sixteen hours set"></div>
+    <figcaption class="cap" style="justify-content:flex-end"><span class="sc">fig. 1</span>home, deep luteal. turn the dial past the top for days.</figcaption>
+  </figure>
 </div>
 
-<section id="hours"><div class="wrap">
-  <span class="label"><svg class="enso"><use href="#enso"/></svg>i–ii. the hours and the page</span>
-  <h2>a new page<br>for every hour.</h2>
-  <p class="body">begin a fast and the ring keeps time. each stretch of it has a name, from lauds to vigil, and the page beneath the ring is written for the hour you are in. no streak flames, no badges, no voice telling you to push.</p>
-  <figure>
-    <div class="close-up"><div class="device" id="dev2">
-      <div class="scr" id="scr2"><div class="app" id="app">
-        <div class="shead"><span>hæl</span><span>?</span></div>
-        <svg class="ring" id="dial" viewBox="0 0 320 320" role="slider" aria-label="hours into the fast" aria-valuemin="0" aria-valuemax="24" tabindex="0" style="width:320px;height:320px;margin:14px auto 0">
-          <defs>
-            <radialGradient id="aglow" gradientUnits="userSpaceOnUse" cx="160" cy="160" r="156"><stop offset="0.42" stop-color="#E5DCD9" stop-opacity=".18"/><stop offset="1" stop-color="#E5DCD9" stop-opacity="0"/></radialGradient>
-            <linearGradient id="aarc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C4959A"/><stop offset="1" stop-color="#B58389"/></linearGradient>
-            <filter id="b5" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5"/></filter>
-            <filter id="b25" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.5"/></filter>
-          </defs>
-          <circle cx="160" cy="160" r="156" fill="url(#aglow)"/>
-          <circle cx="160" cy="160" r="130" fill="none" stroke="#E5DCD9" stroke-opacity=".6" stroke-width="3"/>
-          <path id="ahalo" fill="none" stroke-width="7" stroke-linecap="round" opacity=".7" filter="url(#b5)"/>
-          <path id="aarcp" fill="none" stroke="url(#aarc)" stroke-width="2.5" stroke-linecap="round"/>
-          <path id="afine" fill="none" stroke="#B58389" stroke-opacity=".9" stroke-width="1.2" stroke-linecap="round"/>
-          <g id="abead"><circle r="6.5" fill="#C4959A" fill-opacity=".4" filter="url(#b25)"/><circle r="2.5" fill="#FBF6F1" stroke="#B58389" stroke-opacity=".7" stroke-width=".6"/></g>
-          <text id="num" x="160" y="166" text-anchor="middle" style="font-size:48px;font-weight:200;fill:#7A736E">6h 0m</text>
-          <text id="unit" x="160" y="190" text-anchor="middle" style="font-size:11.7px;fill:#A89A94;letter-spacing:.5px">the threshold · hour six</text>
-        </svg>
-        <div class="acap">goal 16h · ends 12:00 am<i>✎</i></div>
-        <p class="agreet" id="agreet"></p>
-        <p class="aquote" id="line"></p>
-      </div></div>
-      <img class="bezel" src="/images/iphone-silver.webp" width="1350" height="2760" loading="lazy" decoding="async" alt="">
-    </div></div>
-    <figcaption><span class="fig">fig. 2</span>the active fast, close. draw the hours along the ring.</figcaption>
-  </figure>
+<div class="band" id="hours"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>i. the hours</span></div></div>
+<section><div class="wrap">
+  <div class="txt" style="max-width:640px"><h2>eight names for the hours of a fast.</h2>
+  <p>each stretch of the fast keeps the name the canonical hours gave it, from lauds to vigil, and the page beneath the ring is written for the one you are in.</p></div>
+  <div class="hours" id="harches"></div>
 </div></section>
 
-<section id="water" class="band"><div class="wrap">
-  <span class="label"><svg class="enso"><use href="#enso"/></svg>iii. the water</span>
-  <h2>the water,<br>given room.</h2>
-  <p class="body">weight rises before a period, and most apps read it as failure. hæl learns where your body carries water across the cycle and reads each morning against that, never against yesterday. last cycle stays beside it, faintly, for comparison.</p>
-  <figure class="figure">
-    <div class="ledger">
-      <p class="lm">this morning</p>
-      <p class="lw" id="lw">56.8 kg</p>
-      <p class="lc">change</p>
-      <svg id="lring" viewBox="0 0 300 300" role="img" aria-label="the body ledger ring"></svg>
-      <p class="lr" id="lread"></p>
-      <p class="lf" id="lfoot"></p>
-    </div>
-    <input class="scrub" id="day" type="range" min="1" max="28" value="19" aria-label="day of the sample cycle">
-    <figcaption><span class="fig">fig. 3</span>the body ledger, with hæl’s own sample: most mornings, a 36h fast and a 72h fast. hold the ring to read a morning; slide to move through the cycle.</figcaption>
-  </figure>
-  <a class="more" href="/weight-gain-before-period/">why weight goes up before a period, and what the studies show →</a>
+<div class="band" id="page"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>ii. the page</span></div></div>
+<section><div class="wrap pair">
+  <figure><div class="frame screen" style="margin:0 auto"><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span><img src="/images/app/active.webp" alt="the active fast at hour six: the threshold"></div>
+  <figcaption class="cap" style="justify-content:center"><span class="sc">fig. 2</span>the active fast, close.</figcaption></figure>
+  <div class="txt"><h2>a new page for every hour.</h2><p>begin a fast and the ring keeps time. the words beneath it change as the body does: the threshold, the crossing, the quiet hours. no streak flames, no badges, no voice telling you to push.</p></div>
 </div></section>
 
-<section id="cycle"><div class="wrap">
-  <span class="label"><svg class="enso"><use href="#enso"/></svg>iv. the cycle</span>
-  <h2>the cycle, read.</h2>
-  <p class="body">connect Apple Health or enter your last period, and the ring takes the color of the phase. the phase suggests the hours, and the words follow it. if a cycle doesn't apply to you, turn it off and the ring keeps the hours alone.</p>
-  <div class="phases" role="tablist" aria-label="phases"><button role="tab" data-p="menstrual">menstrual</button><button role="tab" data-p="follicular">follicular</button><button role="tab" data-p="ovulation">ovulation</button><button role="tab" data-p="luteal">luteal</button></div>
-  <figure class="figure" style="margin-top:30px">
+<div class="band" id="water"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>iii. the water</span></div></div>
+<section><div class="wrap pair flip">
+  <figure><div class="frame screen" style="margin:0 auto"><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span><img src="/images/app/body.webp" alt="the body ledger: each morning a bead on a ring"></div>
+  <figcaption class="cap" style="justify-content:center"><span class="sc">fig. 3</span>the body ledger, with hæl’s own sample.</figcaption></figure>
+  <div class="txt"><h2>the water, given room.</h2><p>weight rises before a period, and most apps read it as failure. hæl learns where your body carries water across the cycle and reads each morning against that, never against yesterday.</p><a class="sc br more" href="/weight-gain-before-period/">read <i>the study</i></a></div>
+</div></section>
+
+<div class="band" id="cycle"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>iv. the cycle</span></div></div>
+<section><div class="wrap pair">
+  <figure><div class="frame"><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span><div class="cyc">
+    <div class="phases" role="tablist" aria-label="phases"><button role="tab" data-p="menstrual">menstrual</button><button role="tab" data-p="follicular">follicular</button><button role="tab" data-p="ovulation">ovulation</button><button role="tab" data-p="luteal">luteal</button></div>
     <div class="season">
-      <div class="one"><svg id="flat" viewBox="-130 -130 260 260" aria-hidden="true"></svg><p class="cap">one plan, all month</p></div>
-      <div class="one"><svg id="hers" viewBox="-130 -130 260 260" role="img" aria-label="twenty-eight days on hæl's ring, each bead sized by the hours its phase suggests"></svg><p class="cap">the hours each phase suggests</p></div>
+      <div class="one"><svg id="flat" viewBox="-130 -130 260 260" aria-hidden="true"></svg><p class="rc">one plan, all month</p></div>
+      <div class="one"><svg id="hers" viewBox="-130 -130 260 260" role="img" aria-label="twenty-eight days on hæl's ring, each bead sized by the hours its phase suggests"></svg><p class="rc">the hours each phase suggests</p></div>
     </div>
-    <p class="line" id="psum"></p>
+    <p class="line" id="psum" aria-live="polite"></p>
     <p class="hint" id="ptip"></p>
-    <figcaption><span class="fig">fig. 4</span>one plan for the whole month, or the hours each phase suggests. touch a phase or a bead.</figcaption>
-  </figure>
-  <a class="more" href="/intermittent-fasting-menstrual-cycle/">intermittent fasting and the menstrual cycle: what the evidence shows →</a>
+  </div></div>
+  <figcaption class="cap" style="justify-content:center"><span class="sc">fig. 4</span>one plan for the month, or the hours each phase suggests. touch a phase or a bead.</figcaption></figure>
+  <div class="txt"><h2>the cycle, read.</h2><p>connect Apple Health or enter your last period, and the ring takes the colour of the phase. the phase suggests the hours, and the words follow it. if a cycle doesn’t apply to you, the ring keeps the hours alone.</p><a class="sc br more" href="/intermittent-fasting-menstrual-cycle/">read <i>the evidence</i></a></div>
 </div></section>
 
-<section id="letters"><div class="wrap">
-  <span class="label"><svg class="enso"><use href="#enso"/></svg>v. the letters</span>
-  <h2>a letter<br>on monday.</h2>
-  <p class="body">the full witness writes to you each monday about the week you kept: the fasts, the rest, the weight read against the cycle. it notices; it never grades.</p>
-  <figure>
+<div class="band" id="letters"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>v. the letters</span></div></div>
+<section><div class="wrap pair flip">
+  <figure><div class="frame"><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span>
     <div class="letterstage closed" id="letter" role="button" tabindex="0" aria-label="a sealed monday letter; open it">
       <div class="lshadow"></div>
       <div class="lift">
         <div class="midp"><div class="face"><div class="sheet"></div></div></div>
-        <div class="flap lbot"><div class="face"><div class="sheet"></div></div><div class="back"></div></div>
-        <div class="flap ltop"><div class="face"><div class="sheet"></div></div><div class="back"><div class="seal">æ</div></div></div>
+        <div class="flap lbot"><div class="face"><div class="sheet" aria-hidden="true"></div></div><div class="back"></div></div>
+        <div class="flap ltop"><div class="face"><div class="sheet" aria-hidden="true"></div></div><div class="back"><div class="wax">æ</div></div></div>
       </div>
     </div>
-    <button class="tapline" id="lopen">open the letter</button>
-    <figcaption><span class="fig">fig. 5</span>a monday letter, from hæl’s own sample.</figcaption>
-  </figure>
-  <p class="cadence">each month, a reading. each season, another. and at the year’s end, the year.</p>
+    <button class="tapline" id="lopen">open the letter</button></div>
+  <figcaption class="cap" style="justify-content:center"><span class="sc">fig. 5</span>a monday letter, from hæl’s own sample. it opens from its seal.</figcaption></figure>
+  <div class="txt"><h2>a letter on monday.</h2><p>the full witness writes to you each monday about the week you kept. each month, a reading. each season, another. and at the year’s end, the year.</p></div>
 </div></section>
 
-<section id="colophon"><div class="wrap">
-  <span class="label"><svg class="enso"><use href="#enso"/></svg>vi. colophon</span>
-  <h2>nothing asked of you.</h2>
-  <p class="lines">no account. no subscription. no ads.<br>no coaching. no celebration.</p>
-  <p class="body">what you write lives on your phone, in your own iCloud, and in Apple Health. no server of ours ever sees it.</p>
-  <p class="quiet">the timer is free and complete. the full witness opens free for fourteen days, then is yours for $19.99, once.</p>
+<div class="band" id="opens"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>vi. how the full witness opens</span></div></div>
+<section><div class="wrap">
+  <ol class="steps">
+    <li><span class="k">01</span><span>begin with the practice: the timer, the log, the daily greeting and rest days, free and complete.</span></li>
+    <li><span class="k">02</span><span>the full witness opens for fourteen days, free, once. nothing renews; it closes on its own.</span></li>
+    <li><span class="k">03</span><span>keep it for $19.99, once. or let it close, and keep everything you kept.</span></li>
+    <li class="end" style="display:block;border:0"><div class="marks" style="justify-content:center"><a href="https://apps.apple.com/app/id6778956802"><img src="/images/app-store-badge.svg" width="135" height="45" alt="Download on the App Store"></a><img class="ah" src="/images/works-with-apple-health.svg" width="144" height="40" alt="Works with Apple Health"></div></li>
+  </ol>
 </div></section>
 
-<section id="questions" class="band"><div class="wrap">
-  <span class="label"><svg class="enso"><use href="#enso"/></svg>vii. questions</span>
-  <h2>questions.</h2>
+<div class="band"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>the index</span></div></div>
+<section><div class="wrap index">
+  <div class="txt"><h2>nothing asked of you.</h2><p class="lines" style="text-align:left">no account. no subscription. no ads.<br>no coaching. no celebration.</p><p>what you write lives on your phone, in your own iCloud, and in Apple Health. no server of ours ever sees it.</p></div>
+  <ol>
+    <li><span class="ro">i.</span><a href="#hours">the hours</a><sup>8</sup></li>
+    <li><span class="ro">ii.</span><a href="#page">the page</a><sup>114</sup></li>
+    <li><span class="ro">iii.</span><a href="#water">the water</a></li>
+    <li><span class="ro">iv.</span><a href="#cycle">the cycle</a><sup>4</sup></li>
+    <li><span class="ro">v.</span><a href="#letters">the letters</a><sup>52</sup></li>
+    <li><span class="ro">vi.</span><a href="#opens">the fourteen days</a></li>
+    <li><span class="ro">vii.</span><a href="#questions">questions</a><sup>7</sup></li>
+  </ol>
+</div></section>
+<div class="band" id="questions"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>vii. questions</span></div></div>
+<section><div class="wrap">
+  <div class="txt" style="max-width:680px;margin:0 auto"><h2>questions.</h2></div>
   <div class="faq">
     <details><summary>is there a free trial?</summary><p>yes. the full witness is free for fourteen days, once. nothing is charged and nothing renews; when the days end it closes on its own, and everything you kept stays.</p></details>
     <details><summary>does hæl work without a period, or on birth control?</summary><p>yes. cycle tracking can be turned off in settings, and then the ring keeps the hours alone and the body ledger compares each morning with this time last month instead of with the cycle.</p></details>
@@ -515,230 +464,29 @@ footer nav{display:flex;flex-wrap:wrap;gap:6px 18px}footer a{text-decoration:non
     <details><summary>is hæl medical advice?</summary><p>no. it observes; it does not diagnose, treat, or prescribe. fasts beyond forty-eight hours should be medically supervised, and hæl says so each time. settings links to eating disorder support.</p></details>
   </div>
 </div></section>
-
-<div class="begin" id="begin"><h2>begin.</h2><a href="https://apps.apple.com/app/id6778956802"><img src="/images/app-store-badge.svg" width="150" height="50" alt="Download on the App Store"></a></div>
 </main>
-<footer><div class="wrap"><span>© 2026 KI-GEN Studios LLC</span><nav aria-label="Footer"><a href="/weight-gain-before-period/">weight before a period</a><a href="/intermittent-fasting-menstrual-cycle/">fasting and the cycle</a><a href="/privacy/">privacy</a><a href="/terms/">terms</a><a href="/consumer-health-data/">health data</a><a href="mailto:hello@hael.app">contact</a></nav></div></footer>
+
+<footer><div class="wrap">
+  <svg class="seal" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="27" fill="none" stroke="var(--rule)" stroke-width="1"/><circle cx="30" cy="30" r="23" fill="none" stroke="var(--blush)" stroke-width="1.4"/><text x="30" y="37" text-anchor="middle" style="font:300 20px var(--serif);fill:var(--rose)">æ</text></svg>
+  <span class="sc" style="color:var(--soft)">for iPhone, iPad and Apple Watch · kept on your phone, never on a server of ours</span>
+  <div class="row sc"><span>© 2026 KI-GEN Studios LLC</span><span><a href="/privacy/">privacy</a> · <a href="/terms/">terms</a> · <a href="/consumer-health-data/">health data</a> · <a href="mailto:hello@hael.app">write to us</a></span></div>
+</div></footer>
+
 <script>
-const $=id=>document.getElementById(id), reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const NS='http://www.w3.org/2000/svg', el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e;};
-const W=['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty'];
-function fade(e,t){if(e.textContent===t)return;if(reduce){e.textContent=t;return;}e.style.opacity=0;setTimeout(()=>{e.textContent=t;e.style.opacity=1;},180);}
-function arc(cx,r,from,to){ // fractions of a turn, clockwise from the top
-  if(to-from<=0.0005) return '';
-  if(to-from>=0.9999) to=from+0.9999;
-  const p=f=>{const a=(-90+360*f)*Math.PI/180;return [cx+r*Math.cos(a),cx+r*Math.sin(a)];};
-  const [x0,y0]=p(from),[x1,y1]=p(to); return `M${x0.toFixed(2)} ${y0.toFixed(2)} A${r} ${r} 0 ${to-from>.5?1:0} 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`;}
-function onCircle(cx,r,f){const a=(-90+360*f)*Math.PI/180;return [cx+r*Math.cos(a),cx+r*Math.sin(a)];}
-function fit(id,app){const s=$(id),a=$(app);const k=s.clientWidth/393;a.style.transform='scale('+k+')';}
-['scr1','scr2'].forEach((id,i)=>{const app=i?'app':'home';new ResizeObserver(()=>fit(id,app)).observe($(id));fit(id,app);});
-function touchDeg(svg,e){const r=svg.getBoundingClientRect();let d=Math.atan2(e.clientY-r.top-r.height/2,e.clientX-r.left-r.width/2)*180/Math.PI+90;return d<0?d+360:d;}
-
-// ===== Turnings and TurningDial, as in the app (Turnings.swift) =====
-const T={perTurn:24,min:8,max:168,maxTurn:7,above:[24,36,48,72,96,120,144,168],ratio:.83,depth:.078};
-const D={dph:15,maxA:720,dps:360/7,det:8,hdet:3};
-const allowed=[...Array(16)].map((_,i)=>8+i).concat(T.above);
-const countFor=g=>Math.min(Math.max(Math.ceil(Math.max(g,0)/24),1),7);
-function radii(outer,n,depth){n=Math.min(Math.max(n,1),7);if(n<=1)return[outer];const first=depth*(1-T.ratio)/(1-Math.pow(T.ratio,6));const fb=[outer];let g=first;for(let i=1;i<n;i++){fb.push(fb[fb.length-1]-g);g*=T.ratio;}return fb.reverse();}
-function hoursFor(a){a=Math.min(Math.max(a,0),D.maxA);if(a<=360)return a/D.dph;const pos=(a-360)/D.dps,lo=Math.min(Math.floor(pos),T.above.length-2);return T.above[lo]+(pos-lo)*(T.above[lo+1]-T.above[lo]);}
-function angleFor(h){h=Math.min(Math.max(h,0),T.max);if(h<=24)return h*D.dph;let lo=0;for(let i=0;i<T.above.length-1;i++)if(T.above[i]<=h)lo=i;return 360+(lo+(h-T.above[lo])/(T.above[lo+1]-T.above[lo]))*D.dps;}
-function snap(h){if(h<24)return Math.min(Math.max(Math.round(h),T.min),24);const c=Math.min(h,T.max);return T.above.reduce((a,b)=>Math.abs(b-c)<Math.abs(a-c)?b:a);}
-function step(h,dir){let n=0;allowed.forEach((g,i)=>{if(Math.abs(g-h)<Math.abs(allowed[n]-h))n=i;});return allowed[Math.min(Math.max(n+(dir>0?1:-1),0),allowed.length-1)];}
-function settle(goal,finger,cur){if(goal===cur||!allowed.includes(cur))return goal;const rest=angleFor(cur),up=finger>rest,nb=step(cur,up?1:-1);if(nb!==goal)return goal;const edge=(rest+angleFor(nb))/2,hold=cur>=24?D.det:D.hdet;return (up?finger<edge+hold:finger>edge-hold)?cur:goal;}
-function drag(touch,prev,cur){const ref=prev??angleFor(cur);let c;if(prev==null){const nearTop=touch<D.dps/2;if(cur<24)c=[nearTop?touch+360:touch];else if(cur===24)c=[touch,touch+360];else c=nearTop?[touch+360,touch+720]:[touch+360];}else{const base=touch+360*Math.round((ref-touch)/360);c=[base-360,base,base+360];}const f=c.reduce((a,b)=>Math.abs(b-ref)<Math.abs(a-ref)?b:a);return {finger:f,goal:settle(snap(hoursFor(f)),f,cur)};}
-const beadDeg=g=>g>=T.max?360:angleFor(g)%360;
-const barkShare=g=>Math.min(Math.max(g<=24?g/24:(angleFor(g)-360)/360,0),1);
-
-// ===== fig. 1: home =====
-let goal=16, finger=null, hdrag=false;
-const SUG=[{h:15,label:'deep luteal',primary:true,i:0},{h:20,label:'common routine',primary:false,i:1}];
-function breakLine(hours){const now=new Date(),end=new Date(now.getTime()+hours*3600e3),eh=end.getHours();
-  const dd=Math.round((new Date(end.getFullYear(),end.getMonth(),end.getDate())-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/864e5);
-  const t=end.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}).toLowerCase();let ctx;
-  if(dd===0)ctx=eh<12?'this morning':eh<17?'this afternoon':eh<21?'this evening':'tonight';
-  else if(dd===1)ctx=eh<5?'early tomorrow':eh<12?'tomorrow morning':eh<17?'tomorrow afternoon':eh<21?'tomorrow evening':'tomorrow night';
-  else{const n=end.toLocaleDateString('en-US',{weekday:'long'}).toLowerCase();ctx=eh<5?'early '+n:eh<12?n+' morning':eh<17?n+' afternoon':eh<21?n+' evening':n+' night';}
-  return 'the fast breaks '+ctx+' at '+t+'.';}
-function drawHome(){
-  const g=$('hrings');g.innerHTML='';const n=countFor(goal),rs=radii(130,n,320*T.depth*0.8125);
-  rs.forEach((r,i)=>{const bark=i===rs.length-1;el('circle',{cx:160,cy:160,r,fill:'none',stroke:'#D4C9DE','stroke-opacity':bark?.5:.35,'stroke-width':bark?3:1},g);
-    if(!bark) el('circle',{cx:160,cy:160,r,fill:'none',stroke:'#B58389','stroke-opacity':.38,'stroke-width':1},g);});
-  $('hbark').setAttribute('d',arc(160,130,0,barkShare(goal)));$('hbark').setAttribute('stroke-width',hdrag?6:2.5);
-  const [bx,by]=onCircle(160,130,beadDeg(goal)/360);$('hbead').setAttribute('transform',`translate(${bx} ${by})`);
-  const st=$('hstars');st.innerHTML='';
-  if(goal<24) SUG.forEach(s=>{const landed=Math.abs(s.h-goal)<1;const [x,y]=onCircle(160,130,s.h/24);const gg=el('g',{transform:`translate(${x} ${y})`,class:'star',style:`--c:${[2.5,3.3][s.i]}s;--d:${s.i*.35}s`},st);
-    el('circle',{r:landed?24:(s.primary?22:18),fill:'url(#starw)'},gg);if(landed||s.primary)el('circle',{r:landed?12:10,fill:'url(#starr)'},gg);el('circle',{r:landed?4:(s.primary?3.5:2.25),fill:landed||s.primary?'#B58389':'#C4959A'},gg);});
-  const days=goal>=24&&goal%24===0; $('hnum').textContent=days?goal/24:goal; $('hunit').textContent=days?(goal===24?'day':'days'):'hours';
-  const w=$('hnum').getComputedTextLength?$('hnum').getComputedTextLength():28; $('hline').setAttribute('x1',160-w/2+2);$('hline').setAttribute('x2',160+w/2-2);
-  const cap=$('hcap'); cap.classList.toggle('rub',hdrag);
-  if(hdrag){cap.textContent='or tap the number to write it.';}
-  else{const act=SUG.find(s=>Math.abs(s.h-goal)<1);const rec=act?`${act.label}. ${act.h} hours.`:`${SUG[0].label}. ${SUG[0].h} hours.`;cap.innerHTML='';cap.append(rec,document.createElement('br'),breakLine(goal));}
-  $('hdial').setAttribute('aria-valuenow',goal);$('hdial').classList.toggle('dragging',hdrag);
-}
-const hd=$('hdial');
-hd.addEventListener('pointerdown',e=>{e.preventDefault();hd.setPointerCapture(e.pointerId);hdrag=true;finger=null;const r=drag(touchDeg(hd,e),finger,goal);finger=r.finger;goal=r.goal;drawHome();});
-hd.addEventListener('pointermove',e=>{if(!hdrag)return;const r=drag(touchDeg(hd,e),finger,goal);finger=r.finger;if(r.goal!==goal){goal=r.goal;}drawHome();});
-['pointerup','pointercancel'].forEach(t=>hd.addEventListener(t,()=>{hdrag=false;finger=null;drawHome();}));
-hd.addEventListener('keydown',e=>{if(['ArrowRight','ArrowUp'].includes(e.key)){goal=step(goal,1);drawHome();e.preventDefault();}if(['ArrowLeft','ArrowDown'].includes(e.key)){goal=step(goal,-1);drawHome();e.preventDefault();}});
-drawHome();
-
-// ===== fig. 2: the active fast (ActiveFastView, TurningRing) =====
-const GOAL=16; let el2=6, adrag=false;
-const LINES=[[2,"the stomach registers it first, a faint draft where the meal was."],[4,"the mind adjusts slower than the body, it always has."],[6,"hunger arrives like a bell. it rings, and then the silence after it is deeper."],[8,"hunger speaks but does not insist. a suggestion, not a siren."],[10,"something shifted and no one left the room."],[12,"lighter now, like the hour after a storm passes through."],[14,"the body remembers this. a hand on a familiar doorknob."],[16,"doubt arrives around now but it belongs to the clock, not the marrow."]];
-const OVER=[["the ring is full. the practice continues.","past the mark. the body did not notice the line.","the goal behind. the hours adding themselves, unhurried."],["past the mark. the hours continuing on their own authority.","overtime. the body carrying what the plan did not ask for.","the plan ended. the body had more to say."],["well past the plan. the hours adding themselves, unhurried.","the clock counts past the goal. the body is indifferent to the line.","hours past the mark. the fast, on the body's clock now."]];
-const halo=h=>h<3?'#E2CFC6':h<6?'#DDBCB9':h<12?'#DFD0B5':h<16?'#C4959A':h<20?'#B58389':'#A37278';
-function phaseLabel(sec){const h=Math.floor(sec/3600),m=Math.floor(sec/60);const name=h<12?'the threshold':h<16?'the crossing':'the quiet hours';return name+' · '+(m<60?m+'m in':'hour '+W[h]);}
-function drawFast(){
-  const sec=el2*3600, h=Math.floor(el2), m=Math.floor((sec%3600)/60), frac=Math.min(el2/24,.9999), goalShare=GOAL/24;
-  const solid=el2>GOAL?Math.min(goalShare,frac):frac;
-  $('ahalo').setAttribute('d',arc(160,130,0,frac));$('ahalo').setAttribute('stroke',halo(h));
-  $('aarcp').setAttribute('d',arc(160,130,0,solid));$('afine').setAttribute('d',frac>solid?arc(160,130,solid,frac):'');
-  const [x,y]=onCircle(160,130,frac);$('abead').setAttribute('transform',`translate(${x} ${y})`);$('abead').style.display=frac>0?'':'none';
-  $('num').textContent=h<1?m+'m':h+'h '+m+'m'; $('unit').textContent=phaseLabel(sec); $('dial').setAttribute('aria-valuenow',h);
-  const over=el2>=GOAL;
-  fade($('agreet'),over?'past the mark. the fast continuing.':h>=6?'deeper now. the drawer it was reaching for, found.':'the fast, still new. the body adjusting.');
-  let q; if(over){const ho=Math.floor(el2-GOAL);const pool=OVER[ho<2?0:ho<4?1:2];q=pool[h%3];} else q=(LINES.find(b=>h<b[0])||LINES[LINES.length-1])[1];
-  fade($('line'),q);
-}
-const ad=$('dial');
-function fromA(e){let d=touchDeg(ad,e);let n=d/360*24;if(el2>20&&n<4)n=23.99;if(el2<4&&n>20)n=0;el2=n;drawFast();}
-ad.addEventListener('pointerdown',e=>{e.preventDefault();adrag=true;ad.setPointerCapture(e.pointerId);fromA(e);});
-ad.addEventListener('pointermove',e=>{if(adrag)fromA(e);});
-['pointerup','pointercancel'].forEach(t=>ad.addEventListener(t,()=>{adrag=false;}));
-ad.addEventListener('keydown',e=>{if(['ArrowRight','ArrowUp'].includes(e.key)){el2=Math.min(23.99,Math.floor(el2)+1);drawFast();e.preventDefault();}if(['ArrowLeft','ArrowDown'].includes(e.key)){el2=Math.max(0,Math.floor(el2)-1);drawFast();e.preventDefault();}});
-drawFast();
-// ===== fig. 3: the body ledger (LedgerSamples .daily → BodyRing.make → BodyRingView) =====
-const CAP=0.5, SHAPE=0.35, RING=0.7, WELL=1.0;
-const median=v=>{if(!v.length)return null;const a=[...v].sort((x,y)=>x-y),m=a.length>>1;return a.length%2?a[m]:(a[m-1]+a[m])/2;};
-const scaledKg=kg=>CAP*Math.tanh(kg/RING);
-const dayIndex=d=>Math.round(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5);
-function rng(seed){const M=(1n<<64n)-1n;let st=(BigInt(seed)*0x9E3779B97F4A7C15n)&M;return (lo,hi)=>{st=(st*6364136223846793005n+1442695040888963407n)&M;const unit=Number(st>>11n)/2**53;return lo+unit*(hi-lo);};}
-function sample(todayInCycle,now){ // LedgerSample.daily.history(now:)
-  const R=rng(7), today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-  const at=(off,h=7,m=10)=>new Date(today.getFullYear(),today.getMonth(),today.getDate()+off,h,m);
-  const lengths=[28,27,29], usual=28; const so=[-(todayInCycle-1)]; [...lengths].reverse().forEach(L=>so.unshift(so[0]-L)); const first=so[0];
-  const fasts=[{start:at(-13,19,0),end:at(-11,7,0)},{start:at(-7,19,0),end:at(-4,19,0)}];
-  const fx=o=>(o>=-12&&o<=-11)?-0.4:(o>=-6&&o<=-4)?-0.5-(o+6)*0.2:(o>=-3&&o<=-1)?-0.8+(o+3)*0.3:0;
-  const cd=o=>{let idx=-1;so.forEach((st,i)=>{if(st<=o)idx=i;});const L=idx<lengths.length?lengths[idx]:usual;return [o-so[idx]+1,L];};
-  const kgAt=o=>{const [d,L]=cd(o);let kg=57.4-(o-first)*0.006;if(d>L-6)kg+=0.12*(d-(L-6));if(d<=3)kg+=0.35-d*0.08;kg+=fx(o);return kg+R(-0.25,0.25);};
-  const entries=[];for(let o=first;o<=0;o++){if(o!==0&&R(0,1)<0.17)continue;entries.push({kg:kgAt(o),date:at(o)});}
-  return {entries,starts:so.map(o=>at(o,8,0)),cycleLength:usual,fasts};
-}
-function makeRing(h,now){ // BodyRing.make
-  const today=dayIndex(now), W=new Map(); h.entries.forEach(e=>W.set(dayIndex(e.date),e));
-  const spans=h.fasts.map(f=>{const hrs=(f.end-f.start)/36e5;return hrs>=24?{from:dayIndex(f.start),to:dayIndex(f.end),long:hrs>=48}:null}).filter(Boolean);
-  const afterLong=d=>spans.some(s=>s.long&&s.to<d&&d<=s.to+4), during=d=>spans.some(s=>s.from<=d&&d<=s.to);
-  const starts=h.starts.map(dayIndex).sort((a,b)=>a-b); const current=starts.filter(x=>x<=today).pop();
-  const gaps=starts.slice(1).map((x,i)=>x-starts[i]).filter(g=>g>=18&&g<=45); const length=gaps.length?Math.round(median(gaps)):Math.max(21,Math.min(45,h.cycleLength));
-  // her usual for each cycle day
-  const done=new Set(starts.filter(x=>x<current)), cycles=new Map();
-  W.forEach((e,d)=>{if(d>=current)return;const st=starts.filter(x=>x<=d).pop();if(st==null||!done.has(st))return;if(!cycles.has(st))cycles.set(st,new Map());cycles.get(st).set(d-st+1,e.kg);});
-  const usable=[...cycles.values()].filter(c=>c.size>=3); let usual=null;
-  if(usable.length>=2){const longest=Math.max(...usable.map(c=>Math.max(...c.keys())));usual=new Map();let last=null;
-    for(let p=1;p<=longest+7;p++){const near=[];usable.forEach(c=>c.forEach((kg,k)=>{if(Math.abs(k-p)<=2)near.push(kg);}));const v=median(near);if(v!=null)last=v;if(last!=null)usual.set(p,last);}}
-  const days=[...W.keys()].filter(d=>d>=current&&d<=today).sort((a,b)=>a-b);
-  const here=new Map(days.map(d=>[d,W.get(d)])); const own=median(days.map(d=>here.get(d).kg))??0;
-  const top=usual?Math.max(...usual.keys()):0, u=p=>usual.get(Math.min(p,top));
-  const deltas=days.map(d=>here.get(d).kg-(usual?(u(d-current+1)??own):own));
-  let drawn, swell=[], ghost=[], sinceLast=null;
-  { const lvl=median(deltas), anc=Math.tanh(-lvl/SHAPE), reach=1+Math.abs(anc); drawn=deltas.map(x=>CAP*(Math.tanh((x-lvl)/SHAPE)-anc)/reach); }
-  if(usual){const lean=Math.min(...Array.from({length},(_,i)=>u(i+1)));drawn=days.map(d=>scaledKg(here.get(d).kg-lean));
-    const water=Array.from({length},(_,i)=>Math.max(0,(u(i+1)??lean)-lean));
-    const wts=[-3,-2,-1,0,1,2,3].map(k=>Math.exp(-(k*k)/4.5)),tot=wts.reduce((a,b)=>a+b,0);
-    swell=water.map((_,i)=>[-3,-2,-1,0,1,2,3].reduce((sum,k,j)=>sum+water[((i+k)%length+length)%length]*wts[j],0)/tot).map(scaledKg);
-    const prev=starts.filter(x=>x<current).pop();
-    if(prev!=null){const last=new Map([...W].filter(([d])=>d>=prev&&d<current&&d-prev<length));
-      ghost=[...last.keys()].sort((a,b)=>a-b).map(d=>({position:d-prev+1,offset:scaledKg(last.get(d).kg-lean)}));
-      const then=new Map([...last].map(([d,e])=>[d-prev,e.kg]));const diffs=[];
-      here.forEach((e,d)=>{const p=d-current;const kg=then.get(p)??then.get(p-1)??then.get(p+1);if(kg!=null)diffs.push(e.kg-kg);});
-      sinceLast=diffs.length>=3?median(diffs):null;}}
-  const beads=days.map((d,i)=>({date:here.get(d).date,position:d-current+1,weight:here.get(d).kg,offset:drawn[i],delta:deltas[i],isToday:d===today,duringFast:during(d),afterFast:afterLong(d)}));
-  const bg=beads.slice(1).map((b,i)=>b.position-beads[i].position), sp=median(bg)??1, lim=Math.max(4,2*sp);
-  const joins=bg.map((g,i)=>g<=lim?[i,i+1]:null).filter(Boolean);
-  return {mode:usual?'usual':'firstCycle',length,todayPosition:today-current+1,beads,joins,swell,ghost,sinceLast,history:h,now};
-}
-function readingOf(ring){ // BodyRing.reading
-  if(ring.mode==='firstCycle')return 'the usual takes two cycles to learn. until then, the thread alone.';
-  const now=ring.now, ws=new Date(now.getFullYear(),now.getMonth(),now.getDate()-now.getDay());
-  const lastWeek=ring.beads.filter(b=>b.date<ws&&b.date>=new Date(ws.getTime()-7*864e5));
-  const win=lastWeek.length>=2?lastWeek:ring.beads.filter(b=>b.date>new Date(now.getTime()-7*864e5));
-  const mean=median(win.map(b=>b.delta)); if(mean==null)return 'the thread begins with the first morning.';
-  const afterFast=win.some(b=>b.afterFast), usualW="this body's usual for these days", size=Math.abs(mean);
-  const degree=size>=WELL?'well ':size>=CAP?'':'a little ';
-  const latest=win.reduce((a,b)=>b.position>a.position?b:a), swellHere=ring.swell[latest.position-1]??0;
-  const inWater=swellHere>=scaledKg(0.2)&&latest.offset>=scaledKg(0.15);
-  let first; if(size<0.15) first=inWater?'up with the water, as on these days every cycle.':'where this body usually is on these days.';
-  else if(mean<0) first=afterFast?"lighter than this body's usual for these days, after the fast.":degree+'below '+usualW+'.';
-  else first=swellHere>=scaledKg(0.2)?degree+'past the water this body carries on these days.':degree+'above '+usualW+'.';
-  if(ring.sinceLast==null)return first; const s=ring.sinceLast;
-  return first+' '+(s<=-0.3?'lighter than this point last cycle.':s>=0.3?'heavier than this point last cycle.':'close to this point last cycle.');
-}
-// BodyRingView
-const RC={period:'#D6A9A9',follicular:'#DEC1AF',ovulation:'#D9C49B',luteal:'#BEB0D3'};
-function phaseOf(day,L){L=Math.max(8,L);const os=Math.max(6,L-14),oe=os+1;if(day>=1&&day<=5)return 'period';if(day>=6&&day<os)return 'follicular';if(day>=os&&day<=oe)return 'ovulation';if(day>oe&&day<=L)return 'luteal';return null;}
-const hex=c=>[1,3,5].map(i=>parseInt(c.slice(i,i+2),16)), mix=(a,b,t)=>{const A=hex(a),B=hex(b);return 'rgb('+A.map((v,i)=>Math.round(v+(B[i]-v)*t)).join(',')+')';};
-function lightFor(L){ // phaseLight: stops (colour, location) and the offset in days
-  const runs=[];for(let d=1;d<=L;d++){const p=phaseOf(d,L);if(runs.length&&runs[runs.length-1].p===p)runs[runs.length-1].last=d;else runs.push({p,first:d,last:d});}
-  const n=runs.length, days=i=>runs[i].last-runs[i].first+1, blend=(a,b)=>Math.min(1.5,days(a)/2,days(b)/2), off=blend(n-1,0), loc=d=>Math.min(Math.max((d+off)/L,0),1);
-  const stops=[[RC[runs[n-1].p],0]];for(let i=0;i<n;i++){const be=blend((i+n-1)%n,i),af=blend(i,(i+1)%n);stops.push([RC[runs[i].p],loc(runs[i].first-1+be)],[RC[runs[i].p],loc(runs[i].last-af)]);}
-  return {stops,off};}
-function colourAt(dayPos,L,light){let l=((dayPos+light.off)/L)%1;if(l<0)l+=1;const st=light.stops;for(let i=0;i<st.length-1;i++){if(l>=st[i][1]&&l<=st[i+1][1]){const t=st[i+1][1]>st[i][1]?(l-st[i][1])/(st[i+1][1]-st[i][1]):0;return mix(st[i][0],st[i+1][0],t);}}return mix(st[st.length-1][0],st[st.length-1][0],0);}
-const eased=(a,b,t)=>{const e=t*t*(3-2*t);return a*(1-e)+b*e;};
-let lring=null, touched=null;
-function drawLedger(){
-  const svg=$('lring'), L=lring.length, size=300, radius=size/2-14, pull=radius*0.11, light=lightFor(L);
-  const ang=p=>((p-0.5)/L*360-90)*Math.PI/180;
-  const pt=(p,off)=>{const late=p>L+0.5?6:0, r=radius+late+(off/CAP)*pull, a=ang(p);return [size/2+r*Math.cos(a),size/2+r*Math.sin(a)];};
-  const ptR=(p,r)=>{const a=ang(p);return [size/2+r*Math.cos(a),size/2+r*Math.sin(a)];};
-  svg.innerHTML='<defs><filter id="lb3" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="3"/></filter><filter id="lb35" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="3.5"/></filter></defs>';
-  // the swell: where this body usually carries water, filled in the phases' light at .3
-  if(lring.swell.length===L&&lring.swell.some(v=>v>0.01)){const g=el('g',{opacity:.3},svg);const steps=L*6;
-    for(let i=0;i<steps;i++){const p0=0.5+i/6,p1=0.5+(i+1)/6;const reach=p=>{const lo=Math.floor(p);const a=lring.swell[((lo-1)%L+L)%L],b=lring.swell[lo%L];return eased(a,b,p-lo)/CAP*pull;};
-      const [ax,ay]=ptR(p0,radius),[bx,by]=ptR(p1,radius),[cx,cy]=ptR(p1,radius+1+reach(p1)),[dx,dy]=ptR(p0,radius+1+reach(p0));
-      el('path',{d:`M${ax} ${ay}L${bx} ${by}L${cx} ${cy}L${dx} ${dy}Z`,fill:colourAt(p0-0.5+1/12,L,light),stroke:colourAt(p0-0.5+1/12,L,light),'stroke-width':.4},g);}}
-  // the track: lived days 4pt, days ahead 2.2pt at .42, in the phases' light
-  const lived=Math.min(Math.max(lring.todayPosition,0),L)/L, segs=360, ahead=el('g',{opacity:.42},svg), past=el('g',{},svg);
-  for(let i=0;i<segs;i++){const f0=i/segs,f1=(i+1)/segs, isLived=f1<=lived+1e-9, lap=isLived&&f1+1e-9>=lived?0:0.004;
-    const a0=(f0*360-90)*Math.PI/180,a1=((f1+lap)*360-90)*Math.PI/180;
-    el('path',{d:`M${150+radius*Math.cos(a0)} ${150+radius*Math.sin(a0)}A${radius} ${radius} 0 0 1 ${150+radius*Math.cos(a1)} ${150+radius*Math.sin(a1)}`,fill:'none',stroke:colourAt(f0*L+0.5/segs*L,L,light),'stroke-width':isLived?4:2.2},isLived?past:ahead);}
-  // last cycle, faint and dotted
-  const thread=(list,attrs)=>{let d='';for(let i=0;i<list.length-1;i++){const a=list[i],b=list[i+1];if(attrs.limit&&b.position-a.position>4)continue;const steps=Math.max(8,(b.position-a.position)*6);
-      for(let s=0;s<=steps;s++){const t=s/steps,p=a.position+(b.position-a.position)*t;const [x,y]=pt(p,eased(a.offset,b.offset,t));d+=(s?'L':'M')+x.toFixed(2)+' '+y.toFixed(2);}}return d;};
-  if(lring.ghost.length>=2)el('path',{d:thread(lring.ghost,{limit:true}),fill:'none',stroke:'#7A736E','stroke-opacity':.38,'stroke-width':1,'stroke-dasharray':'1 3','stroke-linecap':'round'},svg);
-  // this cycle's thread, along the joins
-  let td='';lring.joins.forEach(([i,j])=>{const a=lring.beads[i],b=lring.beads[j];const steps=Math.max(8,(b.position-a.position)*6);for(let s=0;s<=steps;s++){const t=s/steps,p=a.position+(b.position-a.position)*t;const [x,y]=pt(p,eased(a.offset,b.offset,t));td+=(s?'L':'M')+x.toFixed(2)+' '+y.toFixed(2);}});
-  el('path',{d:td,fill:'none',stroke:'#B58389','stroke-opacity':.65,'stroke-width':1,'stroke-linecap':'round','stroke-linejoin':'round'},svg);
-  // the beads
-  lring.beads.forEach((b,i)=>{const [x,y]=pt(b.position,b.offset);
-    if(b.duringFast)el('circle',{cx:x,cy:y,r:7.5,fill:'#A37278','fill-opacity':.4,filter:'url(#lb35)'},svg);
-    if(b.isToday){el('circle',{cx:x,cy:y,r:7,fill:'#C4959A','fill-opacity':.4,filter:'url(#lb3)'},svg);el('circle',{cx:x,cy:y,r:4,fill:'#FBF6F1',stroke:'#B58389','stroke-opacity':.7,'stroke-width':.8},svg);}
-    else el('circle',{cx:x,cy:y,r:b.duringFast?3:2.5,fill:b.duringFast?'#A37278':'#B58389','fill-opacity':b.duringFast?1:.85},svg);
-    if(touched===i)el('circle',{cx:x,cy:y,r:7.5,fill:'none',stroke:'#B58389','stroke-width':1},svg);});
-  // the middle
-  const t=(y,txt,st)=>{const e=el('text',{x:150,y,'text-anchor':'middle',style:st},svg);e.textContent=txt;return e;};
-  if(touched!=null){const b=lring.beads[touched];t(146,relDay(b.date,lring.now),'font-size:20px;fill:#7A736E');t(166,b.weight.toFixed(1)+' kg · day '+b.position,'font-size:11px;font-style:italic;fill:#A89A94');
-    if(b.duringFast)t(182,'during a fast','font-size:11px;font-style:italic;fill:#A89A94');else if(b.afterFast)t(182,'after the fast','font-size:11px;font-style:italic;fill:#A89A94');}
-  else{t(150,'day '+lring.todayPosition,'font-size:22px;fill:#7A736E');const ph=phaseOf(lring.todayPosition,L);
-    if(lring.todayPosition>L)t(170,"past this body's usual length",'font-size:11px;font-style:italic;fill:#A89A94');
-    else if(ph){const label=t(170,ph,'font-size:11px;font-style:italic;fill:#A89A94');const w=label.getComputedTextLength();el('circle',{cx:150-w/2-7,cy:166.5,r:3,fill:RC[ph]},svg);label.setAttribute('x',150+4);}}
-}
-function relDay(date,now){const a=dayIndex(date),b=dayIndex(now);if(a===b)return 'today';if(b-a===1)return 'yesterday';if(b-a<7)return date.toLocaleDateString('en-US',{weekday:'long'}).toLowerCase();return date.toLocaleDateString('en-US',{month:'short',day:'numeric'}).toLowerCase();}
-function footnote(h,now){const two=new Date(now.getTime()-14*864e5);const recent=h.entries.filter(e=>e.date>=two).map(e=>e.kg);const parts=[];
-  if(recent.length>=3)parts.push('two weeks: '+Math.min(...recent).toFixed(1)+' – '+Math.max(...recent).toFixed(1)+' kg');
-  const on=d=>h.entries.find(e=>dayIndex(e.date)===dayIndex(d)); const m=new Date(now.getFullYear(),now.getMonth()-1,now.getDate());
-  let echo=null;for(let o=0;o<=2&&!echo;o++){const a=on(new Date(m.getFullYear(),m.getMonth(),m.getDate()-o));if(a){echo='a month ago, the scale read '+a.kg.toFixed(1)+'.';break;}if(o>0){const b=on(new Date(m.getFullYear(),m.getMonth(),m.getDate()+o));if(b){echo='a month ago, the scale read '+b.kg.toFixed(1)+'.';break;}}}
-  if(echo)parts.push(echo); return parts.join('. ');}
-function ledger(){const d=+$('day').value, now=new Date(); now.setHours(9,0,0,0);
-  const h=sample(d,now); lring=makeRing(h,now); touched=null;
-  const todayEntry=lring.beads.find(b=>b.isToday); $('lw').textContent=todayEntry?todayEntry.weight.toFixed(1)+' kg':'–';
-  fade($('lread'),readingOf(lring)); $('lfoot').textContent=footnote(h,now); drawLedger();}
-const lr=$('lring');
-function nearest(e){const r=lr.getBoundingClientRect();let deg=Math.atan2(e.clientY-r.top-r.height/2,e.clientX-r.left-r.width/2)*180/Math.PI+90;if(deg<0)deg+=360;const pos=deg/360*lring.length+0.5,L=lring.length;
-  const gap=(a,b)=>{const raw=Math.abs((a%L)-(b%L));return Math.min(raw,L-raw);};let best=0;lring.beads.forEach((b,i)=>{if(gap(b.position,pos)<gap(lring.beads[best].position,pos))best=i;});return best;}
-lr.addEventListener('pointerdown',e=>{e.preventDefault();lr.setPointerCapture(e.pointerId);touched=nearest(e);drawLedger();});
-lr.addEventListener('pointermove',e=>{if(touched==null)return;const n=nearest(e);if(n!==touched){touched=n;drawLedger();}});
-['pointerup','pointercancel'].forEach(t=>lr.addEventListener(t,()=>{touched=null;drawLedger();}));
-$('day').addEventListener('input',ledger); ledger();
+// the hours as specimens, each with its arc of the day
+const H=[['lauds','the threshold',0,3],['prime','the threshold',3,6],['terce','the threshold',6,9],['noon','the threshold',9,12],['none','the crossing',12,16],['vespers','the quiet hours',16,20],['compline','the quiet hours',20,24],['vigil','the turnings',24,null]];
+const ro=['i','ii','iii','iv','v','vi','vii','viii'];
+const arc=(a,b)=>{const R=26,c=32,p=t=>[c+R*Math.sin(t/24*2*Math.PI),c-R*Math.cos(t/24*2*Math.PI)];const[x0,y0]=p(a),[x1,y1]=p(b);return `M${x0} ${y0} A${R} ${R} 0 ${b-a>12?1:0} 1 ${x1} ${y1}`;};
+document.getElementById('harches').innerHTML=H.map(([n,ph,a,b],i)=>`<div class="arch"><div class="n">${ro[i]}.</div><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26" fill="none" stroke="var(--rule)" stroke-width="1.2"/>${b===null?'<circle cx="32" cy="32" r="26" fill="none" stroke="var(--blush)" stroke-width="2.2"/><circle cx="32" cy="32" r="19" fill="none" stroke="var(--blush)" stroke-width="1" opacity=".6"/>':`<path d="${arc(a,b)}" fill="none" stroke="var(--blush)" stroke-width="2.6" stroke-linecap="round"/>`}</svg><div class="nm">${n}</div><div class="ph">${ph}</div><div class="hr">${b===null?'hour 24 and on':`hours ${a} to ${b}`}</div></div>`).join('');
+// the next letter, counted on this device
+(function(){const now=new Date(),d=new Date(now);const add=(8-now.getDay())%7||7;d.setDate(now.getDate()+add);d.setHours(0,0,0,0);
+ const ms=d-now,days=Math.floor(ms/864e5),hrs=Math.floor(ms%864e5/36e5);
+ document.getElementById('next').textContent=`monday, in ${days?days+(days===1?' day ':' days '):''}${hrs} ${hrs===1?'hour':'hours'}`;})();
+// day or night
+document.getElementById('world').addEventListener('click',()=>{const n=document.documentElement.dataset.theme==='night';document.documentElement.dataset.theme=n?'':'night';const st=document.getElementById('wst');st.style.opacity=0;setTimeout(()=>{st.textContent=n?'day':'night';st.style.opacity=1;},500);document.querySelector('.store .icon').src=n?'/images/app/icon-day.png':'/images/app/icon-night.png';});
+</script>
+<script>
+const $=id=>document.getElementById(id);
 const P={menstrual:['rgba(221,188,185,.5)','12–14','the hormonal floor, everything drawn low. the body conserves, rebuilds from the ground.','shorter fasts are typical here. iron-rich foods matter when eating.'],
  follicular:['rgba(226,207,198,.6)','16–18','a rising tide internally, mood and energy often lift with it.','energy and tolerance tend to be higher in this window.'],
  ovulation:['rgba(223,208,181,.5)','16–20','the hormonal peak, the body at full capacity. confidence and clarity often arrive uninvited.','the body at its most resilient. protein matters when breaking.'],
@@ -751,7 +499,6 @@ function phase(p,fromBead){const v=P[p];$('psum').textContent=v[2];$('ptip').tex
 window.haelPhase=phase;
 document.querySelectorAll('.phases button').forEach(b=>b.addEventListener('click',()=>phase(b.dataset.p)));
 </script>
-
 <script>
 (function(){
 // the season's light, as the body ledger draws it (28 days)
@@ -770,8 +517,8 @@ const flat=document.getElementById('flat');
 flat.appendChild(el('circle',{r:R,fill:'none',stroke:'#DCD6D1','stroke-width':3}));
 for(let d=1;d<=L;d++){const a=angleOf(d);flat.appendChild(el('circle',{cx:R*Math.cos(a),cy:R*Math.sin(a),r:4.6,fill:'#CFC8C3'}));}
 const ft=(y,t,st)=>{const e=el('text',{x:0,y,'text-anchor':'middle',style:st});e.textContent=t;return e;};
-flat.appendChild(ft(10,'16','font:200 44px var(--serif);fill:#A8A19C'));
-flat.appendChild(ft(34,'hours, every day','font:italic 13px var(--serif);fill:#A8A19C'));
+flat.appendChild(ft(10,'16','font:200 44px var(--serif);fill:var(--muted)'));
+flat.appendChild(ft(34,'hours, every day','font:italic 13px var(--serif);fill:var(--muted)'));
 // hers: the season's light, thicker for the days lived, finer ahead, as the body ledger draws it
 const hers=document.getElementById('hers');
 const defs=el('defs',{});
@@ -787,7 +534,7 @@ const gl=el('g',{'stroke-width':12,opacity:.32,filter:'url(#sblur)'});seg(gl,0,9
 const lived=el('g',{'stroke-width':4.2});seg(lived,0,TODAY);hers.appendChild(lived);
 const ahead=el('g',{'stroke-width':2.2,opacity:.55});seg(ahead,TODAY,99);hers.appendChild(ahead);
 // the centre: the chosen day's hours, its day and phase
-const tiny=ft(-30,'','font:10.5px var(--serif);letter-spacing:.16em;fill:#A9646C;text-transform:uppercase'),big=ft(14,'','font:200 44px var(--serif);fill:#7A736E'),small=ft(38,'','font:italic 13px var(--serif);fill:#8A8480');
+const tiny=ft(-30,'','font:10.5px var(--serif);letter-spacing:.16em;fill:var(--rose);text-transform:uppercase'),big=ft(14,'','font:200 44px var(--serif);fill:var(--soft)'),small=ft(38,'','font:italic 13px var(--serif);fill:var(--muted)');
 hers.appendChild(big);hers.appendChild(small);hers.appendChild(tiny);
 // the glow that marks the chosen bead, as the app's dial marks its own
 const halo=el('g',{});
