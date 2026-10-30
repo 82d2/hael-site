@@ -199,7 +199,7 @@ header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--paper)
 
 /* the opening: a paragraph, not a slogan; the app's own page, framed */
 .open{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;padding-top:64px;padding-bottom:90px;align-items:start}
-.lead{margin-top:26px;font-size:clamp(23px,2.4vw,30px);line-height:1.32;font-weight:300;text-align:justify;hyphens:auto;max-width:21em}
+.lead{margin-top:26px;font-size:clamp(23px,2.4vw,30px);line-height:1.32;font-weight:300;text-align:left;hyphens:manual;text-wrap:pretty;max-width:20em}
 .lead::first-letter{float:left;font-size:4.9em;line-height:.74;padding:10px 14px 0 0;margin-left:-4px;color:var(--rose);font-weight:300}
 .lead em{font-style:italic}
 .ledger{margin-top:40px;border-top:1px solid var(--rule);max-width:24em}
@@ -432,7 +432,7 @@ footer{padding-top:44px}
 <svg width="0" height="0" style="position:absolute"><symbol id="enso" viewBox="0 0 20 20"><path d="M10 2.2a7.8 7.8 0 1 1-6.9 4.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol></svg>
 
 <header><div class="wrap mast">
-  <nav aria-label="Sections"><a href="#hours">the hours<sup>8</sup></a><a href="#water">the water</a><a href="#cycle">the cycle<sup>4</sup></a><a href="#letters">the letters<sup>52</sup></a></nav>
+  <nav aria-label="Sections"><a href="#water">the water</a><a href="#cycle">the cycle<sup>4</sup></a><a href="#hours">the hours<sup>8</sup></a><a href="#letters">the letters<sup>52</sup></a></nav>
   <a class="mark" href="#">hæl</a>
   <div class="right"><button class="world" id="world" aria-label="day or night"><span>world:</span><svg class="moon" viewBox="0 0 26 26" aria-hidden="true"><defs><mask id="phase"><rect width="26" height="26" fill="#fff"/><circle class="shade" cx="13" cy="13" r="7.2" fill="#000"/></mask></defs><circle class="halo" cx="13" cy="13" r="11"/><circle class="disc" cx="13" cy="13" r="7" mask="url(#phase)"/><circle cx="13" cy="13" r="7" fill="none" stroke="var(--blush)" stroke-width=".7" opacity=".55"/></svg><span class="st" id="wst">day</span></button><a class="sc br" href="https://apps.apple.com/app/apple-store/id6778956802?pt=129001731&amp;ct=site-nav&amp;mt=8">download</a></div>
 </div></header>
@@ -445,7 +445,7 @@ footer{padding-top:44px}
     <dl class="ledger" aria-label="the edition">
       <div><dt>current edition</dt><dd>fourth, autumn 26</dd></div>
       <div><dt>next letter</dt><dd id="next">monday</dd></div>
-      <div><dt>the fourteen days</dt><dd><span class="dot"></span>open</dd></div>
+      <div><dt>the fourteen days</dt><dd><span class="dot"></span>open, free · nothing renews</dd></div>
     </dl>
     <div class="store">
       <img class="icon" src="/images/app/icon-day.png" width="120" height="120" alt="the hæl app icon">
@@ -484,14 +484,46 @@ footer{padding-top:44px}
   </figure>
 </div>
 
-<div class="band" id="hours"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>i. the hours</span></div></div>
+<div class="band" id="water"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>i. the water</span></div></div>
+<section><div class="wrap pair flip">
+  <figure class="live">
+    <div class="bodyledger">
+      <p class="lm">this morning</p>
+      <p class="lw" id="lw">56.8 kg</p>
+      <p class="lc">change</p>
+      <svg id="lring" viewBox="0 0 300 300" role="img" aria-label="the body ledger ring"></svg>
+      <p class="lr" id="lread"></p>
+      <p class="lf" id="lfoot"></p>
+    </div>
+    <input class="scrub" id="day" type="range" min="1" max="28" value="19" aria-label="day of the sample cycle">
+    <figcaption class="cap"><span class="sc">fig. 2</span>the body ledger, with hæl’s own sample: a 36 hour fast and a 72 hour fast. hold the ring to read a morning; slide to move through the cycle.</figcaption>
+  </figure>
+  <div class="txt"><h2>the water, given room.</h2><p>weight rises before a period, and most apps read it as failure. hæl learns where your body carries water across the cycle and reads each morning against that, never against yesterday.</p><a class="sc br more" href="/weight-gain-before-period/">read <i>the study</i></a></div>
+</div></section>
+
+<div class="band" id="cycle"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>ii. the cycle</span></div></div>
+<section><div class="wrap pair">
+  <figure class="live"><div class="cyc">
+    <div class="phases" role="tablist" aria-label="phases"><button role="tab" data-p="menstrual">menstrual</button><button role="tab" data-p="follicular">follicular</button><button role="tab" data-p="ovulation">ovulation</button><button role="tab" data-p="luteal">luteal</button></div>
+    <div class="season">
+      <div class="one"><svg id="flat" viewBox="-130 -130 260 260" aria-hidden="true"></svg><p class="rc">one plan, all month</p></div>
+      <div class="one"><svg id="hers" viewBox="-130 -130 260 260" role="img" aria-label="twenty-eight days on hæl's ring, each bead sized by the hours its phase suggests"></svg><p class="rc">the hours each phase suggests</p></div>
+    </div>
+    <p class="line" id="psum" aria-live="polite"></p>
+    <p class="hint" id="ptip"></p>
+  </div>
+  <figcaption class="cap" style="justify-content:center"><span class="sc">fig. 3</span>one plan for the month, or the hours each phase suggests. touch a phase or a bead.</figcaption></figure>
+  <div class="txt"><h2>the cycle, read.</h2><p>connect Apple Health or enter your last period, and the ring takes the colour of the phase. the phase suggests the hours, and the words follow it. if a cycle doesn’t apply to you, the ring keeps the hours alone.</p><a class="sc br more" href="/intermittent-fasting-menstrual-cycle/">read <i>the evidence</i></a></div>
+</div></section>
+
+<div class="band" id="hours"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>iii. the hours</span></div></div>
 <section><div class="wrap">
   <div class="txt" style="max-width:640px"><h2>eight names for the hours of a fast.</h2>
   <p>each stretch of the fast keeps the name the canonical hours gave it, from lauds to vigil, and the page beneath the ring is written for the one you are in.</p></div>
   <div class="hours" id="harches"></div>
 </div></section>
 
-<div class="band" id="page"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>ii. the page</span></div></div>
+<div class="band" id="page"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>iv. the page</span></div></div>
 <section><div class="wrap pair">
   <figure class="live">
     <div class="stagebg"><div class="device" id="dev2">
@@ -519,41 +551,9 @@ footer{padding-top:44px}
       </div></div>
       <img class="bezel" src="/images/iphone-silver.webp" width="1350" height="2760" loading="lazy" decoding="async" alt="">
     </div></div>
-    <figcaption class="cap"><span class="sc">fig. 2</span>the active fast, close. draw the hours along the ring.</figcaption>
+    <figcaption class="cap"><span class="sc">fig. 4</span>the active fast, close. draw the hours along the ring.</figcaption>
   </figure>
   <div class="txt"><h2>a new page for every hour.</h2><p>begin a fast and the ring keeps time. the words beneath it change as the body does: the threshold, the crossing, the quiet hours. no streak flames, no badges, no voice telling you to push.</p></div>
-</div></section>
-
-<div class="band" id="water"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>iii. the water</span></div></div>
-<section><div class="wrap pair flip">
-  <figure class="live">
-    <div class="bodyledger">
-      <p class="lm">this morning</p>
-      <p class="lw" id="lw">56.8 kg</p>
-      <p class="lc">change</p>
-      <svg id="lring" viewBox="0 0 300 300" role="img" aria-label="the body ledger ring"></svg>
-      <p class="lr" id="lread"></p>
-      <p class="lf" id="lfoot"></p>
-    </div>
-    <input class="scrub" id="day" type="range" min="1" max="28" value="19" aria-label="day of the sample cycle">
-    <figcaption class="cap"><span class="sc">fig. 3</span>the body ledger, with hæl’s own sample: a 36 hour fast and a 72 hour fast. hold the ring to read a morning; slide to move through the cycle.</figcaption>
-  </figure>
-  <div class="txt"><h2>the water, given room.</h2><p>weight rises before a period, and most apps read it as failure. hæl learns where your body carries water across the cycle and reads each morning against that, never against yesterday.</p><a class="sc br more" href="/weight-gain-before-period/">read <i>the study</i></a></div>
-</div></section>
-
-<div class="band" id="cycle"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>iv. the cycle</span></div></div>
-<section><div class="wrap pair">
-  <figure class="live"><div class="cyc">
-    <div class="phases" role="tablist" aria-label="phases"><button role="tab" data-p="menstrual">menstrual</button><button role="tab" data-p="follicular">follicular</button><button role="tab" data-p="ovulation">ovulation</button><button role="tab" data-p="luteal">luteal</button></div>
-    <div class="season">
-      <div class="one"><svg id="flat" viewBox="-130 -130 260 260" aria-hidden="true"></svg><p class="rc">one plan, all month</p></div>
-      <div class="one"><svg id="hers" viewBox="-130 -130 260 260" role="img" aria-label="twenty-eight days on hæl's ring, each bead sized by the hours its phase suggests"></svg><p class="rc">the hours each phase suggests</p></div>
-    </div>
-    <p class="line" id="psum" aria-live="polite"></p>
-    <p class="hint" id="ptip"></p>
-  </div>
-  <figcaption class="cap" style="justify-content:center"><span class="sc">fig. 4</span>one plan for the month, or the hours each phase suggests. touch a phase or a bead.</figcaption></figure>
-  <div class="txt"><h2>the cycle, read.</h2><p>connect Apple Health or enter your last period, and the ring takes the colour of the phase. the phase suggests the hours, and the words follow it. if a cycle doesn’t apply to you, the ring keeps the hours alone.</p><a class="sc br more" href="/intermittent-fasting-menstrual-cycle/">read <i>the evidence</i></a></div>
 </div></section>
 
 <div class="band" id="letters"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>v. the letters</span></div></div>
@@ -586,10 +586,10 @@ footer{padding-top:44px}
 <section><div class="wrap index">
   <div class="txt"><h2>nothing asked of you.</h2><p class="lines" style="text-align:left">no account. no subscription. no ads.<br>no coaching. no celebration.</p><p>what you write lives on your phone, in your own iCloud, and in Apple Health. no server of ours ever sees it.</p></div>
   <ol>
-    <li><span class="ro">i.</span><a href="#hours">the hours</a><sup>8</sup></li>
-    <li><span class="ro">ii.</span><a href="#page">the page</a><sup>114</sup></li>
-    <li><span class="ro">iii.</span><a href="#water">the water</a></li>
-    <li><span class="ro">iv.</span><a href="#cycle">the cycle</a><sup>4</sup></li>
+    <li><span class="ro">i.</span><a href="#water">the water</a></li>
+    <li><span class="ro">ii.</span><a href="#cycle">the cycle</a><sup>4</sup></li>
+    <li><span class="ro">iii.</span><a href="#hours">the hours</a><sup>8</sup></li>
+    <li><span class="ro">iv.</span><a href="#page">the page</a><sup>114</sup></li>
     <li><span class="ro">v.</span><a href="#letters">the letters</a><sup>52</sup></li>
     <li><span class="ro">vi.</span><a href="#opens">the fourteen days</a></li>
     <li><span class="ro">vii.</span><a href="#questions">questions</a><sup>7</sup></li>
