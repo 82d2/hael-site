@@ -176,25 +176,21 @@ a{color:inherit;text-decoration:none}
 .br{white-space:nowrap}.br::before{content:"[ "}.br::after{content:" ]"}
 .br i{font-style:italic;text-transform:none;letter-spacing:0}
 
-/* the masthead: links left with their counts, the wordmark in the middle, the world and the store right */
+/* the masthead: links left with their counts, the wordmark in the middle, day / night and the store right */
 header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
 .mast{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:58px;gap:20px}
 .mast nav{display:flex;gap:22px;font-size:14px}
 .mast nav sup{font-size:9px;color:var(--muted);margin-left:2px}
 .mark{font-size:20px;font-style:normal}
 .right{display:flex;justify-content:flex-end;align-items:center;gap:22px;font-size:13px}
-.world{display:flex;align-items:center;gap:8px;font-style:italic;color:var(--soft);background:none;border:0;font:inherit;cursor:pointer}
-.moon{width:26px;height:26px;display:block;overflow:visible}
-.moon .halo{fill:var(--blush);opacity:.22;transform-origin:13px 13px;animation:breathe 8s ease-in-out infinite}
-.moon .disc{fill:var(--blush)}
-.moon .shade{transform:translateX(18px);transition:transform 1.6s cubic-bezier(.42,0,.58,1)}
-:root[data-theme=night] .moon .shade{transform:translateX(4.5px)}
-:root[data-theme=night] .moon .halo{opacity:.1}
-@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
-@media (prefers-reduced-motion:reduce){.moon .halo{animation:none}.moon .shade{transition:none}}
-.world .st{display:inline-block;min-width:2.6em;transition:opacity .6s}
-.world .st{font-style:italic}
-@media (max-width:820px){.mast nav{display:none}.world>span:first-child,.world .st{display:none}.mark{grid-column:2}.right{grid-column:3;gap:14px}}
+.world{display:flex;align-items:center;gap:4px;border:0;padding:0;margin:0;min-width:0;font-style:italic;color:var(--muted)}
+.world input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+.world label{cursor:pointer;padding:10px 3px;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:6px;text-decoration-thickness:1px}
+.world input:checked+label{color:var(--ink);text-decoration-color:var(--rose)}
+.world input:focus-visible+label{outline:1px solid var(--rose);outline-offset:2px}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* day / night: two words, the one in use marked. built as two radios with labels (the structure from uiverse-io/galaxy's switches, MIT), so a keyboard and a screen reader can use it */
+@media (max-width:820px){.mast nav{display:none}.mark{grid-column:2}.right{grid-column:3;gap:14px}}
 
 /* the opening: a paragraph, not a slogan; the app's own page, framed */
 .open{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;padding-top:64px;padding-bottom:90px;align-items:start}
@@ -432,7 +428,7 @@ footer{padding-top:44px}
 <header><div class="wrap mast">
   <nav aria-label="Sections"><a href="#water">the water</a><a href="#cycle">the cycle<sup>4</sup></a><a href="#hours">the hours<sup>8</sup></a><a href="#letters">the letters<sup>52</sup></a></nav>
   <a class="mark" href="#">hæl</a>
-  <div class="right"><button class="world" id="world" aria-label="day or night"><span>world:</span><svg class="moon" viewBox="0 0 26 26" aria-hidden="true"><defs><mask id="phase"><rect width="26" height="26" fill="#fff"/><circle class="shade" cx="13" cy="13" r="7.2" fill="#000"/></mask></defs><circle class="halo" cx="13" cy="13" r="11"/><circle class="disc" cx="13" cy="13" r="7" mask="url(#phase)"/><circle cx="13" cy="13" r="7" fill="none" stroke="var(--blush)" stroke-width=".7" opacity=".55"/></svg><span class="st" id="wst">day</span></button><a class="sc br" href="https://apps.apple.com/app/apple-store/id6778956802?pt=129001731&amp;ct=site-nav&amp;mt=8">download</a></div>
+  <div class="right"><fieldset class="world" id="world"><legend class="vh">the page</legend><input type="radio" name="world" id="w-day" value="day"><label for="w-day">day</label><span aria-hidden="true">/</span><input type="radio" name="world" id="w-night" value="night"><label for="w-night">night</label></fieldset><a class="sc br" href="https://apps.apple.com/app/apple-store/id6778956802?pt=129001731&amp;ct=site-nav&amp;mt=8">download</a></div>
 </div></header>
 
 <main>
@@ -634,13 +630,12 @@ document.getElementById('harches').innerHTML=H.map(([n,ph,a,b],i)=>`<li><span cl
   out.textContent='monday, in '+(days?p(days,'day')+' '+p(hrs,'hour'):hrs?p(hrs,'hour'):p(min,'minute'));}
  tell();setInterval(tell,30000);})();
 // day or night
-// day or night: follows the phone's setting until the moon is touched
-(function(){const root=document.documentElement,st=document.getElementById('wst'),icon=document.querySelector('.store .icon'),dark=matchMedia('(prefers-color-scheme: dark)');let chosen=false;
- function show(night,fade){const was=root.dataset.theme==='night';root.dataset.theme=night?'night':'';icon.src=night?'/images/app/icon-night.png':'/images/app/icon-day.png';
-  if(!fade||was===night){st.textContent=night?'night':'day';return;}st.style.opacity=0;setTimeout(()=>{st.textContent=night?'night':'day';st.style.opacity=1;},500);}
- show(dark.matches,false);
- dark.addEventListener('change',e=>{if(!chosen)show(e.matches,true);});
- document.getElementById('world').addEventListener('click',()=>{chosen=true;show(root.dataset.theme!=='night',true);});})();
+// day / night: follows the phone's setting until a word is chosen
+(function(){const root=document.documentElement,icon=document.querySelector('.store .icon'),dark=matchMedia('(prefers-color-scheme: dark)'),day=document.getElementById('w-day'),night=document.getElementById('w-night');let chosen=false;
+ function show(n){root.dataset.theme=n?'night':'';icon.src=n?'/images/app/icon-night.png':'/images/app/icon-day.png';(n?night:day).checked=true;}
+ show(dark.matches);
+ dark.addEventListener('change',e=>{if(!chosen)show(e.matches);});
+ [day,night].forEach(r=>r.addEventListener('change',()=>{chosen=true;show(night.checked);}));})();
 </script>
 <script>
 window.whenNear=(ids,fn)=>{let done=false;const io=new IntersectionObserver(es=>{if(!done&&es.some(e=>e.isIntersecting)){done=true;io.disconnect();fn();}},{rootMargin:'800px 0px'});ids.forEach(i=>{const e=document.getElementById(i);e&&io.observe(e);});};
