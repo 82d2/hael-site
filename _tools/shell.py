@@ -8,7 +8,9 @@ published.)"""
 STORE = "https://apps.apple.com/app/id6778956802"
 SITE = "https://hael.app"
 # App Store campaign links: pt is KI-GEN's provider token, ct names where the tap came from
-CAMPAIGN = {"/weight-gain-before-period/": "article-water", "/intermittent-fasting-menstrual-cycle/": "article-cycle", None: "site-404"}
+CAMPAIGN = {"/weight-gain-before-period/": "article-water", "/intermittent-fasting-menstrual-cycle/": "article-cycle",
+            "/intermittent-fasting-for-beginners/": "article-beginners", "/how-to-use-hael/": "guide-use",
+            "/cycle-syncing-fasting/": "guide-cycle", None: "site-404"}
 def store_link(current):
     ct = CAMPAIGN.get(current, "site-legal")
     return f"https://apps.apple.com/app/apple-store/id6778956802?pt=129001731&amp;ct={ct}&amp;mt=8"
@@ -20,14 +22,14 @@ html{background:var(--paper)}
 body{font-family:var(--serif);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-size:19px;line-height:1.6}
 a{color:inherit}
 .wrap{max-width:980px;margin:0 auto;padding:0 24px}
-.label{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+.label{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-style:italic;letter-spacing:0;text-transform:none;color:var(--soft)}
 .enso{width:13px;height:13px;flex:none;color:var(--rose)}
 nav.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--paper) 82%,transparent);backdrop-filter:saturate(1.4) blur(18px);-webkit-backdrop-filter:saturate(1.4) blur(18px);border-bottom:1px solid var(--rule)}
 nav.top .wrap{display:flex;align-items:center;gap:26px;height:52px}
 nav.top .mark{font-size:19px;color:var(--ink);text-decoration:none;margin-right:auto}
 nav.top a.link{font-size:14px;font-style:italic;color:var(--soft);text-decoration:none}
 nav.top a.link:hover{color:var(--ink)}
-.bracket{font-size:12px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+.bracket{font-size:14px;font-style:italic;letter-spacing:0;text-transform:none;text-decoration:none;white-space:nowrap}
 .bracket::before{content:"[\\2009\\2009"}.bracket::after{content:"\\2009\\2009]"}
 .title{text-align:center;padding:88px 0 0}
 .title h1{font-size:clamp(40px,6.4vw,68px);font-weight:300;line-height:1.06;letter-spacing:-.015em;margin:18px auto 0;max-width:15em;text-wrap:balance}
@@ -41,10 +43,10 @@ nav.top a.link:hover{color:var(--ink)}
 .text code{font-size:.9em}
 .text sup a{font-style:italic;font-size:14px;padding-left:1px}
 .short{margin-top:8px;padding:26px 28px;background:var(--band);border-radius:22px}
-.short span{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+.short span{display:block;font-size:14px;font-style:italic;letter-spacing:0;text-transform:none;color:var(--soft)}
 .short p{margin-top:10px;font-size:21px;font-weight:300;line-height:1.45;color:var(--ink)}
 .sources{margin-top:56px;font-size:15px;line-height:1.5}
-.sources h2{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);font-weight:400;margin-top:0}
+.sources h2{font-size:14px;font-style:italic;letter-spacing:0;text-transform:none;color:var(--soft);font-weight:400;margin-top:0}
 .sources li{color:var(--muted);margin-top:8px}
 .text p.note{margin-top:30px;font-size:15px;font-style:italic;color:var(--muted)}
 .closing{max-width:640px;margin:64px auto 0;padding:34px 24px 0;border-top:1px solid var(--rule);text-align:center}
@@ -55,7 +57,7 @@ nav.top a.link:hover{color:var(--ink)}
 .more{max-width:640px;margin:40px auto 0;padding:0 24px 80px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;font-size:16px;font-style:italic}
 .more a{color:var(--rose);text-decoration:none}.more a:hover{text-decoration:underline}
 footer{border-top:1px solid var(--rule)}
-footer .wrap{padding:22px 24px 40px;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+footer .wrap{padding:22px 24px 40px;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;font-style:italic;letter-spacing:0;text-transform:none;color:var(--muted)}
 footer nav{display:flex;flex-wrap:wrap;gap:6px 18px}footer a{text-decoration:none}footer a:hover,footer a[aria-current]{color:var(--ink)}
 footer span{margin-right:auto;letter-spacing:0;text-transform:none;font-style:italic;font-size:14px}
 @media (max-width:760px){nav.top a.link{display:none}.title{padding-top:60px}.text{margin-top:44px}}"""
@@ -63,6 +65,8 @@ footer span{margin-right:auto;letter-spacing:0;text-transform:none;font-style:it
 FOOTER_LINKS = [
     ("/weight-gain-before-period/", "weight before a period"),
     ("/intermittent-fasting-menstrual-cycle/", "fasting and the cycle"),
+    ("/intermittent-fasting-for-beginners/", "fasting for beginners"),
+    ("/how-to-use-hael/", "how to use hæl"),
     ("/privacy/", "privacy"),
     ("/terms/", "terms"),
     ("/consumer-health-data/", "health data"),

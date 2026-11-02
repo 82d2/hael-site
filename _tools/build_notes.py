@@ -1,4 +1,5 @@
-"""Builds the two sourced notes from the text below into their own folders.
+"""Builds the notes from the text below into their own folders: the sourced
+notes (the water, the cycle, fasting for beginners) and the guides to the app.
 Shared page: the home page's book styling, a running head back home, the
 question as the title, the short answer first, sources and a not-medical-
 advice line at the foot. Run: python3 _tools/build_notes.py"""
@@ -14,7 +15,7 @@ PUBLISHED = "2026-10-12"
 PUBLISHED_TEXT = "october 12, 2026"
 
 # the quiet App Store note after each short answer: one true sentence about hæl, and the badge
-APPNOTES = {'weight-gain-before-period': ('article-water', 'hæl, a fasting timer for iPhone, reads each morning against the water your body usually carries on those days, never against yesterday.'), 'intermittent-fasting-menstrual-cycle': ('article-cycle', 'hæl, a fasting timer for iPhone, suggests hours for each phase of the cycle, and keeps them a suggestion, never a rule.')}
+APPNOTES = {'weight-gain-before-period': ('article-water', 'hæl, a fasting timer for iPhone, reads each morning against the water your body usually carries on those days, never against yesterday.'), 'intermittent-fasting-menstrual-cycle': ('article-cycle', 'hæl, a fasting timer for iPhone, suggests hours for each phase of the cycle, and keeps them a suggestion, never a rule.'), 'intermittent-fasting-for-beginners': ('article-beginners', 'hæl, a fasting timer for iPhone, sets the hours on a dial and writes a new page for each stretch of the fast, with no streaks and no coaching.'), 'how-to-use-hael': ('guide-use', 'hæl is a fasting timer for iPhone, iPad and Apple Watch. the timer, the ledger and rest days are free.'), 'cycle-syncing-fasting': ('guide-cycle', 'hæl, a fasting timer for iPhone, reads the phase from Apple Health or your last period and suggests the hours for it.')}
 def APPNOTE(slug):
     ct, text = APPNOTES[slug]
     store = f"https://apps.apple.com/app/apple-store/id6778956802?pt=129001731&amp;ct={ct}&amp;mt=8"
@@ -22,7 +23,7 @@ def APPNOTE(slug):
             f'<div><p>{text}</p>\n<a class="ab" href="{store}"><img src="/images/app-store-badge.svg" width="120" height="40" alt="Download hæl on the App Store"></a></div></aside>')
 
 
-def page(slug, title, description, kicker, h1, short, body, sources, headline):
+def page(slug, title, description, kicker, h1, short, body, sources, headline, published=PUBLISHED, published_text=PUBLISHED_TEXT, guide=False):
     url = f"https://hael.app/{slug}/"
     ld = {
         "@context": "https://schema.org",
@@ -32,37 +33,42 @@ def page(slug, title, description, kicker, h1, short, body, sources, headline):
         "description": description,
         "url": url,
         "mainEntityOfPage": url,
-        "datePublished": PUBLISHED,
-        "dateModified": PUBLISHED,
+        "datePublished": published,
+        "dateModified": published,
         "inLanguage": "en",
         "author": {"@type": "Organization", "@id": "https://hael.app/#org", "name": "KI-GEN Studios LLC"},
         "publisher": {"@type": "Organization", "@id": "https://hael.app/#org", "name": "KI-GEN Studios LLC",
                       "logo": "https://hael.app/icon-192x192.png"},
         "image": "https://hael.app/og-image.png",
-        "citation": [s["cite"] for s in sources],
     }
+    if sources:
+        ld["citation"] = [s["cite"] for s in sources]
     src = "\n".join(f'    <li id="s{i}">{s["html"]}</li>' for i, s in enumerate(sources, 1))
     # The App Store box inside the text becomes the closing line, with Apple's badge.
     body = body.replace('<div class="aside">', '<div class="closing">').replace(
         f'<a class="download" href="{STORE}">hæl on the App Store</a>', shell.BADGE)
     others = [(f"/{o['slug']}/", o["h1"] + " →") for o in NOTES if o["slug"] != slug]
-    extra = f"""
-<meta property="article:published_time" content="{PUBLISHED}">
-<script type="application/ld+json">
-{json.dumps(ld, ensure_ascii=False, indent=4)}
-</script>"""
-    article = f"""{shell.title_block(kicker, h1, f"by {BYLINE} · {PUBLISHED_TEXT}")}
-<article class="text">
-<div class="short"><span>the short answer</span><p>{short}</p></div>
-{APPNOTE(slug)}
-{body}
-<section class="sources" aria-labelledby="sources">
+    sources_html = (f"""<section class="sources" aria-labelledby="sources">
   <h2 id="sources">sources</h2>
   <ol>
 {src}
   </ol>
-</section>
-<p class="note">this page explains what research says; it is not medical advice, and hæl does not diagnose or treat anything. if something about your body worries you, see a doctor.</p>
+</section>""" if sources else "")
+    note = ("hæl observes; it does not diagnose or treat anything, and nothing here is medical advice. if something about your body worries you, see a doctor."
+            if guide else
+            "this page explains what research says; it is not medical advice, and hæl does not diagnose or treat anything. if something about your body worries you, see a doctor.")
+    extra = f"""
+<meta property="article:published_time" content="{published}">
+<script type="application/ld+json">
+{json.dumps(ld, ensure_ascii=False, indent=4)}
+</script>"""
+    article = f"""{shell.title_block(kicker, h1, f"by {BYLINE} · {published_text}")}
+<article class="text">
+<div class="short"><span>the short answer</span><p>{short}</p></div>
+{APPNOTE(slug)}
+{body}
+{sources_html}
+<p class="note">{note}</p>
 </article>
 {shell.more(others + [("/", "← hæl, the fasting timer")])}"""
     return shell.page(
@@ -169,6 +175,147 @@ FAST_BODY = f"""
             </div>
 """
 
+
+# ---------------------------------------------------------------- fasting for beginners (2026-11-02)
+BEGIN_SOURCES = [
+    {"cite": "de Cabo R, Mattson MP. Effects of intermittent fasting on health, aging, and disease. New England Journal of Medicine. 2019;381(26):2541-2551.",
+     "html": 'de Cabo R, Mattson MP. <a href="https://doi.org/10.1056/NEJMra1905136">Effects of intermittent fasting on health, aging, and disease</a>. <i>New England Journal of Medicine</i>, 2019.'},
+    {"cite": "Lowe DA, et al. Effects of time-restricted eating on weight loss and other metabolic parameters in women and men with overweight and obesity: the TREAT randomized clinical trial. JAMA Internal Medicine. 2020;180(11):1491-1499.",
+     "html": 'Lowe DA, et al. <a href="https://doi.org/10.1001/jamainternmed.2020.4153">Effects of time-restricted eating on weight loss and other metabolic parameters in women and men with overweight and obesity: the TREAT randomized clinical trial</a>. <i>JAMA Internal Medicine</i>, 2020.'},
+    {"cite": "Liu D, et al. Calorie restriction with or without time-restricted eating in weight loss. New England Journal of Medicine. 2022;386(16):1495-1504.",
+     "html": 'Liu D, et al. <a href="https://doi.org/10.1056/NEJMoa2114833">Calorie restriction with or without time-restricted eating in weight loss</a>. <i>New England Journal of Medicine</i>, 2022.'},
+    {"cite": "Cienfuegos S, et al. Effects of 4- and 6-h time-restricted feeding on weight and cardiometabolic health: a randomized controlled trial in adults with obesity. Cell Metabolism. 2020;32(3):366-378.e3.",
+     "html": 'Cienfuegos S, et al. <a href="https://doi.org/10.1016/j.cmet.2020.06.018">Effects of 4- and 6-h time-restricted feeding on weight and cardiometabolic health: a randomized controlled trial in adults with obesity</a>. <i>Cell Metabolism</i>, 2020.'},
+]
+
+BEGIN_BODY = f"""
+            <h2>what is intermittent fasting?</h2>
+            <p>intermittent fasting means eating within a window of the day and not eating for the rest of it. the food itself doesn't have to change. the common forms are named by their hours: 12:12 is twelve hours without food and twelve with it, 14:10 and 16:8 narrow the window, and 18:6 narrows it again. 5:2 is a different idea: two days a week of very little food, five of ordinary eating.</p>
+            <p>part of the interest is what happens as a fast goes on. once the sugar stored in the liver runs low, the body turns more to fat and makes ketones from it, a change researchers call the metabolic switch. it usually comes somewhere between twelve and thirty-six hours, depending on how much the liver had stored.{n(1)} that is one reason two fasts of the same length can feel so different.</p>
+
+            <h2>what is 16:8?</h2>
+            <p>sixteen hours without food and an eight-hour window to eat, every day or most days. a common version is to finish dinner by 8 pm and eat again at noon, so the night does most of the work. it is the schedule studied most, and the one most people mean when they say intermittent fasting.</p>
+
+            <h2>does intermittent fasting work for weight loss?</h2>
+            <p>it helps when it makes eating a little less easier; the timing alone does little. in a twelve-week trial of 116 adults, those eating within eight hours lost about 0.9 kg and those eating three meals across the day about 0.7 kg, a difference too small to count.{n(2)} in a year-long trial, two groups ate the same calories, one of them within an eight-hour window. the window group lost 8.0 kg and the other 6.3 kg, and again the difference wasn't significant.{n(3)}</p>
+            <p>shorter windows change more, mostly by changing how much people eat. adults who ate within four or six hours for eight weeks ate about 550 fewer calories a day without counting, and lost about 3% of their weight.{n(4)} most of these trials were in adults with obesity, so results may differ for others. the honest summary: a window is a structure, and a structure can make an ordinary goal easier to keep. it isn't a metabolic shortcut.</p>
+
+            <h2>how to start intermittent fasting</h2>
+            <ol>
+                <li>start with twelve hours, most of them overnight: dinner by 8 pm, breakfast at 8 am. for many people this is already close to how they eat.</li>
+                <li>lengthen slowly. add an hour every few days, toward fourteen, then sixteen if it still feels fine. there is nothing to win by getting there fast.</li>
+                <li>keep drinking. water, black coffee and plain tea have almost no calories, so most people keep them during a fast.</li>
+                <li>eat enough inside the window. fasting that turns into eating too little overall is where the real risks are, including to the <a href="/intermittent-fasting-menstrual-cycle/">menstrual cycle</a>.</li>
+                <li>keep rest days. a day without a fast is part of the practice, not a lapse from it.</li>
+                <li>end a fast that feels wrong. dizziness, faintness or a racing heart are reasons to eat, not to push on.</li>
+            </ol>
+
+            <h2>what breaks a fast?</h2>
+            <p>anything with real calories: food, milk in coffee, juice, a sweet drink. water, black coffee and plain tea don't. sugar-free gum and sweeteners are argued about; the amounts are tiny, and what matters more is whether they make the fast easier or harder to keep.</p>
+
+            <h2>how long is too long?</h2>
+            <p>daily fasts of twelve to sixteen hours are what most of the research covers. fasts of a day or more are a different practice with different risks, and anything past forty-eight hours should be supervised by a doctor.</p>
+
+            <h2>who shouldn't fast?</h2>
+            <p>some people should not fast without a doctor's advice:</p>
+            <ul>
+                <li>during pregnancy or breastfeeding, or while trying to conceive</li>
+                <li>with a current or past eating disorder</li>
+                <li>with diabetes, or on medicines that lower blood sugar</li>
+                <li>under 18</li>
+                <li>with a missed or irregular period that hasn't been looked into</li>
+            </ul>
+
+            <h2>intermittent fasting for women</h2>
+            <p>the trials above included women, but few looked at the menstrual cycle. what is known, and what isn't, is in <a href="/intermittent-fasting-menstrual-cycle/">intermittent fasting and the menstrual cycle</a>. if the scale is part of it, <a href="/weight-gain-before-period/">why weight goes up before a period</a> explains the number that rises every month.</p>
+
+            <div class="aside">
+                <p>hæl is a fasting timer built for this. set the hours on a dial, begin, and the ring keeps time while a new line is written for each stretch of the fast. no streaks, no coaching, and it says plainly when a fast runs long enough to need a doctor. <a href="/how-to-use-hael/">how hæl works, step by step</a>.</p>
+                <a class="download" href="{STORE}">hæl on the App Store</a>
+            </div>
+"""
+
+# ---------------------------------------------------------------- the guide to the app (2026-11-02)
+# Every step is 4.5.3's own (main): the dial (hours on the first turn, days
+# past the top), begin and rest, the goal capsule opening the edit sheet (the
+# start back up to seven days, never into the fast before), the 48-hour
+# warning, end fast, the ledger, the notifications, the free and the full
+# witness as the invitation draws them. No price: offers live on the store.
+USE_BODY = f"""
+            <h2>1. set the hours</h2>
+            <p>home opens on the dial. turn it to choose how long the fast will be; the number in the middle is the goal, in hours. turn past the top and it counts in days.</p>
+
+            <h2>2. begin</h2>
+            <p>press begin. the ring fills as the hours pass, and beneath it are the time and the stretch of the fast you are in: the threshold, at hour six. each stretch has its own writing, so the words under the ring change as the fast goes on.</p>
+
+            <h2>3. change the goal, or when it began</h2>
+            <p>under the ring are the goal and the time the fast will end. tap them to change either. if you forgot to press begin, move the start back to when you really stopped eating. it can go back up to seven days, but never into the fast before.</p>
+
+            <h2>4. long fasts</h2>
+            <p>set a goal of forty-eight hours or more and hæl first shows a page saying that fasts this long should be medically supervised. it says so once, plainly, and leaves the choice with you.</p>
+
+            <h2>5. end the fast</h2>
+            <p>press end fast whenever you are ready, at the goal or before it. the fast goes into the ledger as it was kept.</p>
+
+            <h2>6. rest days</h2>
+            <p>under begin is rest. press it on a day you won't fast, and the ledger keeps the day as rest rather than a gap.</p>
+
+            <h2>7. the ledger</h2>
+            <p>the ledger, at the foot of home, keeps your fasts and rest days week by week.</p>
+
+            <h2>8. notifications</h2>
+            <p>if you allow them, hæl sends a quiet line when a fast begins, at some of its milestones, and when it reaches its goal. there are no streaks to keep and no reminders to do better.</p>
+
+            <h2>9. the watch and the home screen</h2>
+            <p>the watch shows the fast in progress, and widgets keep it on the home and lock screens. hæl also runs on iPad.</p>
+
+            <h2>the full witness</h2>
+            <p>the timer, the ledger, the daily greeting and rest days are free and complete. the full witness adds the cycle: the ring in the colour of the phase, hours suggested for each phase, weight read against the cycle, every fast back to the first, and a letter each monday about the week you kept. it opens for fourteen days, free, once, and nothing renews. <a href="/cycle-syncing-fasting/">how hæl reads the cycle</a>.</p>
+
+            <div class="aside">
+                <p>hæl is on the App Store for iPhone, iPad and Apple Watch, with no account to make.</p>
+                <a class="download" href="{STORE}">hæl on the App Store</a>
+            </div>
+"""
+
+# ---------------------------------------------------------------- the cycle, in the app (2026-11-02)
+# The hours are CycleTracker.Phase.typicalHours on main; the rest is the
+# site's own FAQ and the full witness as 4.5.3 gates it.
+CYCLE_BODY = f"""
+            <h2>set it up</h2>
+            <p>when you first open hæl, it asks when your last period began, or whether a cycle applies to you at all. you can also connect Apple Health: with your permission, hæl reads and writes period starts and weight there, so a period logged in another app reaches hæl too.</p>
+
+            <h2>the hours for each phase</h2>
+            <p>hæl suggests a range of hours for the phase you are in:</p>
+            <ul>
+                <li>menstrual: twelve to fourteen hours</li>
+                <li>follicular: sixteen to eighteen hours</li>
+                <li>ovulation: sixteen to twenty hours</li>
+                <li>luteal: fourteen to sixteen hours</li>
+            </ul>
+            <p>the ranges follow how a fast tends to feel in each phase: shorter while bleeding and in the days before a period, longer in the stretch after it. no trial has tested fasting by phase, so hæl keeps them a suggestion and never a rule; the dial still turns to any length. what the research does and doesn't show is in <a href="/intermittent-fasting-menstrual-cycle/">intermittent fasting and the menstrual cycle</a>.</p>
+
+            <h2>the ring takes the colour of the phase</h2>
+            <p>with the full witness open, the ring on home wears the colour of the phase you are in, and the writing during a fast follows the phase too.</p>
+
+            <h2>weight, read against the cycle</h2>
+            <p>log a morning weight in form, or let it come from Apple Health. the body ledger learns where your weight usually sits on each day of the cycle and reads each morning against that, with the same point of last cycle beside it, never against yesterday. <a href="/weight-gain-before-period/">why weight goes up before a period</a> explains what it is reading.</p>
+
+            <h2>without a cycle</h2>
+            <p>on hormonal birth control, after menopause, or whenever a cycle doesn't apply, turn cycle tracking off in settings. the ring keeps the hours alone, and the body ledger compares each morning with the same time last month.</p>
+
+            <h2>where it is kept</h2>
+            <p>your cycle and your weight stay on your phone, in your own iCloud, and in Apple Health if you connect it. there is no account and no server of ours.</p>
+
+            <h2>what is free</h2>
+            <p>the timer, the ledger and rest days are free. fasting by the cycle is part of the full witness, which opens for fourteen days, free, once, and nothing renews. <a href="/how-to-use-hael/">how to use hæl, step by step</a>.</p>
+
+            <div class="aside">
+                <p>hæl is on the App Store for iPhone, iPad and Apple Watch.</p>
+                <a class="download" href="{STORE}">hæl on the App Store</a>
+            </div>
+"""
+
 NOTES = [
     dict(slug="weight-gain-before-period",
          title="Why Does Weight Go Up Before Your Period? | hæl",
@@ -186,6 +333,31 @@ NOTES = [
          headline="Intermittent fasting and the menstrual cycle: what the evidence shows",
          short="small trials of daily fasting in women have mostly not found harm to reproductive hormones, but they are short and few. the real risk to the cycle is eating too little overall, which can stop periods. shorter fasts late in the cycle are a sensible choice; no study proves they're required.",
          body=FAST_BODY, sources=FAST_SOURCES),
+
+    dict(slug="intermittent-fasting-for-beginners",
+         title="Intermittent Fasting for Beginners: How to Start 16:8 | hæl",
+         description="what intermittent fasting is, how 16:8 works, what breaks a fast, and how to start gently. what the trials show, and who shouldn't fast.",
+         kicker="the hours",
+         h1="intermittent fasting for beginners",
+         headline="Intermittent fasting for beginners: how to start, and what the research shows",
+         short="intermittent fasting means eating within a window and not eating for the rest of the day. 16:8, sixteen hours without food and eight with it, is the common schedule. start at twelve hours and lengthen slowly. in trials it helps mostly by making it easier to eat a little less; it isn't a shortcut, and it isn't for everyone.",
+         body=BEGIN_BODY, sources=BEGIN_SOURCES, published="2026-11-02", published_text="november 2, 2026"),
+    dict(slug="how-to-use-hael",
+         title="How to Use hæl: A First Fast, Step by Step | hæl",
+         description="a step-by-step guide to hæl, the fasting timer for iPhone: setting the hours, beginning and ending a fast, rest days, the ledger, and the full witness.",
+         kicker="a guide",
+         h1="how to use hæl",
+         headline="How to use hæl, the fasting timer, step by step",
+         short="turn the dial to the hours you want and press begin. the ring keeps time, and the words beneath it change with each stretch of the fast. change the goal or the start by tapping it; end the fast when you choose, and the ledger keeps it. the timer, the ledger and rest days are free.",
+         body=USE_BODY, sources=[], published="2026-11-02", published_text="november 2, 2026", guide=True),
+    dict(slug="cycle-syncing-fasting",
+         title="Cycle Syncing Your Fasts in hæl: Phases and Hours | hæl",
+         description="how hæl suggests fasting hours for each phase of the cycle, connects to Apple Health, and reads weight against it. and how it works without a cycle.",
+         kicker="a guide",
+         h1="cycle syncing your fasts, in hæl",
+         headline="Cycle syncing your fasts in hæl: phases, hours and Apple Health",
+         short="tell hæl when your last period began, or connect Apple Health, and it knows the phase you are in. it suggests a range of hours for each phase, shorter around the period and before it, longer after it, and reads your weight against the same point of the cycle. it is part of the full witness, and every suggestion stays a suggestion.",
+         body=CYCLE_BODY, sources=[], published="2026-11-02", published_text="november 2, 2026", guide=True),
 ]
 
 for note in NOTES:
