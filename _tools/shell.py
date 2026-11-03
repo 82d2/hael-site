@@ -10,7 +10,7 @@ SITE = "https://hael.app"
 # App Store campaign links: pt is KI-GEN's provider token, ct names where the tap came from
 CAMPAIGN = {"/weight-gain-before-period/": "article-water", "/intermittent-fasting-menstrual-cycle/": "article-cycle",
             "/intermittent-fasting-for-beginners/": "article-beginners", "/how-to-use-hael/": "guide-use",
-            "/cycle-syncing-fasting/": "guide-cycle", None: "site-404"}
+            "/cycle-syncing-fasting/": "guide-cycle", "/press/": "site-press", None: "site-404"}
 def store_link(current):
     ct = CAMPAIGN.get(current, "site-legal")
     return f"https://apps.apple.com/app/apple-store/id6778956802?pt=129001731&amp;ct={ct}&amp;mt=8"
@@ -70,6 +70,7 @@ FOOTER_LINKS = [
     ("/privacy/", "privacy"),
     ("/terms/", "terms"),
     ("/consumer-health-data/", "health data"),
+    ("/press/", "press"),
     ("mailto:hello@hael.app", "contact"),
 ]
 
