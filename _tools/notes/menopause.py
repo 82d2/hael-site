@@ -255,7 +255,7 @@ MENO_BODY = f"""
             <p>the timer, the ledger and rest days are free. the hours for each phase and the readings are part of the full witness. <a href="/cycle-syncing-fasting/">how hæl reads the cycle</a>.</p>
 
             <div class="aside">
-                <p>hæl doesn't treat menopause or its symptoms, and neither does fasting. it keeps the hours you choose, works just as well without a cycle, and keeps the month by the moon only as a calendar. there are no streaks and no coaching.</p>
+                <p>hæl doesn't treat menopause or its symptoms, and neither does fasting. it keeps the hours you choose, works just as well without a cycle, and keeps the month by the moon only as a calendar. there are no badges and no coaching.</p>
                 <a class="download" href="{STORE}">hæl on the App Store</a>
             </div>
 """
