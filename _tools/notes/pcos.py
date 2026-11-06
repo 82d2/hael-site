@@ -197,7 +197,7 @@ PCOS_BODY = f"""
             <p>the timer, the ledger and rest days are free. the hours for each phase and the readings against the cycle are part of the full witness. <a href="/cycle-syncing-fasting/">how hæl reads the cycle</a>.</p>
 
             <div class="aside">
-                <p>hæl doesn't treat PCOS, and neither does fasting. it keeps the hours you choose, suggests without insisting, and works just as well without a cycle. there are no streaks and no coaching, and it says plainly when a fast runs long enough to need a doctor.</p>
+                <p>hæl doesn't treat PCOS, and neither does fasting. it keeps the hours you choose, suggests without insisting, and works just as well without a cycle. there are no badges and no coaching, and it says plainly when a fast runs long enough to need a doctor.</p>
                 <a class="download" href="{STORE}">hæl on the App Store</a>
             </div>
 """

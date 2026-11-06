@@ -7,7 +7,7 @@ import json, pathlib, sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import shell
-from notes import pmdd, pcos
+from notes import pmdd, pcos, endometriosis
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 STORE = "https://apps.apple.com/app/id6778956802"
@@ -16,7 +16,7 @@ PUBLISHED = "2026-10-12"
 PUBLISHED_TEXT = "october 12, 2026"
 
 # the quiet App Store note after each short answer: one true sentence about hæl, and the badge
-APPNOTES = {'weight-gain-before-period': ('article-water', 'hæl, a fasting timer for iPhone, reads each morning against the water your body usually carries on those days, never against yesterday.'), 'intermittent-fasting-menstrual-cycle': ('article-cycle', 'hæl, a fasting timer for iPhone, suggests hours for each phase of the cycle, and keeps them a suggestion, never a rule.'), 'intermittent-fasting-for-beginners': ('article-beginners', 'hæl, a fasting timer for iPhone, sets the hours on a dial and writes a new page for each stretch of the fast, with no streaks and no coaching.'), 'how-to-use-hael': ('guide-use', 'hæl is a fasting timer for iPhone, iPad and Apple Watch. the timer, the ledger and rest days are free.'), 'cycle-syncing-fasting': ('guide-cycle', 'hæl, a fasting timer for iPhone, reads the phase from Apple Health or your last period and suggests the hours for it.')}
+APPNOTES = {'weight-gain-before-period': ('article-water', 'hæl, a fasting timer for iPhone, reads each morning against the water your body usually carries on those days, never against yesterday.'), 'intermittent-fasting-menstrual-cycle': ('article-cycle', 'hæl, a fasting timer for iPhone, suggests hours for each phase of the cycle, and keeps them a suggestion, never a rule.'), 'intermittent-fasting-for-beginners': ('article-beginners', 'hæl, a fasting timer for iPhone, sets the hours on a dial and writes a new page for each stretch of the fast, with no badges and no coaching.'), 'how-to-use-hael': ('guide-use', 'hæl is a fasting timer for iPhone, iPad and Apple Watch. the timer, the ledger and rest days are free.'), 'cycle-syncing-fasting': ('guide-cycle', 'hæl, a fasting timer for iPhone, reads the phase from Apple Health or your last period and suggests the hours for it.')}
 def APPNOTE(slug):
     ct, text = APPNOTES[slug]
     store = f"https://apps.apple.com/app/apple-store/id6778956802?pt=129001731&amp;ct={ct}&amp;mt=8"
@@ -232,7 +232,7 @@ BEGIN_BODY = f"""
             <p>the trials above included women, but few looked at the menstrual cycle. what is known, and what isn't, is in <a href="/intermittent-fasting-menstrual-cycle/">intermittent fasting and the menstrual cycle</a>. if the scale is part of it, <a href="/weight-gain-before-period/">why weight goes up before a period</a> explains the number that rises every month.</p>
 
             <div class="aside">
-                <p>hæl is a fasting timer built for this. set the hours on a dial, begin, and the ring keeps time while a new line is written for each stretch of the fast. no streaks, no coaching, and it says plainly when a fast runs long enough to need a doctor. <a href="/how-to-use-hael/">how hæl works, step by step</a>.</p>
+                <p>hæl is a fasting timer built for this. set the hours on a dial, begin, and the ring keeps time while a new line is written for each stretch of the fast. no badges, no coaching, and it says plainly when a fast runs long enough to need a doctor. <a href="/how-to-use-hael/">how hæl works, step by step</a>.</p>
                 <a class="download" href="{STORE}">hæl on the App Store</a>
             </div>
 """
@@ -266,7 +266,7 @@ USE_BODY = f"""
             <p>the ledger, at the foot of home, keeps your fasts and rest days week by week.</p>
 
             <h2>8. notifications</h2>
-            <p>if you allow them, hæl sends a quiet line when a fast begins, at some of its milestones, and when it reaches its goal. there are no streaks to keep and no reminders to do better.</p>
+            <p>if you allow them, hæl sends a quiet line when a fast begins, at some of its milestones, and when it reaches its goal. there are no badges to earn and no reminders to do better.</p>
 
             <h2>9. the watch and the home screen</h2>
             <p>the watch shows the fast in progress, and widgets keep it on the home and lock screens. hæl also runs on iPad.</p>
@@ -364,7 +364,7 @@ NOTES = [
 
 # The notes on the full spectrum (v5, 2026-11): each written in _tools/notes/,
 # with its own share image in /images/notes/.
-for mod, prefix in ((pmdd, "PMDD"), (pcos, "PCOS")):
+for mod, prefix in ((pmdd, "PMDD"), (pcos, "PCOS"), (endometriosis, "ENDO")):
     note = dict(getattr(mod, prefix + "_NOTE"))
     app = getattr(mod, prefix + "_APPNOTE")
     for k in ("APPNOTES", "appnote"):
