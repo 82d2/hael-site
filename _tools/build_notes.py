@@ -7,6 +7,7 @@ import json, pathlib, sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import shell
+from notes import pmdd, pcos
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 STORE = "https://apps.apple.com/app/id6778956802"
@@ -23,7 +24,7 @@ def APPNOTE(slug):
             f'<div><p>{text}</p>\n<a class="ab" href="{store}"><img src="/images/app-store-badge.svg" width="120" height="40" alt="Download hæl on the App Store"></a></div></aside>')
 
 
-def page(slug, title, description, kicker, h1, short, body, sources, headline, published=PUBLISHED, published_text=PUBLISHED_TEXT, guide=False):
+def page(slug, title, description, kicker, h1, short, body, sources, headline, published=PUBLISHED, published_text=PUBLISHED_TEXT, guide=False, og_image=None):
     url = f"https://hael.app/{slug}/"
     ld = {
         "@context": "https://schema.org",
@@ -39,7 +40,7 @@ def page(slug, title, description, kicker, h1, short, body, sources, headline, p
         "author": {"@type": "Organization", "@id": "https://hael.app/#org", "name": "KI-GEN Studios LLC"},
         "publisher": {"@type": "Organization", "@id": "https://hael.app/#org", "name": "KI-GEN Studios LLC",
                       "logo": "https://hael.app/icon-192x192.png"},
-        "image": "https://hael.app/og-image.png",
+        "image": "https://hael.app" + (og_image or "/og-image.png"),
     }
     if sources:
         ld["citation"] = [s["cite"] for s in sources]
@@ -73,7 +74,8 @@ def page(slug, title, description, kicker, h1, short, body, sources, headline, p
 {shell.more(others + [("/", "← hæl, the fasting timer")])}"""
     return shell.page(
         head_html=shell.head(title=title, description=description, path=f"/{slug}/",
-                             og_type="article", og_title=headline, extra=extra),
+                             og_type="article", og_title=headline, extra=extra,
+                             **({"og_image": og_image, "og_image_alt": f"{h1}. what the research shows, from hæl."} if og_image else {})),
         body=article, current=f"/{slug}/")
 
 def n(i):
@@ -359,6 +361,20 @@ NOTES = [
          short="tell hæl when your last period began, or connect Apple Health, and it knows the phase you are in. it suggests a range of hours for each phase, shorter around the period and before it, longer after it, and reads your weight against the same point of the cycle. it is part of the full witness, and every suggestion stays a suggestion.",
          body=CYCLE_BODY, sources=[], published="2026-11-02", published_text="november 2, 2026", guide=True),
 ]
+
+# The notes on the full spectrum (v5, 2026-11): each written in _tools/notes/,
+# with its own share image in /images/notes/.
+for mod, prefix in ((pmdd, "PMDD"), (pcos, "PCOS")):
+    note = dict(getattr(mod, prefix + "_NOTE"))
+    app = getattr(mod, prefix + "_APPNOTE")
+    for k in ("APPNOTES", "appnote"):
+        note.pop(k, None)
+    note.setdefault("body", getattr(mod, prefix + "_BODY"))
+    note["sources"] = [{"html": x["html"], "cite": x["cite"]} for x in getattr(mod, prefix + "_SOURCES")]
+    note["published"], note["published_text"] = "2026-11-06", "november 6, 2026"
+    note["og_image"] = f"/images/notes/{note['slug']}.png"
+    APPNOTES[note["slug"]] = app
+    NOTES.append(note)
 
 for note in NOTES:
     d = ROOT / note["slug"]; d.mkdir(exist_ok=True)

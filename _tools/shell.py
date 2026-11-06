@@ -10,7 +10,8 @@ SITE = "https://hael.app"
 # App Store campaign links: pt is KI-GEN's provider token, ct names where the tap came from
 CAMPAIGN = {"/weight-gain-before-period/": "article-water", "/intermittent-fasting-menstrual-cycle/": "article-cycle",
             "/intermittent-fasting-for-beginners/": "article-beginners", "/how-to-use-hael/": "guide-use",
-            "/cycle-syncing-fasting/": "guide-cycle", "/press/": "site-press", None: "site-404"}
+            "/cycle-syncing-fasting/": "guide-cycle", "/pmdd-intermittent-fasting/": "article-pmdd",
+            "/pcos-intermittent-fasting/": "article-pcos", "/press/": "site-press", None: "site-404"}
 def store_link(current):
     ct = CAMPAIGN.get(current, "site-legal")
     return f"https://apps.apple.com/app/apple-store/id6778956802?pt=129001731&amp;ct={ct}&amp;mt=8"
@@ -66,6 +67,8 @@ FOOTER_LINKS = [
     ("/weight-gain-before-period/", "weight before a period"),
     ("/intermittent-fasting-menstrual-cycle/", "fasting and the cycle"),
     ("/intermittent-fasting-for-beginners/", "fasting for beginners"),
+    ("/pmdd-intermittent-fasting/", "PMDD"),
+    ("/pcos-intermittent-fasting/", "PCOS"),
     ("/how-to-use-hael/", "how to use hæl"),
     ("/privacy/", "privacy"),
     ("/terms/", "terms"),
@@ -80,7 +83,8 @@ BADGE = (f'<a href="{STORE}"><img src="/images/app-store-badge.svg" width="138" 
 PITCH = "hæl is a cycle-aware intermittent fasting timer for iPhone. no account, no subscription, nothing asked of you."
 
 
-def head(*, title, description, path, og_type="website", og_title=None, extra=""):
+def head(*, title, description, path, og_type="website", og_title=None, extra="",
+         og_image="/og-image.png", og_image_alt="hæl · a fasting timer that observes instead of coaching."):
     """Everything inside <head>. `path` is the page's address on the site,
     e.g. "/privacy/"; `extra` is page-specific markup such as structured data."""
     url = SITE + path
@@ -98,14 +102,14 @@ def head(*, title, description, path, og_type="website", og_title=None, extra=""
 <meta property="og:description" content="{description}">
 <meta property="og:type" content="{og_type}">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{SITE}/og-image.png">
-<meta property="og:image:alt" content="hæl · a fasting timer that observes instead of coaching.">
+<meta property="og:image" content="{SITE}{og_image}">
+<meta property="og:image:alt" content="{og_image_alt}">
 <meta property="og:site_name" content="hæl">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{og_title}">
 <meta name="twitter:description" content="{description}">
-<meta name="twitter:image" content="{SITE}/og-image.png">{extra}
+<meta name="twitter:image" content="{SITE}{og_image}">{extra}
 <!-- New York (the app's serif) on Apple devices; Newsreader, self-hosted, elsewhere -->
 <link rel="stylesheet" href="/fonts/newsreader.css">
 <style>
