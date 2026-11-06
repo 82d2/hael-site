@@ -13,7 +13,7 @@ CAMPAIGN = {"/weight-gain-before-period/": "article-water", "/intermittent-fasti
             "/cycle-syncing-fasting/": "guide-cycle", "/pmdd-intermittent-fasting/": "article-pmdd",
             "/pcos-intermittent-fasting/": "article-pcos", "/endometriosis-intermittent-fasting/": "article-endometriosis",
             "/intermittent-fasting-menopause/": "article-menopause", "/intermittent-fasting-women-research/": "article-research-gap",
-            "/menstrual-cycle-moon/": "article-moon", "/press/": "site-press", None: "site-404"}
+            "/menstrual-cycle-moon/": "article-moon", "/intermittent-fasting-pregnancy-breastfeeding/": "article-pregnancy", "/press/": "site-press", None: "site-404"}
 def store_link(current):
     ct = CAMPAIGN.get(current, "site-legal")
     return f"https://apps.apple.com/app/apple-store/id6778956802?pt=129001731&amp;ct={ct}&amp;mt=8"
@@ -74,6 +74,7 @@ FOOTER_LINKS = [
     ("/endometriosis-intermittent-fasting/", "endometriosis"),
     ("/intermittent-fasting-menopause/", "menopause"),
     ("/intermittent-fasting-women-research/", "the research gap"),
+    ("/intermittent-fasting-pregnancy-breastfeeding/", "pregnancy"),
     ("/menstrual-cycle-moon/", "the moon"),
     ("/how-to-use-hael/", "how to use hæl"),
     ("/privacy/", "privacy"),

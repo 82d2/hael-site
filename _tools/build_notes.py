@@ -7,7 +7,7 @@ import json, pathlib, sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import shell
-from notes import pmdd, pcos, endometriosis, menopause, moon, research_gap
+from notes import pmdd, pcos, endometriosis, menopause, moon, research_gap, pregnancy
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 STORE = "https://apps.apple.com/app/id6778956802"
@@ -365,7 +365,7 @@ NOTES = [
 # The notes on the full spectrum (v5, 2026-11): each written in _tools/notes/,
 # with its own share image in /images/notes/.
 for mod, prefix in ((pmdd, "PMDD"), (pcos, "PCOS"), (endometriosis, "ENDO"),
-                    (menopause, "MENO"), (research_gap, "GAP"), (moon, "MOON")):
+                    (menopause, "MENO"), (research_gap, "GAP"), (moon, "MOON"), (pregnancy, "PREG")):
     note = dict(getattr(mod, prefix + "_NOTE"))
     app = getattr(mod, prefix + "_APPNOTE")
     for k in ("APPNOTES", "appnote"):
