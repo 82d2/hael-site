@@ -239,7 +239,7 @@ ENDO_APPNOTE = ("article-endometriosis", "hæl, a fasting timer for iPhone, sugg
 
 ENDO_NOTE = dict(
     slug="endometriosis-intermittent-fasting",
-    title="Endometriosis and Intermittent Fasting: What the Research Shows | hæl",
+    title="Endometriosis and Intermittent Fasting: The Research | hæl",
     description="no trial has tested intermittent fasting in endometriosis. what guidelines and studies say about diet, pain, fatigue, and who shouldn't fast.",
     kicker="the hard days",
     h1="endometriosis and intermittent fasting",

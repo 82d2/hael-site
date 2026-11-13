@@ -211,7 +211,7 @@ MOON_APPNOTE = ("article-moon", "hæl, a fasting timer for iPhone, draws the moo
 
 MOON_NOTE = dict(
     slug="menstrual-cycle-moon",
-    title="The Moon and the Menstrual Cycle: What the Research Says | hæl",
+    title="The Moon and the Menstrual Cycle: The Research | hæl",
     description="does the moon affect your period? what large datasets and long diaries found, why chance makes a link look real, and how to read your own record.",
     kicker="the moon",
     h1="the moon and the menstrual cycle",
