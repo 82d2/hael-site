@@ -113,7 +113,7 @@
             "name": "is there a free trial?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "yes. the full witness is free for fourteen days, once. nothing is charged and nothing renews; when the days end it closes on its own, and everything you kept stays."
+                "text": "yes. the year begins with fourteen days at no cost for new subscribers. cancel in the App Store at least a day before they end and nothing is charged. the timer stays free either way, and everything you kept stays."
             }
         },
         {
@@ -433,12 +433,43 @@ footer .row{border-top:1px solid var(--rule);padding-top:20px;margin-top:44px}
 }
 #questions + section{padding-bottom:56px}
 footer{padding-top:44px}
+
+/* the fifth edition: the sky, the film, the plates */
+.aside{margin-top:14px;font-style:italic;color:var(--soft)}
+.ros{font-style:normal;color:var(--rose)}
+.mglyph{width:13px;height:13px;vertical-align:-2px;margin-right:7px}
+.weekmoon{width:min(400px,100%);background:var(--paper);border:1px solid var(--rule);border-radius:28px;padding:30px 26px 24px;box-shadow:0 30px 60px -40px rgba(60,40,40,.35)}
+.wm-head{font-size:12.5px;font-style:italic;color:var(--muted)}
+.wm-chap{margin-top:22px;font-size:12px;font-style:italic;color:var(--rose)}
+.wm-title{margin-top:6px;font-size:23px;line-height:1.22;font-weight:300;color:var(--ink);min-height:2.5em}
+.wm-title sup{font-size:12px;font-style:italic;color:var(--rose);margin-left:2px}
+.wm-label{margin-top:22px;font-size:12px;font-style:italic;color:var(--rose)}
+#wmsvg{display:block;width:100%;height:auto;margin-top:8px;font-family:var(--serif)}
+#wmsvg .col{cursor:pointer}
+#wmsvg .col:focus{outline:none}
+#wmsvg .col:focus-visible .hit{stroke:var(--rose);stroke-opacity:.5}
+.wm-line{margin-top:6px;text-align:center;font-size:14px;color:var(--soft);min-height:2.6em}
+.filmframe{position:relative;width:min(340px,100%);aspect-ratio:393/680;border-radius:38px;overflow:hidden;color:#FBF6F1;box-shadow:0 40px 70px -40px rgba(30,20,40,.55);background:#3B3350;cursor:pointer}
+.fring{position:absolute;left:8%;width:84%;top:22%;height:auto;font-family:var(--serif)}
+.fmoon{position:absolute;right:26px;top:30px;width:22px;height:22px;transition:opacity .8s}
+.fsky{position:absolute;left:0;right:0;top:73%;text-align:center;font-style:italic;font-size:16px;transition:opacity .4s}
+.fend{position:absolute;left:24px;right:24px;bottom:30px;text-align:center;font-size:14.5px;font-style:italic;opacity:0;transition:opacity .9s}
+.fend.on{opacity:.9}
+.fpick{display:flex;gap:6px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.fpick button{font:italic 14px var(--serif);color:var(--soft);background:none;border:1px solid var(--rule);border-radius:999px;padding:6px 14px;cursor:pointer}
+.fpick button[aria-pressed=true]{color:var(--rose);border-color:var(--blush)}
+.platesec .txt{margin-bottom:34px}
+.plates{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px max(32px,calc((100vw - 1176px)/2)) 26px;scrollbar-width:thin}
+.plates figure{flex:0 0 auto;width:min(250px,62vw);scroll-snap-align:center}
+.plates img{display:block;width:100%;height:auto;border-radius:14px;box-shadow:0 20px 40px -28px rgba(60,40,40,.45)}
+.plates figcaption{margin-top:10px;display:flex;gap:10px;font-size:13.5px;font-style:italic;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){.fmoon,.fsky,.fend{transition:none}}
 </style></head>
 <body>
 <svg width="0" height="0" style="position:absolute"><symbol id="enso" viewBox="0 0 20 20"><path d="M10 2.2a7.8 7.8 0 1 1-6.9 4.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol></svg>
 
 <header><div class="wrap mast">
-  <nav aria-label="Sections"><a href="#water">the water</a><a href="#cycle">the cycle<sup>4</sup></a><a href="#hours">the hours<sup>8</sup></a><a href="#letters">the letters<sup>52</sup></a></nav>
+  <nav aria-label="Sections"><a href="#sky">the sky</a><a href="#film">the film</a><a href="#cycle">the cycle<sup>4</sup></a><a href="#hours">the hours<sup>8</sup></a><a href="#letters">the letters<sup>52</sup></a></nav>
   <a class="mark" href="#">hæl</a>
   <div class="right"><fieldset class="world" id="world"><legend class="vh">the page</legend><input type="radio" name="world" id="w-day" value="day"><label for="w-day">day</label><span aria-hidden="true">/</span><input type="radio" name="world" id="w-night" value="night"><label for="w-night">night</label></fieldset><a class="sc br" href="https://apps.apple.com/app/apple-store/id6778956802?pt=129001731&amp;ct=site-nav&amp;mt=8">download</a></div>
 </div></header>
@@ -447,15 +478,15 @@ footer{padding-top:44px}
 <div class="wrap open">
   <div>
     <span class="orn"><svg><use href="#enso"/></svg><span class="hw">hæl</span><span class="sc">· a fasting companion</span></span>
-    <h1 class="lead">a fasting timer that <em>observes</em> instead of <em>coaching</em>. shaped by your menstrual cycle, it reads your weight against the season you are in, and writes a new page for every hour of the fast.</h1>
+    <h1 class="lead">a fasting timer that <em>observes</em> instead of <em>coaching</em>. shaped by your menstrual cycle and kept by the sky, it reads your weight against the season you are in, and writes a new page for every hour of the fast.</h1>
     <dl class="ledger" aria-label="the edition">
-      <div><dt>current edition</dt><dd>fourth, autumn 26</dd></div>
+      <div><dt>current edition</dt><dd>fifth, autumn 26</dd></div>
       <div><dt>next letter</dt><dd id="next">monday</dd></div>
-      <div><dt>the fourteen days</dt><dd><span class="dot"></span>open, free · nothing renews</dd></div>
+      <div><dt>tonight</dt><dd id="tonight"><svg class="mglyph" id="tglyph" viewBox="-8 -8 16 16" aria-hidden="true"></svg><span id="tname">the moon</span></dd></div>
     </dl>
     <div class="store">
       <img class="icon" src="/images/app/icon-day.png" width="120" height="120" alt="the hæl app icon">
-      <div class="who"><span class="nm">hæl: fasting, observed</span><span class="by">KI-GEN Studios · free, with the full witness to keep</span>
+      <div class="who"><span class="nm">hæl: fasting, observed</span><span class="by">KI-GEN Studios · free, with the full witness by the year or the month</span>
       <div class="marks"><a href="https://apps.apple.com/app/apple-store/id6778956802?pt=129001731&amp;ct=site-hero&amp;mt=8"><img src="/images/app-store-badge.svg" width="135" height="45" alt="Download on the App Store"></a><img class="ah" src="/images/works-with-apple-health.svg" width="144" height="40" alt="Works with Apple Health"></div></div>
     </div>
   </div>
@@ -490,7 +521,47 @@ footer{padding-top:44px}
   </figure>
 </div>
 
-<div class="band" id="water"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>i. the water</span></div></div>
+<div class="band" id="sky"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>i. the sky</span></div></div>
+<section><div class="wrap pair">
+  <figure class="live">
+    <div class="weekmoon" id="weekmoon">
+      <p class="wm-head">the ledger</p>
+      <p class="wm-chap" id="wmchap">this chapter, november.</p>
+      <p class="wm-title" id="wmtitle"></p>
+      <p class="wm-label">this week, by the moon</p>
+      <svg id="wmsvg" viewBox="0 0 364 132" role="group" aria-label="this week, by the moon: the fasts as beads on a string, the moon of each night beneath"></svg>
+      <p class="wm-line" id="wmline" aria-live="polite"></p>
+    </div>
+    <figcaption class="cap"><span class="sc">fig. 2</span>this week, with the moons of these nights, from this browser’s clock. touch a day to keep a fast.</figcaption>
+  </figure>
+  <div class="txt"><h2>the week, by the moon.</h2><p>hæl keeps time with the sky, worked out on the phone from the time zone alone: no location asked, nothing sent. the hour is named as the sky has it, first light, the day, dusk, the small hours. the moon is drawn over the nights the fasts cross, and the ledger opens on the week by the moon.</p><p class="aside">the moon is the sky’s calendar here, never a reading of the body. without a cycle, the new and the full moon can be kept as a practice.</p><a class="sc br more" href="/menstrual-cycle-moon/">read <i>what the research says</i></a></div>
+</div></section>
+
+<div class="band" id="film"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>ii. the film</span></div></div>
+<section><div class="wrap pair flip">
+  <figure class="live">
+    <div class="filmframe" id="filmframe" role="img" aria-label="the film at the end of a fast: the ring drawing itself round through the hours, in the sky they were kept under">
+      <svg class="fmoon" id="fmoon" viewBox="-8 -8 16 16" aria-hidden="true"></svg>
+      <svg class="fring" viewBox="0 0 300 300" aria-hidden="true">
+        <defs><filter id="fglow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter></defs>
+        <circle cx="150" cy="150" r="112" fill="none" stroke="currentColor" stroke-opacity=".3" stroke-width="1.6"/>
+        <path id="farc" d="M0 0" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+        <g id="fbead"><circle r="9" fill="currentColor" fill-opacity=".45" filter="url(#fglow)"/><circle r="3.6" fill="currentColor"/></g>
+        <text id="fnum" x="150" y="156" text-anchor="middle" fill="currentColor" style="font-size:44px;font-weight:300">0h</text>
+        <text id="fname" x="150" y="182" text-anchor="middle" fill="currentColor" style="font-size:15px;font-style:italic;opacity:.85">lauds</text>
+      </svg>
+      <p class="fsky" id="fsky">evening.</p>
+      <p class="fend" id="fend"></p>
+    </div>
+    <div class="fpick" role="group" aria-label="the length of the fast">
+      <button data-h="14">fourteen</button><button data-h="16" aria-pressed="true">sixteen</button><button data-h="18">eighteen</button><button data-h="36">thirty-six</button>
+    </div>
+    <figcaption class="cap"><span class="sc">fig. 3</span>a fast begun at seven in the evening, tonight’s moon over its nights. choose the hours to watch it again.</figcaption>
+  </figure>
+  <div class="txt"><h2>every fast, a few seconds of film.</h2><p>when a fast ends, the ring draws itself round through the hours it kept, in the sky they were kept under: the evening, the night and its moon, first light. a few seconds, a little longer for a long fast. then a page stays, the date spelled out, the hours witnessed.</p><p class="aside">a first fast can wait for the evening: chosen in the first entry, it waits on the ring until the hour comes.</p></div>
+</div></section>
+
+<div class="band" id="water"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>iii. the water</span></div></div>
 <section><div class="wrap pair flip">
   <figure class="live">
     <div class="bodyledger">
@@ -502,12 +573,12 @@ footer{padding-top:44px}
       <p class="lf" id="lfoot"></p>
     </div>
     <input class="scrub" id="day" type="range" min="1" max="28" value="19" aria-label="day of the sample cycle">
-    <figcaption class="cap"><span class="sc">fig. 2</span>the body ledger, with hæl’s own sample: a 36 hour fast and a 72 hour fast. hold the ring to read a morning; slide to move through the cycle.</figcaption>
+    <figcaption class="cap"><span class="sc">fig. 4</span>the body ledger, with hæl’s own sample: a 36 hour fast and a 72 hour fast. hold the ring to read a morning; slide to move through the cycle.</figcaption>
   </figure>
   <div class="txt"><h2>the water, given room.</h2><p>weight rises before a period, and most apps read it as failure. hæl learns where your body carries water across the cycle and reads each morning against that, never against yesterday.</p><a class="sc br more" href="/weight-gain-before-period/">read <i>the study</i></a></div>
 </div></section>
 
-<div class="band" id="cycle"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>ii. the cycle</span></div></div>
+<div class="band" id="cycle"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>iv. the cycle</span></div></div>
 <section><div class="wrap pair">
   <figure class="live"><div class="cyc">
     <div class="phases" role="tablist" aria-label="phases"><button role="tab" data-p="menstrual">menstrual</button><button role="tab" data-p="follicular">follicular</button><button role="tab" data-p="ovulation">ovulation</button><button role="tab" data-p="luteal">luteal</button></div>
@@ -518,18 +589,18 @@ footer{padding-top:44px}
     <p class="line" id="psum" aria-live="polite"></p>
     <p class="hint" id="ptip"></p>
   </div>
-  <figcaption class="cap" style="justify-content:center"><span class="sc">fig. 3</span>one plan for the month, or the hours each phase suggests. touch a phase or a bead.</figcaption></figure>
+  <figcaption class="cap" style="justify-content:center"><span class="sc">fig. 5</span>one plan for the month, or the hours each phase suggests. touch a phase or a bead.</figcaption></figure>
   <div class="txt"><h2>the cycle, read.</h2><p>connect Apple Health or enter your last period, and the ring takes the colour of the phase. the phase suggests the hours, and the words follow it. if a cycle doesn’t apply to you, the ring keeps the hours alone.</p><a class="sc br more" href="/intermittent-fasting-menstrual-cycle/">read <i>the evidence</i></a></div>
 </div></section>
 
-<div class="band" id="hours"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>iii. the hours</span></div></div>
+<div class="band" id="hours"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>v. the hours</span></div></div>
 <section><div class="wrap">
   <div class="txt" style="max-width:640px"><h2>eight names for the hours of a fast.</h2>
   <p>each stretch of the fast keeps the name the canonical hours gave it, from lauds to vigil, and the page beneath the ring is written for the one you are in.</p></div>
   <ol class="hours" id="harches"></ol>
 </div></section>
 
-<div class="band" id="page"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>iv. the page</span></div></div>
+<div class="band" id="page"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>vi. the page</span></div></div>
 <section><div class="wrap pair">
   <figure class="live">
     <div class="stagebg"><div class="device" id="dev2">
@@ -557,12 +628,12 @@ footer{padding-top:44px}
       </div></div>
       <img class="bezel" src="/images/iphone-silver.webp" width="1350" height="2760" loading="lazy" decoding="async" alt="">
     </div></div>
-    <figcaption class="cap"><span class="sc">fig. 4</span>the active fast, close. draw the hours along the ring.</figcaption>
+    <figcaption class="cap"><span class="sc">fig. 6</span>the active fast, close. draw the hours along the ring.</figcaption>
   </figure>
   <div class="txt"><h2>a new page for every hour.</h2><p>begin a fast and the ring keeps time. the words beneath it change as the body does: the threshold, the crossing, the quiet hours. no streak flames, no badges, no voice telling you to push.</p></div>
 </div></section>
 
-<div class="band" id="letters"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>v. the letters</span></div></div>
+<div class="band" id="letters"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>vii. the letters</span></div></div>
 <section><div class="wrap pair flip">
   <figure class="live">
     <div class="letterstage open rest" id="letter" role="button" tabindex="0" aria-label="a monday letter, open">
@@ -574,16 +645,30 @@ footer{padding-top:44px}
       </div>
     </div>
     <button class="tapline" id="lopen">fold it again</button>
-  <figcaption class="cap" style="justify-content:center"><span class="sc">fig. 5</span>a monday letter, from hæl’s own sample.</figcaption></figure>
+  <figcaption class="cap" style="justify-content:center"><span class="sc">fig. 7</span>a monday letter, from hæl’s own sample.</figcaption></figure>
   <div class="txt"><h2>a letter on monday.</h2><p>the full witness writes to you each monday about the week you kept. each month, a reading. each season, another. and at the year’s end, the year.</p></div>
 </div></section>
 
-<div class="band" id="opens"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>vi. how the full witness opens</span></div></div>
+<div class="band" id="plates"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>viii. the plates</span></div></div>
+<section class="platesec"><div class="wrap">
+  <div class="txt" style="max-width:640px"><h2>the fifth edition, in six plates.</h2><p>the pages of the App Store, from 5.0’s own screens.</p></div>
+</div>
+<div class="plates" tabindex="0" role="region" aria-label="the six plates">
+  <figure><img src="/images/plates/plate-1.webp" width="600" height="1304" loading="lazy" decoding="async" alt="fasting, in step with the cycle: the fast's ring at fourteen hours, and the line beneath it"><figcaption><span class="sc">pl. i</span>the fast</figcaption></figure>
+  <figure><img src="/images/plates/plate-2.webp" width="600" height="1304" loading="lazy" decoding="async" alt="the week, by the moon: the ledger with three fasts and the moon of each night"><figcaption><span class="sc">pl. ii</span>the ledger</figcaption></figure>
+  <figure><img src="/images/plates/plate-3.webp" width="600" height="1304" loading="lazy" decoding="async" alt="every fast, a film: the film at five hours, under the moon"><figcaption><span class="sc">pl. iii</span>the film</figcaption></figure>
+  <figure><img src="/images/plates/plate-4.webp" width="600" height="1304" loading="lazy" decoding="async" alt="on monday, a letter: the week, the moon new, and one question"><figcaption><span class="sc">pl. iv</span>the letters</figcaption></figure>
+  <figure><img src="/images/plates/plate-5.webp" width="600" height="1304" loading="lazy" decoding="async" alt="a quiet voice, not a coach: hæl's notes on the lock screen"><figcaption><span class="sc">pl. v</span>the voice</figcaption></figure>
+  <figure><img src="/images/plates/plate-6.webp" width="600" height="1304" loading="lazy" decoding="async" alt="the first fast can begin tonight: the ring as it runs"><figcaption><span class="sc">pl. vi</span>tonight</figcaption></figure>
+</div></section>
+
+<div class="band" id="opens"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>ix. the full witness</span></div></div>
 <section><div class="wrap">
+  <div class="txt" style="max-width:680px;margin:0 auto;text-align:center"><h2>the first fast can begin <em class="ros">tonight</em>.</h2></div>
   <ol class="steps">
-    <li><span class="k">i.</span><span>begin with the practice: the timer, the log, the daily greeting and rest days, free and complete.</span></li>
-    <li><span class="k">ii.</span><span>the full witness opens for fourteen days, free, once. nothing renews; it closes on its own.</span></li>
-    <li><span class="k">iii.</span><span>keep it with one purchase. or let it close, and keep everything you kept.</span></li>
+    <li><span class="k">i.</span><span>begin with the practice: the timer, the log, the daily greeting, rest days, the hour and the moon. free and complete, for good.</span></li>
+    <li><span class="k">ii.</span><span>the full witness, by the year with fourteen days first, or by the month. it renews until cancelled, any time, in the App Store.</span></li>
+    <li><span class="k">iii.</span><span>or once, for good, from settings. whichever way, everything kept stays.</span></li>
     <li class="end" style="display:block;border:0"><div class="marks" style="justify-content:center"><a href="https://apps.apple.com/app/apple-store/id6778956802?pt=129001731&amp;ct=site-begin&amp;mt=8"><img src="/images/app-store-badge.svg" width="135" height="45" alt="Download on the App Store"></a><img class="ah" src="/images/works-with-apple-health.svg" width="144" height="40" alt="Works with Apple Health"></div></li>
   </ol>
 </div></section>
@@ -592,20 +677,23 @@ footer{padding-top:44px}
 <section><div class="wrap index">
   <div class="txt"><h2>nothing asked of you.</h2><p class="lines" style="text-align:left">no account. no ads.<br>no coaching. no celebration.</p><p>what you write lives on your phone, in your own iCloud, and in Apple Health. no server of ours ever sees it.</p></div>
   <ol>
-    <li><span class="ro">i.</span><a href="#water">the water</a></li>
-    <li><span class="ro">ii.</span><a href="#cycle">the cycle</a><sup>4</sup></li>
-    <li><span class="ro">iii.</span><a href="#hours">the hours</a><sup>8</sup></li>
-    <li><span class="ro">iv.</span><a href="#page">the page</a><sup>114</sup></li>
-    <li><span class="ro">v.</span><a href="#letters">the letters</a><sup>52</sup></li>
-    <li><span class="ro">vi.</span><a href="#opens">the fourteen days</a></li>
-    <li><span class="ro">vii.</span><a href="#questions">questions</a><sup>7</sup></li>
+    <li><span class="ro">i.</span><a href="#sky">the sky</a></li>
+    <li><span class="ro">ii.</span><a href="#film">the film</a></li>
+    <li><span class="ro">iii.</span><a href="#water">the water</a></li>
+    <li><span class="ro">iv.</span><a href="#cycle">the cycle</a><sup>4</sup></li>
+    <li><span class="ro">v.</span><a href="#hours">the hours</a><sup>8</sup></li>
+    <li><span class="ro">vi.</span><a href="#page">the page</a><sup>114</sup></li>
+    <li><span class="ro">vii.</span><a href="#letters">the letters</a><sup>52</sup></li>
+    <li><span class="ro">viii.</span><a href="#plates">the plates</a><sup>6</sup></li>
+    <li><span class="ro">ix.</span><a href="#opens">the full witness</a></li>
+    <li><span class="ro">x.</span><a href="#questions">questions</a><sup>7</sup></li>
   </ol>
 </div></section>
-<div class="band" id="questions"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>vii. questions</span></div></div>
+<div class="band" id="questions"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>x. questions</span></div></div>
 <section><div class="wrap">
   <div class="txt" style="max-width:680px;margin:0 auto"><h2>questions.</h2></div>
   <div class="faq">
-    <details><summary>is there a free trial?</summary><p>yes. the full witness is free for fourteen days, once. nothing is charged and nothing renews; when the days end it closes on its own, and everything you kept stays.</p></details>
+    <details><summary>is there a free trial?</summary><p>yes. the year begins with fourteen days at no cost for new subscribers. cancel in the App Store at least a day before they end and nothing is charged. the timer stays free either way, and everything you kept stays.</p></details>
     <details><summary>does hæl work without a period, or on birth control?</summary><p>yes. cycle tracking can be turned off in settings, and then the ring keeps the hours alone and the body ledger compares each morning with this time last month instead of with the cycle.</p></details>
     <details><summary>is it a subscription?</summary><p>the fasting timer is free and complete, for good. the full witness, which reads the cycle and the body over time, is a plan: $49.99 a year, with fourteen days free first, or $7.99 a month, renewing until cancelled, any time, in the App Store. or once, for good, $129.99, in settings.</p></details>
     <details><summary>does it work with Apple Health?</summary><p>yes, with your permission. hæl reads and writes period starts and weight, and can record each fast as a mind and body session if you turn that on. it reads resting heart rate for the weekly letter.</p></details>
@@ -620,12 +708,12 @@ footer{padding-top:44px}
   <svg class="seal" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="27" fill="none" stroke="var(--rule)" stroke-width="1"/><circle cx="30" cy="30" r="23" fill="none" stroke="var(--blush)" stroke-width="1.4"/><text x="30" y="37" text-anchor="middle" style="font:300 20px var(--serif);fill:var(--rose)">æ</text></svg>
   <span class="sc" style="color:var(--soft)">for iPhone, iPad and Apple Watch · kept on your phone, never on a server of ours</span>
   <nav class="fmenu" aria-label="Footer">
-    <div><span class="sc">the practice</span><a href="#hours">the hours</a><a href="#page">the page</a><a href="#water">the water</a><a href="#cycle">the cycle</a><a href="#letters">the letters</a></div>
-    <div><span class="sc">the full witness</span><a href="#opens">the fourteen days</a><a href="#questions">questions</a><a href="https://apps.apple.com/app/apple-store/id6778956802?pt=129001731&amp;ct=site-footer&amp;mt=8">on the App Store</a></div>
+    <div><span class="sc">the practice</span><a href="#sky">the sky</a><a href="#film">the film</a><a href="#hours">the hours</a><a href="#page">the page</a><a href="#water">the water</a><a href="#cycle">the cycle</a><a href="#letters">the letters</a></div>
+    <div><span class="sc">the full witness</span><a href="#opens">the year, the month, once</a><a href="#plates">the plates</a><a href="#questions">questions</a><a href="https://apps.apple.com/app/apple-store/id6778956802?pt=129001731&amp;ct=site-footer&amp;mt=8">on the App Store</a></div>
     <div><span class="sc">reading</span><a href="/weight-gain-before-period/">weight before a period</a><a href="/intermittent-fasting-menstrual-cycle/">fasting and the cycle</a><a href="/intermittent-fasting-for-beginners/">fasting for beginners</a><a href="/pmdd-intermittent-fasting/">PMDD and fasting</a><a href="/pcos-intermittent-fasting/">PCOS and fasting</a><a href="/endometriosis-intermittent-fasting/">endometriosis and fasting</a><a href="/intermittent-fasting-menopause/">menopause and fasting</a><a href="/intermittent-fasting-pregnancy-breastfeeding/">pregnancy and fasting</a><a href="/intermittent-fasting-women-research/">the research gap</a><a href="/menstrual-cycle-moon/">the moon and the cycle</a><a href="/how-to-use-hael/">how to use hæl</a><a href="/cycle-syncing-fasting/">cycle syncing in hæl</a></div>
     <div><span class="sc">the house</span><a href="/privacy/">privacy</a><a href="/terms/">terms</a><a href="/consumer-health-data/">health data</a><a href="/press/">press</a><a href="mailto:hello@hael.app">write to us</a></div>
   </nav>
-  <div class="row sc"><span>© 2026 KI-GEN Studios LLC</span><span>fourth edition · autumn 2026</span></div>
+  <div class="row sc"><span>© 2026 KI-GEN Studios LLC</span><span>fifth edition · autumn 2026</span></div>
 </div></footer>
 
 <script>
@@ -962,5 +1050,114 @@ btn.addEventListener('click',()=>stage.classList.contains('closed')?openLetter()
 stage.addEventListener('click',openLetter);
 stage.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();stage.classList.contains('closed')?openLetter():foldLetter();}});
 });
+</script>
+<script>
+// The fifth edition: the sky (the week by the moon, tonight's moon) and the film.
+// The moon is worked out here from this browser's clock, as the app works it
+// out on the phone: a calendar, never a reading of the body.
+(()=>{
+const SYN=29.530588853, REF=Date.UTC(2000,0,6,18,14)/864e5;
+const phase=d=>((((d.getTime()/864e5)-REF)/SYN)%1+1)%1;
+const moonName=p=>p<.034||p>.966?'the new moon':Math.abs(p-.25)<.034?'the first quarter':Math.abs(p-.5)<.034?'the full moon':Math.abs(p-.75)<.034?'the last quarter':p<.25?'a waxing crescent':p<.5?'a waxing gibbous':p<.75?'a waning gibbous':'a waning crescent';
+const moonUnder=p=>p<.034||p>.966?'in the dark of the moon':Math.abs(p-.5)<.034?'under the full moon':p<.5?'under a waxing moon':'under a waning moon';
+const ONES=['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'],TENS=['','','twenty','thirty','forty','fifty','sixty','seventy'];
+const spell=n=>n<20?ONES[n]:TENS[Math.floor(n/10)]+(n%10?'-'+ONES[n%10]:'');
+const HOURS=[[0,'lauds'],[3,'prime'],[6,'terce'],[9,'noon'],[12,'none'],[16,'vespers'],[20,'compline'],[24,'vigil']];
+const hourName=e=>{let n='lauds';for(const [h,w] of HOURS) if(e>=h) n=w;return n;};
+function glyph(svg,p,r=6.5){
+  while(svg.firstChild) svg.removeChild(svg.firstChild);
+  el('circle',{cx:0,cy:0,r,fill:'currentColor','fill-opacity':.16,stroke:'currentColor','stroke-opacity':.55,'stroke-width':.7},svg);
+  if(p<.02||p>.98) return;
+  if(Math.abs(p-.5)<.02){el('circle',{cx:0,cy:0,r,fill:'currentColor'},svg);return;}
+  const wax=p<.5, rx=r*Math.abs(Math.cos(2*Math.PI*p)), gib=p>.25&&p<.75;
+  const so=wax?1:0, st=wax?(gib?1:0):(gib?0:1);
+  el('path',{d:`M0 ${-r} A${r} ${r} 0 0 ${so} 0 ${r} A${rx.toFixed(2)} ${r} 0 0 ${st} 0 ${-r}Z`,fill:'currentColor'},svg);
+}
+
+// ── the edition's ledger: tonight ──
+const now=new Date(), tonight=new Date(now); tonight.setHours(22,0,0,0);
+const tp=phase(tonight);
+if($('tglyph')){glyph($('tglyph'),tp);$('tname').textContent=moonName(tp);}
+
+// ── i. the sky: this week, by the moon ──
+const wm=$('wmsvg');
+if(wm){
+  const today=(now.getDay()+6)%7, monday=new Date(now); monday.setHours(0,0,0,0); monday.setDate(monday.getDate()-today);
+  const nights=[...Array(7)].map((_,i)=>{const d=new Date(monday);d.setDate(d.getDate()+i);d.setHours(22,0,0,0);return d;});
+  const DAYS=['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
+  const sample=[16,0,18,14,0,16,0];
+  const fasts=sample.map((h,i)=>i<today||(i===today&&today<2)?h:0);
+  $('wmchap').textContent='this chapter, '+now.toLocaleString('en-US',{month:'long'}).toLowerCase()+'.';
+  const X=i=>26+i*52;
+  function draw(){
+    while(wm.firstChild) wm.removeChild(wm.firstChild);
+    const kept=fasts.map((h,i)=>h?i:-1).filter(i=>i>=0);
+    const L=Math.max(0,...fasts), li=fasts.indexOf(L);
+    if(kept.length>1) el('line',{x1:X(kept[0]),x2:X(kept[kept.length-1]),y1:50,y2:50,stroke:'var(--blush)','stroke-width':1.4},wm);
+    fasts.forEach((h,i)=>{
+      const g=el('g',{class:'col'},wm), future=i>today;
+      el('rect',{class:'hit',x:X(i)-25,y:0,width:50,height:128,rx:10,fill:'transparent',stroke:'transparent'},g);
+      el('text',{x:X(i),y:16,'text-anchor':'middle','font-size':12,'font-style':'italic',fill:'var(--muted)'},g).textContent='mtwtfss'[i];
+      if(h){
+        if(i===li&&kept.length) el('circle',{cx:X(i),cy:50,r:9,fill:'none',stroke:'var(--rose)','stroke-opacity':.6,'stroke-width':1},g);
+        el('circle',{cx:X(i),cy:50,r:5,fill:'var(--rose)'},g);
+      } else el('circle',{cx:X(i),cy:50,r:future?3:4,fill:'var(--paper)',stroke:future?'var(--rule)':'var(--muted)','stroke-opacity':future?1:.6,'stroke-width':1},g);
+      const m=el('svg',{x:X(i)-8,y:76,width:16,height:16,viewBox:'-8 -8 16 16',style:'color:var(--soft)'},g); glyph(m,phase(nights[i]));
+      if(i===today) el('text',{x:X(i),y:112,'text-anchor':'middle','font-size':11,'font-style':'italic',fill:'var(--rose)'},g).textContent='tonight';
+      if(!future){
+        g.setAttribute('tabindex','0');g.setAttribute('role','button');
+        g.setAttribute('aria-label',DAYS[i]+(h?', a fast of '+spell(h)+' hours':', no fast')+', '+moonName(phase(nights[i])));
+        const step=()=>{const o=[0,14,16,18];fasts[i]=o[(o.indexOf(fasts[i])+1)%o.length];draw();const n=wm.querySelectorAll('.col')[i];n&&n.focus();};
+        g.addEventListener('click',step);g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();step();}});
+      }
+    });
+    const n=kept.length, t=$('wmtitle');
+    if(!n) t.textContent='nothing kept yet this week.';
+    else t.innerHTML=(n===1?'one fast this week, kept to ':spell(n)+' fasts this week, the longest kept to ')+hourName(L)+'<sup>'+L+'h</sup>.';
+    $('wmline').textContent=n?'the longest, '+spell(L)+' hours, kept '+moonUnder(phase(nights[li]))+'.':'tonight, '+moonName(tp)+'.';
+  }
+  draw();
+}
+
+// ── ii. the film ──
+const ff=$('filmframe');
+if(ff){
+  const K=[[0,'#2A2440','#1A1624'],[3,'#2A2440','#1A1624'],[5,'#6F5E86','#C9A3A8'],[6.5,'#E7C7BE','#F1DCCB'],[9,'#F1DFD8','#DDBFC2'],[16,'#E9D3D0','#CFAFB6'],[18,'#B79CB6','#5E4F72'],[19.5,'#A58FAF','#3B3350'],[21.5,'#3A3150','#1C1828'],[24,'#2A2440','#1A1624']];
+  const hex=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)), mix=(a,b,t)=>a.map((v,i)=>Math.round(v+(b[i]-v)*t));
+  function sky(h){h=((h%24)+24)%24;let k=0;while(K[k+1][0]<=h&&k<K.length-2)k++;const [h0,t0,b0]=K[k],[h1,t1,b1]=K[k+1],t=(h-h0)/(h1-h0||1);
+    const top=mix(hex(t0),hex(t1),t),bot=mix(hex(b0),hex(b1),t);return {top,bot,light:(top[0]*.3+top[1]*.59+top[2]*.11)>170};}
+  const word=h=>{h=((h%24)+24)%24;return h>=5&&h<7?'first light.':h>=7&&h<17?'the day.':h>=17&&h<20?'evening.':h>=2&&h<5?'the small hours.':'night.';};
+  const dur=H=>{const d=H/24;return d<=1?6:d<=3?6+1.5*(d-1):Math.min(12,9+(d-3));};
+  const begun=new Date(now); begun.setHours(19,0,0,0);
+  let H=16, t0=0, raf=0;
+  const ease=x=>-(Math.cos(Math.PI*x)-1)/2;
+  function frame(f){
+    const e=H*f, clock=19+e, s=sky(clock), w=word(clock);
+    ff.style.background=`linear-gradient(180deg,rgb(${s.top}) 0%,rgb(${s.bot}) 100%)`;
+    ff.style.color=s.light?'#2F2A27':'#FBF6F1';
+    $('farc').setAttribute('d',arc(150,112,0,Math.max(.0006,f)));
+    const [bx,by]=onCircle(150,112,f); $('fbead').setAttribute('transform',`translate(${bx.toFixed(1)} ${by.toFixed(1)})`);
+    $('fnum').textContent=(f>=1?H:Math.floor(e))+'h'; $('fname').textContent=hourName(f>=1?H:e);
+    if($('fsky').textContent!==w) $('fsky').textContent=w;
+    const night=/night|evening|small/.test(w); $('fmoon').style.opacity=night?.9:0;
+    if(night) glyph($('fmoon'),phase(new Date(begun.getTime()+e*36e5)),6.5);
+    $('fend').classList.toggle('on',f>=1);
+    if(f>=1) $('fend').textContent=spell(H)+' hours, closed at '+hourName(H)+'.';
+  }
+  function play(){
+    cancelAnimationFrame(raf);
+    if(reduce){frame(1);return;}
+    const D=dur(H)*1000; t0=performance.now();
+    const tick=t=>{const x=Math.min(1,(t-t0)/D);frame(ease(x));if(x<1)raf=requestAnimationFrame(tick);};
+    raf=requestAnimationFrame(tick);
+  }
+  ff.addEventListener('click',play);
+  document.querySelectorAll('.fpick button').forEach(b=>b.addEventListener('click',()=>{
+    H=+b.dataset.h; document.querySelectorAll('.fpick button').forEach(x=>x.setAttribute('aria-pressed',x===b));play();}));
+  frame(0);
+  const io=new IntersectionObserver(es=>{if(es.some(x=>x.isIntersecting)){io.disconnect();setTimeout(play,300);}},{threshold:.6});io.observe(ff);
+}
+})();
+
 </script>
 </body></html>
