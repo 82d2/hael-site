@@ -272,7 +272,7 @@ USE_BODY = f"""
             <p>the watch shows the fast in progress, and widgets keep it on the home and lock screens. hæl also runs on iPad.</p>
 
             <h2>the full witness</h2>
-            <p>the timer, the ledger, the daily greeting and rest days are free and complete. the full witness adds the cycle: the ring in the colour of the phase, hours suggested for each phase, weight read against the cycle, every fast back to the first, and a letter each monday about the week you kept. it opens for fourteen days, free, once, and nothing renews. <a href="/cycle-syncing-fasting/">how hæl reads the cycle</a>.</p>
+            <p>the timer, the ledger, the daily greeting and rest days are free and complete. the full witness adds the cycle: the ring in the colour of the phase, hours suggested for each phase, weight read against the cycle, every fast back to the first, and a letter each monday about the week you kept. it comes by the year, with fourteen days first, or by the month; or once, for good, from settings. <a href="/cycle-syncing-fasting/">how hæl reads the cycle</a>.</p>
 
             <div class="aside">
                 <p>hæl is on the App Store for iPhone, iPad and Apple Watch, with no account to make.</p>
@@ -310,7 +310,7 @@ CYCLE_BODY = f"""
             <p>your cycle and your weight stay on your phone, in your own iCloud, and in Apple Health if you connect it. there is no account and no server of ours.</p>
 
             <h2>what is free</h2>
-            <p>the timer, the ledger and rest days are free. fasting by the cycle is part of the full witness, which opens for fourteen days, free, once, and nothing renews. <a href="/how-to-use-hael/">how to use hæl, step by step</a>.</p>
+            <p>the timer, the ledger and rest days are free. fasting by the cycle is part of the full witness, which comes by the year, with fourteen days first, or by the month; or once, for good, from settings. <a href="/how-to-use-hael/">how to use hæl, step by step</a>.</p>
 
             <div class="aside">
                 <p>hæl is on the App Store for iPhone, iPad and Apple Watch.</p>
