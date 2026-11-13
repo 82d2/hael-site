@@ -265,7 +265,7 @@ MENO_APPNOTE = ("article-menopause", "hæl, a fasting timer for iPhone, works wi
 
 MENO_NOTE = dict(
     slug="intermittent-fasting-menopause",
-    title="Intermittent Fasting in Perimenopause and Menopause: What the Research Shows | hæl",
+    title="Intermittent Fasting and Menopause: The Research | hæl",
     description="what trials of intermittent fasting in perimenopause and after menopause found for weight, muscle, bone, hot flushes and sleep, and who shouldn't fast.",
     kicker="the transition",
     h1="intermittent fasting in perimenopause and menopause",
