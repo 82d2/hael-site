@@ -87,7 +87,7 @@ FOOTER_LINKS = [
 BADGE = (f'<a href="{STORE}"><img src="/images/app-store-badge.svg" width="138" height="46" '
          'alt="Download hæl on the App Store"></a>')
 
-PITCH = "hæl is a cycle-aware intermittent fasting timer for iPhone. no account, no subscription, nothing asked of you."
+PITCH = "hæl is a cycle-aware intermittent fasting timer for iPhone. no account, no ads, nothing asked of you."
 
 
 def head(*, title, description, path, og_type="website", og_title=None, extra="",
