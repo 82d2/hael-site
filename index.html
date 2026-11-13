@@ -464,6 +464,9 @@ footer{padding-top:44px}
 .plates img{display:block;width:100%;height:auto;border-radius:14px;box-shadow:0 20px 40px -28px rgba(60,40,40,.45)}
 .plates figcaption{margin-top:10px;display:flex;gap:10px;font-size:13.5px;font-style:italic;color:var(--muted)}
 @media (prefers-reduced-motion: reduce){.fmoon,.fsky,.fend{transition:none}}
+.app .shead i{font-style:italic}.app .shead .qm{font-weight:400;margin-left:14px}
+.hnav{align-items:center}.hnav .nenso{width:22px;height:22px}
+.dotsep{margin:0 5px}
 </style></head>
 <body>
 <svg width="0" height="0" style="position:absolute"><symbol id="enso" viewBox="0 0 20 20"><path d="M10 2.2a7.8 7.8 0 1 1-6.9 4.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol></svg>
@@ -492,7 +495,7 @@ footer{padding-top:44px}
   </div>
   <figure class="live">
     <div class="stagebg"><div class="device"><div class="scr" id="scr1"><div class="app home" id="home">
-      <div class="shead" aria-hidden="true"><span>hæl</span><span>?</span></div>
+      <div class="shead" aria-hidden="true"><span>hæl</span><span><i class="hourword">evening</i><b class="qm">?</b></span></div>
       <svg class="ring" id="hdial" viewBox="0 0 320 320" role="slider" aria-label="the length of the fast" aria-valuenow="16" aria-valuemin="8" aria-valuemax="168" tabindex="0">
         <defs>
           <radialGradient id="hglow" gradientUnits="userSpaceOnUse" cx="160" cy="160" r="143"><stop offset="0.45" stop-color="#D4C9DE" stop-opacity=".09"/><stop offset="1" stop-color="#D4C9DE" stop-opacity="0"/></radialGradient>
@@ -514,8 +517,8 @@ footer{padding-top:44px}
       <p class="hgreet">the mind circles. the body stays on course.</p>
       <p class="hpass">the day unspools. the hands keep their tension without being asked. the body asking for more. rest and warmth and food, without apology. she sleeps in the shape she earned.</p>
       <div class="hbegin" aria-hidden="true">begin</div>
-      <div class="hrest" aria-hidden="true">rest</div>
-      <div class="hnav" aria-hidden="true"><span>ledger</span><span>form</span><span>settings</span></div>
+      <div class="hrest" aria-hidden="true">rest <span class="dotsep">·</span> began earlier</div>
+      <div class="hnav" aria-hidden="true"><span>ledger</span><span>letters</span><svg class="nenso" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="#B58389" stroke-width="1.3"/></svg><span>form</span><span>settings</span></div>
     </div></div><img class="bezel" src="/images/iphone-silver.webp" width="1350" height="2760" fetchpriority="high" alt=""></div></div>
     <figcaption class="cap"><span class="sc">fig. 1</span>home, deep luteal. turn the dial past the top for days.</figcaption>
   </figure>
@@ -605,7 +608,7 @@ footer{padding-top:44px}
   <figure class="live">
     <div class="stagebg"><div class="device" id="dev2">
       <div class="scr" id="scr2"><div class="app" id="app">
-        <div class="shead" aria-hidden="true"><span>hæl</span><span>?</span></div>
+        <div class="shead" aria-hidden="true"><span>hæl</span><span><i class="hourword">evening</i><b class="qm">?</b></span></div>
         <svg class="ring" id="dial" viewBox="0 0 320 320" role="slider" aria-label="hours into the fast" aria-valuenow="6" aria-valuemin="0" aria-valuemax="24" tabindex="0" style="width:320px;height:320px;margin:14px auto 0">
           <defs>
             <radialGradient id="aglow" gradientUnits="userSpaceOnUse" cx="160" cy="160" r="156"><stop offset="0.42" stop-color="#E5DCD9" stop-opacity=".18"/><stop offset="1" stop-color="#E5DCD9" stop-opacity="0"/></radialGradient>
@@ -651,7 +654,7 @@ footer{padding-top:44px}
 
 <div class="band" id="plates"><div class="wrap"><span class="sc orn"><svg><use href="#enso"/></svg>viii. the plates</span></div></div>
 <section class="platesec"><div class="wrap">
-  <div class="txt" style="max-width:640px"><h2>the fifth edition, in six plates.</h2><p>the pages of the App Store, from 5.0’s own screens.</p></div>
+  <div class="txt" style="max-width:640px"><h2>the fifth edition, in six plates.</h2><p>the pages of the App Store, from the fifth edition’s own screens.</p></div>
 </div>
 <div class="plates" tabindex="0" role="region" aria-label="the six plates">
   <figure><img src="/images/plates/plate-1.webp" width="600" height="1304" loading="lazy" decoding="async" alt="fasting, in step with the cycle: the fast's ring at fourteen hours, and the line beneath it"><figcaption><span class="sc">pl. i</span>the fast</figcaption></figure>
@@ -1159,5 +1162,11 @@ if(ff){
 }
 })();
 
+</script>
+<script>
+// the running head's word for the hour, as the app has it (SkyClock), from this browser's clock
+(()=>{const h=new Date().getHours()+new Date().getMinutes()/60;
+const w=h<3?'deep night':h<5?'the small hours':h<6?'before dawn':h<7.5?'first light':h<11?'morning':h<15?'the day':h<17?'afternoon gold':h<18?'the light going':h<19?'dusk':h<20?'twilight':h<22.5?'evening':'deep night';
+document.querySelectorAll('.hourword').forEach(e=>e.textContent=w);})();
 </script>
 </body></html>
