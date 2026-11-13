@@ -21,7 +21,7 @@ PAGES = [
     dict(name="privacy", h1="privacy policy", title="Privacy Policy | hæl",
          description="how hæl handles your data: no account, no server of ours, no advertising. what stays on your phone and in iCloud, and the anonymous counts kept."),
     dict(name="terms", h1="terms of use", title="Terms of Use | hæl",
-         description="the terms of use for hæl, a cycle-aware intermittent fasting app for iPhone: the free timer, the full witness by the year, the month or once, and what the app is not."),
+         description="the terms of use for hæl, a cycle-aware fasting app for iPhone: the free timer, the full witness by the year, the month or once, and what the app is not."),
     dict(name="consumer-health-data", h1="consumer health data", title="Consumer Health Data Privacy Policy | hæl",
          description="how hæl handles consumer health data under Washington, Nevada, and Connecticut law."),
 ]
