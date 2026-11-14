@@ -82,6 +82,7 @@ FOOTER_LINKS = [
     ("/consumer-health-data/", "health data"),
     ("/press/", "press"),
     ("mailto:hello@hael.app", "contact"),
+    ("/support/", "support"),
 ]
 
 BADGE = (f'<a href="{STORE}"><img src="/images/app-store-badge.svg" width="138" height="46" '
