@@ -18,7 +18,7 @@ QA = [
     ("the fourteen days", 'the year begins with fourteen days at no cost for new subscribers. cancel in the App Store at least a day before they end and nothing is charged.'),
     ("refunds", 'refunds are made by Apple, not by us: <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>, sign in, choose hæl, and say what happened.'),
     ("Apple Health", 'connecting is a choice, in the first entry or in settings → ii the form. hæl reads and writes period starts and weight, and can record each fast as a mind and body session. to change what it may read or write: the Health app → your profile → apps → hæl.'),
-    ("the data, and deleting it", 'everything lives on the phone, in your own iCloud, and in Apple Health; there is no account and no server of ours. settings → iii the record exports it; settings → v about and privacy deletes all of it. what is counted, anonymously, is set out in <a href="/privacy/">the privacy policy</a>.'),
+    ("the data, and deleting it", 'everything lives on the phone, in your own iCloud, and in Apple Health; there is no account and no server of ours. settings → iii the record exports it; settings → v about and privacy deletes all of it. what is counted, and how, is set out in <a href="/privacy/">the privacy policy</a>.'),
 ]
 
 body = shell.title_block("support", "write to us.", "hello@hael.app · a person reads every letter") + """
