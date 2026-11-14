@@ -88,7 +88,7 @@ footer span{margin-right:auto;letter-spacing:0;text-transform:none;font-style:it
 </div></header>
 <div class="text">
 <p>hæl is made by KI-GEN Studios LLC. This policy describes what the app stores, where it goes, and who else handles any of it.</p>
-<p>In short: your fasting, cycle, and weight data stays with you, on your devices, in your own iCloud account, and in Apple Health. Two outside services are involved. TelemetryDeck receives usage signals under a pseudonymous install identifier (what was used, and when; never what was written), and RevenueCat verifies purchases and passes a record of each purchase to TelemetryDeck under the same identifier. Neither receives your fasting, cycle, or weight records: no durations, weights, period dates, phases, or anything from Apple Health.</p>
+<p>In short: your fasting, cycle, and weight data stays with you, on your devices, in your own iCloud account, and in Apple Health. Two outside services are involved. TelemetryDeck receives usage signals (what was used, and when; never what was written), under a pseudonymous install identifier; from hæl 5.0.1, nothing about fasting, weight, or Apple Health is sent at all, and RevenueCat verifies purchases and passes a record of each purchase to TelemetryDeck under the same identifier. Neither receives your fasting, cycle, or weight records: no durations, weights, period dates, phases, or anything from Apple Health.</p>
 
 <h2>what hæl stores</h2>
 <ul>
@@ -130,7 +130,8 @@ footer span{margin-right:auto;letter-spacing:0;text-transform:none;font-style:it
 <p>HealthKit data is never sent to KI-GEN Studios LLC, TelemetryDeck, RevenueCat, or anyone else, and it is never used for advertising or marketing.</p>
 
 <h2>analytics (telemetrydeck)</h2>
-<p>hæl uses TelemetryDeck to understand how the app is used, per install, so it can be made easier to use and worth keeping. It sends events, each with the time it happened, such as that a session started, a page was opened, a fast began, was completed, ended early, was abandoned, edited, or set for later, a rest day or a weight was recorded, Apple Health was connected, or something was shared. An event says that something happened, never its contents: not how long a fast was, what a weight was, which phase of the cycle, or anything from Apple Health. Some events carry a few details:</p>
+<p>hæl uses TelemetryDeck to understand how the app is used, so it can be made easier to use and worth keeping. It sends events, each with the time it happened. An event says that something happened, never its contents: not how long a fast was, what a weight was, which phase of the cycle, or anything from Apple Health.</p>
+<p>Events about using the app (a session started, a page or letter was opened, a purchase page was shown, something was shared) are sent under the install's pseudonymous identifier, so they can be counted per install. From hæl 5.0.1, events about fasting, weight, or Apple Health (that a fast began, was completed, ended early, was abandoned, edited, or set for later; that a rest day or a weight was recorded; that Apple Health was connected; that the cycle's prediction was opened) are not sent at all: the app counts them on the phone, for its own pages, and they stay there. Before 5.0.1 they were sent as events, with their time and no contents, under the install's identifier. Some events carry a few details:</p>
 <ul>
   <li>days since the app was last opened</li>
   <li>consecutive-day open streak</li>
