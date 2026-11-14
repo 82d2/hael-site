@@ -84,11 +84,11 @@ footer span{margin-right:auto;letter-spacing:0;text-transform:none;font-style:it
 <header class="title"><div class="wrap">
   <span class="label"><svg class="enso" aria-hidden="true"><use href="#enso"/></svg>legal</span>
   <h1>privacy policy</h1>
-  <p class="meta">last updated November 13, 2026</p>
+  <p class="meta">last updated November 14, 2026</p>
 </div></header>
 <div class="text">
 <p>hæl is made by KI-GEN Studios LLC. This policy describes what the app stores, where it goes, and who else handles any of it.</p>
-<p>In short: your fasting, cycle, and weight data stays with you, on your devices, in your own iCloud account, and in Apple Health. Two outside services are involved. TelemetryDeck receives anonymous usage signals, and RevenueCat verifies purchases and passes a record of each purchase to TelemetryDeck under the same anonymous identifier. Neither receives your fasting, cycle, or weight records, or anything from Apple Health.</p>
+<p>In short: your fasting, cycle, and weight data stays with you, on your devices, in your own iCloud account, and in Apple Health. Two outside services are involved. TelemetryDeck receives usage signals under a pseudonymous install identifier (what was used, and when; never what was written), and RevenueCat verifies purchases and passes a record of each purchase to TelemetryDeck under the same identifier. Neither receives your fasting, cycle, or weight records: no durations, weights, period dates, phases, or anything from Apple Health.</p>
 
 <h2>what hæl stores</h2>
 <ul>
@@ -130,7 +130,7 @@ footer span{margin-right:auto;letter-spacing:0;text-transform:none;font-style:it
 <p>HealthKit data is never sent to KI-GEN Studios LLC, TelemetryDeck, RevenueCat, or anyone else, and it is never used for advertising or marketing.</p>
 
 <h2>analytics (telemetrydeck)</h2>
-<p>hæl uses TelemetryDeck to understand how the app is used. It sends events such as "session started" or "share completed", with a few details attached:</p>
+<p>hæl uses TelemetryDeck to understand how the app is used, per install, so it can be made easier to use and worth keeping. It sends events, each with the time it happened, such as that a session started, a page was opened, a fast began, was completed, ended early, was abandoned, edited, or set for later, a rest day or a weight was recorded, Apple Health was connected, or something was shared. An event says that something happened, never its contents: not how long a fast was, what a weight was, which phase of the cycle, or anything from Apple Health. Some events carry a few details:</p>
 <ul>
   <li>days since the app was last opened</li>
   <li>consecutive-day open streak</li>
@@ -143,9 +143,10 @@ footer span{margin-right:auto;letter-spacing:0;text-transform:none;font-style:it
   <li>when hæl asks whether it may send notes, that the question was shown, and whether notes were allowed, refused, or put off for later (from hæl 4.5.3)</li>
   <li>from the fifth edition of hæl (5.0): that the letters were opened; which kind of Monday letter was opened (the full letter, the first letter given whole, or the shorter letter); and, for the card that shares the hour of a fast, that it was opened or shared, and whether it was offered after a screenshot or when the fast came full circle. hæl learns that a screenshot was taken only from iOS's notice, never reads the screenshot, and sends no hours or names with these events</li>
   <li>from the fifth edition of hæl (5.0), the purchase page can also be the one shown after the first fast of twelve hours or more, or the morning before the fourteen days close</li>
+  <li>from hæl 5.0.1: each time a purchase page is shown, which page it was (the last page of onboarding, the purchase page, the letter at the end of the fourteen days, the morning before they close, the page in settings that offers the one-time purchase, or the page after the first fast of twelve hours or more), so we can see which pages lead to the full experience</li>
 </ul>
 <p>TelemetryDeck also receives purchase events for hæl from RevenueCat (see below): for example, that the full experience was bought, restored, transferred, or refunded, and from the fifth edition of hæl (5.0) that a subscription or its free trial started, renewed, was cancelled, or ended. Each event carries the product, its price and currency, the App Store country, Apple's transaction ID, RevenueCat's random app user ID, and whether the device has been asked for tracking permission (hæl never asks). These arrive under the same hashed identifier as the usage signals, so we can see how many people who use the app go on to buy it. They are sent by RevenueCat's servers, not by the app.</p>
-<p>TelemetryDeck identifies an install only by an anonymized, hashed identifier. It does not receive your name, email, fasting history, weight, cycle information, or any Apple Health data. See <a href="https://telemetrydeck.com/privacy">telemetrydeck.com/privacy</a>.</p>
+<p>TelemetryDeck identifies an install only by a pseudonymous identifier: a one-way hash of the identifier iOS gives this app on this device. It is the same across sessions, so events from one install can be counted together, but it is not your name, email, or Apple Account, and it is not shared with advertisers. TelemetryDeck processes these signals on our behalf, as a service provider, only to measure how hæl is used; it does not receive the durations of fasts, weights, cycle information, or any Apple Health data. See <a href="https://telemetrydeck.com/privacy">telemetrydeck.com/privacy</a>.</p>
 
 <h2>purchases (apple and revenuecat)</h2>
 <p>From the fifth edition of hæl (5.0) the full experience is a yearly or monthly subscription, or a one-time purchase offered in settings; earlier versions sold it as a one-time purchase only. Either way it is bought through Apple. hæl never sees or stores your payment information.</p>
